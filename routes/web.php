@@ -14,20 +14,11 @@ use App\Http\Controllers\ProveedorController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/Home', function () {
     return view('dashboard');
-});
+})->name('dashboard');
 
 Route::get('Proveedores',[ProveedorController::class,'proveedor'])->name('Proveedores');
 
 
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});

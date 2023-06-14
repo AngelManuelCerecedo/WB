@@ -4,7 +4,8 @@
 .img{
     display: flex;
     justify-content: center;
-    margin-left: 15px;
+    margin-left: 40px;
+    margin-top: 5px;
     width: 150px;
     height: 50px;
 }
@@ -14,4 +15,30 @@
 .barra::-webkit-scrollbar-thumb{
     background-color: #69747F;
     border-radius: 5px;
+}
+.panel{
+    background-color: #ffffff;
+}
+
+.panel{
+    background-color: #ffffff;
+    width: 1500px;
+    height: 500px;
+}
+.boton{
+    background-color: #FA5C7C;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
+
+.botonm{
+    background-color: #727CF5;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
 }

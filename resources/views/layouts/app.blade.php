@@ -24,15 +24,14 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="bg-white  font-[Raleway]">
+<body class="bg-[#D9E0E7]  font-[Raleway]">
 
     <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
         <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
     </span>
 
-    <div
-        class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
-              p-2 w-[200px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
+    <div class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
+              p-2 w-[250px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
         <!-- Imagen TOP -->
         <div class="text-white text-xl">
             <div>
@@ -41,7 +40,7 @@
             </div>
             <!-- LINEA -->
             <hr class="my-2 text-white">
-            <div>
+            <div class="mt-4">
                 <!-- INICIO -->
                 <a href="{{ route('dashboard') }}">
                     <div
