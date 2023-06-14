@@ -31,7 +31,7 @@
     </span>
 
     <div class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
-              p-2 w-[250px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
+              p-2 w-[270px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
         <!-- Imagen TOP -->
         <div class="text-white text-xl">
             <div>

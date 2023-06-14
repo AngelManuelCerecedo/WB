@@ -4,10 +4,17 @@
 .img{
     display: flex;
     justify-content: center;
-    margin-left: 40px;
+    margin-left: 50px;
     margin-top: 5px;
     width: 150px;
     height: 50px;
+}
+body::-webkit-scrollbar{
+    width: 7px;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: #69747F;
+    border-radius: 5px;
 }
 .barra::-webkit-scrollbar{
     width: 7px;
@@ -16,17 +23,24 @@
     background-color: #69747F;
     border-radius: 5px;
 }
-.panel{
-    background-color: #ffffff;
-}
 
 .panel{
     background-color: #ffffff;
-    width: 1500px;
-    height: 500px;
+    width: 1120px;
+    border-radius: 5px;
+    height: auto;
 }
 .boton{
     background-color: #FA5C7C;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
+
+.botond{
+    background-color: #09bf8c;
     color: #ffffff;
     font-family: 'Raleway', sans-serif;
     border-radius: 3px;
@@ -40,5 +54,59 @@
     font-family: 'Raleway', sans-serif;
     border-radius: 3px;
     width: 200px;
+    height: 38px;   
+}
+.botonr{
+    background-color: #b8bacb;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 150px;
     height: 38px;
+}
+.etiqueta{
+    color: black;
+    font-size: 14px;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 6px;
+}
+.inputS{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 280px;
+    height: 40px;
+}
+.inputN{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 320px;
+    height: 40px;
+}
+.inputM{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 120px;
+    height: 40px;
+}
+.inputL{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 500px;
+    height: 40px;
+}
+.input{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 240px;
+    height: 40px;
+}
+.datos{
+    color: black;
+    font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
 }

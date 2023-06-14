@@ -13,12 +13,16 @@ use App\Http\Controllers\ProveedorController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('dashboard');
+});
 
 Route::get('/Home', function () {
     return view('dashboard');
 })->name('dashboard');
 
 Route::get('Proveedores',[ProveedorController::class,'proveedor'])->name('Proveedores');
+Route::get('Proveedores/Registro',[ProveedorController::class,'rproveedor'])->name('RProveedores');
 
 
 

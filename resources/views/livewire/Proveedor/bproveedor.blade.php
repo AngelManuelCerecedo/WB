@@ -4,16 +4,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
 
-<body class="antialiased bg-black font-[Raleway] ">
-    <div class="container mx-auto px-4 sm:px-8">
-        <div class="py-8 ">
-            <div class="mb-10">
-                <h2 class="text-3xl  leading-tight">Proveedores</h2>
+<body class="antialiased font-[Raleway] bg-gray-200">
+    <div class="container">
+        <div class="py-8">
+            <div class="flex mb-4">
+                <h2 class="text-4xl font-[Raleway]-semibold leading-tight mr-80">Proveedores</h2>
+                <label class="ml-80 mt-6">Inicio <i class="bi bi-chevron-right"></i> Catálogos <i
+                        class="bi bi-chevron-right"></i> Proveedores</label>
             </div>
             <div class="panel">
                 <div class="my-2 flex sm:flex-row flex-col">
-                    <div class="flex flex-row mb-1 sm:mb-0 mt-4">
-                        <div class="relative ml-8 mr-96">
+                    <div class="mt-8 flex flex-row mb-1 sm:mb-0">
+                        <div class="relative ml-8">
                             <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
                                 <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
                                     <path
@@ -21,30 +23,38 @@
                                     </path>
                                 </svg>
                             </span>
-                            <input placeholder="Busqueda"
-                                class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b  pl-8 pr-6 py-2 px-16 bg-white text-sm placeholder-gray-400  focus:bg-white focus:placeholder-gray-600 focus: focus:outline-none" />
+                            <input placeholder="Search"
+                                class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                         </div>
-                        <div class="relative ml-96">
+                        <div class="relative ml-8">
                             <select
-                                class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400  py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                 <option>5</option>
                                 <option>10</option>
                                 <option>20</option>
                             </select>
                         </div>
-                        <div class="relative ml-4">
+                        <div class="relative ml-8">
                             <select
-                                class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400  py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"">
                                 <option>Todos</option>
                                 <option>Activos</option>
                                 <option>Inactivos</option>
                             </select>
                         </div>
-                        <div class="relative ml-4">
-                            <a href="">
+                        <div class="relative ml-52">
+                            <a href="{{ route('RProveedores') }}">
                                 <button class="boton">
                                     <i class="bi bi-plus-circle-fill"></i>
                                     <span class="ml-4 ">Nuevo Proveedor</span>
+                                </button>
+                            </a>
+                        </div>
+                        <div class="relative ml-4">
+                            <a href="">
+                                <button class="botond">
+                                    <i class="bi bi-download"></i>
+                                    <span class="ml-4 ">Descargar</span>
                                 </button>
                             </a>
                         </div>
@@ -56,24 +66,24 @@
                             <thead>
                                 <tr>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-[#EEF2F7] bg-[#EEF2F7] text-left text-xs uppercase tracking-wider">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
+                                        Acciones
+                                    </th>
+                                    <th
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
                                         RFC
                                     </th>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-[#EEF2F7] bg-[#EEF2F7] text-left text-xs uppercase tracking-wider">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
                                         Nombre
                                     </th>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-[#EEF2F7] bg-[#EEF2F7] text-left text-xs uppercase tracking-wider">
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
                                         Estado
                                     </th>
                                     <th
-                                        class="px-5 py-3 border-b-2 border-[#EEF2F7] bg-[#EEF2F7] text-left text-xs uppercase tracking-wider">
-                                        Tipo de Persona
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-[#EEF2F7] bg-[#EEF2F7] text-left text-xs uppercase tracking-wider">
-                                        Aciones
+                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
+                                        Tipo
                                     </th>
                                 </tr>
                             </thead>
@@ -87,29 +97,23 @@
                                                     alt="" />
                                             </div>
                                             <div class="ml-3">
-                                                <p class=" whitespace-no-wrap">
+                                                <p class="text-black whitespace-no-wrap">
                                                     Vera Carpenter
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">Admin</p>
+                                        <p class="text-black whitespace-no-wrap">Admin</p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">
+                                        <p class="text-black whitespace-no-wrap">
                                             Jan 21, 2020
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Activo</span>
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-green-900 leading-tight">
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
                                             <span aria-hidden
                                                 class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                                             <span class="relative">Activo</span>
@@ -125,29 +129,23 @@
                                                     alt="" />
                                             </div>
                                             <div class="ml-3">
-                                                <p class=" whitespace-no-wrap">
+                                                <p class="text-black whitespace-no-wrap">
                                                     Blake Bowman
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">Editor</p>
+                                        <p class="text-black whitespace-no-wrap">Editor</p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">
+                                        <p class="text-black whitespace-no-wrap">
                                             Jan 01, 2020
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Activo</span>
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-green-900 leading-tight">
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
                                             <span aria-hidden
                                                 class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                                             <span class="relative">Activo</span>
@@ -163,32 +161,26 @@
                                                     alt="" />
                                             </div>
                                             <div class="ml-3">
-                                                <p class=" whitespace-no-wrap">
+                                                <p class="text-black whitespace-no-wrap">
                                                     Dana Moore
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">Editor</p>
+                                        <p class="text-black whitespace-no-wrap">Editor</p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">
+                                        <p class="text-black whitespace-no-wrap">
                                             Jan 10, 2020
                                         </p>
                                     </td>
                                     <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-orange-900 leading-tight">
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-orange-900 leading-tight">
                                             <span aria-hidden
                                                 class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
                                             <span class="relative">Suspended</span>
-                                        </span>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Activo</span>
                                         </span>
                                     </td>
                                 </tr>
@@ -201,44 +193,40 @@
                                                     alt="" />
                                             </div>
                                             <div class="ml-3">
-                                                <p class=" whitespace-no-wrap">
+                                                <p class="text-black whitespace-no-wrap">
                                                     Alonzo Cox
                                                 </p>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="px-5 py-5 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">Admin</p>
+                                        <p class="text-black whitespace-no-wrap">Admin</p>
                                     </td>
                                     <td class="px-5 py-5 bg-white text-sm">
-                                        <p class=" whitespace-no-wrap">Jan 18, 2020</p>
+                                        <p class="text-black whitespace-no-wrap">Jan 18, 2020</p>
                                     </td>
                                     <td class="px-5 py-5 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-red-900 leading-tight">
+                                        <span
+                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-red-900 leading-tight">
                                             <span aria-hidden
                                                 class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
                                             <span class="relative">Inactive</span>
                                         </span>
                                     </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span class="relative inline-block px-3 py-1  text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Activo</span>
-                                        </span>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-left xs:justify-left">
-                            <span class="text-m xs:text-sm ">
-                                Elementos Mostrados 1 - 4 de 50
+                        <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row xs:justify-between ">
+                            <span class="text-sm xs:text-sm text-black">
+                                Showing 1 to 4 of 50 Entries
                             </span>
-                            <div class="">
-                                <button class="botonm">
+                            <div class="inline-flex mt-2 xs:mt-0">
+                                <button
+                                    class="text-sm bg-gray-300 hover:bg-gray-400 text-black font-[Raleway]-semibold py-2 px-4 rounded-l">
                                     Prev
                                 </button>
-                                <button class="botonm">
+                                <button
+                                    class="text-sm bg-gray-300 hover:bg-gray-400 text-black font-[Raleway]-semibold py-2 px-4 rounded-r">
                                     Next
                                 </button>
                             </div>
