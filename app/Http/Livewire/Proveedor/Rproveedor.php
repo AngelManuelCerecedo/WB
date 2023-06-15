@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Proveedor;
 
+use App\Models\Proveedor;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Rproveedor extends Component
 {

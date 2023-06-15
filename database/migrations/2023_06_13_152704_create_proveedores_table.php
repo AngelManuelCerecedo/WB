@@ -13,8 +13,9 @@ class CreateProveedoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('proveedores', function (Blueprint $table) {
+        Schema::create('proveedors', function (Blueprint $table) {
             $table->id();
+            $table->string('NEMP')->nullable();
             $table->string ('Nombre')->nullable();
             $table->string ('ApP')->nullable();
             $table->string ('ApM')->nullable();
@@ -31,6 +32,7 @@ class CreateProveedoresTable extends Migration
             $table->string ('NumExt')->nullable();
             $table->string ('NumInt')->nullable();
             $table->string ('Credito')->nullable();
+            $table->string ('Estatus')->nullable();
             $table->timestamps();
         });
     }

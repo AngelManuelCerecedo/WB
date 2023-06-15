@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="{{ mix('css/app.css') }}">
-<!--FONT GOOGLE-->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
-
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+</head>
 <body class="antialiased font-[Raleway] bg-gray-200">
     <div class="container">
         <div class="py-8">
@@ -23,23 +21,23 @@
                                     </path>
                                 </svg>
                             </span>
-                            <input placeholder="Search"
+                            <input placeholder="Search" wire:model="search"
                                 class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                         </div>
                         <div class="relative ml-8">
-                            <select
+                            <select wire:model='cantidad'
                                 class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                                <option>5</option>
-                                <option>10</option>
-                                <option>20</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
                             </select>
                         </div>
                         <div class="relative ml-8">
-                            <select
+                            <select wire:model='estatus'
                                 class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"">
-                                <option>Todos</option>
-                                <option>Activos</option>
-                                <option>Inactivos</option>
+                                <option value="Todos">Todos</option>
+                                <option value="Activos">Activos</option>
+                                <option value="Inactivos">Inactivos</option>
                             </select>
                         </div>
                         <div class="relative ml-52">
@@ -51,7 +49,7 @@
                             </a>
                         </div>
                         <div class="relative ml-4">
-                            <a href="">
+                            <a href="{{ route('Proveedores') }}">
                                 <button class="botond">
                                     <i class="bi bi-download"></i>
                                     <span class="ml-4 ">Descargar</span>
@@ -62,175 +60,94 @@
                 </div>
                 <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                     <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                        <table class="min-w-full leading-normal">
-                            <thead>
-                                <tr>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
-                                        Acciones
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
-                                        RFC
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
-                                        Nombre
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
-                                        Estado
-                                    </th>
-                                    <th
-                                        class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
-                                        Tipo
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-full h-full rounded-full"
-                                                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                    alt="" />
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    Vera Carpenter
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">Admin</p>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">
-                                            Jan 21, 2020
-                                        </p>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span
-                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Activo</span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-full h-full rounded-full"
-                                                    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                    alt="" />
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    Blake Bowman
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">Editor</p>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">
-                                            Jan 01, 2020
-                                        </p>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span
-                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Activo</span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-full h-full rounded-full"
-                                                    src="https://images.unsplash.com/photo-1540845511934-7721dd7adec3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                                                    alt="" />
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    Dana Moore
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">Editor</p>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">
-                                            Jan 10, 2020
-                                        </p>
-                                    </td>
-                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                                        <span
-                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-orange-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Suspended</span>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-5 py-5 bg-white text-sm">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-10 h-10">
-                                                <img class="w-full h-full rounded-full"
-                                                    src="https://images.unsplash.com/photo-1522609925277-66fea332c575?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&h=160&w=160&q=80"
-                                                    alt="" />
-                                            </div>
-                                            <div class="ml-3">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    Alonzo Cox
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-5 py-5 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">Admin</p>
-                                    </td>
-                                    <td class="px-5 py-5 bg-white text-sm">
-                                        <p class="text-black whitespace-no-wrap">Jan 18, 2020</p>
-                                    </td>
-                                    <td class="px-5 py-5 bg-white text-sm">
-                                        <span
-                                            class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-red-900 leading-tight">
-                                            <span aria-hidden
-                                                class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                            <span class="relative">Inactive</span>
-                                        </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row xs:justify-between ">
-                            <span class="text-sm xs:text-sm text-black">
-                                Showing 1 to 4 of 50 Entries
-                            </span>
-                            <div class="inline-flex mt-2 xs:mt-0">
-                                <button
-                                    class="text-sm bg-gray-300 hover:bg-gray-400 text-black font-[Raleway]-semibold py-2 px-4 rounded-l">
-                                    Prev
-                                </button>
-                                <button
-                                    class="text-sm bg-gray-300 hover:bg-gray-400 text-black font-[Raleway]-semibold py-2 px-4 rounded-r">
-                                    Next
-                                </button>
+                        @if ($proveedores->count())
+                            <table class="min-w-full leading-normal">
+                                <thead>
+                                    <tr>
+                                        <th
+                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
+                                            Acciones
+                                        </th>
+                                        <th
+                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
+                                            RFC
+                                        </th>
+                                        <th
+                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
+                                            Nombre
+                                        </th>
+                                        <th
+                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
+                                            Estado
+                                        </th>
+                                        <th
+                                            class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-[Raleway]-semibold text-black uppercase tracking-wider">
+                                            Tipo
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($proveedores as $proveedor)
+                                        <tr>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 w-10 h-10">
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                <p class="text-black whitespace-no-wrap">Admin</p>
+                                            </td>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                @if ($proveedor->TipoP == 'Moral')
+                                                    <p>{{ $proveedor->NEMP }}</p>
+                                                @else
+                                                    <p>{{ $proveedor->Nombre }} {{ $proveedor->ApP }}
+                                                        {{ $proveedor->ApM }}</p>
+                                                @endif
+                                            </td>
+                                            <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                                @if ($proveedor->Estatus == 'Activo')
+                                                    <span
+                                                        class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
+                                                        <span aria-hidden
+                                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
+                                                        <span class="relative">Activo</span>
+                                                    </span>
+                                                @else
+                                                    <span
+                                                        class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-orange-900 leading-tight">
+                                                        <span aria-hidden
+                                                            class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
+                                                        <span class="relative">Inactivo</span>
+                                                    </span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="px-6 py-4">
+                                <div class="flex font-sans bg-[#FA5C7C] rounded-lg p-4 mb-4 text-sm text-white"
+                                    role="alert">
+                                    <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                    <div>
+                                        <span class="font-medium">Info: </span> No se encontró ningún registro.
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+                        @endif
+                        @if ($proveedores->hasPages())
+                            <div class="px-6 py-3">
+                                {{ $proveedores->links() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
