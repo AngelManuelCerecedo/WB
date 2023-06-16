@@ -14,8 +14,7 @@ class ProveedorController extends Controller
   {
     return view('proveedores.Rproveedor');
   }
-
-  //public function ealumno($id){
-  //  return view('alumnos.Ealumno', ['id' => $id]);
-  //}
+  public function eproveedor($id){
+    return view('proveedores.Eproveedor', ['id' => $id]);
+  }
 }

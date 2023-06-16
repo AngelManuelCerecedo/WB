@@ -23,6 +23,7 @@ Route::get('/Home', function () {
 
 Route::get('Proveedores',[ProveedorController::class,'proveedor'])->name('Proveedores');
 Route::get('Proveedores/Registro',[ProveedorController::class,'rproveedor'])->name('RProveedores');
+Route::get('Proveedores/Ediotar/{id}',[ProveedorController::class,'eproveedor'])->name('EProveedor');
 
 
 

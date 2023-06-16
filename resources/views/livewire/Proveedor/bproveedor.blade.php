@@ -56,7 +56,7 @@
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
                     @if ($proveedores->count())
-                        <table class="min-w-full leading-normal barra" >
+                        <table class="min-w-full leading-normal barra">
                             <thead class="etiqueta">
                                 <tr>
                                     <th
@@ -87,10 +87,12 @@
                                         <td class="px-5 py-5 border border-gray-200 bg-white">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
-                                                    <button class="botonm">
-                                                        <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                        <span class="ml-4 ">Detalles</span>
-                                                    </button>
+                                                    <a href="{{route('EProveedor',[$proveedor->id])}}">
+                                                        <button class="botonm">
+                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                            <span class="ml-4 ">Detalles</span>
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </td>
