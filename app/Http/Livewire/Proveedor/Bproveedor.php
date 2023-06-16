@@ -9,11 +9,13 @@ use Livewire\WithPagination;
 class Bproveedor extends Component
 {
     use WithPagination;
-    public $search,$d;
-    public $cantidad = 5;
+    public $search;
+    public $message;
+    public $cantidad = 20;
     public $estatus = 'Todos';
     public function render()
     {
+
         if ($this->estatus == "Todos") {
             $proveedores = Proveedor::Where([['Nombre', 'like', '%' . $this->search . '%']])
                 ->orWhere([['ApP', 'like', '%' . $this->search . '%']])

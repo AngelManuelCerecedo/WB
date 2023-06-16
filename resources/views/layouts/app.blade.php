@@ -13,24 +13,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
-
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @livewireStyles
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    @livewireScripts
+    <script src="{{ asset('js/app.js') }}"defer ></script>
 </head>
 
 <body class="bg-[#D9E0E7]  font-[Raleway]">
-
     <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
         <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
     </span>
 
-    <div class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
+    <div
+        class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
               p-2 w-[270px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
         <!-- Imagen TOP -->
         <div class="text-white text-xl">
@@ -43,22 +41,21 @@
             <div class="mt-4">
                 <!-- INICIO -->
                 <a href="{{ route('dashboard') }}">
-                    <div
-                        class="p-1  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                    <div class="p-1  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
                         <i class="bi bi-house"></i>
                         <span class="text-[15px] ml-4 text-white ">Inicio</span>
                     </div>
                 </a>
                 <!-- CATALOGOS -->
-                    <div
-                        class="p-1  mt-2 flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
-                        <i class="bi bi-database"></i>
-                        <div class="flex justify-between w-full items-center" onclick="dropDown1()">
-                            <span class="text-[15px] ml-4 text-white">Catálogos</span>
-                            <span class="text-sm rotate-90" id="arrow1"><i class="bi bi-chevron-right"></i>
-                            </span>
-                        </div>
+                <div
+                    class="p-1  mt-2 flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                    <i class="bi bi-database"></i>
+                    <div class="flex justify-between w-full items-center" onclick="dropDown1()">
+                        <span class="text-[15px] ml-4 text-white">Catálogos</span>
+                        <span class="text-sm rotate-90" id="arrow1"><i class="bi bi-chevron-right"></i>
+                        </span>
                     </div>
+                </div>
                 <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloCatalogos">
                     <a href="">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5">Clientes</h1>
@@ -94,8 +91,7 @@
                     </div>
                 </div>
 
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto"
-                    id="submoduloAdministracion">
+                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloAdministracion">
                     <a href="">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Empleados</h1>
                     </a>
@@ -185,8 +181,7 @@
                     </div>
                 </div>
 
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto"
-                    id="submoduloContabilidad">
+                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloContabilidad">
                     <a href="">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Usos de CFDI</h1>
                     </a>
@@ -280,7 +275,6 @@
             document.querySelector('.sidebar').classList.toggle('left-[-300px]')
         }
     </script>
-    @livewireScripts
     @yield('js')
     <!-- Alertas, sin instalacion, solo con ruta del navegador: https://sweetalert2.github.io/#download -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

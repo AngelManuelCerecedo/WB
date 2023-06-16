@@ -24,10 +24,12 @@ body::-webkit-scrollbar-thumb{
     background-color: #69747F;
     border-radius: 5px;
 }
-
+.tabla{
+    border-width: 2px;
+}
 .panel{
     background-color: #ffffff;
-    width: 1120px;
+    width: 1150px;
     border-radius: 5px;
     height: auto;
 }
@@ -54,7 +56,7 @@ body::-webkit-scrollbar-thumb{
     color: #ffffff;
     font-family: 'Raleway', sans-serif;
     border-radius: 3px;
-    width: 200px;
+    width: 150px;
     height: 38px;   
 }
 .botonr{
@@ -109,5 +111,10 @@ body::-webkit-scrollbar-thumb{
 .datos{
     color: black;
     font-size: 24px;
+    font-family: 'Open Sans', sans-serif;
+}
+.datosT{
+    color: black;
+    font-size: 16px;
     font-family: 'Open Sans', sans-serif;
 }

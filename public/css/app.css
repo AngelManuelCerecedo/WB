@@ -1219,9 +1219,6 @@ select {
 .-mt-3 {
   margin-top: -0.75rem;
 }
-.mt-0 {
-  margin-top: 0px;
-}
 .mt-1 {
   margin-top: 0.25rem;
 }
@@ -1357,9 +1354,6 @@ select {
 .w-\[270px\] {
   width: 270px;
 }
-.w-\[300px\] {
-  width: 300px;
-}
 .w-auto {
   width: auto;
 }
@@ -1408,14 +1402,6 @@ select {
 }
 .translate-y-4 {
   --tw-translate-y: 1rem;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.rotate-0 {
-  --tw-rotate: 0deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-.rotate-180 {
-  --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 .rotate-90 {
@@ -1609,10 +1595,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(49 58 70 / var(--tw-bg-opacity));
 }
-.bg-\[\#78163B\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(120 22 59 / var(--tw-bg-opacity));
-}
 .bg-\[\#D9E0E7\] {
   --tw-bg-opacity: 1;
   background-color: rgb(217 224 231 / var(--tw-bg-opacity));
@@ -1628,10 +1610,6 @@ select {
 .bg-gray-200 {
   --tw-bg-opacity: 1;
   background-color: rgb(229 231 235 / var(--tw-bg-opacity));
-}
-.bg-gray-300 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 .bg-gray-50 {
   --tw-bg-opacity: 1;
@@ -1664,10 +1642,6 @@ select {
 .bg-indigo-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(79 70 229 / var(--tw-bg-opacity));
-}
-.bg-orange-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 215 170 / var(--tw-bg-opacity));
 }
 .bg-red-100 {
   --tw-bg-opacity: 1;
@@ -1708,17 +1682,11 @@ select {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.p-0 {
-  padding: 0px;
-}
 .p-1 {
   padding: 0.25rem;
 }
 .p-2 {
   padding: 0.5rem;
-}
-.p-2\.5 {
-  padding: 0.625rem;
 }
 .p-4 {
   padding: 1rem;
@@ -1840,9 +1808,6 @@ select {
 .text-right {
   text-align: right;
 }
-.font-\[Poppins\] {
-  font-family: Poppins;
-}
 .font-\[Raleway\] {
   font-family: Raleway;
 }
@@ -1865,9 +1830,6 @@ select {
 }
 .text-\[15px\] {
   font-size: 15px;
-}
-.text-\[20px\] {
-  font-size: 20px;
 }
 .text-base {
   font-size: 1rem;
@@ -1994,10 +1956,6 @@ select {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-.text-red-900 {
-  --tw-text-opacity: 1;
-  color: rgb(127 29 29 / var(--tw-text-opacity));
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -2133,10 +2091,12 @@ body::-webkit-scrollbar-thumb{
     background-color: #69747F;
     border-radius: 5px;
 }
-
+.tabla{
+    border-width: 2px;
+}
 .panel{
     background-color: #ffffff;
-    width: 1120px;
+    width: 1150px;
     border-radius: 5px;
     height: auto;
 }
@@ -2163,7 +2123,7 @@ body::-webkit-scrollbar-thumb{
     color: #ffffff;
     font-family: 'Raleway', sans-serif;
     border-radius: 3px;
-    width: 200px;
+    width: 150px;
     height: 38px;   
 }
 .botonr{
@@ -2220,6 +2180,11 @@ body::-webkit-scrollbar-thumb{
     font-size: 24px;
     font-family: 'Open Sans', sans-serif;
 }
+.datosT{
+    color: black;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
+}
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -2231,10 +2196,6 @@ body::-webkit-scrollbar-thumb{
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-.hover\:bg-gray-400:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
 .hover\:bg-gray-50:hover {
   --tw-bg-opacity: 1;
