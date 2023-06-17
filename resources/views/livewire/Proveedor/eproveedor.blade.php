@@ -151,9 +151,9 @@
                             </a>
                         </div>
                         <div class=" ml-64">
-                            <button class="botond" wire:click="registrar()">
-                                <i class="bi bi-clipboard-plus"></i>
-                                Registrar
+                            <button class="botond" wire:click="actualizar()">
+                                <i class="bi bi-journal-bookmark"></i> 
+                                Guardar
                             </button>
                         </div>
                     </div>
