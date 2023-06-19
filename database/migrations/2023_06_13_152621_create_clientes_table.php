@@ -34,9 +34,14 @@ class CreateClientesTable extends Migration
             $table->string ('Mun')->nullable();
             $table->string ('Col')->nullable();
             $table->string ('Calle')->nullable();
+            $table->string ('Referencia')->nullable();
             $table->string ('NumExt')->nullable();
             $table->string ('NumInt')->nullable();
             $table->string ('Credito')->nullable();
+            $table->string ('NomRF')->nullable();
+            $table->string ('ParenRF')->nullable();
+            $table->string ('TelRF')->nullable();
+            $table->string ('DomRF')->nullable();
             $table->timestamps();
         });
     }

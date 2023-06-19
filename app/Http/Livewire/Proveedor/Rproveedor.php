@@ -29,6 +29,7 @@ class Rproveedor extends Component
                 'Mun' => $this->MUN,
                 'Col' => $this->COL,
                 'Calle' => $this->CALLE,
+                'Referencia' => $this->REF,
                 'TipoP' => $this->TP,
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
@@ -50,6 +51,7 @@ class Rproveedor extends Component
                 'Mun' => $this->MUN,
                 'Col' => $this->COL,
                 'Calle' => $this->CALLE,
+                'Referencia' => $this->REF,
                 'TipoP' => $this->TP,
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
@@ -79,6 +81,7 @@ class Rproveedor extends Component
         $this->MUN = '';
         $this->COL = '';
         $this->CALLE = '';
+        $this->REF = '';
         $this->TP = '';
         $this->RFC = '';
         $this->NEXT = '';

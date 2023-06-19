@@ -27,6 +27,7 @@ class CreateProveedoresTable extends Migration
             $table->string ('Mun')->nullable();
             $table->string ('Col')->nullable();
             $table->string ('Calle')->nullable();
+            $table->text ('Referencia')->nullable();
             $table->string ('TipoP')->nullable();
             $table->string ('RFC')->nullable();
             $table->string ('NumExt')->nullable();

@@ -15,7 +15,6 @@ class Bproveedor extends Component
     public $estatus = 'Todos';
     public function render()
     {
-
         if ($this->estatus == "Todos") {
             $proveedores = Proveedor::Where([['Nombre', 'like', '%' . $this->search . '%']])
                 ->orWhere([['ApP', 'like', '%' . $this->search . '%']])
@@ -44,9 +43,5 @@ class Bproveedor extends Component
     public function updatingCantidad()
     {
         $this->resetPage();
-    }
-    public function redic()
-    {
-        return redirect()->route('Proveedores');
     }
 }

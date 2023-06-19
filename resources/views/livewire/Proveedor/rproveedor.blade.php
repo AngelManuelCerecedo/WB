@@ -15,7 +15,7 @@
                             <label class="etiqueta">Tipo Persona</label>
                             <select wire:model='TP' class="inputS">
                                 <option value="">Seleccione una Opción</option>
-                                <option value="Sin">Sin Tipo</option>
+                                <option value="Sin Tipo">Sin Tipo</option>
                                 <option value="Fisica">Fisica</option>
                                 <option value="Moral">Moral</option>
                             </select>
@@ -26,7 +26,11 @@
                         </div>
                         <div class="flex flex-col ml-8">
                             <label class="etiqueta">Estatus</label>
-                            <input type="text" wire:model='STS' class="input" placeholder="Estatus" />
+                            <select wire:model='STS' class="inputS">
+                                <option value="">Seleccione una Opción</option>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
                         </div>
                     </div>
                     @if ($TP == 'Moral')

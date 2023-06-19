@@ -1,9 +1,9 @@
 <div class="container">
     <div class="py-8">
         <div class="flex mb-4">
-            <h2 class="text-4xl font-[Raleway]-semibold leading-tight mr-80">Proveedores</h2>
-            <label class="ml-80 mt-6">Inicio <i class="bi bi-chevron-right"></i> Catálogos <i
-                    class="bi bi-chevron-right"></i> Proveedores</label>
+            <h2 class="text-4xl font-[Raleway]-semibold leading-tight mr-80">Clientes</h2>
+            <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Catálogos <i
+                    class="bi bi-chevron-right"></i> Clientes</label>
         </div>
         <div class="panel">
             <div class="my-2 flex sm:flex-row flex-col">
@@ -27,24 +27,16 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class="relative ml-8">
-                        <select wire:model="estatus"
-                            class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"">
-                            <option value="Todos">Todos</option>
-                            <option value="Activo">Activos</option>
-                            <option value="Inactivo">Inactivos</option>
-                        </select>
-                    </div>
-                    <div class="relative ml-52">
-                        <a href="{{ route('RProveedores') }}">
+                    <div class="relative ml-72">
+                        <a href="{{ route('RClientes') }}">
                             <button class="boton">
                                 <i class="bi bi-plus-circle-fill"></i>
-                                <span class="ml-4 ">Nuevo Proveedor</span>
+                                <span class="ml-4 ">Nuevo Cliente</span>
                             </button>
                         </a>
                     </div>
                     <div class="relative ml-4">
-                        <a href="{{ route('Proveedores') }}">
+                        <a href="{{ route('Clientes') }}">
                             <button class="botond">
                                 <i class="bi bi-download"></i>
                                 <span class="ml-4 ">Descargar</span>
@@ -55,7 +47,7 @@
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    @if ($proveedores->count())
+                    @if ($clientes->count())
                         <table class="min-w-full leading-normal barra">
                             <thead class="etiqueta">
                                 <tr>
@@ -72,22 +64,18 @@
                                         Nombre
                                     </th>
                                     <th
-                                        class="px-5 py-3 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black uppercase tracking-wider r">
-                                        Estado
-                                    </th>
-                                    <th
                                         class="px-5 py-3 border border-gray-200 bg-gray-100 text-left font-[Raleway]-semibold text-black uppercase tracking-wider ">
                                         Tipo
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($proveedores as $proveedor)
+                                @foreach ($clientes as $cliente)
                                     <tr class="datosT">
                                         <td class="px-5 py-5 border border-gray-200 bg-white">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
-                                                    <a href="{{route('EProveedor',[$proveedor->id])}}">
+                                                    <a href="{{route('ECliente',[$cliente->id])}}">
                                                         <button class="botonm">
                                                             <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                             <span class="ml-4 ">Detalles</span>
@@ -97,35 +85,18 @@
                                             </div>
                                         </td>
                                         <td class="px-5 py-5 border border-gray-200 bg-white ">
-                                            <p class="text-black whitespace-no-wrap">{{ $proveedor->RFC }}</p>
+                                            <p class="text-black whitespace-no-wrap">{{ $cliente->RFC }}</p>
                                         </td>
                                         <td class="px-5 py-5 border border-gray-200 bg-white ">
-                                            @if ($proveedor->TipoP == 'Moral')
-                                                <p>{{ $proveedor->NEMP }}</p>
+                                            @if ($cliente->TipoP == 'Moral')
+                                                <p>{{ $cliente->NomCom }}</p>
                                             @else
-                                                <p>{{ $proveedor->Nombre }} {{ $proveedor->ApP }}
-                                                    {{ $proveedor->ApM }}</p>
-                                            @endif
-                                        </td>
-                                        <td class="px-5 py-5 border border-gray-200 bg-white">
-                                            @if ($proveedor->Estatus == 'Activo')
-                                                <span
-                                                    class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
-                                                    <span aria-hidden
-                                                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                    <span class="relative">Activo</span>
-                                                </span>
-                                            @else
-                                                <span
-                                                    class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-orange-900 leading-tight">
-                                                    <span aria-hidden
-                                                        class="absolute inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                                    <span class="relative">Inactivo</span>
-                                                </span>
+                                                <p>{{ $cliente->Nombre }} {{ $cliente->ApP }}
+                                                    {{ $cliente->ApM }}</p>
                                             @endif
                                         </td>
                                         <td class="px-5 py-5 border border-gray-200 bg-white ">
-                                            <p class="text-black whitespace-no-wrap">{{ $proveedor->TipoP }}</p>
+                                            <p class="text-black whitespace-no-wrap">{{ $cliente->TipoP }}</p>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -147,9 +118,9 @@
                             </div>
                         </div>
                     @endif
-                    @if ($proveedores->hasPages())
+                    @if ($clientes->hasPages())
                         <div class="px-6 py-3 etiqueta ">
-                            {{ $proveedores->links() }}
+                            {{ $clientes->links() }}
                         </div>
                     @endif
                 </div>
@@ -157,3 +128,4 @@
         </div>
     </div>
 </div>
+

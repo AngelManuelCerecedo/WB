@@ -10,6 +10,9 @@
     width: 150px;
     height: 50px;
 }
+.contentm{
+    margin-left: 270px;   
+}
 body::-webkit-scrollbar{
     width: 7px;
 }

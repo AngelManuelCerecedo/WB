@@ -29,7 +29,7 @@
 
     <div
         class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
-              p-2 w-[270px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
+              p-2 w-[240px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
         <!-- Imagen TOP -->
         <div class="text-white text-xl">
             <div>
@@ -57,7 +57,7 @@
                     </div>
                 </div>
                 <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloCatalogos">
-                    <a href="">
+                    <a href="{{ route('Clientes') }}">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5">Clientes</h1>
                     </a>
                     <a href="{{ route('Proveedores') }}">
@@ -230,7 +230,7 @@
             </div>
         </div>
     </div>
-    <div class="content mx-20 lg:ml-80 lg:mr-5">
+    <div class="contentm lg:mr-5">
         @yield('content')
     </div>
     @stack('modals')

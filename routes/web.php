@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
+use App\Http\Controllers\ClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,14 @@ Route::get('/Home', function () {
     return view('dashboard');
 })->name('dashboard');
 
+//PROVEEDORES
 Route::get('Proveedores',[ProveedorController::class,'proveedor'])->name('Proveedores');
-Route::get('Proveedores/Registro',[ProveedorController::class,'rproveedor'])->name('RProveedores');
-Route::get('Proveedores/Ediotar/{id}',[ProveedorController::class,'eproveedor'])->name('EProveedor');
+Route::get('Proveedore/Registro',[ProveedorController::class,'rproveedor'])->name('RProveedores');
+Route::get('Proveedore/Editar/{id}',[ProveedorController::class,'eproveedor'])->name('EProveedor');
 
+//CLIENTES
+Route::get('Clientes',[ClienteController::class,'cliente'])->name('Clientes');
+Route::get('Cliente/Registro',[ClienteController::class,'rcliente'])->name('RClientes');
+Route::get('Cliente/Editar/{id}',[ClienteController::class,'ecliente'])->name('ECliente');
 
 

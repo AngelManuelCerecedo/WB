@@ -26,12 +26,13 @@ class Eproveedor extends Component
         $this->MUN = $proveedor->Mun;
         $this->COL = $proveedor->Col;
         $this->CALLE = $proveedor->Calle;
+        $this->REF = $proveedor->Referencia;
         $this->TP = $proveedor->TipoP;
         $this->RFC = $proveedor->RFC;
         $this->NEXT = $proveedor->NumExt;
         $this->NINT = $proveedor->NumInt;
         $this->LIMC = $proveedor->Credito;
-        $this->EST = $proveedor->Estatus;
+        $this->STS = $proveedor->Estatus;
     }
     public function actualizar(){
         if ($this->NM == null) {
@@ -50,12 +51,13 @@ class Eproveedor extends Component
                 'Mun' => $this->MUN,
                 'Col' => $this->COL,
                 'Calle' => $this->CALLE,
+                'Referencia' => $this->REF,
                 'TipoP' => $this->TP,
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
                 'NumInt' => $this->NINT,
                 'Credito' => $this->LIMC,
-                'Estatus' => $this->EST
+                'Estatus' => $this->STS
             ]);
         } else {
             Proveedor::updateOrCreate(
@@ -73,12 +75,13 @@ class Eproveedor extends Component
                 'Mun' => $this->MUN,
                 'Col' => $this->COL,
                 'Calle' => $this->CALLE,
+                'Referencia' => $this->REF,
                 'TipoP' => $this->TP,
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
                 'NumInt' => $this->NINT,
                 'Credito' => $this->LIMC,
-                'Estatus' => $this->EST
+                'Estatus' => $this->STS
             ]);
         }
         $this->dispatchBrowserEvent('swal', [
