@@ -10,11 +10,11 @@ class ClienteController extends Controller
     {
       return view('clientes.Bcliente');
     }
-    public function rproveedor()
+    public function rcliente()
     {
       return view('clientes.Rcliente');
     }
-    public function eproveedor($id){
+    public function ecliente($id){
       return view('clientes.Ecliente', ['id' => $id]);
     }
 }
