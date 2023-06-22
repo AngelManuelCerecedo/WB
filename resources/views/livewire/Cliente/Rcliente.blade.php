@@ -212,8 +212,8 @@
                     </div>
                     <div class="md:flex items-center mt-6">
                         <div class="flex flex-col mr-24">
-                            <label class="etiqueta">Referencias</label>
-                            <input type="text" wire:model='REF' class="inputL" placeholder="Referencias" />
+                            <label class="etiqueta">Domicilio</label>
+                            <input type="text" wire:model='DomRF' class="inputL" placeholder="Domicilio" />
                         </div>
                     </div>
                 </div>

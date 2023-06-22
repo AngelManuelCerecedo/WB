@@ -54,29 +54,29 @@
                 </div>
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                <div class="inline-block shadow rounded-lg overflow-hidden">
                     @if ($proveedores->count())
-                        <table class="min-w-full leading-normal barra">
+                        <table class="tabla">
                             <thead class="etiqueta">
                                 <tr>
                                     <th
-                                        class="px-5 py-3 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black uppercase tracking-wider ">
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Acciones
                                     </th>
                                     <th
-                                        class="px-5 py-3 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black uppercase tracking-wider ">
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black tracking-wider ">
                                         RFC
                                     </th>
                                     <th
-                                        class="px-5 py-3 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black uppercase tracking-wider ">
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black tracking-wider ">
                                         Nombre
                                     </th>
                                     <th
-                                        class="px-5 py-3 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black uppercase tracking-wider r">
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black tracking-wider r">
                                         Estado
                                     </th>
                                     <th
-                                        class="px-5 py-3 border border-gray-200 bg-gray-100 text-left font-[Raleway]-semibold text-black uppercase tracking-wider ">
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left font-[Raleway]-semibold text-black tracking-wider ">
                                         Tipo
                                     </th>
                                 </tr>
@@ -84,11 +84,11 @@
                             <tbody>
                                 @foreach ($proveedores as $proveedor)
                                     <tr class="datosT">
-                                        <td class="px-5 py-5 border border-gray-200 bg-white">
+                                        <td class="px-5 py-2 border border-gray-200 bg-white">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-10 h-10">
                                                     <a href="{{route('EProveedor',[$proveedor->id])}}">
-                                                        <button class="botonm">
+                                                        <button class="botonm ml-6">
                                                             <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                             <span class="ml-4 ">Detalles</span>
                                                         </button>
@@ -96,10 +96,10 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="px-5 py-5 border border-gray-200 bg-white ">
+                                        <td class="px-5 py-3 border border-gray-200 bg-white ">
                                             <p class="text-black whitespace-no-wrap">{{ $proveedor->RFC }}</p>
                                         </td>
-                                        <td class="px-5 py-5 border border-gray-200 bg-white ">
+                                        <td class="px-5 py-3 border border-gray-200 bg-white ">
                                             @if ($proveedor->TipoP == 'Moral')
                                                 <p>{{ $proveedor->NEMP }}</p>
                                             @else
@@ -107,7 +107,7 @@
                                                     {{ $proveedor->ApM }}</p>
                                             @endif
                                         </td>
-                                        <td class="px-5 py-5 border border-gray-200 bg-white">
+                                        <td class="px-5 py-3 border border-gray-200 bg-white">
                                             @if ($proveedor->Estatus == 'Activo')
                                                 <span
                                                     class="relative inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
@@ -124,7 +124,7 @@
                                                 </span>
                                             @endif
                                         </td>
-                                        <td class="px-5 py-5 border border-gray-200 bg-white ">
+                                        <td class="px-5 py-3 border border-gray-200 bg-white ">
                                             <p class="text-black whitespace-no-wrap">{{ $proveedor->TipoP }}</p>
                                         </td>
                                     </tr>
