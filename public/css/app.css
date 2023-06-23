@@ -1171,6 +1171,9 @@ select {
 .ml-4 {
   margin-left: 1rem;
 }
+.ml-40 {
+  margin-left: 10rem;
+}
 .ml-5 {
   margin-left: 1.25rem;
 }
@@ -1260,6 +1263,21 @@ select {
 }
 .mt-8 {
   margin-top: 2rem;
+}
+.ml-14 {
+  margin-left: 3.5rem;
+}
+.ml-60 {
+  margin-left: 15rem;
+}
+.ml-56 {
+  margin-left: 14rem;
+}
+.ml-44 {
+  margin-left: 11rem;
+}
+.ml-48 {
+  margin-left: 12rem;
 }
 .block {
   display: block;
@@ -1759,6 +1777,10 @@ select {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
@@ -2123,7 +2145,7 @@ select {
 .img{
     display: flex;
     justify-content: center;
-    margin-left: 50px;
+    margin-left: 30px;
     margin-top: 5px;
     width: 150px;
     height: 50px;
@@ -2165,7 +2187,14 @@ body::-webkit-scrollbar-thumb{
     width: 200px;
     height: 38px;
 }
-
+.botonL{
+    background-color: #FA5C7C;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 235px;
+    height: 38px;
+}
 .botond{
     background-color: #09bf8c;
     color: #ffffff;

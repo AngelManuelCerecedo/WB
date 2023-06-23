@@ -1,8 +1,13 @@
 <?php
 
+use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\FormasController;
+use App\Http\Controllers\MarcasController;
+use App\Http\Controllers\MetodosController;
+use App\Http\Controllers\UnidadesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,5 +36,30 @@ Route::get('Proveedore/Editar/{id}',[ProveedorController::class,'eproveedor'])->
 Route::get('Clientes',[ClienteController::class,'cliente'])->name('Clientes');
 Route::get('Cliente/Registro',[ClienteController::class,'rcliente'])->name('RClientes');
 Route::get('Cliente/Editar/{id}',[ClienteController::class,'ecliente'])->name('ECliente');
+
+//CATEGORIAS
+Route::get('Categorias',[CategoriasController::class,'categoria'])->name('Categorias');
+Route::get('Categoria/Registro',[CategoriasController::class,'rcategoria'])->name('RCategorias');
+Route::get('Categoria/Editar/{id}',[CategoriasController::class,'ecategoria'])->name('ECategoria');
+
+//MARCAS
+Route::get('Marcas',[MarcasController::class,'marca'])->name('Marcas');
+Route::get('Marca/Registro',[MarcasController::class,'rmarca'])->name('RMarcas');
+Route::get('Marca/Editar/{id}',[MarcasController::class,'emarca'])->name('EMarca');
+
+//UNIDADES DE MEDIDA
+Route::get('UnidadesMedidas',[UnidadesController::class,'unidad'])->name('Unidades');
+Route::get('UnidadMedida/Registro',[UnidadesController::class,'runidad'])->name('RUnidades');
+Route::get('UnidadMedida/Editar/{id}',[UnidadesController::class,'eunidad'])->name('EUnidad');
+
+//FORMA DE PAGO
+Route::get('FormasPago',[FormasController::class,'forma'])->name('Formas');
+Route::get('FormaPago/Registro',[FormasController::class,'rforma'])->name('RFormas');
+Route::get('FormaPago/Editar/{id}',[FormasController::class,'eforma'])->name('EForma');
+
+//METODO DE PAGO
+Route::get('MetodosPago',[MetodosController::class,'metodo'])->name('Metodos');
+Route::get('MetodoPago/Registro',[MetodosController::class,'rmetodo'])->name('RMetodos');
+Route::get('MetodoPago/Editar/{id}',[MetodosController::class,'emetodo'])->name('EMetodo');
 
 

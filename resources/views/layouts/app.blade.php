@@ -63,19 +63,19 @@
                     <a href="{{ route('Proveedores') }}">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Proveedores</h1>
                     </a>
-                    <a href="">
+                    <a href="{{ route('Categorias') }}">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Categorias</h1>
                     </a>
-                    <a href="">
+                    <a href="{{ route('Marcas') }}">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Marcas</h1>
                     </a>
-                    <a href="">
+                    <a href="{{ route('Unidades') }}">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Unidades de Medida</h1>
                     </a>
-                    <a href="">
+                    <a href="{{ route('Formas') }}">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Forma de Pago</h1>
                     </a>
-                    <a href="">
+                    <a href="{{ route('Metodos') }}">
                         <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Metodo de Pago</h1>
                     </a>
                 </div>

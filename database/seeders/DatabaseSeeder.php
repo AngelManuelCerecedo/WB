@@ -2,6 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categoria;
+use App\Models\Cliente;
+use App\Models\Marca;
+use App\Models\Proveedor;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,7 +17,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Proveedor::factory(100)->create();
-        \App\Models\Cliente::factory(100)->create();
+        Proveedor::factory(100)->create();
+        Cliente::factory(100)->create();
+        Categoria::factory(10)->create();
+        Marca::factory(10)->create();
+        $this->call(FormaPagoSeeder::class);
+        $this->call(MetodoPagoSeeder::class);
+        $this->call(UnidadMedidaSeeder::class);
     }
 }

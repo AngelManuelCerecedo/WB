@@ -10,7 +10,6 @@ class Bcliente extends Component
 {
     use WithPagination;
     public $search;
-    public $message;
     public $cantidad = 20;
     public function render()
     {
