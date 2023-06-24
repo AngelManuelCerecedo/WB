@@ -1153,6 +1153,9 @@ select {
 .ml-12 {
   margin-left: 3rem;
 }
+.ml-14 {
+  margin-left: 3.5rem;
+}
 .ml-16 {
   margin-left: 4rem;
 }
@@ -1180,8 +1183,14 @@ select {
 .ml-52 {
   margin-left: 13rem;
 }
+.ml-56 {
+  margin-left: 14rem;
+}
 .ml-6 {
   margin-left: 1.5rem;
+}
+.ml-60 {
+  margin-left: 15rem;
 }
 .ml-64 {
   margin-left: 16rem;
@@ -1263,21 +1272,6 @@ select {
 }
 .mt-8 {
   margin-top: 2rem;
-}
-.ml-14 {
-  margin-left: 3.5rem;
-}
-.ml-60 {
-  margin-left: 15rem;
-}
-.ml-56 {
-  margin-left: 14rem;
-}
-.ml-44 {
-  margin-left: 11rem;
-}
-.ml-48 {
-  margin-left: 12rem;
 }
 .block {
   display: block;
