@@ -24,5 +24,6 @@ class DatabaseSeeder extends Seeder
         $this->call(FormaPagoSeeder::class);
         $this->call(MetodoPagoSeeder::class);
         $this->call(UnidadMedidaSeeder::class);
+        $this->call(SucursalSeeder::class);
     }
 }

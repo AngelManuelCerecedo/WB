@@ -13,6 +13,7 @@ class Bproveedor extends Component
     public $message;
     public $cantidad = 20;
     public $estatus = 'Todos';
+    public $aux = true;
     public function render()
     {
         if ($this->estatus == "Todos") {

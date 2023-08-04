@@ -16,215 +16,227 @@
     <!-- Styles -->
     @livewireStyles
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
     <!-- Scripts -->
     @livewireScripts
-    <script src="{{ asset('js/app.js') }}"defer ></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link rel="icon" href="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-ICONO.ico">
+    <div class="paneltop flex">
+        <a href="{{ route('dashboard') }}">
+            <img src="https://github.com/AngelManuelCerecedo/ImgDH/blob/main/LOGO-DH-LTv1.png?raw=true" class="imgtop">
+        </a>
+        <nav class="">
+            <ul class="menu-horizontal flex">
+                <i class="bi bi-person-circle inconP"></i>
+                <li>
+                    <a href="#">USUARIO</a>
+                    <ul class="menu-vertical">
+                        <li><a href="#">Salir</a></li>
+                    </ul>
+                </li>
+                <i class="bi bi-caret-down-fill down"></i>
+            </ul>
+        </nav>
+    </div>
 </head>
 
-<body class="bg-[#D9E0E7]  font-[Raleway]">
-    <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
+<body class="bg-[#D9E0E7]  font-[Open Sans]">
+    <span class="text-black text-4xl top-5 left-4 cursor-pointer mt-12" onclick="Openbar()">
         <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
     </span>
 
     <div
         class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
-              p-2 w-[240px] overflow-y-auto text-center bg-[#313a46] shadow h-screen">
+              p-2 w-[240px] overflow-y-auto text-center bg-[#FFFFFF] shadow h-screen mt-12">
         <!-- Imagen TOP -->
-        <div class="text-white text-xl">
-            <div>
-                <img src="https://github.com/AngelManuelCerecedo/ImgDH/blob/main/LOGO-DH.png?raw=true" class="img">
-                <i class="bi bi-x ml-20 cursor-pointer lg:hidden" onclick="Openbar()"></i>
+        <div class="text-black text-xl">    
+            <div class="portada">
+                <div class="iconport">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <div class="textport">
+                    Usuario<br/>Rol<br>Ubicacion
+                </div>
             </div>
             <!-- LINEA -->
-            <hr class="my-2 text-white">
+            <hr>
+            <!-- INICIO -->
             <div class="mt-4">
-                <!-- INICIO -->
                 <a href="{{ route('dashboard') }}">
-                    <div class="p-1  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                    <div class="p-1  flex items-center rounded-md px-2 duration-300 cursor-pointer  resaltado ">
                         <i class="bi bi-house"></i>
-                        <span class="text-[15px] ml-4 text-white ">Inicio</span>
+                        <span class="ml-4 text-black ">Inicio</span>
                     </div>
                 </a>
                 <!-- CATALOGOS -->
-                <div
-                    class="p-1  mt-2 flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                <div class="p-1  mt-2 flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado">
                     <i class="bi bi-database"></i>
                     <div class="flex justify-between w-full items-center" onclick="dropDown1()">
-                        <span class="text-[15px] ml-4 text-white">Catálogos</span>
+                        <div class="ml-4 text-black hover">Catálogos</div>
                         <span class="text-sm rotate-90" id="arrow1"><i class="bi bi-chevron-right"></i>
                         </span>
                     </div>
                 </div>
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloCatalogos">
+                <div class=" leading-7 text-left text-[13px] w-4/5 mx-auto" id="submoduloCatalogos">
                     <a href="{{ route('Clientes') }}">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5">Clientes</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Clientes</h1>
                     </a>
                     <a href="{{ route('Proveedores') }}">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Proveedores</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Proveedores</h1>
                     </a>
                     <a href="{{ route('Categorias') }}">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Categorias</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Categorias</h1>
                     </a>
                     <a href="{{ route('Marcas') }}">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Marcas</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Marcas</h1>
                     </a>
                     <a href="{{ route('Unidades') }}">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Unidades de Medida</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Unidades de Medida</h1>
                     </a>
                     <a href="{{ route('Formas') }}">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Forma de Pago</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Forma de Pago</h1>
                     </a>
                     <a href="{{ route('Metodos') }}">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Metodo de Pago</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Metodo de Pago</h1>
                     </a>
                 </div>
 
                 <!-- ADMINISTRACION -->
-                <div
-                    class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
                     <i class="bi bi-buildings"></i>
                     <div class="flex justify-between w-full items-center" onclick="dropDown2()">
-                        <span class="text-[15px] ml-4 text-white">Administración</span>
+                        <span class=" ml-4 text-black">Administración</span>
                         <span class="text-sm rotate-90" id="arrow2"><i class="bi bi-chevron-right"></i>
                         </span>
                     </div>
                 </div>
 
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloAdministracion">
-                    <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Empleados</h1>
+                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloAdministracion">
+                    <a href="{{ route('Empleados') }}">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Empleados</h1>
+                    </a>
+                    <a href="{{ route('Sucursales') }}">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Sucursales</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Sucursales</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Reportes</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Reportes</h1>
                     </a>
                 </div>
 
                 <!-- Almacenes -->
-                <div
-                    class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
                     <i class="bi bi-clipboard-check"></i>
                     <div class="flex justify-between w-full items-center" onclick="dropDown3()">
-                        <span class="text-[15px] ml-4 text-white">Almacén</span>
+                        <span class=" ml-4 text-black">Almacén</span>
                         <span class="text-sm rotate-90" id="arrow3"><i class="bi bi-chevron-right"></i>
                         </span>
                     </div>
                 </div>
 
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloAlmacenes">
-                    <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 mt--3 ">Productos</h1>
+                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloAlmacenes">
+                    <a href="{{ route('Productos') }}">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Productos</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Inventario</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Inventario</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Ajustes de Inventario</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Inventario</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Ajustes de Existencia</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Existencia</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Traspasos</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Traspasos</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Compras</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Compras</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Almacenes</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Almacenes</h1>
                     </a>
                 </div>
 
                 <!-- OPERACION -->
-                <div
-                    class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
                     <i class="bi bi-graph-up-arrow"></i>
                     <div class="flex justify-between w-full items-center" onclick="dropDown4()">
-                        <span class="text-[15px] ml-4 text-white">Operación</span>
+                        <span class=" ml-4 text-black">Operación</span>
                         <span class="text-sm rotate-90" id="arrow4"><i class="bi bi-chevron-right"></i>
                         </span>
                     </div>
                 </div>
 
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloOperacion">
+                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloOperacion">
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Licitaciones</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Licitaciones</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Jornadas</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Jornadas</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Facturas</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Facturas</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Cotizaciones</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cotizaciones</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Ventas</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ventas</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Gastos</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Gastos</h1>
                     </a>
                 </div>
 
                 <!-- CONTABBILIDAD -->
-                <div
-                    class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
-                    <i class="bi bi-calculator-fill"></i>
+                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
+                    <i class="bi bi-calculator"></i>
                     <div class="flex justify-between w-full items-center" onclick="dropDown5()">
-                        <span class="text-[15px] ml-4 text-white">Contabilidad</span>
+                        <span class=" ml-4 text-black">Contabilidad</span>
                         <span class="text-sm rotate-90" id="arrow5"><i class="bi bi-chevron-right"></i>
                         </span>
                     </div>
                 </div>
 
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto" id="submoduloContabilidad">
+                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloContabilidad">
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Usos de CFDI</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Usos de CFDI</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Cuentas por Pagar</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cuentas por Pagar</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Cuentas por Cobrar</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cuentas por Cobrar</h1>
                     </a>
                 </div>
                 <!-- CONFIGURACION -->
-                <div
-                    class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
                     <i class="bi bi-gear"></i>
                     <div class="flex justify-between w-full items-center" onclick="dropDown6()">
-                        <span class="text-[15px] ml-4 text-white">Configuración</span>
+                        <span class=" ml-4 text-black">Configuración</span>
                         <span class="text-sm rotate-90" id="arrow6"><i class="bi bi-chevron-right"></i>
                         </span>
                     </div>
                 </div>
-                <div class=" leading-7 text-left text-[13px] font-[Raleway] w-4/5 mx-auto"
-                    id="submoduloConfiguracion">
+                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloConfiguracion">
                     <a href="">
-                        <h1 class="cursor-pointer hover:bg-[#D5C28B] rounded-md  ml-5 ">Facturación</h1>
+                        <h1 class="cursor-pointer  rounded-md  ml-5 MDA">Facturación</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer hover:bg-[#D5C28B] rounded-md  ml-5 ">Escala de Precios</h1>
+                        <h1 class="cursor-pointer  rounded-md  ml-5 MDA">Escala de Precios</h1>
                     </a>
                     <a href="">
-                        <h1 class="cursor-pointer  hover:bg-[#D5C28B] rounded-md  ml-5 ">Permisos</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Permisos</h1>
                     </a>
                 </div>
 
                 <!-- CERRAR SESION -->
                 <form method="POST" action="{{ route('logout') }}" x-data>
                     @csrf
-                    <div
-                        class="p-1  flex items-center rounded-md px-2 duration-300 cursor-pointer  hover:bg-[#D5C28B]">
+                    <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado">
                         <i class="bi bi-box-arrow-in-right"></i>
-                        <x-jet-dropdown-link class="text-white text-[15px]" href="{{ route('logout') }}"
-                            @click.prevent="$root.submit();">
+                        <div class="ml-4" href="{{ route('logout') }}" @click.prevent="$root.submit();">
                             {{ __('Cerrar Sesión') }}
-                        </x-jet-dropdown-link>
+                        </div>
                     </div>
                 </form>
             </div>

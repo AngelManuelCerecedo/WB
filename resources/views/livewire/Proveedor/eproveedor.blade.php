@@ -1,7 +1,7 @@
 <div class="container">
     <div class="py-8">
         <div class="flex mb-4">
-            <h2 class="text-4xl font-[Raleway]-semibold leading-tight mr-64">Proveedores</h2>
+            <h2 class="text-4xl titulos mr-64">Proveedores</h2>
             <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Catálogos <i
                     class="bi bi-chevron-right"></i> Proveedores</label>
         </div>

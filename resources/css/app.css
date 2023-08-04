@@ -1,14 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.img{
-    display: flex;
-    justify-content: center;
-    margin-left: 30px;
+header {   
+    position: fixed;
+}
+.portada{
+    background-image: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url(https://github.com/AngelManuelCerecedo/ImgDH/blob/main/Foto-Portada.jpeg?raw=true);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: initial;
+    padding: 15px;
+    margin: -8px;
+    color: #ffffff;
+    text-align: left;
+}
+.iconport{
+    font-size: 30px;
+    text-align: left;
+    margin-left: 10px;
+}
+.textport{
     margin-top: 5px;
-    width: 150px;
-    height: 50px;
+    margin-left: 10px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    text-align: left;
+}
+.imgtop{
+    margin-left: 20px;
+    margin-top: -24px;
+    width: 190px;
+
+    height: 75px;
+}
+.inconP{
+    color: #020101;
+    font-size: 28px;
+    margin-top: 2px;
+}
+.down{
+    color: #020101;
+    font-size: 9px;
+    margin-top: 15px;
+}
+nav{
+    max-width: 860px;
+    margin: auto;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    margin-top: 2px;
+}
+.menu-horizontal{
+    margin-left: 900px;
+    list-style: none;
+    display: flex;
+}
+.menu-horizontal >li>a{
+    display: block;
+    padding: 13px 10px;
+}
+.menu-vertical{
+    position: absolute;
+    display: none;
+    list-style: none;
+    width: 100px;
+}
+.menu-horizontal li:hover .menu-vertical{
+    font-family: 'Open Sans', sans-serif;
+    display: block;
+    background-color: #ffffff;
+}
+.menu-vertical li a{
+    display: block;
+    padding: 2px 15px ;
 }
 .contentm{
     margin-left: 270px;   
@@ -31,7 +98,11 @@ body::-webkit-scrollbar-thumb{
     border-width: 2px;
     margin-left: 15px;
     width: 1120px;
-
+}
+.tablaesc{
+    margin-left: 15px;
+    border-color: #00ACAC;
+    width: 700px;
 }
 .panel{
     background-color: #ffffff;
@@ -39,35 +110,59 @@ body::-webkit-scrollbar-thumb{
     border-radius: 5px;
     height: auto;
 }
+.paneltop{
+    background-color: #ffffff;
+    border-radius: 5px;
+    height: 48px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}
 .boton{
-    background-color: #FA5C7C;
+    background-color: #1C75C7;
     color: #ffffff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
+.botond{
+    background-color: #eba037;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
+.botonCP{
+    background-color: #1C75C7;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
+.botonGP{
+    background-color: #00ACAC;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
     border-radius: 3px;
     width: 200px;
     height: 38px;
 }
 .botonL{
-    background-color: #FA5C7C;
+    background-color: #1C75C7;
     color: #ffffff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     border-radius: 3px;
     width: 235px;
     height: 38px;
 }
-.botond{
-    background-color: #09bf8c;
-    color: #ffffff;
-    font-family: 'Raleway', sans-serif;
-    border-radius: 3px;
-    width: 200px;
-    height: 38px;
-}
-
 .botonm{
-    background-color: #727CF5;
+    background-color: #00ACAC;
     color: #ffffff;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 15px;
     border-radius: 3px;
     width: 110px;
@@ -115,6 +210,13 @@ body::-webkit-scrollbar-thumb{
     width: 500px;
     height: 40px;
 }
+.inputSML{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 100px;
+    height: 35px;
+}
 .input{
     border: solid 2px #9e9a9a;
     border-radius: 3px;
@@ -129,6 +231,30 @@ body::-webkit-scrollbar-thumb{
 }
 .datosT{
     color: black;
-    font-size: 16px;
     font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+
+}
+
+.resaltado{
+    color: #000000;
+    font-size: 19px;
+}
+.resaltado:hover{
+    color: #080606;
+    font-size: 20px;
+    font-weight: bold;
+}
+.MDA{
+    color: #000000;
+    font-size: 14px;   
+}
+.MDA:hover{
+    color: #000000;
+    font-size: 15px;
+    font-weight: bold;
+}
+.titulos{   
+    font-family: 'Raleway', sans-serif;
+    font-weight:bold;
 }

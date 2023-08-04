@@ -1,4 +1,4 @@
 @extends('layouts.app')
-@section('title','Home')
+@section('title',"Doctor's Home - Dashboard")
 @section('content')
 @endsection

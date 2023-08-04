@@ -11,4 +11,7 @@ class Proveedor extends Model
     
     protected $fillable=['id','Nombre','NEMP','ApP','ApM','Cel','Tel','Correo','CP','Estado','Mun','Col','Calle','TipoP',
     'RFC','NumExt','NumInt','Credito','Estatus','Referencia'];
+    public function producto(){
+        return $this->hasMany("App\Models\Producto");
+    }
 }

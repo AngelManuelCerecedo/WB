@@ -11,6 +11,7 @@ class Bmarca extends Component
     use WithPagination;
     public $search;
     public $cantidad = 20;
+    public $aux = true;
     public function render()
     {
         $marcas = Marca::Where([['Nombre', 'like', '%' . $this->search . '%']])

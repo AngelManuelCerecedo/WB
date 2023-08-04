@@ -1,25 +1,18 @@
 <div class="container">
     <div class="py-8">
         <div class="flex mb-4">
-            <h2 class="text-4xl font-[Raleway]-semibold leading-tight mr-80">Formas de Pago</h2>
+            <h2 class="text-4xl titulos mr-80">Formas de Pago</h2>
             <label class="ml-60 mt-6">Inicio <i class="bi bi-chevron-right"></i> Catálogos <i
                     class="bi bi-chevron-right"></i> Formas de Pago</label>
         </div>
         <div class="panel">
             <div class="my-2 flex sm:flex-row flex-col">
                 <div class="mt-8 flex flex-row mb-1 sm:mb-0">
-                    <div class="relative ml-8">
-                        <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
-                            <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
-                                <path
-                                    d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
-                                </path>
-                            </svg>
-                        </span>
+                    <div class=" ml-8">
                         <input placeholder="Buscar" wire:model="search"
                             class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                     </div>
-                    <div class="relative ml-8">
+                    <div class=" ml-8">
                         <select wire:model="cantidad"
                             class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             <option value="20">20</option>
@@ -27,15 +20,15 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class="relative ml-72">
+                    <div class=" ml-72">
                         <a href="{{ route('RFormas') }}">
                             <button class="botonL">
-                                <i class="bi bi-plus-circle-fill"></i>
-                                <span class="ml-4 ">Nueva Forma de Pago</span>
+                                <i class="bi bi-plus-lg text-lg"></i>
+                                <span class="ml-2 ">Nueva Forma de Pago</span>
                             </button>
                         </a>
                     </div>
-                    <div class="relative ml-4">
+                    <div class=" ml-4">
                         <a href="{{ route('Formas') }}">
                             <button class="botond">
                                 <i class="bi bi-download"></i>
@@ -67,26 +60,51 @@
                             </thead>
                             <tbody>
                                 @foreach ($formas as $forma)
-                                    <tr class="datosT">
-                                        <td class="px-5 py-2 border border-gray-200 bg-white">
-                                            <div class="flex">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <a href="{{route('EForma',[$forma->id])}}">
-                                                        <button class="botonm ml-12 mt-1">
-                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                            <span class="ml-4 ">Detalles</span>
-                                                        </button>
-                                                    </a>
+                                    @if ($aux)
+                                        <tr class="datosT">
+                                            <td class="px-5 py-2 border border-gray-200 bg-white">
+                                                <div class="flex">
+                                                    <div class="flex-shrink-0 w-10 h-10">
+                                                        <a href="{{ route('EForma', [$forma->id]) }}">
+                                                            <button class="botonm ml-12 mt-1">
+                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                                <span class="ml-2 ">Detalles</span>
+                                                            </button>
+                                                        </a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                            <p class="text-black whitespace-no-wrap">{{ $forma->Clave }}</p>
-                                        </td>
-                                        <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                            <p class="text-black whitespace-no-wrap">{{ $forma->Nombre }}</p>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                <p class="text-black whitespace-no-wrap">{{ $forma->Clave }}</p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                <p class="text-black whitespace-no-wrap">{{ $forma->Nombre }}</p>
+                                            </td>
+                                        </tr>
+                                        <var {{$aux = false}}/>
+                                    @else
+                                        <tr class="datosT bg-gray-100">
+                                            <td class="px-5 py-2 border border-gray-200">
+                                                <div class="flex">
+                                                    <div class="flex-shrink-0 w-10 h-10">
+                                                        <a href="{{ route('EForma', [$forma->id]) }}">
+                                                            <button class="botonm ml-12 mt-1">
+                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                                <span class="ml-2 ">Detalles</span>
+                                                            </button>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200">
+                                                <p class="text-black whitespace-no-wrap">{{ $forma->Clave }}</p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200">
+                                                <p class="text-black whitespace-no-wrap">{{ $forma->Nombre }}</p>
+                                            </td>
+                                        </tr>
+                                        <var {{$aux = true}}/>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
