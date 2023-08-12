@@ -10,15 +10,17 @@
                 <label class="datos mt-16 ml-4"> Datos</label>
                 <div class="ml-12 mt-16">
                     <div class="md:flex items-center">
-                        <div class="flex flex-col  md:mt-0 mt-4 mr-10">
+                        <div class="flex flex-col  md:mt-0 mt-4">
                             <label class="etiqueta">Nombre</label>
-                            <input type="text" wire:model='NOM' class="inputN" placeholder="Nombre" />
+                            <input type="text" wire:model='NOM' class="inputXL" placeholder="Nombre" />
                         </div>
+                    </div>
+                    <div class="md:flex items-center mt-4">
                         <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Código de Barras</label>
                             <input type="text" wire:model='CB' class="input" placeholder="Código de Barras" />
                         </div>
-                        <div class="flex flex-col  md:mt-0 mt-4 mr-8">
+                        <div class="flex flex-col  md:mt-0 mt-4">
                             <label class="etiqueta">Calve del Producto</label>
                             <input type="text" wire:model='C1' class="input" placeholder="Calve del Producto" />
                         </div>
@@ -80,6 +82,19 @@
                         </div>
                     </div>
                     <div class="md:flex items-center mt-4">
+                        <div class="flex flex-col  md:mt-0 mt-4 mr-10">
+                            <label class="etiqueta">Proveedor</label>
+                            <select wire:model='AUXP' class="input">
+                                <option value="AUXP">Seleciona una Opción</option>
+                                @foreach ($provs as $prov)
+                                    @if ($prov->TipoP == 'Moral')
+                                        <option value="{{ $prov->id }}">{{ $prov->NEMP }}</option>
+                                    @else
+                                    <option value="{{ $prov->id }}">{{ $prov->Nombre}} {{$prov->ApP}} {{$prov->ApM}}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Precio Base</label>
                             <input type="text" wire:model='P' class="input" placeholder="Precio Base" />
@@ -87,137 +102,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex">
-                <label class="datos mt-12 ml-4">Escalas</label>
-                <div class="ml-6 mt-12">
-                    <div class="md:flex items-center ">
-                        <div class="flex flex-col mr-6">
-                            <button class="botonCP" wire:click="registrar()">
-                                <i class="bi bi-gear"></i>
-                                Calcular Precios
-                            </button>
-                        </div>
-                        <div class=" flex flex-col md:ml-6 md:mt-0 mt-4">
-                            <button class="botonGP" wire:click="registrar()">
-                                <i class="bi bi-journal-bookmark"></i>
-                                Guardar Precios
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="flex">
-                <div class="mt-12 ml-6">
-                    <table class="tablaesc">
-                        <thead class="etiqueta">
-                            <tr>
-                                <th class="px-5 py-1 text-left font-[Raleway]-semibold text-black ">
-                                    Escala de Precio
-                                </th>
-                                <th class="px-5 py-1 text-left font-[Raleway]-semibold text-black ">
-                                    Incremento al Producto
-                                </th>
-                                <th class="px-5 py-1 text-left font-[Raleway]-semibold text-black ">
-                                    Precio
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="px-5 py-3 bg-white ">
-                                    <p class="text-black whitespace-no-wrap">PUBLICO EN GENERAL</p>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <input type="text" wire:model='E1' class="inputM" />
-                                    <i class="bi bi-percent"></i>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <input type="text" wire:model='P1' class="inputSML" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-3  bg-white ">
-                                    <p class="text-black whitespace-no-wrap">MEDICOS</p>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <input type="text" wire:model='E2' class="inputM" />
-                                    <i class="bi bi-percent"></i>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <input type="text" wire:model='P2' class="inputSML" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-3  bg-white ">
-                                    <p class="text-black whitespace-no-wrap">CLINICAS,HOSPITALES</p>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <input type="text" wire:model='E3' class="inputM" />
-                                    <i class="bi bi-percent"></i>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <input type="text" wire:model='P3' class="inputSML" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-3  bg-white ">
-                                    <p class="text-black whitespace-no-wrap">ESCALA 4</p>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <input type="text" wire:model='E4' class="inputM" />
-                                    <i class="bi bi-percent"></i>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <input type="text" wire:model='P4' class="inputSML" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-3  bg-white ">
-                                    <p class="text-black whitespace-no-wrap">ESCALA 5</p>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <input type="text" wire:model='E5' class="inputM" />
-                                    <i class="bi bi-percent"></i>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <input type="text" wire:model='P5' class="inputSML" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-3  bg-white ">
-                                    <p class="text-black whitespace-no-wrap">DISTRIBUCIONES</p>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <input type="text" wire:model='E6' class="inputM" />
-                                    <i class="bi bi-percent"></i>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <input type="text" wire:model='P6' class="inputSML" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-3  bg-white ">
-                                    <p class="text-black whitespace-no-wrap">GOBIERNO</p>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <input type="text" wire:model='E7' class="inputM" />
-                                    <i class="bi bi-percent"></i>
-                                </td>
-                                <td class="px-5 py-3 bg-white ">
-                                    <i class="bi bi-currency-dollar"></i>
-                                    <input type="text" wire:model='P7' class="inputSML" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            
             <hr class="mt-12 my-2 text-white">
             <div class="flex">
                 <div class="ml-12 mt-4 mb-4">

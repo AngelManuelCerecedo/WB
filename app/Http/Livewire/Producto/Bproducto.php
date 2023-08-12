@@ -16,10 +16,10 @@ class Bproducto extends Component
     {
         $productos = Producto::Where([['Nombre', 'like', '%' . $this->search . '%']])
         ->orWhere([['CodigoB', 'like', '%' . $this->search . '%']])
-        ->orWhere([['Clave1', 'like', '%' . $this->search . '%']])
-        ->orWhere([['Clave2', 'like', '%' . $this->search . '%']])
-        ->orWhere([['Clave3', 'like', '%' . $this->search . '%']])
-        ->orWhere([['Clave4', 'like', '%' . $this->search . '%']])
+        ->orWhere([['Clv1', 'like', '%' . $this->search . '%']])
+        ->orWhere([['Clv2', 'like', '%' . $this->search . '%']])
+        ->orWhere([['Clv3', 'like', '%' . $this->search . '%']])
+        ->orWhere([['Clv4', 'like', '%' . $this->search . '%']])
         ->paginate($this->cantidad);
         return view('livewire.producto.bproducto', ['productos'=>$productos]);
     }

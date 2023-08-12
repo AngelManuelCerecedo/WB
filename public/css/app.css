@@ -1138,9 +1138,6 @@ select {
 .mb-1 {
   margin-bottom: 0.25rem;
 }
-.mb-12 {
-  margin-bottom: 3rem;
-}
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -1273,8 +1270,8 @@ select {
 .mt-8 {
   margin-top: 2rem;
 }
-.ml-10 {
-  margin-left: 2.5rem;
+.ml-32 {
+  margin-left: 8rem;
 }
 .block {
   display: block;
@@ -1390,6 +1387,9 @@ select {
 .w-full {
   width: 100%;
 }
+.w-8\/12 {
+  width: 66.666667%;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1464,9 +1464,6 @@ select {
 }
 .cursor-pointer {
   cursor: pointer;
-}
-.cursor-not-allowed {
-  cursor: not-allowed;
 }
 .select-none {
   -webkit-user-select: none;
@@ -1594,6 +1591,9 @@ select {
 .border-2 {
   border-width: 2px;
 }
+.border-\[2px\] {
+  border-width: 2px;
+}
 .border-b {
   border-bottom-width: 1px;
 }
@@ -1609,9 +1609,8 @@ select {
 .border-t {
   border-top-width: 1px;
 }
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+.border-b-\[2px\] {
+  border-bottom-width: 2px;
 }
 .border-gray-100 {
   --tw-border-opacity: 1;
@@ -1635,10 +1634,6 @@ select {
 }
 .border-transparent {
   border-color: transparent;
-}
-.border-white {
-  --tw-border-opacity: 1;
-  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
 .bg-\[\#78163B\] {
   --tw-bg-opacity: 1;
@@ -1727,10 +1722,6 @@ select {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-.bg-purple-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(168 85 247 / var(--tw-bg-opacity));
 }
 .bg-opacity-25 {
   --tw-bg-opacity: 0.25;
@@ -1832,6 +1823,14 @@ select {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
+.px-24 {
+  padding-left: 6rem;
+  padding-right: 6rem;
 }
 .pb-1 {
   padding-bottom: 0.25rem;
@@ -2338,6 +2337,11 @@ body::-webkit-scrollbar-thumb{
     font-family: 'Open Sans', sans-serif;
     margin-bottom: 6px;
 }
+.etiquetaT{
+    color: black;
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+}
 .inputS{
     border: solid 2px #9e9a9a;
     border-radius: 3px;
@@ -2366,6 +2370,13 @@ body::-webkit-scrollbar-thumb{
     width: 500px;
     height: 40px;
 }
+.inputXL{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 800px;
+    height: 40px;
+}
 .inputSML{
     border: solid 2px #9e9a9a;
     border-radius: 3px;
@@ -2391,7 +2402,12 @@ body::-webkit-scrollbar-thumb{
     font-size: 17px;
 
 }
+.datosTS{
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 
+}
 .resaltado{
     color: #000000;
     font-size: 19px;

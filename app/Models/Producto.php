@@ -9,7 +9,7 @@ class Producto extends Model
 {
     use HasFactory;
     protected $fillable=['id','CodigoB','Nombre','StockMax','StockMin','Precio'
-    ,'Precio1','Precio2','Precio3','Clave1','Clave2','Clave3','Clave4','marca_id','categoria_id','unidad_id','IVA','Estatus','proveedor_id'];
+    ,'P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','Clv1','Clv2','Clv3','Clv4','marca_id','categoria_id','unidad_id','IVA','Estatus','proveedor_id'];
     public function marca(){
         return $this->belongsTo("App\Models\Marca");
     }

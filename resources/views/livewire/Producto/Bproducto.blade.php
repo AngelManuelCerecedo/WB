@@ -10,7 +10,7 @@
                 <div class="mt-8 flex flex-row mb-1 sm:mb-0">
                     <div class=" ml-8">
                         <input placeholder="Buscar" wire:model="search"
-                            class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                            class="inputL appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                     </div>
                     <div class=" ml-8">
                         <select wire:model="cantidad"
@@ -20,7 +20,7 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class=" ml-72">
+                    <div class=" ml-8">
                         <a href="{{ route('RProductos') }}">
                             <button class="botonL">
                                 <i class="bi bi-plus-lg text-lg"></i>
@@ -72,17 +72,13 @@
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Categoria
                                     </th>
-                                    <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Estado
-                                    </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="etiquetaS">
                                 @foreach ($productos as $producto)
                                     @if ($aux)
-                                        <tr class="datosT">
-                                            <td class="px-5 py-2 border border-gray-200 bg-white">
+                                        <tr class="datosTS">
+                                            <td class="px-3 py-2 border border-gray-200 bg-white">
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('EProducto', [$producto->id]) }}">
@@ -95,7 +91,7 @@
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Clave1 }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $producto->Clv1 }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
                                                 <p class="text-black whitespace-no-wrap">{{ $producto->CodigoB }}</p>
@@ -111,15 +107,12 @@
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
                                                 <p class="text-black whitespace-no-wrap">{{ $producto->categoria->Nombre }}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Estatus }}</p>
                                             </td>
                                         </tr>
                                         <var {{ $aux = false }} />
                                     @else
-                                        <tr class="datosT bg-gray-100">
-                                            <td class="px-5 py-2 border border-gray-200">
+                                        <tr class="datosTS bg-gray-100">
+                                            <td class="px-3 py-2 border border-gray-200">
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('EProducto', [$producto->id]) }}">
@@ -132,7 +125,7 @@
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Clave1 }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $producto->Clv1 }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
                                                 <p class="text-black whitespace-no-wrap">{{ $producto->CodigoB }}</p>
@@ -148,9 +141,6 @@
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
                                                 <p class="text-black whitespace-no-wrap">{{ $producto->categoria->Nombre }}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Estatus }}</p>
                                             </td>
                                         </tr>
                                         <var {{ $aux = true }} />

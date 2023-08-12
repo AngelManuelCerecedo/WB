@@ -182,6 +182,11 @@ body::-webkit-scrollbar-thumb{
     font-family: 'Open Sans', sans-serif;
     margin-bottom: 6px;
 }
+.etiquetaT{
+    color: black;
+    font-size: 17px;
+    font-family: 'Open Sans', sans-serif;
+}
 .inputS{
     border: solid 2px #9e9a9a;
     border-radius: 3px;
@@ -210,6 +215,13 @@ body::-webkit-scrollbar-thumb{
     width: 500px;
     height: 40px;
 }
+.inputXL{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 800px;
+    height: 40px;
+}
 .inputSML{
     border: solid 2px #9e9a9a;
     border-radius: 3px;
@@ -235,7 +247,12 @@ body::-webkit-scrollbar-thumb{
     font-size: 17px;
 
 }
+.datosTS{
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
 
+}
 .resaltado{
     color: #000000;
     font-size: 19px;
