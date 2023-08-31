@@ -38,6 +38,7 @@ class CreateEmpleadosTable extends Migration
             $table->string ('Rol')->nullable();
             $table->string ('Usu')->nullable();
             $table->string ('Pwd')->nullable();
+            $table->string ('Estatus')->nullable();
             $table->unsignedBigInteger("sucursal_id");
             $table->foreign("sucursal_id")->references("id")->on("sucursals")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

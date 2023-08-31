@@ -20,7 +20,7 @@
     @livewireScripts
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="icon" href="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-ICONO.ico">
-    <div class="paneltop flex">
+    <div class="paneltop flex shadow-md w-full">
         <a href="{{ route('dashboard') }}">
             <img src="https://github.com/AngelManuelCerecedo/ImgDH/blob/main/LOGO-DH-LTv1.png?raw=true" class="imgtop">
         </a>
@@ -136,8 +136,8 @@
                     <a href="{{ route('Productos') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Productos</h1>
                     </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Inventario</h1>
+                    <a href="{{ route('Almacenes') }}">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Almacenes</h1>
                     </a>
                     <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Inventario</h1>
@@ -150,9 +150,6 @@
                     </a>
                     <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Compras</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Almacenes</h1>
                     </a>
                 </div>
 

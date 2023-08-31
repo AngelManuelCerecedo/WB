@@ -1,18 +1,18 @@
-<div class="container">
+<div class="container bg-[#d9e0e7]">
     <div class="py-8">
         <div class="flex mb-4">
-            <h2 class="text-4xl titulos mr-80">Productos</h2>
-            <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Almacén <i
-                    class="bi bi-chevron-right"></i> Productos</label>
+            <h2 class="text-4xl titulos mr-80">Empleados</h2>
+            <label class="ml-80 mt-6">Inicio <i class="bi bi-chevron-right"></i> Administración <i
+                    class="bi bi-chevron-right"></i> Empleados</label>
         </div>
         <div class="panel">
             <div class="my-2 flex sm:flex-row flex-col">
                 <div class="mt-8 flex flex-row mb-1 sm:mb-0">
-                    <div class=" ml-8">
+                    <div class="ml-8">
                         <input placeholder="Buscar" wire:model="search"
-                            class="inputL appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                            class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                     </div>
-                    <div class=" ml-8">
+                    <div class="ml-8">
                         <select wire:model="cantidad"
                             class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             <option value="20">20</option>
@@ -21,15 +21,23 @@
                         </select>
                     </div>
                     <div class=" ml-8">
-                        <a href="{{ route('RProductos') }}">
-                            <button class="botonL">
+                        <select wire:model="estatus"
+                            class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"">
+                            <option value="Todos">Todos</option>
+                            <option value="Activo">Activos</option>
+                            <option value="Inactivo">Inactivos</option>
+                        </select>
+                    </div>
+                    <div class="ml-48">
+                        <a href="{{ route('REmpleados') }}">
+                            <button class="boton">
                                 <i class="bi bi-plus-lg text-lg"></i>
-                                <span class="ml-2 ">Nuevo Producto</span>
+                                <span class="ml-2">Nuevo Empleado</span>
                             </button>
                         </a>
                     </div>
-                    <div class=" ml-4">
-                        <a href="{{ route('Productos') }}">
+                    <div class="ml-4">
+                        <a href="{{ route('Empleados') }}">
                             <button class="botond">
                                 <i class="bi bi-download"></i>
                                 <span class="ml-4 ">Descargar</span>
@@ -40,45 +48,37 @@
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    @if ($productos->count())
+                    @if ($empleados->count())
                         <table class="tabla">
                             <thead class="etiqueta">
                                 <tr>
                                     <th
-                                        class="px-8 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Acciones
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Código de Barras
+                                        Sucursal
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Nombre
                                     </th>
                                     <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Stock Disponible
-                                    </th>
-                                    <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Marca
-                                    </th>
-                                    <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Categoria
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left font-[Raleway]-semibold text-black  tracking-wider ">
+                                        Estatus
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody class="etiquetaS">
-                                @foreach ($productos as $producto)
+                            <tbody>
+                                @foreach ($empleados as $empleado)
                                     @if ($aux)
-                                        <tr class="datosTS">
-                                            <td class="px-3 py-2 border border-gray-200 bg-white">
+                                        <tr class="datosT">
+                                            <td class="px-5 py-2 border border-gray-200 bg-white">
                                                 <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10 items-center">
-                                                        <a href="{{ route('EProducto', [$producto->id]) }}">
-                                                            <button class="botonm  mt-1">
+                                                    <div class="flex-shrink-0 w-10 h-10">
+                                                        <a href="{{ route('EEmpleado', [$empleado->id]) }}">
+                                                            <button class="botonm ml-6">
                                                                 <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                                 <span class="ml-2 ">Detalles</span>
                                                             </button>
@@ -87,29 +87,23 @@
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->CodigoB }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $empleado->sucursal->Nombre }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Nombre }}</p>
+                                                {{$empleado->Nombre}} {{$empleado->ApP}} {{$empleado->ApM}}
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->S1 + $producto->S2 + $producto->S3 + $producto->S4 + $producto->S5 + $producto->S6 + $producto->S7}}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->marca->Nombre }}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->categoria->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $empleado->Estatus }}</p>
                                             </td>
                                         </tr>
-                                        <var {{ $aux = false }} />
+                                        <var {{$aux = false}}/>
                                     @else
-                                        <tr class="datosTS bg-gray-100">
-                                            <td class="px-3 py-2 border border-gray-200">
+                                        <tr class="datosT bg-gray-100">
+                                            <td class="px-5 py-2 border border-gray-200">
                                                 <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10 items-center">
-                                                        <a href="{{ route('EProducto', [$producto->id]) }}">
-                                                            <button class="botonm  mt-1 ">
+                                                    <div class="flex-shrink-0 w-10 h-10">
+                                                        <a href="{{ route('EEmpleado', [$empleado->id]) }}">
+                                                            <button class="botonm ml-6">
                                                                 <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                                 <span class="ml-2 ">Detalles</span>
                                                             </button>
@@ -118,22 +112,16 @@
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->CodigoB }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $empleado->sucursal_id->Nombre }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Nombre }}</p>
+                                                {{$empleado->Nombre}} {{$empleado->ApP}} {{$empleado->ApM}}
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->S1 + $producto->S2 + $producto->S3 + $producto->S4 + $producto->S5 + $producto->S6 + $producto->S7}}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->marca->Nombre }}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->categoria->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $empleado->Estatus }}</p>
                                             </td>
                                         </tr>
-                                        <var {{ $aux = true }} />
+                                        <var {{ $aux = true }}/>
                                     @endif
                                 @endforeach
                             </tbody>
@@ -154,9 +142,9 @@
                             </div>
                         </div>
                     @endif
-                    @if ($productos->hasPages())
-                        <div class="px-6 py-3 etiqueta ">
-                            {{ $productos->links() }}
+                    @if ($empleados->hasPages())
+                        <div class="px-6 py-3 etiqueta">
+                            {{ $empleados->links() }}
                         </div>
                     @endif
                 </div>
@@ -164,3 +152,4 @@
         </div>
     </div>
 </div>
+

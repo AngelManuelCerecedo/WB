@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Almacen;
 use App\Models\Categoria;
 use App\Models\Cliente;
 use App\Models\Marca;
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MetodoPagoSeeder::class);
         $this->call(UnidadMedidaSeeder::class);
         $this->call(SucursalSeeder::class);
+        $this->call(AlmacenSeeder::class);
     }
 }

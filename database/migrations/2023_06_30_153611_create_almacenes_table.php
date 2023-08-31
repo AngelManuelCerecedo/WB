@@ -13,11 +13,11 @@ class CreateAlmacenesTable extends Migration
      */
     public function up()
     {
-        Schema::create('almacenes', function (Blueprint $table) {
+        Schema::create('almacens', function (Blueprint $table) {
             $table->id();
             $table->string ('Nombre')->nullable();
-            $table->string ('StockMin')->nullable();
-            $table->string ('StocMax')->nullable();
+            $table->unsignedBigInteger("sucursal_id")->nullable();
+            $table->foreign("sucursal_id")->references("id")->on("sucursals")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -1,15 +1,18 @@
 <?php
 
+use App\Http\Controllers\AlmacenController;
 use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\FormasController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\MetodosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\UnidadesController;
+use App\Models\Empleado;
 use App\Models\Sucursal;
 
 /*
@@ -69,9 +72,9 @@ Route::get('MetodoPago/Editar/{id}', [MetodosController::class, 'emetodo'])->nam
 
 //MODULO ADMINISTRACION
 //EMPLEADOS
-Route::get('Empleados', [MetodosController::class, 'empleado'])->name('Empleados');
-Route::get('Empleados/Registro', [MetodosController::class, 'rempleado'])->name('REmpleados');
-Route::get('Empleados/Editar/{id}', [MetodosController::class, 'eempleado'])->name('EEmpleado');
+Route::get('Empleados', [EmpleadoController::class, 'empleado'])->name('Empleados');
+Route::get('Empleados/Registro', [EmpleadoController::class, 'rempleado'])->name('REmpleados');
+Route::get('Empleados/Editar/{id}', [EmpleadoController::class, 'eempleado'])->name('EEmpleado');
 
 //SUCURSALES
 Route::get('Sucursales', [SucursalController::class, 'sucursal'])->name('Sucursales');
@@ -83,3 +86,8 @@ Route::get('Sucursales/Editar/{id}', [SucursalController::class, 'esucursal'])->
 Route::get('Productos', [ProductoController::class, 'producto'])->name('Productos');
 Route::get('Productos/Registro', [ProductoController::class, 'rproducto'])->name('RProductos');
 Route::get('Productos/Editar/{id}', [ProductoController::class, 'eproducto'])->name('EProducto');
+
+//ALMACENES
+Route::get('Almacenes', [AlmacenController::class, 'almacen'])->name('Almacenes');
+Route::get('Almacen/Existencias/{id}', [AlmacenController::class, 'ralmacen'])->name('RAlmacen');
+Route::get('Almacen/Lista/{id}', [AlmacenController::class, 'ealmacen'])->name('EAlmacen');

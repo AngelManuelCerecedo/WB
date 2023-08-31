@@ -1,9 +1,14 @@
 <div class="container">
     <div class="py-8">
         <div class="flex mb-4">
-            <h2 class="text-4xl titulos mr-80">Productos</h2>
-            <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Almacén <i
-                    class="bi bi-chevron-right"></i> Productos</label>
+            <h2 class="text-4xl titulos mr-80">Almacen</h2>
+            @if ($almacen->sucursal)
+                <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Almacén <i
+                        class="bi bi-chevron-right"></i> {{ $almacen->sucursal->Nombre }}</label>
+            @else
+                <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Almacén <i
+                        class="bi bi-chevron-right"></i> Almacén General</label>
+            @endif
         </div>
         <div class="panel">
             <div class="my-2 flex sm:flex-row flex-col">
@@ -20,16 +25,8 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class=" ml-8">
-                        <a href="{{ route('RProductos') }}">
-                            <button class="botonL">
-                                <i class="bi bi-plus-lg text-lg"></i>
-                                <span class="ml-2 ">Nuevo Producto</span>
-                            </button>
-                        </a>
-                    </div>
-                    <div class=" ml-4">
-                        <a href="{{ route('Productos') }}">
+                    <div class=" ml-14">
+                        <a href="{{ route('Almacenes') }}">
                             <button class="botond">
                                 <i class="bi bi-download"></i>
                                 <span class="ml-4 ">Descargar</span>
@@ -77,12 +74,11 @@
                                             <td class="px-3 py-2 border border-gray-200 bg-white">
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10 items-center">
-                                                        <a href="{{ route('EProducto', [$producto->id]) }}">
-                                                            <button class="botonm  mt-1">
-                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                                <span class="ml-2 ">Detalles</span>
-                                                            </button>
-                                                        </a>
+                                                        <button class="botonm  mt-1"
+                                                            wire:click="existencias({{ $producto->id }})">
+                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                            <span class="ml-2 ">Detalles</span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </td>
@@ -93,13 +89,36 @@
                                                 <p class="text-black whitespace-no-wrap">{{ $producto->Nombre }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->S1 + $producto->S2 + $producto->S3 + $producto->S4 + $producto->S5 + $producto->S6 + $producto->S7}}</p>
+                                                @if ($almacen->id == '1')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S1 }}
+                                                @endif
+                                                @if ($almacen->id == '2')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S2 }}
+                                                @endif
+                                                @if ($almacen->id == '3')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S3 }}
+                                                @endif
+                                                @if ($almacen->id == '4')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S4 }}
+                                                @endif
+                                                @if ($almacen->id == '5')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S5 }}
+                                                @endif
+                                                @if ($almacen->id == '6')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S6 }}
+                                                @endif
+                                                @if ($almacen->id == '7')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S7 }}
+                                                @endif
+                                                </p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->marca->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">
+                                                    {{ $producto->marca->Nombre }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->categoria->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">
+                                                    {{ $producto->categoria->Nombre }}</p>
                                             </td>
                                         </tr>
                                         <var {{ $aux = false }} />
@@ -108,12 +127,11 @@
                                             <td class="px-3 py-2 border border-gray-200">
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10 items-center">
-                                                        <a href="{{ route('EProducto', [$producto->id]) }}">
-                                                            <button class="botonm  mt-1 ">
-                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                                <span class="ml-2 ">Detalles</span>
-                                                            </button>
-                                                        </a>
+                                                        <button class="botonm mt-1"
+                                                            wire:click="existencias({{ $producto->id }})">
+                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                            <span class="ml-2 ">Detalles</span>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </td>
@@ -124,13 +142,35 @@
                                                 <p class="text-black whitespace-no-wrap">{{ $producto->Nombre }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->S1 + $producto->S2 + $producto->S3 + $producto->S4 + $producto->S5 + $producto->S6 + $producto->S7}}</p>
+                                                @if ($almacen->id == '1')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S1 }}
+                                                @endif
+                                                @if ($almacen->id == '2')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S2 }}
+                                                @endif
+                                                @if ($almacen->id == '3')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S3 }}
+                                                @endif
+                                                @if ($almacen->id == '4')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S4 }}
+                                                @endif
+                                                @if ($almacen->id == '5')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S5 }}
+                                                @endif
+                                                @if ($almacen->id == '6')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S6 }}
+                                                @endif
+                                                @if ($almacen->id == '7')
+                                                    <p class="text-black whitespace-no-wrap">{{ $producto->S7 }}
+                                                @endif
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->marca->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">
+                                                    {{ $producto->marca->Nombre }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->categoria->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">
+                                                    {{ $producto->categoria->Nombre }}</p>
                                             </td>
                                         </tr>
                                         <var {{ $aux = true }} />
@@ -159,6 +199,21 @@
                             {{ $productos->links() }}
                         </div>
                     @endif
+                </div>
+            </div>
+            <hr class="my-2 text-white">
+            <div class="flex">
+                <div class="ml-12 mt-4 mb-4">
+                    <div class="md:flex items-center">
+                        <div class="flex flex-col mr-96">
+                            <a href="{{ route('Almacenes') }}">
+                                <button class="botonr">
+                                    <i class="bi bi-chevron-left"></i>
+                                    Regresar
+                                </button>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

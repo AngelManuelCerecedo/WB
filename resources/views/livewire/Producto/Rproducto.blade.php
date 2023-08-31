@@ -90,7 +90,8 @@
                                     @if ($prov->TipoP == 'Moral')
                                         <option value="{{ $prov->id }}">{{ $prov->NEMP }}</option>
                                     @else
-                                    <option value="{{ $prov->id }}">{{ $prov->Nombre}} {{$prov->ApP}} {{$prov->ApM}}</option>
+                                        <option value="{{ $prov->id }}">{{ $prov->Nombre }} {{ $prov->ApP }}
+                                            {{ $prov->ApM }}</option>
                                     @endif
                                 @endforeach
                             </select>
@@ -102,7 +103,68 @@
                     </div>
                 </div>
             </div>
-            
+            <div class="flex">
+                <label class="datos mt-16 ml-4"> Almacen</label>
+                <div class="ml-4 mt-8">
+                    <!--BOTONS DE ALMACENES-->
+                    <div class="md:flex items-center mt-4 etiqueta">
+                        <div class="relative flex items-start py-4">
+                            <input id="1" type="checkbox" class="hidden peer" wire:model="c1" value="1">
+                            <label for="1"
+                                class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
+                                <div class="flex items-center justify-center w-full">
+                                    <div class="text-sm text-brand-black">Emilio Carranza</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="relative flex items-start py-4 ml-4">
+                            <input id="2" type="checkbox" class="hidden peer" wire:model="c2" value="2">
+                            <label for="2"
+                                class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
+                                <div class="flex items-center justify-center w-full">
+                                    <div class="text-sm text-brand-black">Melchor Ocampo</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="relative flex items-start py-4 ml-4">
+                            <input id="3" type="checkbox" class="hidden peer" wire:model="c3" value="3">
+                            <label for="3"
+                                class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
+                                <div class="flex items-center justify-center w-full">
+                                    <div class="text-sm text-brand-black">Fuerza Aérea</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="relative flex items-start py-4 ml-4">
+                            <input id="4" type="checkbox" class="hidden peer" wire:model="c4" value="4">
+                            <label for="4"
+                                class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
+                                <div class="flex items-center justify-center w-full">
+                                    <div class="text-sm text-brand-black">Puebla Sur</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="relative flex items-start py-4 ml-4">
+                            <input id="5" type="checkbox" class="hidden peer" wire:model="c5" value="5">
+                            <label for="5"
+                                class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
+                                <div class="flex items-center justify-center w-full">
+                                    <div class="text-sm text-brand-black">E-Commerce</div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="relative flex items-start py-4 ml-4">
+                            <input id="6" type="checkbox" class="hidden peer" wire:model="c6" value="6">
+                            <label for="6"
+                                class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
+                                <div class="flex items-center justify-center w-full">
+                                    <div class="text-sm text-brand-black">Gobierno</div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <hr class="mt-12 my-2 text-white">
             <div class="flex">
                 <div class="ml-12 mt-4 mb-4">
