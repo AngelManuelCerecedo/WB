@@ -28,14 +28,6 @@
                             </button>
                         </a>
                     </div>-->
-                    <div class=" ml-32">
-                        <a href="{{ route('Almacenes') }}">
-                            <button class="botond">
-                                <i class="bi bi-download"></i>
-                                <span class="ml-4 ">Descargar</span>
-                            </button>
-                        </a>
-                    </div>
                 </div>
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">

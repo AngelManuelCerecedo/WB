@@ -5,12 +5,14 @@ use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\FormasController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\MetodosController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SucursalController;
+use App\Http\Controllers\TraspasoController;
 use App\Http\Controllers\UnidadesController;
 use App\Models\Empleado;
 use App\Models\Sucursal;
@@ -91,3 +93,19 @@ Route::get('Productos/Editar/{id}', [ProductoController::class, 'eproducto'])->n
 Route::get('Almacenes', [AlmacenController::class, 'almacen'])->name('Almacenes');
 Route::get('Almacen/Existencias/{id}', [AlmacenController::class, 'ralmacen'])->name('RAlmacen');
 Route::get('Almacen/Lista/{id}', [AlmacenController::class, 'ealmacen'])->name('EAlmacen');
+
+//TRASPASOS
+Route::get('Traspasos', [TraspasoController::class, 'traspaso'])->name('Traspasos');
+Route::get('Traspaso/Registro', [TraspasoController::class, 'rtraspaso'])->name('RTraspaso');
+Route::get('Traspaso/Editar/{id}', [TraspasoController::class, 'etraspaso'])->name('ETraspaso');
+
+//MODULO OPREACION
+//COMPRAS
+//Route::get('Compras', [ProductoController::class, 'compra'])->name('Compras');
+//Route::get('Compras/Registro', [ProductoController::class, 'rcompras'])->name('RCompras');
+//Route::get('Compras/Editar/{id}', [ProductoController::class, 'ecompras'])->name('ECompras');
+
+//COTIZACIONES
+Route::get('Cotizaciones', [CotizacionController::class, 'cotizacion'])->name('Cotizaciones');
+Route::get('Cotizaciones/Registro', [CotizacionController::class, 'rcotizacion'])->name('RCotizacion');
+Route::get('Cotizaciones/Editar/{id}', [CotizacionController::class, 'ecotizacion'])->name('ECotizacion');

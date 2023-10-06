@@ -176,6 +176,30 @@ body::-webkit-scrollbar-thumb{
     width: 150px;
     height: 38px;
 }
+.botone{
+    background-color: #ff0000;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 150px;
+    height: 38px;
+}
+.botonei{
+    background-color: #ff0000;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 80px;
+    height: 38px;
+}
+.botoni{
+    background-color: #17b627;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 150px;
+    height: 38px;
+}
 .etiqueta{
     color: black;
     font-size: 14px;
@@ -214,6 +238,12 @@ body::-webkit-scrollbar-thumb{
     font-family: 'Open Sans', sans-serif;
     width: 500px;
     height: 40px;
+}
+.inputB{
+    border: solid 2px #9e9a9a;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 600px;
 }
 .inputXL{
     border: solid 2px #9e9a9a;

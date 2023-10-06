@@ -16,6 +16,12 @@
     <!-- Styles -->
     @livewireStyles
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+
     <!-- Scripts -->
     @livewireScripts
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -48,13 +54,13 @@
         class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
               p-2 w-[240px] overflow-y-auto text-center bg-[#FFFFFF] shadow h-screen mt-12">
         <!-- Imagen TOP -->
-        <div class="text-black text-xl">    
+        <div class="text-black text-xl">
             <div class="portada">
                 <div class="iconport">
                     <i class="bi bi-person-circle"></i>
                 </div>
                 <div class="textport">
-                    Usuario<br/>Rol<br>Ubicacion
+                    Usuario<br />Rol<br>Ubicacion
                 </div>
             </div>
             <!-- LINEA -->
@@ -139,17 +145,14 @@
                     <a href="{{ route('Almacenes') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Almacenes</h1>
                     </a>
-                    <a href="">
+                   <!-- <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Inventario</h1>
                     </a>
                     <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Existencia</h1>
-                    </a>
-                    <a href="">
+                    </a>-->
+                    <a href="{{ route('Traspasos') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Traspasos</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Compras</h1>
                     </a>
                 </div>
 
@@ -165,16 +168,13 @@
 
                 <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloOperacion">
                     <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Licitaciones</h1>
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Compras</h1>
                     </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Jornadas</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Facturas</h1>
-                    </a>
-                    <a href="">
+                    <a href="{{ route('Cotizaciones') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cotizaciones</h1>
+                    </a>
+                    <a href="">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Licitaciones</h1>
                     </a>
                     <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ventas</h1>
@@ -195,6 +195,9 @@
                 </div>
 
                 <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloContabilidad">
+                    <a href="">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Facturas</h1>
+                    </a>
                     <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Usos de CFDI</h1>
                     </a>

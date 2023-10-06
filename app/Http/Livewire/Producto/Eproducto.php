@@ -203,6 +203,10 @@ class Eproducto extends Component
                 ]
             );
         }
+        Almacen_Producto::updateOrCreate([
+            'almacen_id' => 7,
+            'producto_id' => $this->ide,
+        ]);
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Datos Actualizados Exitosamente',
             'type' => 'success'

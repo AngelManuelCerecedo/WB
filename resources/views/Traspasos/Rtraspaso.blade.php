@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Editar Sucursal')
+@section('title', 'Resgistrar Traspaso')
 @section('content')
-    @livewire('sucursal.esucursal', ['ide' => $id])
+    @livewire('traspaso.rtraspaso')
 @endsection
 @section('js')
     <script>
@@ -13,5 +13,6 @@
                 showConfirmButton: false,
             })
         });
+        
     </script>
 @endsection

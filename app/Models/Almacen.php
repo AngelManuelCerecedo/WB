@@ -15,4 +15,10 @@ class Almacen extends Model
     public function sucursal(){
         return $this->belongsTo("App\Models\Sucursal");
     }
+    public function traspaso(){
+        return $this->hasMany("App\Models\Traspaso");
+    }
+    public function cotizacion(){
+        return $this->hasMany("App\Models\Cotizacion");
+    }
 }

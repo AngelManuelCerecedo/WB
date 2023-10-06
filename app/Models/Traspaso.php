@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Almacen_Producto extends Model
+class Traspaso extends Model
 {
     use HasFactory;
-    protected $fillable=['id','sucursal_id','almacen_id','producto_id','Stock'];
-    public function sucursal(){
-        return $this->belongsTo("App\Models\Sucursal");
+    protected $fillable=['id','Folio','Aux','almacenO_id','almacenD_id','producto_id','empleadoO_id','Cantidad','Estatus','empleadoD_id','Obs'];
+    public function empleado(){
+        return $this->belongsTo("App\Models\Empleado");
     }
     public function almacen(){
         return $this->belongsTo("App\Models\Almacen");

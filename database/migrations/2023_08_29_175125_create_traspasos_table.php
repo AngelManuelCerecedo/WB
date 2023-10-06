@@ -15,16 +15,20 @@ class CreateTraspasosTable extends Migration
     {
         Schema::create('traspasos', function (Blueprint $table) {
             $table->id();
+            $table->string ('Folio');
+            $table->Integer ('Aux');
             $table->unsignedBigInteger("almacenO_id");
             $table->foreign("almacenO_id")->references("id")->on("almacens")->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("almacenD_id");
             $table->foreign("almacenD_id")->references("id")->on("almacens")->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger("producto_id");
+            $table->unsignedBigInteger("producto_id")->nullable();
             $table->foreign("producto_id")->references("id")->on("productos")->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger("empleadoO_id");
             $table->string ('Cantidad')->nullable();
+            $table->string ('Estatus')->nullable();
+            $table->string ('Obs')->nullable();
+            $table->unsignedBigInteger("empleadoO_id")->nullable();
             $table->foreign("empleadoO_id")->references("id")->on("empleados")->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger("empleadoD_id");
+            $table->unsignedBigInteger("empleadoD_id")->nullable();
             $table->foreign("empleadoD_id")->references("id")->on("empleados")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });

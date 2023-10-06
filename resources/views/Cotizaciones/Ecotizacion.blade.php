@@ -1,7 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Editar Sucursal')
+@section('title', 'Editar Cotizacion')
 @section('content')
-    @livewire('sucursal.esucursal', ['ide' => $id])
+    @livewire('cotizacion.ecotizacion', ['ide' => $id])
 @endsection
 @section('js')
     <script>

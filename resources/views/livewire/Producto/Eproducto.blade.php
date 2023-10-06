@@ -20,9 +20,13 @@
                             <label class="etiqueta">Código de Barras</label>
                             <input type="text" wire:model='CB' class="input" placeholder="Código de Barras" />
                         </div>
-                        <div class="flex flex-col  md:mt-0 mt-4">
+                        <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Calve del Producto</label>
                             <input type="text" wire:model='C1' class="input" placeholder="Calve del Producto" />
+                        </div>
+                        <div class="flex flex-col  md:mt-0 mt-4">
+                            <label class="etiqueta">Calve del SAT</label>
+                            <input type="text" wire:model='C2' class="input" placeholder="Calve del SAT" />
                         </div>
                     </div>
                     <div class="md:flex items-center mt-4">
@@ -108,8 +112,9 @@
                 <div class="ml-4 mt-8">
                     <!--BOTONS DE ALMACENES-->
                     <div class="md:flex items-center mt-4 etiqueta">
-                        <div class="relative flex items-start py-4">
-                            <input id="1" type="checkbox" class="hidden peer" wire:model="c1" value="1">
+                        <div class=" flex items-start py-4">
+                            <input id="1" type="checkbox" class="hidden peer" wire:model="c1"
+                                value="1">
                             <label for="1"
                                 class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
                                 <div class="flex items-center justify-center w-full">
@@ -117,8 +122,9 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="relative flex items-start py-4 ml-4">
-                            <input id="2" type="checkbox" class="hidden peer" wire:model="c2" value="2">
+                        <div class=" flex items-start py-4 ml-4">
+                            <input id="2" type="checkbox" class="hidden peer" wire:model="c2"
+                                value="2">
                             <label for="2"
                                 class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
                                 <div class="flex items-center justify-center w-full">
@@ -126,8 +132,9 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="relative flex items-start py-4 ml-4">
-                            <input id="3" type="checkbox" class="hidden peer" wire:model="c3" value="3">
+                        <div class=" flex items-start py-4 ml-4">
+                            <input id="3" type="checkbox" class="hidden peer" wire:model="c3"
+                                value="3">
                             <label for="3"
                                 class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
                                 <div class="flex items-center justify-center w-full">
@@ -135,8 +142,9 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="relative flex items-start py-4 ml-4">
-                            <input id="4" type="checkbox" class="hidden peer" wire:model="c4" value="4">
+                        <div class=" flex items-start py-4 ml-4">
+                            <input id="4" type="checkbox" class="hidden peer" wire:model="c4"
+                                value="4">
                             <label for="4"
                                 class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
                                 <div class="flex items-center justify-center w-full">
@@ -144,8 +152,9 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="relative flex items-start py-4 ml-4">
-                            <input id="5" type="checkbox" class="hidden peer" wire:model="c5" value="5">
+                        <div class=" flex items-start py-4 ml-4">
+                            <input id="5" type="checkbox" class="hidden peer" wire:model="c5"
+                                value="5">
                             <label for="5"
                                 class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
                                 <div class="flex items-center justify-center w-full">
@@ -153,8 +162,9 @@
                                 </div>
                             </label>
                         </div>
-                        <div class="relative flex items-start py-4 ml-4">
-                            <input id="6" type="checkbox" class="hidden peer" wire:model="c6" value="6">
+                        <div class=" flex items-start py-4 ml-4">
+                            <input id="6" type="checkbox" class="hidden peer" wire:model="c6"
+                                value="6">
                             <label for="6"
                                 class="inline-flex items-center justify-between w-auto p-2 font-medium tracking-tight border rounded-lg cursor-pointer bg-brand-light text-brand-black border-red-500 peer-checked:border-red-400 peer-checked:bg-red-500 peer-checked:text-white peer-checked:font-semibold  peer-checked:decoration-brand-dark decoration-2">
                                 <div class="flex items-center justify-center w-full">
@@ -282,7 +292,7 @@
                                             <input type="text" wire:model='I3'
                                                 class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
                                             <div>
-                                                <button wire:click="CPP(3)" 
+                                                <button wire:click="CPP(3)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
                                                     <i class="bi bi-percent"></i>
                                                 </button>
@@ -439,7 +449,7 @@
                                     </td>
                                     <td class=" py-2">
                                         <div class=" border  border-[2px]  w-8/12  flex  rounded-md ">
-                                            <button wire:click="CIA(7)" 
+                                            <button wire:click="CIA(7)"
                                                 class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>

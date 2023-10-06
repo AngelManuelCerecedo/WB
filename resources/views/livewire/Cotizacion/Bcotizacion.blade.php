@@ -1,23 +1,18 @@
 <div class="container">
     <div class="py-8">
         <div class="flex mb-4">
-            <h2 class="text-4xl titulos mr-80">Almacen</h2>
-            @if ($almacen->sucursal)
-                <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Almacén <i
-                        class="bi bi-chevron-right"></i> {{ $almacen->sucursal->Nombre }}</label>
-            @else
-                <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Almacén <i
-                        class="bi bi-chevron-right"></i> Almacén General</label>
-            @endif
+            <h2 class="text-4xl titulos mr-80">Cotizaciones</h2>
+            <label class="ml-80 mt-6">Inicio <i class="bi bi-chevron-right"></i> Operación <i
+                    class="bi bi-chevron-right"></i> Cotizaciones</label>
         </div>
         <div class="panel">
             <div class="my-2 flex sm:flex-row flex-col">
                 <div class="mt-8 flex flex-row mb-1 sm:mb-0">
-                    <div class=" ml-8">
+                    <div class=" ml-4">
                         <input placeholder="Buscar" wire:model="search"
-                            class="inputL appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                            class="inputN appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                     </div>
-                    <div class=" ml-8">
+                    <div class=" ml-2 mr-2">
                         <select wire:model="cantidad"
                             class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             <option value="20">20</option>
@@ -25,8 +20,24 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class=" ml-14">
-                        <a href="{{ route('Almacenes') }}">
+                    <div class="">
+                        <select wire:model='Sucursal' class="input">
+                            <option value="">Todos</option>
+                            @foreach ($Sucursales as $Sucursal)
+                                <option value="{{ $Sucursal->id }}">{{ $Sucursal->Nombre }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class=" ml-4">
+                        <a href="{{ route('RCotizacion') }}">
+                            <button class="botonL">
+                                <i class="bi bi-plus-lg text-lg"></i>
+                                <span class="ml-2 ">Nueva Cotizacion</span>
+                            </button>
+                        </a>
+                    </div>
+                    <div class=" ml-2">
+                        <a href="{{ route('Cotizaciones') }}">
                             <button class="botond">
                                 <i class="bi bi-download"></i>
                                 <span class="ml-4 ">Descargar</span>
@@ -37,7 +48,7 @@
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    @if ($productos->count())
+                    @if ($cotizaciones->count())
                         <table class="tabla">
                             <thead class="etiqueta">
                                 <tr>
@@ -47,101 +58,124 @@
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Código de Barras
+                                        Folio
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Nombre
+                                        Fecha
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Stock Disponible
+                                        Importe
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Marca
+                                        Cliente
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Categoria
+                                        Sucursal
                                     </th>
                                 </tr>
                             </thead>
                             <tbody class="etiquetaS">
-                                @foreach ($productos as $producto)
+                                @foreach ($cotizaciones as $cotizacion)
                                     @if ($aux)
                                         <tr class="datosTS">
                                             <td class="px-3 py-2 border border-gray-200 bg-white">
                                                 <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10 items-center">
-                                                        <button class="botonm  mt-1"
-                                                            wire:click="existencias({{ $producto->id }})">
-                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                            <span class="ml-2 ">Detalles</span>
-                                                        </button>
+                                                    <div class="flex-shrink-0 w-10 h-10 ml-8">
+                                                        <a href="{{ route('ECotizacion', [$cotizacion->id]) }}">
+                                                            <button class="botonm  mt-1">
+                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                                <span class="ml-2 ">Detalles</span>
+                                                            </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->CodigoB }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->Folio }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Nombre }}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    @foreach ($producto->almacen_p as $stock)
-                                                        @if ($stock->almacen_id == $almacen->id)
-                                                            {{ $stock->Stock }}
-                                                        @endif
-                                                    @endforeach
+                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->created_at }}
                                                 </p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    {{ $producto->marca->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->Importe3 }}
+                                                </p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                @if ($cotizacion->cliente_id)
+                                                    @if ($cotizacion->cliente->TipoP == 'Fisica')
+                                                        <p class="text-black whitespace-no-wrap">
+                                                            {{ $cotizacion->cliente->Nombre }}
+                                                            {{ $cotizacion->cliente->ApP }}
+                                                            {{ $cotizacion->cliente->ApM }}
+                                                        </p>
+                                                    @else
+                                                        <p class="text-black whitespace-no-wrap">
+                                                            {{ $cotizacion->cliente->NomCom }}
+                                                        </p>
+                                                    @endif
+                                                @else
+                                                    <p class="text-black whitespace-no-wrap">
+                                                        {{ $cotizacion->Cliente }}
+                                                    </p>
+                                                @endif
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
                                                 <p class="text-black whitespace-no-wrap">
-                                                    {{ $producto->categoria->Nombre }}</p>
-                                            </td>
+                                                    {{ $cotizacion->almacen->Nombre }}</p </td>
                                         </tr>
                                         <var {{ $aux = false }} />
                                     @else
                                         <tr class="datosTS bg-gray-100">
                                             <td class="px-3 py-2 border border-gray-200">
                                                 <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10 items-center">
-                                                        <button class="botonm mt-1"
-                                                            wire:click="existencias({{ $producto->id }})">
-                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                            <span class="ml-2 ">Detalles</span>
-                                                        </button>
+                                                    <div class="flex-shrink-0 w-10 h-10 ml-8">
+                                                        <a href="{{ route('ECotizacion', [$cotizacion->id]) }}">
+                                                            <button class="botonm  mt-1 ">
+                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                                <span class="ml-2 ">Detalles</span>
+                                                            </button>
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->CodigoB }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->Folio }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $producto->Nombre }}</p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    @foreach ($producto->almacen_p as $stock)
-                                                        @if ($stock->almacen_id == $almacen->id)
-                                                            {{ $stock->Stock }}
-                                                        @endif
-                                                    @endforeach
+                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->created_at }}
                                                 </p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    {{ $producto->marca->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->Importe3 }}
+                                                </p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200">
+                                                @if ($cotizacion->cliente_id)
+                                                    @if ($cotizacion->cliente->TipoP == 'Fisica')
+                                                        <p class="text-black whitespace-no-wrap">
+                                                            {{ $cotizacion->cliente->Nombre }}
+                                                            {{ $cotizacion->cliente->ApP }}
+                                                            {{ $cotizacion->cliente->ApM }}
+                                                        </p>
+                                                    @else
+                                                        <p class="text-black whitespace-no-wrap">
+                                                            {{ $cotizacion->cliente->NomCom }}
+                                                        </p>
+                                                    @endif
+                                                @else
+                                                    <p class="text-black whitespace-no-wrap">
+                                                        {{ $cotizacion->Cliente }}
+                                                    </p>
+                                                @endif
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
                                                 <p class="text-black whitespace-no-wrap">
-                                                    {{ $producto->categoria->Nombre }}</p>
+                                                    {{ $cotizacion->almacen->Nombre }}</p>
                                             </td>
                                         </tr>
                                         <var {{ $aux = true }} />
@@ -165,26 +199,11 @@
                             </div>
                         </div>
                     @endif
-                    @if ($productos->hasPages())
+                    @if ($cotizaciones->hasPages())
                         <div class="px-6 py-3 etiqueta ">
-                            {{ $productos->links() }}
+                            {{ $cotizaciones->links() }}
                         </div>
                     @endif
-                </div>
-            </div>
-            <hr class="my-2 text-white">
-            <div class="flex">
-                <div class="ml-12 mt-4 mb-4">
-                    <div class="md:flex items-center">
-                        <div class="flex flex-col mr-96">
-                            <a href="{{ route('Almacenes') }}">
-                                <button class="botonr">
-                                    <i class="bi bi-chevron-left"></i>
-                                    Regresar
-                                </button>
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

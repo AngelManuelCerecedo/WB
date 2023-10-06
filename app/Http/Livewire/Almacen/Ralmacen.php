@@ -54,88 +54,17 @@ class Ralmacen extends Component
         $this->AUXC = $prod->categoria_id;
         $this->AUXU = $prod->unidad_id;
         $this->AUXP = $prod->proveedor_id;
-        if ($ap->almacen_id == '1') {
-            $this->E = $prod->S1;
-        }
-        if ($ap->almacen_id == '2') {
-            $this->E = $prod->S2;
-        }
-        if ($ap->almacen_id == '3') {
-            $this->E = $prod->S4;
-        }
-        if ($ap->almacen_id == '4') {
-            $this->E = $prod->S4;
-        }
-        if ($ap->almacen_id == '5') {
-            $this->E = $prod->S5;
-        }
-        if ($ap->almacen_id == '6') {
-            $this->E = $prod->S6;
-        }
-        if ($ap->almacen_id == '7') {
-            $this->E = $prod->S7;
-        }
+        $this->E = $ap->Stock;
     }
     public function GE()
     {
         $ap = Almacen_Producto::where('id', $this->ide)->first();
-        $prod = Producto::where('id', $ap->producto_id)->first();
-        if ($ap->almacen_id == '1') {
-            Producto::updateOrCreate(
-                ['id' => $prod->id],
-                [
-                    'S1' => $this->E,
-                ]
-            );
-        }
-        if ($ap->almacen_id == '2') {
-            Producto::updateOrCreate(
-                ['id' => $prod->id],
-                [
-                    'S2' => $this->E,
-                ]
-            );
-        }
-        if ($ap->almacen_id == '3') {
-            Producto::updateOrCreate(
-                ['id' => $prod->id],
-                [
-                    'S3' => $this->E,
-                ]
-            );
-        }
-        if ($ap->almacen_id == '4') {
-            Producto::updateOrCreate(
-                ['id' => $prod->id],
-                [
-                    'S4' => $this->E,
-                ]
-            );
-        }
-        if ($ap->almacen_id == '5') {
-            Producto::updateOrCreate(
-                ['id' => $prod->id],
-                [
-                    'S5' => $this->E,
-                ]
-            );
-        }
-        if ($ap->almacen_id == '6') {
-            Producto::updateOrCreate(
-                ['id' => $prod->id],
-                [
-                    'S6' => $this->E,
-                ]
-            );
-        }
-        if ($ap->almacen_id == '7') {
-            Producto::updateOrCreate(
-                ['id' => $prod->id],
-                [
-                    'S7' => $this->E,
-                ]
-            );
-        }
+        Almacen_Producto::updateOrCreate(
+            ['id' => $ap->id],
+            [
+                'Stock' => $this->E,
+            ]
+        );
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Datos Actualizados Exitosamente',
             'type' => 'success'

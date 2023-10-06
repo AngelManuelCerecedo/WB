@@ -15,7 +15,7 @@ use Livewire\Component;
 class Rproducto extends Component
 {
     public $CB, $NOM, $SMN, $SMX, $P, $P1, $P2, $P3, $C1, $C2, $C3, $C4, $AUXM, $AUXC, $AUXU, $AUXP, $IVA, $EST,
-        $A1, $A2, $A3, $A4, $A5, $A6, $A7, $A8, $A9, $A10, $c1, $c2, $c3, $c4, $c5, $c6;
+           $c1, $c2, $c3, $c4, $c5, $c6;
     public function render()
     {
         $CAT = Categoria::all();
@@ -36,6 +36,7 @@ class Rproducto extends Component
             'Clv2' => $this->C2,
             'Clv3' => $this->C3,
             'Clv4' => $this->C4,
+            //ALMACEN
             'A1' => $this->c1,
             'A2' => $this->c2,
             'A3' => $this->c3,
