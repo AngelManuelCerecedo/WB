@@ -43,6 +43,13 @@
                     @else
                         <div class="md:flex items-center mt-6">
                             <div class="flex flex-col mr-24">
+                                <label class="etiqueta">Tipo de Proveedor</label>
+                                <select wire:model='TProv' class="inputS">
+                                    <option value="">Seleccione una Opción</option>
+                                    <option value="Fabricante">Fabricante</option>
+                                    <option value="Distribuidor">Distribuidor</option>
+                                    <option value="Sub-Distribuidor">Sub-Distribuidor</option>
+                                </select>
                             </div>
                         </div>
                     @endif
@@ -58,12 +65,8 @@
                             <input type="text" wire:model='N' class="inputN" placeholder="Nombre" />
                         </div>
                         <div class=" flex flex-col md:ml-6 md:mt-0 mt-4">
-                            <label class="etiqueta">Apellido Paterno</label>
-                            <input type="text" wire:model='ApP' class="input" placeholder="Apellido Paterno" />
-                        </div>
-                        <div class="flex flex-col ml-8">
-                            <label class="etiqueta">Apellido Materno</label>
-                            <input type="text" wire:model='ApM' class="input" placeholder="Apellido Materno" />
+                            <label class="etiqueta">Apellidos</label>
+                            <input type="text" wire:model='ApP' class="inputN" placeholder="Apellidos" />
                         </div>
                     </div>
                     <div class="md:flex items-center mt-6">
@@ -122,22 +125,6 @@
                         <div class="w-full md:w-1/4 flex flex-col mr-24">
                             <label class="etiqueta">Referencias</label>
                             <input type="text" wire:model='REF' class="inputL" placeholder="Referencias" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- CUARTO BLOQUE DE DATOS -->
-            <div class="flex">
-                <label class="datos mt-16 ml-4"> Crédito</label>
-                <div class="ml-24 mt-16">
-                    <div class="md:flex items-center">
-                        <div class="w-full md:w-1/4 flex flex-col mr-24">
-                            <label class="etiqueta">Limite de Crédito</label>
-                            <input type="text" wire:model='LIMC' class="input" placeholder="Limite Crédito" />
-                        </div>
-                        <div class="w-full md:w-1/4 flex flex-col md:ml-6 md:mt-0 mt-4">
-                            <label class="etiqueta">Dias de Crédito</label>
-                            <input type="text" wire:model='DCRED' class="input" placeholder="Dias de Crédito" />
                         </div>
                     </div>
                 </div>

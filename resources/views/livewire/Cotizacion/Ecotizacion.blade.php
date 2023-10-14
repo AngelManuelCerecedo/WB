@@ -127,10 +127,10 @@
                                     </p>
                                 </td>
                                 <td class="border border-gray-200 bg-white">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">{{ $Producto->Importe1 }}
+                                    <p class="text-gray-900 whitespace-no-wrap text-center">${{number_format($Producto->Importe1,2)}}
                                 </td>
                                 <td class="border border-gray-200 bg-white">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">{{ $Producto->Importe2 }}
+                                    <p class="text-gray-900 whitespace-no-wrap text-center">${{number_format($Producto->Importe2,2) }}
                                 </td>
                                 <td class="border border-gray-200 bg-white">
                                     @if ($Estatus == 'Registro')
@@ -152,7 +152,7 @@
                             <td class="px-5 py-3  bg-white ">
                             </td>
                             <td class="etiquetaT bg-white ">
-                                <p class="text-center">{{$Total}}</p>
+                                <p class="text-center">${{number_format($Total,2)}}</p>
                             </td>
                             <td class="px-5 py-3  bg-white ">
                             </td>

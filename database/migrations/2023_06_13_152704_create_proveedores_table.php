@@ -18,7 +18,6 @@ class CreateProveedoresTable extends Migration
             $table->string('NEMP')->nullable();
             $table->string ('Nombre')->nullable();
             $table->string ('ApP')->nullable();
-            $table->string ('ApM')->nullable();
             $table->string ('Cel')->nullable();
             $table->string ('Tel')->nullable();
             $table->string ('Correo')->nullable();
@@ -32,7 +31,8 @@ class CreateProveedoresTable extends Migration
             $table->string ('RFC')->nullable();
             $table->string ('NumExt')->nullable();
             $table->string ('NumInt')->nullable();
-            $table->string ('Credito')->nullable();
+            $table->string ('TipoProv')->nullable();
+            $table->string ('Categoria')->nullable();
             $table->string ('Estatus')->nullable();
             $table->timestamps();
         });

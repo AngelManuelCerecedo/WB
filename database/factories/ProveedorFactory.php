@@ -17,7 +17,6 @@ class ProveedorFactory extends Factory
             'NEMP' => $this->faker->randomElement(['Empresa1','Empresa2','Empresa3','Empresa4','Empresa5']),
             'Nombre' => $this->faker->randomElement(['Angel','Manuel','Raul','Kely','Alexis']),
             'ApP' => $this->faker->randomElement(['Cerecedo','Toledo','Martinez','Hernandez','Flores']),
-            'ApM' => $this->faker->randomElement(['Acevedo','Gutierrez','Salinas','Peña','Solis']),
             'Cel' => $this->faker->randomElement(['95118835','95111235','951345635','951183454','95117456']),
             'Tel' => $this->faker->randomElement(['95118835','95111235','951345635','951183454','95117456']),
             'Correo' => $this->faker->randomElement(['1@gmail.com','2@gmail.com','3@gmail.com','4@gmail.com','5@gmail.com']),
@@ -30,8 +29,8 @@ class ProveedorFactory extends Factory
             'RFC' => $this->faker->randomElement(['wqrqrqr','asdsadasdad','zxczczxc','uyiyuiyuiyui','ghkghkghk']),
             'NumExt' => $this->faker->randomElement(['1','2','3','4','5']),
             'NumInt' => $this->faker->randomElement(['6','7','8','9','20']),
-            'Credito' => $this->faker->randomElement(['11','12','13','14','15']),
             'Estatus' => $this->faker->randomElement(['Activo','Inactivo']),
+            'TipoProv' => $this->faker->randomElement(['Fabricante','Distribuidor','Sub-Distribuidor']),
             'Referencia' => $this->faker->randomElement(['Referencia1','Referencia2','Referencia3','Referencia4','Referencia5','Referencia6','Referencia7','Referencia8','Referencia9']),
         ];
     }

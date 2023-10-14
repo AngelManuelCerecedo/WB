@@ -214,9 +214,9 @@
                                         <p>PUBLICO EN GENERAL</p>
                                     </td>
                                     <td class="px-5">
-                                        <div class=" border  border-[2px]  w-7/12  flex rounded-md">
+                                        <div class=" border  border-[2px]  w-7/12  flex rounded-md ">
                                             <input type="text" wire:model='I1'
-                                                class="w-full border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full border border-gray-100 text-gray-800 focus:outline-none text-right text-right ">
                                             <div>
                                                 <button wire:click="CPP(1)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
@@ -232,7 +232,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='IA1'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                     <td class=" py-2">
@@ -242,7 +242,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='P1'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                 </tr>
@@ -253,7 +253,7 @@
                                     <td class="px-5">
                                         <div class=" border  border-[2px]  w-7/12  flex rounded-md">
                                             <input type="text" wire:model='I2'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                             <div>
                                                 <button wire:click="CPP(2)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
@@ -269,7 +269,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='IA2'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                     <td class="py-2">
@@ -279,7 +279,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='P2'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                 </tr>
@@ -290,7 +290,7 @@
                                     <td class="px-5">
                                         <div class=" border  border-[2px]  w-7/12  flex rounded-md">
                                             <input type="text" wire:model='I3'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                             <div>
                                                 <button wire:click="CPP(3)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
@@ -306,7 +306,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='IA3'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                     <td class="py-2">
@@ -316,7 +316,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='P3'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                 </tr>
@@ -327,7 +327,7 @@
                                     <td class="px-5">
                                         <div class=" border  border-[2px]  w-7/12  flex rounded-md">
                                             <input type="text" wire:model='I4'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                             <div>
                                                 <button wire:click="CPP(4)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
@@ -343,7 +343,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='IA4'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                     <td class="py-2">
@@ -353,7 +353,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='P4'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                 </tr>
@@ -364,7 +364,7 @@
                                     <td class="px-5">
                                         <div class=" border  border-[2px]  w-7/12  flex rounded-md">
                                             <input type="text" wire:model='I5'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                             <div>
                                                 <button wire:click="CPP(5)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
@@ -380,7 +380,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='IA5'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                     <td class="py-2">
@@ -390,7 +390,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='P5'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                 </tr>
@@ -401,7 +401,7 @@
                                     <td class="px-5">
                                         <div class=" border  border-[2px]  w-7/12  flex rounded-md">
                                             <input type="text" wire:model='I6'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                             <div>
                                                 <button wire:click="CPP(6)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
@@ -417,7 +417,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='IA6'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                     <td class="py-2">
@@ -427,7 +427,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='P6'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                 </tr>
@@ -438,7 +438,7 @@
                                     <td class="px-5">
                                         <div class=" border  border-[2px]  w-7/12  flex rounded-md">
                                             <input type="text" wire:model='I7'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                             <div>
                                                 <button wire:click="CPP(7)"
                                                     class="flex items-center bg-gray-200 justify-center w-12 h-12 text-black">
@@ -454,7 +454,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='IA7'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                     <td class="py-2">
@@ -464,7 +464,7 @@
                                                 <i class="bi bi-currency-dollar"></i>
                                             </button>
                                             <input type="text" wire:model='P7'
-                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none">
+                                                class="w-full  border border-gray-100 text-gray-800 focus:outline-none text-right text-right">
                                         </div>
                                     </td>
                                 </tr>

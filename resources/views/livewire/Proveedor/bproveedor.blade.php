@@ -10,9 +10,9 @@
                 <div class="mt-8 flex flex-row mb-1 sm:mb-0">
                     <div class=" ml-8">
                         <input placeholder="Buscar" wire:model="search"
-                            class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                            class="inputN appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
                     </div>
-                    <div class=" ml-8">
+                    <div class="ml-8">
                         <select wire:model="cantidad"
                             class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                             <option value="20">20</option>
@@ -20,7 +20,7 @@
                             <option value="100">100</option>
                         </select>
                     </div>
-                    <div class=" ml-8">
+                    <div class="ml-4">
                         <select wire:model="estatus"
                             class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"">
                             <option value="Todos">Todos</option>
@@ -28,7 +28,7 @@
                             <option value="Inactivo">Inactivos</option>
                         </select>
                     </div>
-                    <div class=" ml-52">
+                    <div class=" ml-24">
                         <a href="{{ route('RProveedores') }}">
                             <button class="boton">
                                 <i class="bi bi-plus-lg text-lg"></i>
@@ -79,7 +79,6 @@
                                     @if ($aux)
                                         <tr class="datosT">
                                             <td class="px-5 py-2 border border-gray-200 bg-white">
-                                                <div class="flex items-center">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('EProveedor', [$proveedor->id]) }}">
                                                             <button class="botonm ml-2">
@@ -88,7 +87,6 @@
                                                             </button>
                                                         </a>
                                                     </div>
-                                                </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
                                                 <p class="text-black whitespace-no-wrap">{{ $proveedor->RFC }}</p>
@@ -97,24 +95,23 @@
                                                 @if ($proveedor->TipoP == 'Moral')
                                                     <p>{{ $proveedor->NEMP }}</p>
                                                 @else
-                                                    <p>{{ $proveedor->Nombre }} {{ $proveedor->ApP }}
-                                                        {{ $proveedor->ApM }}</p>
+                                                    <p>{{ $proveedor->Nombre }} {{ $proveedor->ApP }}</p>
                                                 @endif
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white">
                                                 @if ($proveedor->Estatus == 'Activo')
                                                     <span
-                                                        class=" inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
+                                                        class=" inline-block px-3 py-1 font-[Raleway]-semibold text-green-500 leading-tight">
                                                         <span aria-hidden
                                                             class=" inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                        <span class="">Activo</span>
+                                                        <span class=""><b>Activo</span>
                                                     </span>
                                                 @else
                                                     <span
-                                                        class=" inline-block px-3 py-1 font-[Raleway]-semibold text-orange-900 leading-tight">
+                                                        class=" inline-block px-3 py-1 font-[Raleway]-semibold text-red-500 leading-tight">
                                                         <span aria-hidden
                                                             class=" inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                                        <span class="">Inactivo</span>
+                                                        <span class=""><b>Inactivo</span>
                                                     </span>
                                                 @endif
                                             </td>
@@ -144,24 +141,23 @@
                                                 @if ($proveedor->TipoP == 'Moral')
                                                     <p>{{ $proveedor->NEMP }}</p>
                                                 @else
-                                                    <p>{{ $proveedor->Nombre }} {{ $proveedor->ApP }}
-                                                        {{ $proveedor->ApM }}</p>
+                                                    <p>{{ $proveedor->Nombre }} {{ $proveedor->ApP }}</p>
                                                 @endif
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
                                                 @if ($proveedor->Estatus == 'Activo')
                                                     <span
-                                                        class=" inline-block px-3 py-1 font-[Raleway]-semibold text-green-900 leading-tight">
+                                                        class="inline-block px-3 py-1 font-[Raleway]-semibold text-green-500 leading-tight">
                                                         <span aria-hidden
                                                             class="inset-0 bg-green-200 opacity-50 rounded-full"></span>
-                                                        <span class="">Activo</span>
+                                                        <span class=""><b>Activo</span>
                                                     </span>
                                                 @else
                                                     <span
-                                                        class=" inline-block px-3 py-1 font-[Raleway]-semibold text-orange-900 leading-tight">
+                                                        class=" inline-block px-3 py-1 font-[Raleway]-semibold text-red-500 leading-tight">
                                                         <span aria-hidden
                                                             class=" inset-0 bg-red-200 opacity-50 rounded-full"></span>
-                                                        <span class="">Inactivo</span>
+                                                        <span class=""><b>Inactivo</span>
                                                     </span>
                                                 @endif
                                             </td>

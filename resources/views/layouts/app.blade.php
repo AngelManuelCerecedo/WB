@@ -167,7 +167,7 @@
                 </div>
 
                 <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloOperacion">
-                    <a href="">
+                    <a href="{{ route('Compras') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Compras</h1>
                     </a>
                     <a href="{{ route('Cotizaciones') }}">

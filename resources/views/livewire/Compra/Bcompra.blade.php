@@ -1,9 +1,9 @@
 <div class="container">
     <div class="py-8">
         <div class="flex mb-4">
-            <h2 class="text-4xl titulos mr-80">Cotizaciones</h2>
+            <h2 class="text-4xl titulos mr-96">Compras </h2>
             <label class="ml-80 mt-6">Inicio <i class="bi bi-chevron-right"></i> Operación <i
-                    class="bi bi-chevron-right"></i> Cotizaciones</label>
+                    class="bi bi-chevron-right"></i> Compras</label>
         </div>
         <div class="panel">
             <div class="my-2 flex sm:flex-row flex-col">
@@ -21,23 +21,22 @@
                         </select>
                     </div>
                     <div class="">
-                        <select wire:model='Sucursal' class="input">
+                        <select wire:model='TC' class="input">
                             <option value="">Todos</option>
-                            @foreach ($Sucursales as $Sucursal)
-                                <option value="{{ $Sucursal->id }}">{{ $Sucursal->Nombre }}</option>
-                            @endforeach
+                            <option value="Credito">Credito</option>
+                            <option value="Contado">Contado</option>
                         </select>
                     </div>
                     <div class=" ml-4">
-                        <a href="{{ route('RCotizacion') }}">
+                        <a href="{{ route('RCompra') }}">
                             <button class="botonL">
                                 <i class="bi bi-plus-lg text-lg"></i>
-                                <span class="ml-2 ">Nueva Cotizacion</span>
+                                <span class="ml-2 ">Nueva Compra</span>
                             </button>
                         </a>
                     </div>
                     <div class=" ml-2">
-                        <a href="{{ route('Cotizaciones') }}">
+                        <a href="{{ route('Compras') }}">
                             <button class="botond">
                                 <i class="bi bi-download"></i>
                                 <span class="ml-4 ">Descargar</span>
@@ -48,7 +47,7 @@
             </div>
             <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                 <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    @if ($cotizaciones->count())
+                    @if ($compras->count())
                         <table class="tabla">
                             <thead class="etiqueta">
                                 <tr>
@@ -62,120 +61,101 @@
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
+                                        Proveedor
+                                    </th>
+                                    <th
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Fecha
+                                    </th>
+                                    <th
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
+                                        Tipo
+                                    </th>
+                                    <th
+                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
+                                        Estado
                                     </th>
                                     <th
                                         class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Importe
                                     </th>
-                                    <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Cliente
-                                    </th>
-                                    <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Sucursal
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody class="etiquetaS">
-                                @foreach ($cotizaciones as $cotizacion)
+                                @foreach ($compras as $compra)
                                     @if ($aux)
                                         <tr class="">
                                             <td class="px-3 py-2 border border-gray-200 bg-white">
-                                                <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10 ml-8">
-                                                        <a href="{{ route('ECotizacion', [$cotizacion->id]) }}">
-                                                            <button class="botonm  mt-1">
-                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                                <span class="ml-2 ">Detalles</span>
-                                                            </button>
-                                                        </a>
-                                                    </div>
+                                                <div class="flex-shrink-0 w-10 h-10 ml-8">
+                                                    <a href="{{ route('ECompra', [$compra->id]) }}">
+                                                        <button class="botonm  mt-1">
+                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                            <span class="ml-2 ">Detalles</span>
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->Folio }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->Folio }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->created_at }}
-                                                </p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="whitespace-no-wrap" style="color: #00ACAC"><b>${{number_format($cotizacion->Importe3,2)}}
-                                                </p>
-                                            </td>   
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                @if ($cotizacion->cliente_id)
-                                                    @if ($cotizacion->cliente->TipoP == 'Fisica')
-                                                        <p class="text-black whitespace-no-wrap">
-                                                            {{ $cotizacion->cliente->Nombre }}
-                                                            {{ $cotizacion->cliente->ApP }}
-                                                            {{ $cotizacion->cliente->ApM }}
-                                                        </p>
-                                                    @else
-                                                        <p class="text-black whitespace-no-wrap">
-                                                            {{ $cotizacion->cliente->NomCom }}
-                                                        </p>
-                                                    @endif
+                                                @if ($compra->proveedor->TipoP == 'Moral')
+                                                    <p>{{ $compra->proveedor->NEMP }}</p>
                                                 @else
-                                                    <p class="text-black whitespace-no-wrap">
-                                                        {{ $cotizacion->Cliente }}
+                                                    <p>{{ $compra->proveedor->Nombre }} {{ $compra->proveedor->ApP }}
                                                     </p>
                                                 @endif
                                             </td>
+                                            <td class="px-5 py-3 border border-gray-200">
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->created_at }}</p>
+                                            </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    {{ $cotizacion->almacen->Nombre }}</p </td>
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->TipoC }}</p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->Estatus }}</p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                <p class="whitespace-no-wrap" style="color: #00ACAC">
+                                                    <b>${{ number_format($compra->ImporteTot, 5) }}
+                                            </td>
                                         </tr>
                                         <var {{ $aux = false }} />
                                     @else
                                         <tr class="bg-gray-100">
                                             <td class="px-3 py-2 border border-gray-200">
-                                                <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10 ml-8">
-                                                        <a href="{{ route('ECotizacion', [$cotizacion->id]) }}">
-                                                            <button class="botonm  mt-1 ">
-                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                                <span class="ml-2 ">Detalles</span>
-                                                            </button>
-                                                        </a>
-                                                    </div>
+                                                <div class="flex-shrink-0 w-10 h-10 ml-8">
+                                                    <a href="{{ route('ECompra', [$compra->id]) }}">
+                                                        <button class="botonm  mt-1 ">
+                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                            <span class="ml-2 ">Detalles</span>
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->Folio }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->Folio }}</p>
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $cotizacion->created_at }}
-                                                </p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="whitespace-no-wrap" style="color: #00ACAC"><b>${{number_format($cotizacion->Importe3,2)}}</b>
-                                                </p>
-                                            </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                @if ($cotizacion->cliente_id)
-                                                    @if ($cotizacion->cliente->TipoP == 'Fisica')
-                                                        <p class="text-black whitespace-no-wrap">
-                                                            {{ $cotizacion->cliente->Nombre }}
-                                                            {{ $cotizacion->cliente->ApP }}
-                                                            {{ $cotizacion->cliente->ApM }}
-                                                        </p>
-                                                    @else
-                                                        <p class="text-black whitespace-no-wrap">
-                                                            {{ $cotizacion->cliente->NomCom }}
-                                                        </p>
-                                                    @endif
+                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                @if ($compra->proveedor->TipoP == 'Moral')
+                                                    <p>{{ $compra->proveedor->NEMP }}</p>
                                                 @else
-                                                    <p class="text-black whitespace-no-wrap">
-                                                        {{ $cotizacion->Cliente }}
+                                                    <p>{{ $compra->proveedor->Nombre }} {{ $compra->proveedor->ApP }}
                                                     </p>
                                                 @endif
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">
-                                                    {{ $cotizacion->almacen->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->created_at }}</p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200">
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->TipoC }}</p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200">
+                                                <p class="text-black whitespace-no-wrap">{{ $compra->Estatus }}</p>
+                                            </td>
+                                            <td class="px-5 py-3 border border-gray-200">
+                                                <p class="whitespace-no-wrap" style="color: #00ACAC">
+                                                    <b>${{ number_format($compra->ImporteTot, 5) }}
                                             </td>
                                         </tr>
                                         <var {{ $aux = true }} />
@@ -199,9 +179,9 @@
                             </div>
                         </div>
                     @endif
-                    @if ($cotizaciones->hasPages())
+                    @if ($compras->hasPages())
                         <div class="px-6 py-3 etiqueta ">
-                            {{ $cotizaciones->links() }}
+                            {{ $compras->links() }}
                         </div>
                     @endif
                 </div>
@@ -209,4 +189,3 @@
         </div>
     </div>
 </div>
-

@@ -32,4 +32,7 @@ class Producto extends Model
     public function cotizacion(){
         return $this->hasMany("App\Models\Cotizacion");
     }
+    public function compra(){
+        return $this->hasMany("App\Models\Compra");
+    }
 }

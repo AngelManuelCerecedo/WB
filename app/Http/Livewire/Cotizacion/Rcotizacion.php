@@ -63,6 +63,7 @@ class Rcotizacion extends Component
     }
     public function redic()
     {
-        return redirect()->route('Cotizaciones');
+        $Cot = Cotizacion::Where('Folio', '=', $this->Folio)->first();
+        return redirect()->route('ECotizacion', [$Cot->id]) ;
     }
 }

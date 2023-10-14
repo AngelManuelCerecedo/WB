@@ -8,7 +8,7 @@ use Livewire\WithPagination;
 
 class Rproveedor extends Component
 {
-    public $TP, $RFC, $STS, $NM, $N, $ApP, $ApM, $Cel, $Tel, $CE, $CP, $EST, $MUN, $COL, $CALLE, $NEXT, $NINT, $REF, $LIMC, $DCRED;
+    public $TP, $RFC, $STS, $NM, $N, $ApP,$TProv,$Cel, $Tel, $CE, $CP, $EST, $MUN, $COL, $CALLE, $NEXT, $NINT, $REF, $LIMC, $DCRED;
     public function render()
     {
         return view('livewire.proveedor.rproveedor');
@@ -20,7 +20,6 @@ class Rproveedor extends Component
                 'NEMP' => null,
                 'Nombre' => $this->N,
                 'ApP' => $this->ApP,
-                'ApM' => $this->ApM,
                 'Cel' => $this->Cel,
                 'Tel' => $this->Tel,
                 'Correo' => $this->CE,
@@ -34,15 +33,14 @@ class Rproveedor extends Component
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
                 'NumInt' => $this->NINT,
-                'Credito' => $this->LIMC,
-                'Estatus' => $this->EST
+                'Estatus' => 'Activo',
+                'TipoProv' => $this->TProv,
             ]);
         } else {
             Proveedor::updateOrCreate([
                 'NEMP' => $this->NM,
                 'Nombre' => $this->N,
                 'ApP' => $this->ApP,
-                'ApM' => $this->ApM,
                 'Cel' => $this->Cel,
                 'Tel' => $this->Tel,
                 'Correo' => $this->CE,
@@ -56,8 +54,8 @@ class Rproveedor extends Component
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
                 'NumInt' => $this->NINT,
-                'Credito' => $this->LIMC,
-                'Estatus' => $this->EST
+                'Estatus' => $this->EST,
+                'TipoProv' => $this->TProv,
             ]);
         }
         $this->dispatchBrowserEvent('swal', [
@@ -72,7 +70,6 @@ class Rproveedor extends Component
         $this->NM = '';
         $this->N = '';
         $this->ApP = '';
-        $this->ApM = '';
         $this->Cel = '';
         $this->Tel = '';
         $this->CE = '';
@@ -86,8 +83,8 @@ class Rproveedor extends Component
         $this->RFC = '';
         $this->NEXT = '';
         $this->NINT = '';
-        $this->LIMC = '';
         $this->EST = '';
+        $this->TProv = '';
     }
     public function redic()
     {

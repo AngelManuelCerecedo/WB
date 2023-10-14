@@ -1193,9 +1193,6 @@ select {
 .ml-5 {
   margin-left: 1.25rem;
 }
-.ml-52 {
-  margin-left: 13rem;
-}
 .ml-56 {
   margin-left: 14rem;
 }
@@ -1237,6 +1234,9 @@ select {
 }
 .mr-3 {
   margin-right: 0.75rem;
+}
+.mr-4 {
+  margin-right: 1rem;
 }
 .mr-6 {
   margin-right: 1.5rem;
@@ -2456,6 +2456,21 @@ body::-webkit-scrollbar-thumb{
     font-family: 'Open Sans', sans-serif;
     width: 120px;
     height: 40px;
+}
+.inputImporteDesblo{
+    border: solid 2px #D5DBE0;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 150px;
+    height: 36px;
+}
+.inputImportes{
+    border: solid 2px #D5DBE0;
+    background-color: #e9ecef;
+    border-radius: 3px;
+    font-family: 'Open Sans', sans-serif;
+    width: 150px;
+    height: 36px;
 }
 .inputL{
     border: solid 2px #9e9a9a;

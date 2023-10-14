@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\FormasController;
@@ -101,9 +102,9 @@ Route::get('Traspaso/Editar/{id}', [TraspasoController::class, 'etraspaso'])->na
 
 //MODULO OPREACION
 //COMPRAS
-//Route::get('Compras', [ProductoController::class, 'compra'])->name('Compras');
-//Route::get('Compras/Registro', [ProductoController::class, 'rcompras'])->name('RCompras');
-//Route::get('Compras/Editar/{id}', [ProductoController::class, 'ecompras'])->name('ECompras');
+Route::get('Compras', [CompraController::class, 'compra'])->name('Compras');
+Route::get('Compras/Registro', [CompraController::class, 'rcompra'])->name('RCompra');
+Route::get('Compras/Editar/{id}', [CompraController::class, 'ecompra'])->name('ECompra');
 
 //COTIZACIONES
 Route::get('Cotizaciones', [CotizacionController::class, 'cotizacion'])->name('Cotizaciones');

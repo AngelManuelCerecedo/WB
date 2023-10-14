@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class Eproveedor extends Component
 {
-    public $TP, $RFC, $STS, $NM, $N, $ApP, $ApM, $Cel, $Tel, $CE, $CP, $EST, $MUN, $COL, $CALLE, $NEXT, $NINT, $REF, $LIMC, $DCRED, $ide;
+    public $TP, $RFC, $STS, $NM, $N, $ApP,$TProv, $Cel, $Tel, $CE, $CP, $EST, $MUN, $COL, $CALLE, $NEXT, $NINT, $REF, $LIMC, $DCRED, $ide;
     public function render()
     {
         return view('livewire.proveedor.eproveedor');
@@ -17,7 +17,6 @@ class Eproveedor extends Component
         $this->NM = $proveedor->NEMP;
         $this->N = $proveedor->Nombre;
         $this->ApP = $proveedor->ApP;
-        $this->ApM = $proveedor->ApM;
         $this->Cel = $proveedor->Cel;
         $this->Tel = $proveedor->Tel;
         $this->CE = $proveedor->Correo;
@@ -33,6 +32,7 @@ class Eproveedor extends Component
         $this->NINT = $proveedor->NumInt;
         $this->LIMC = $proveedor->Credito;
         $this->STS = $proveedor->Estatus;
+        $this->TProv = $proveedor->TipoProv;
     }
     public function actualizar(){
         if ($this->NM == null) {
@@ -42,7 +42,6 @@ class Eproveedor extends Component
                 'NEMP' => null,
                 'Nombre' => $this->N,
                 'ApP' => $this->ApP,
-                'ApM' => $this->ApM,
                 'Cel' => $this->Cel,
                 'Tel' => $this->Tel,
                 'Correo' => $this->CE,
@@ -56,8 +55,8 @@ class Eproveedor extends Component
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
                 'NumInt' => $this->NINT,
-                'Credito' => $this->LIMC,
-                'Estatus' => $this->STS
+                'Estatus' => $this->STS,
+                'TipoProv' => $this->TProv,
             ]);
         } else {
             Proveedor::updateOrCreate(
@@ -66,7 +65,6 @@ class Eproveedor extends Component
                 'NEMP' => $this->NM,
                 'Nombre' => $this->N,
                 'ApP' => $this->ApP,
-                'ApM' => $this->ApM,
                 'Cel' => $this->Cel,
                 'Tel' => $this->Tel,
                 'Correo' => $this->CE,
@@ -80,8 +78,8 @@ class Eproveedor extends Component
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
                 'NumInt' => $this->NINT,
-                'Credito' => $this->LIMC,
-                'Estatus' => $this->STS
+                'Estatus' => $this->STS,
+                'TipoProv' => $this->TProv,
             ]);
         }
         $this->dispatchBrowserEvent('swal', [
@@ -95,7 +93,6 @@ class Eproveedor extends Component
         $this->NM = '';
         $this->N = '';
         $this->ApP = '';
-        $this->ApM = '';
         $this->Cel = '';
         $this->Tel = '';
         $this->CE = '';
@@ -110,6 +107,7 @@ class Eproveedor extends Component
         $this->NINT = '';
         $this->LIMC = '';
         $this->EST = '';
+        $this->TProv = '';
     }
     public function redic()
     {

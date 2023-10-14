@@ -11,7 +11,7 @@
                     <div class="md:flex items-center">
                         <div class="flex flex-col  md:mt-0 mt-4">
                             <label class="etiqueta">Folio de Cotizacion</label>
-                            <input type="text" wire:model='Folio' class="inpuS" disabled="false" />
+                            <input type="text" wire:model='Folio' class="input" disabled="false" />
                         </div>
                         <div class="flex flex-col  md:mt-0 mt-4 ml-8">
                             <label class="etiqueta">Sucursal</label>
@@ -83,13 +83,6 @@
         $('#select1').on('change', function(e) {
             let valor = $('#select1').select2("val");
             @this.set('Cliente_id', valor);
-        });
-    });
-    $(document).ready(function() {
-        $('#select2').select2();
-        $('#select2').on('change', function(e) {
-            let valor = $('#select2').select2("val");
-            @this.set('producto', valor);
         });
     });
 </script>

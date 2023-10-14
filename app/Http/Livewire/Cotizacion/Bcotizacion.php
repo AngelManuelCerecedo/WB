@@ -13,7 +13,7 @@ class Bcotizacion extends Component
     public $search;
     public $cantidad = 20;
     public $aux = true;
-    public $Sstock, $Sucursal;
+    public $Sucursal;
     public function render()
     {
         $Sucursal = Sucursal::all();

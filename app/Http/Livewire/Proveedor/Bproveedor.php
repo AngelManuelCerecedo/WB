@@ -19,14 +19,12 @@ class Bproveedor extends Component
         if ($this->estatus == "Todos") {
             $proveedores = Proveedor::Where([['Nombre', 'like', '%' . $this->search . '%']])
                 ->orWhere([['ApP', 'like', '%' . $this->search . '%']])
-                ->orWhere([['ApM', 'like', '%' . $this->search . '%']])
                 ->orWhere([['RFC', 'like', '%' . $this->search . '%']])
                 ->orWhere([['NEMP', 'like', '%' . $this->search . '%']])
                 ->paginate($this->cantidad);
         } else 
             $proveedores = Proveedor::Where([['Nombre', 'like', '%' . $this->search . '%'], ['Estatus', '=', $this->estatus]])
                 ->orWhere([['ApP', 'like', '%' . $this->search . '%'], ['Estatus', '=', $this->estatus]])
-                ->orWhere([['ApM', 'like', '%' . $this->search . '%'], ['Estatus', '=', $this->estatus]])
                 ->orWhere([['RFC', 'like', '%' . $this->search . '%'], ['Estatus', '=', $this->estatus]])
                 ->orWhere([['NEMP', 'like', '%' . $this->search . '%'], ['Estatus', '=', $this->estatus]])
                 ->paginate($this->cantidad);
