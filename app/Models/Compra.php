@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Compra extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'Folio', 'Aux', 'Estatus', 'Fecha','TipoC','TipoCE','CostoE','ImporteC','ImporteTot','Desc','ImportePag','ImporteporPagar','FechaC','FechaL','Obs', 'almacen_id', 'producto_id','Cantidad','proveedor_id','empleado_id'];
+    protected $fillable = ['id', 'Folio', 'Aux', 'Estatus', 'Fecha','TipoC','TipoCE','CostoE','ImporteC','ImporteTot','Desc','ImportePag','ImporteporPagar','FechaC','FechaL','Obs', 'almacen_id', 'producto_id','Cantidad','proveedor_id','empleado_id','PrecioC'];
     public function empleado()
     {
         return $this->belongsTo("App\Models\Empleado");

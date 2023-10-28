@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLotesTable extends Migration
+class CreateVentaProductoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateLotesTable extends Migration
      */
     public function up()
     {
-        Schema::create('lotes', function (Blueprint $table) {
+        Schema::create('venta__productos', function (Blueprint $table) {
             $table->id();
-            $table->string ('Numero')->nullable();
-            $table->date ('Fecha')->nullable();
             $table->string ('Cantidad')->nullable();
+            $table->string ('Descuento')->nullable();
+            $table->string ('Promo')->nullable();
+            $table->string ('Precio')->nullable();
             $table->unsignedBigInteger("producto_id")->nullable();
             $table->foreign("producto_id")->references("id")->on("productos")->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger("compra_id")->nullable();
-            $table->foreign("compra_id")->references("id")->on("compras")->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger("venta_id")->nullable();
+            $table->foreign("venta_id")->references("id")->on("ventas")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ class CreateLotesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lotes');
+        Schema::dropIfExists('venta_producto');
     }
 }

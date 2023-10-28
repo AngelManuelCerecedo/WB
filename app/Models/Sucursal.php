@@ -18,4 +18,7 @@ class Sucursal extends Model
     public function almacen(){
         return $this->hasMany("App\Models\Almacen");
     }
+    public function Venta(){
+        return $this->hasMany("App\Models\Venta");
+    }
 }

@@ -15,6 +15,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TraspasoController;
 use App\Http\Controllers\UnidadesController;
+use App\Http\Controllers\VentaController;
 use App\Models\Empleado;
 use App\Models\Sucursal;
 
@@ -110,3 +111,12 @@ Route::get('Compras/Editar/{id}', [CompraController::class, 'ecompra'])->name('E
 Route::get('Cotizaciones', [CotizacionController::class, 'cotizacion'])->name('Cotizaciones');
 Route::get('Cotizaciones/Registro', [CotizacionController::class, 'rcotizacion'])->name('RCotizacion');
 Route::get('Cotizaciones/Editar/{id}', [CotizacionController::class, 'ecotizacion'])->name('ECotizacion');
+
+//VENTAS
+Route::get('Ventas', [VentaController::class, 'venta'])->name('Ventas');
+Route::get('Ventas/Registro', [VentaController::class, 'rventa'])->name('RVenta');
+Route::get('Ventas/Editar/{id}', [VentaController::class, 'eventa'])->name('EVenta');
+Route::get('Ventas/PuntoVenta', [VentaController::class, 'pventa'])->name('PuntoVenta');
+Route::get('Ventas/PuntoVenta/RCliente', [VentaController::class, 'pventarcliente'])->name('PuntoVentaRcliente');
+Route::get('Ventas/PuntoVenta/RCotizacion', [VentaController::class, 'pventarcotizacion'])->name('PuntoVentaRCotizacion');
+Route::get('Ventas/PuntoVenta/Cotizaciones/Editar/{id}', [VentaController::class, 'pventaecotizacion'])->name('PECotizacion');

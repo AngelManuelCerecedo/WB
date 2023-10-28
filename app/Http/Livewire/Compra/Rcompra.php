@@ -15,7 +15,7 @@ class Rcompra extends Component
     {
         $Sucursales = Sucursal::all();
         $Proveedores = Proveedor::all();
-        $FolioCon = Compra::all()->first();
+        $FolioCon = Compra::orderBy('Aux', 'desc')->first();
         if ($FolioCon) {
             $Num = $FolioCon->Aux;
             $this->idaux = $Num + 1;
@@ -41,7 +41,7 @@ class Rcompra extends Component
                 'Obs' => $this->Obs,
             ]);
             $this->dispatchBrowserEvent('swal', [
-                'title' => 'Cotizacion Registrada1',
+                'title' => 'Compra Registrada',
                 'type' => 'success'
             ]);
         }
@@ -52,14 +52,13 @@ class Rcompra extends Component
                 'Estatus' => $this->Estatus,
                 'almacen_id' => $this->SD,
                 'Fecha' => $this->Fecha,
-                'CostoE' => $this->CE,
                 'TipoC' => $this->TC,
                 'proveedor_id' => $this->Proveedor_id,
                 'TipoCE' => $this->TCE,
                 'Obs' => $this->Obs,
             ]);
             $this->dispatchBrowserEvent('swal', [
-                'title' => 'Cotizacion Registrada2',
+                'title' => 'Compra Registrada',
                 'type' => 'success'
             ]);
         }
@@ -78,7 +77,7 @@ class Rcompra extends Component
                 'Obs' => $this->Obs,
             ]);
             $this->dispatchBrowserEvent('swal', [
-                'title' => 'Cotizacion Registrada3',
+                'title' => 'Compra Registrada',
                 'type' => 'success'
             ]);
         }
@@ -90,7 +89,6 @@ class Rcompra extends Component
                 'almacen_id' => $this->SD,
                 'Fecha' => $this->Fecha,
                 'TipoC' => $this->TC,
-                'CostoE' => $this->CE,
                 'proveedor_id' => $this->Proveedor_id,
                 'TipoCE' => $this->TCE,
                 'FechaC' => $this->FC,
@@ -98,9 +96,16 @@ class Rcompra extends Component
                 'Obs' => $this->Obs,
             ]);
             $this->dispatchBrowserEvent('swal', [
-                'title' => 'Cotizacion Registrada4',
+                'title' => 'Compra Registrada',
                 'type' => 'success'
             ]);
         }
+
+        $this->redic();
+    }
+    public function redic()
+    {
+        $Com = Compra::Where('Folio', '=', $this->Folio)->first();
+        return redirect()->route('ECompra', [$Com->id]) ;
     }
 }

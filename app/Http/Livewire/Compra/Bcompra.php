@@ -16,10 +16,10 @@ class Bcompra extends Component
     public function render()
     {
         if ($this->TC) {
-            $Compras = Compra::Where([['Folio', 'like', '%' . $this->search . '%'],['TipoC', $this->TC]])
+            $Compras = Compra::Where([['Folio', 'like', '%' . $this->search . '%'],['TipoC', $this->TC],['producto_id',null]])->orderBy('id', 'desc')
             ->paginate($this->cantidad);
         } else {
-            $Compras = Compra::Where([['Folio', 'like', '%' . $this->search . '%']])
+            $Compras = Compra::Where([['Folio', 'like', '%' . $this->search . '%'],['producto_id',null]])->orderBy('id', 'desc')
             ->paginate($this->cantidad);
         }
         return view('livewire.compra.bcompra',['compras'=>$Compras]);

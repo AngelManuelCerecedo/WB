@@ -86,7 +86,7 @@
                                     @if ($aux)
                                         <tr class="">
                                             <td class="px-3 py-2 border border-gray-200 bg-white">
-                                                <div class="flex-shrink-0 w-10 h-10 ml-8">
+                                                <div class="flex-shrink-0 w-10 h-10 ml-4">
                                                     <a href="{{ route('ECompra', [$compra->id]) }}">
                                                         <button class="botonm  mt-1">
                                                             <i class="bi bi-layout-text-sidebar-reverse"></i>
@@ -117,14 +117,14 @@
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200 bg-white ">
                                                 <p class="whitespace-no-wrap" style="color: #00ACAC">
-                                                    <b>${{ number_format($compra->ImporteTot, 5) }}
+                                                    <b>${{$compra->ImporteTot}}
                                             </td>
                                         </tr>
                                         <var {{ $aux = false }} />
                                     @else
                                         <tr class="bg-gray-100">
                                             <td class="px-3 py-2 border border-gray-200">
-                                                <div class="flex-shrink-0 w-10 h-10 ml-8">
+                                                <div class="flex-shrink-0 w-10 h-10 ml-4">
                                                     <a href="{{ route('ECompra', [$compra->id]) }}">
                                                         <button class="botonm  mt-1 ">
                                                             <i class="bi bi-layout-text-sidebar-reverse"></i>
@@ -136,7 +136,7 @@
                                             <td class="px-5 py-3 border border-gray-200">
                                                 <p class="text-black whitespace-no-wrap">{{ $compra->Folio }}</p>
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                            <td class="px-5 py-3 border border-gray-200">
                                                 @if ($compra->proveedor->TipoP == 'Moral')
                                                     <p>{{ $compra->proveedor->NEMP }}</p>
                                                 @else
@@ -155,7 +155,7 @@
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
                                                 <p class="whitespace-no-wrap" style="color: #00ACAC">
-                                                    <b>${{ number_format($compra->ImporteTot, 5) }}
+                                                    <b>${{$compra->ImporteTot}}
                                             </td>
                                         </tr>
                                         <var {{ $aux = true }} />

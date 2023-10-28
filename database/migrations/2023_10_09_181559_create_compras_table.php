@@ -37,6 +37,7 @@ class CreateComprasTable extends Migration
             $table->string('Cantidad')->nullable();
             $table->unsignedBigInteger("proveedor_id")->nullable();
             $table->foreign("proveedor_id")->references("id")->on("proveedors")->onDelete('cascade')->onUpdate('cascade');
+            $table->string('PrecioC')->nullable();
             $table->unsignedBigInteger("empleado_id")->nullable();
             $table->foreign("empleado_id")->references("id")->on("empleados")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -35,4 +35,7 @@ class Producto extends Model
     public function compra(){
         return $this->hasMany("App\Models\Compra");
     }
+    public function Venta_Producto(){
+        return $this->hasMany("App\Models\Venta_Producto");
+    }
 }

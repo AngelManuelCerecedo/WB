@@ -61,7 +61,7 @@
                     <div class="md:flex items-center mt-4">
                         <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Tipo de Costo de Envío</label>
-                            <select wire:model='TCE' class="inputM">
+                            <select wire:model='TCE' class="input">
                                 <option value="">Ninguno</option>
                                 <option value="Compra">Compra</option>
                                 <option value="Producto">Producto</option>
@@ -84,8 +84,8 @@
                                         <i class="bi bi-currency-dollar"></i>
                                     </button>
                                     <b>
-                                        <input type="text" wire:model='CE' class="inputImportes text-right bgcolor-black" 
-                                            disabled="false"  />
+                                        <input type="text" wire:model='CE'
+                                            class="inputImportes text-right bgcolor-black" disabled="false" />
                                     </b>
                                 </div>
                             @endif
@@ -99,7 +99,8 @@
                                     <i class="bi bi-currency-dollar"></i>
                                 </button>
                                 <b>
-                                    <input type="text" wire:model='IC' class="inputImportes text-right font-weight: bold">
+                                    <input type="text" wire:model='IC'
+                                        class="inputImportes text-right font-weight: bold" disabled="false">
                                 </b>
                             </div>
                         </div>
@@ -110,7 +111,7 @@
                                     <i class="bi bi-currency-dollar"></i>
                                 </button>
                                 <b>
-                                    <input type="text" wire:model='IT' class="inputImportes text-right">
+                                    <input type="text" wire:model='IT' class="inputImportes text-right" disabled="false"  >
                                 </b>
                             </div>
                         </div>
@@ -121,7 +122,7 @@
                                     <i class="bi bi-currency-dollar"></i>
                                 </button>
                                 <b>
-                                    <input type="text" wire:model='DESC' class="inputImporteDesblo text-right">
+                                    <input type="text" wire:model='DESC' class="inputImportes text-right" disabled="false"  >
                                 </b>
                             </div>
                         </div>
@@ -132,7 +133,7 @@
                                     <i class="bi bi-currency-dollar"></i>
                                 </button>
                                 <b>
-                                    <input type="text" wire:model='IP' class="inputImportes text-right">
+                                    <input type="text" wire:model='IP' class="inputImportes text-right" disabled="false"  >
                                 </b>
                             </div>
                         </div>
@@ -143,7 +144,7 @@
                                     <i class="bi bi-currency-dollar"></i>
                                 </button>
                                 <b>
-                                    <input type="text" wire:model='IporP' class="inputImportes text-right">
+                                    <input type="text" wire:model='IporP' class="inputImportes text-right" disabled="false"  >
                                 </b>
                             </div>
                         </div>
@@ -160,14 +161,15 @@
                         <div class="flex flex-col  md:mt-0 mr-8">
                             <label class="etiqueta">Fecha limite de Pago</label>
                             @if ($TC == 'Credito')
-                                <input type="date" wire:model='FLC' class="inputImporteDesblo"/>
+                                <input type="date" wire:model='FLC' class="inputImporteDesblo" />
                             @else
                                 <input type="date" wire:model='FLC' class="inputImportes" disabled="false" />
                             @endif
                         </div>
                         <div class="flex flex-col  md:mt-0 mr-8 ">
                             <label class="etiqueta">Observaciones</label>
-                            <input type="text" wire:model='Obs' class="inputL" placeholder="Observaciones de la Compra" />
+                            <input type="text" wire:model='Obs' class="inputL"
+                                placeholder="Observaciones de la Compra" />
                         </div>
                     </div>
                 </div>

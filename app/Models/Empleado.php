@@ -22,4 +22,7 @@ class Empleado extends Model
     public function compra(){
         return $this->hasMany("App\Models\Compra");
     }
+    public function Venta(){
+        return $this->hasMany("App\Models\Venta");
+    }
 }

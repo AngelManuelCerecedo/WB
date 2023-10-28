@@ -13,4 +13,7 @@ class Cliente extends Model
     public function cotizacion(){
         return $this->hasMany("App\Models\Cotizacion");
     }
+    public function Venta(){
+        return $this->hasMany("App\Models\Venta");
+    }
 }

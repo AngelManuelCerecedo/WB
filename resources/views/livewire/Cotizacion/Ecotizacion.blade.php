@@ -1,4 +1,9 @@
 <div class="container">
+    @if (true)
+        <div class="py-8 ml-32 mt-8">
+        @else
+            <div class="py-8 mt-8">
+    @endif
     <div class="py-8">
         <div class="flex mb-4">
             <h2 class="text-4xl titulos mr-96">Cotizacion</h2>
@@ -127,10 +132,12 @@
                                     </p>
                                 </td>
                                 <td class="border border-gray-200 bg-white">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">${{number_format($Producto->Importe1,2)}}
+                                    <p class="text-gray-900 whitespace-no-wrap text-center">
+                                        ${{ number_format($Producto->Importe1, 2) }}
                                 </td>
                                 <td class="border border-gray-200 bg-white">
-                                    <p class="text-gray-900 whitespace-no-wrap text-center">${{number_format($Producto->Importe2,2) }}
+                                    <p class="text-gray-900 whitespace-no-wrap text-center">
+                                        ${{ number_format($Producto->Importe2, 2) }}
                                 </td>
                                 <td class="border border-gray-200 bg-white">
                                     @if ($Estatus == 'Registro')
@@ -147,12 +154,12 @@
                             <td class="px-5 py-3  bg-white ">
                             </td>
                             <td class=" etiquetaT bg-white ">
-                                <p class="text-center">{{$CantTOT}}</p>
+                                <p class="text-center">{{ $CantTOT }}</p>
                             </td>
                             <td class="px-5 py-3  bg-white ">
                             </td>
                             <td class="etiquetaT bg-white ">
-                                <p class="text-center">${{number_format($Total,2)}}</p>
+                                <p class="text-center">${{ number_format($Total, 2) }}</p>
                             </td>
                             <td class="px-5 py-3  bg-white ">
                             </td>
@@ -179,16 +186,20 @@
                 <div class="ml-12 mt-4 mb-4">
                     <div class="md:flex items-center">
                         <div class="flex flex-col mr-96">
-                            <a href="{{ route('Cotizaciones') }}">
-                                <button class="botonr">
-                                    <i class="bi bi-chevron-left"></i>
-                                    Regresar
-                                </button>
+                            @if (true)
+                                <a href="{{ route('PuntoVenta') }}">
+                                @else
+                                    <a href="{{ route('Cotizaciones') }}">
+                            @endif
+                            <button class="botonr">
+                                <i class="bi bi-chevron-left"></i>
+                                Regresar
+                            </button>
                             </a>
                         </div>
                         @if ($Estatus == 'Registro')
                             <div class=" ml-64">
-                                <button class="botond" wire:click="registrar({{$Total}})">
+                                <button class="botond" wire:click="registrar({{ $Total }})">
                                     <i class="bi bi-journal-bookmark"></i>
                                     Guardar
                                 </button>

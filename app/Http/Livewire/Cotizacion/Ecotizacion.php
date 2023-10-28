@@ -108,6 +108,10 @@ class Ecotizacion extends Component
     }
     public function redic()
     {
-        return redirect()->route('Cotizaciones');
+        if (true) {
+            return redirect()->route('PuntoVenta');
+        } else {
+            return redirect()->route('Cotizaciones');
+        }
     }
 }
