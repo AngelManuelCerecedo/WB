@@ -362,20 +362,28 @@
                                     </button>
                                 </a>
                             </div>
-                            <div class=" ml-64">
                                 @if ($this->Estatus == 'Ingresada')
+                                <div class="ml-10">
                                     <button class="botonCP" wire:click="ingresar()">
                                         <i class="bi bi-download"></i>
                                         Aceptar Compra
                                     </button>
+                                </div>
+                                <div class="ml-10 ">
+                                    <button class="botonRC" wire:click="rechazar()">
+                                        <i class="bi bi-download"></i>
+                                        Rechazar Compra
+                                    </button>
+                                </div>
                                 @endif
                                 @if ($this->Estatus == 'Registro')
+                                <div class=" ml-64">
                                     <button class="botond" wire:click="registrar()">
                                         <i class="bi bi-journal-bookmark"></i>
                                         Guardar
                                     </button>
+                                </div>
                                 @endif
-                            </div>
                         </div>
                     </div>
                 </div>

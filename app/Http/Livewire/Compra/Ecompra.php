@@ -196,4 +196,18 @@ class Ecompra extends Component
         ]);
         $this->redic();
     }
+    public function rechazar(){
+        $Compras = Compra::Where([['Folio',$this->Folio],['producto_id','!=',null]])->get();
+        Compra::updateOrCreate(
+            ['Folio' => $this->Folio],
+            [
+                'Estatus' => 'Rechazada',
+            ]
+        );
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Compra Rechazada',
+            'type' => 'error'
+        ]);
+        $this->redic();
+    }
 }

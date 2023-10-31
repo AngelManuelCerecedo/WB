@@ -45,7 +45,7 @@ class Etraspaso extends Component
                 if ($this->Cant) {
                     $Traspaso = Traspaso::Where('id', $this->ide)->first();
                     $Producto = Almacen_Producto::Where([['producto_id', '=', $this->search], ['almacen_id', '=', $this->SO]])->first();
-                    if (($AuxProducto->StockMin <= ($Producto->Stock - $this->Cant))) {
+                    if (($AuxProducto->StockMin <= ($Producto->Stock - $this->Cant)) || $this->SO == '7') {
                         if ($Producto) {
                             if ($Producto->Stock > 0 && $Producto->Stock >= $this->Cant) {
                                 Traspaso::updateOrCreate(
@@ -122,7 +122,7 @@ class Etraspaso extends Component
                     Lote::updateOrCreate(
                         ['id' => $Lote->id],
                         [
-                            'almacen_id'=> $this->SD,
+                            'almacen_id' => $this->SD,
                         ]
                     );
                     break;
@@ -131,7 +131,7 @@ class Etraspaso extends Component
                     Lote::updateOrCreate(
                         ['id' => $Lote->id],
                         [
-                            'almacen_id'=> $this->SD,
+                            'almacen_id' => $this->SD,
                         ]
                     );
                 }
@@ -140,21 +140,21 @@ class Etraspaso extends Component
                         [
                             'Numero' => $Lote->Numero,
                             'Fecha' => $Lote->Fecha,
-                            'Cantidad'=> $aux,
+                            'Cantidad' => $aux,
                             'producto_id' => $Lote->producto_id,
                             'compra_id' => $Lote->compra_id,
                             'almacen_id' => $this->SD,
                         ]
                     );
                     Lote::updateOrCreate(
-                        ['id'=> $Lote->id],
+                        ['id' => $Lote->id],
                         [
-                            'Cantidad'=> $Lote->Cantidad - $aux,
+                            'Cantidad' => $Lote->Cantidad - $aux,
                         ]
                     );
                     break;
-                }   
-                $aux -= $CantL;             
+                }
+                $aux -= $CantL;
             }
             Almacen_Producto::updateOrCreate(
                 ['id' => $PS->id],

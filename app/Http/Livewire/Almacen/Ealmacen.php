@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Almacen;
 
 use App\Models\Almacen;
 use App\Models\Almacen_Producto;
+use App\Models\Lote;
 use App\Models\Producto;
 use App\Models\Sucursal;
 use Livewire\Component;

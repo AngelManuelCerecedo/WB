@@ -234,6 +234,14 @@ body::-webkit-scrollbar-thumb{
     width: 150px;
     height: 38px;
 }
+.botonRC{
+    background-color: #ff0000;
+    color: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
 .botonei{
     background-color: #ff0000;
     color: #ffffff;
