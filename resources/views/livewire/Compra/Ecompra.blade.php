@@ -26,7 +26,7 @@
                                 <input type="date" wire:model='Fecha' disabled="false" />
                             </div>
                             <div class="flex flex-col  md:mt-0 mt-4">
-                                <label class="etiqueta">Sucursal Destino</label>
+                                <label class="etiqueta">Almacen Destino</label>
                                 <input type="text" wire:model='SD' disabled="false" />
                             </div>
                         </div>
@@ -276,6 +276,12 @@
                                                 <i class="bi bi-plus-lg"></i>
                                             </button>
                                         @endif
+                                        @if ($Estatus == 'Ingresada')
+                                            <button class="botoneAL "
+                                                wire:click="agregarLot({{ $Producto->producto_id }})">
+                                                <i class="bi bi-exclamation-lg"></i>
+                                            </button>
+                                        @endif
                                     </td>
                                 </tr>
                                 @if ($Producto->Desc)
@@ -357,10 +363,18 @@
                                 </a>
                             </div>
                             <div class=" ml-64">
-                                <button class="botond" wire:click="registrar()">
-                                    <i class="bi bi-journal-bookmark"></i>
-                                    Guardar
-                                </button>
+                                @if ($this->Estatus == 'Ingresada')
+                                    <button class="botonCP" wire:click="ingresar()">
+                                        <i class="bi bi-download"></i>
+                                        Aceptar Compra
+                                    </button>
+                                @endif
+                                @if ($this->Estatus == 'Registro')
+                                    <button class="botond" wire:click="registrar()">
+                                        <i class="bi bi-journal-bookmark"></i>
+                                        Guardar
+                                    </button>
+                                @endif
                             </div>
                         </div>
                     </div>

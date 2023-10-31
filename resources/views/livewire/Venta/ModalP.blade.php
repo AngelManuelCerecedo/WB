@@ -33,6 +33,10 @@
                                         <input type="number" wire:model='CD' class="inputSML" disabled="false" />
                                     </div>
                                     <div class="ml-2">
+                                        <label class="etiqueta">LOTE</label>
+                                        <input type="number" wire:model='LOT' class="inputSML" disabled="false" />
+                                    </div>
+                                    <div class="ml-2">
                                         <label class="etiqueta">$</label>
                                         <input type="number" wire:model='Precio' class="inputSML" disabled="false" />
                                     </div>

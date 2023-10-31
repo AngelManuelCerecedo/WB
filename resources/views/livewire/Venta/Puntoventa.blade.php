@@ -130,7 +130,7 @@
                                 </button>
                             </td>
                             <td class="">
-                                <button class="botonPV " wire:click="">
+                                <button class="botonPV " wire:click="abrirModal(4)">
                                     <img
                                         src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/venta.png">
                                     <p>Ventas</p>

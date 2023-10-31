@@ -173,14 +173,8 @@
                     <a href="{{ route('Cotizaciones') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cotizaciones</h1>
                     </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Licitaciones</h1>
-                    </a>
-                    <a href="">
+                    <a href="{{ route('Ventas') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ventas</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Gastos</h1>
                     </a>
                 </div>
 

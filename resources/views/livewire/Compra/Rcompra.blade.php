@@ -22,7 +22,7 @@
                             <input type="date" wire:model='Fecha' />
                         </div>
                         <div class="flex flex-col  md:mt-0 mt-4">
-                            <label class="etiqueta">Sucursal Destino</label>
+                            <label class="etiqueta">Almacen Destino</label>
                             <select wire:model='SD' class="input">
                                 <option value="">Seleciona una Opción</option>
                                 @foreach ($Sucursales as $sucursal)

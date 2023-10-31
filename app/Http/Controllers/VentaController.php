@@ -8,7 +8,7 @@ class VentaController extends Controller
 {
     public function venta()
     {
-      return view('ventas.Bventa');
+      return view('ventas.Bventas');
     }
     public function rventa()
     {
@@ -19,7 +19,7 @@ class VentaController extends Controller
       return view('ventas.PuntoVenta');
     }
     public function eventa($id){
-      return view('ventaes.Eventa', ['id' => $id]);
+      return view('ventas.Eventas', ['id' => $id]);
     }
     public function pventarcliente()
     {

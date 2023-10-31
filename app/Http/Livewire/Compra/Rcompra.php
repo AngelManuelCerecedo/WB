@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Compra;
 
+use App\Models\Almacen;
 use App\Models\Compra;
 use App\Models\Proveedor;
 use App\Models\Sucursal;
@@ -13,7 +14,7 @@ class Rcompra extends Component
     public $CE = 0, $IC = 0, $IT = 0, $DESC = 0, $IP = 0, $IporP = 0;
     public function render()
     {
-        $Sucursales = Sucursal::all();
+        $Sucursales = Almacen::all();
         $Proveedores = Proveedor::all();
         $FolioCon = Compra::orderBy('Aux', 'desc')->first();
         if ($FolioCon) {

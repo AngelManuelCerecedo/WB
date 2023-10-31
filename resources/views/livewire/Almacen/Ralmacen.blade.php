@@ -17,17 +17,20 @@
                     <div class="md:flex items-center">
                         <div class="flex flex-col  md:mt-0 mt-4">
                             <label class="etiqueta">Nombre</label>
-                            <input type="text" wire:model='NOM' class="inputXL" placeholder="Nombre" disabled="false"/>
+                            <input type="text" wire:model='NOM' class="inputXL" placeholder="Nombre"
+                                disabled="false" />
                         </div>
                     </div>
                     <div class="md:flex items-center mt-4">
                         <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Código de Barras</label>
-                            <input type="text" wire:model='CB' class="input" placeholder="Código de Barras" disabled="false"/>
+                            <input type="text" wire:model='CB' class="input" placeholder="Código de Barras"
+                                disabled="false" />
                         </div>
                         <div class="flex flex-col  md:mt-0 mt-4">
                             <label class="etiqueta">Calve del Producto</label>
-                            <input type="text" wire:model='C1' class="input" placeholder="Calve del Producto" disabled="false"/>
+                            <input type="text" wire:model='C1' class="input" placeholder="Calve del Producto"
+                                disabled="false" />
                         </div>
                     </div>
                     <div class="md:flex items-center mt-4">
@@ -62,11 +65,13 @@
                     <div class="md:flex items-center mt-4">
                         <div class="flex flex-col  md:mt-0 mt-4 mr-10">
                             <label class="etiqueta">Stock Maximo</label>
-                            <input type="text" wire:model='SMX' class="inputM" placeholder="Stock Max" disabled="false"/>
+                            <input type="text" wire:model='SMX' class="inputM" placeholder="Stock Max"
+                                disabled="false" />
                         </div>
                         <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Stock Minimo</label>
-                            <input type="text" wire:model='SMN' class="inputM" placeholder="Stock Min" disabled="false"/>
+                            <input type="text" wire:model='SMN' class="inputM" placeholder="Stock Min"
+                                disabled="false" />
                         </div>
                         <div class="flex flex-col  md:mt-0 mt-4 mr-10">
                             <label class="etiqueta">Estatus</label>
@@ -103,11 +108,72 @@
                         </div>
                         <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Precio Base</label>
-                            <input type="text" wire:model='P' class="input" placeholder="Precio Base" disabled="false"/>
+                            <input type="text" wire:model='P' class="input" placeholder="Precio Base"
+                                disabled="false" />
                         </div>
                         <div class="flex flex-col  md:mt-0 mt-4 mr-8">
                             <label class="etiqueta">Existencia</label>
                             <input type="text" wire:model='E' class="input" placeholder="Existencias" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex">
+                <label class="datos mt-16 ml-4"> Lotes</label>
+                <div class="ml-12 mt-16">
+                    <div class="md:flex items-center">
+                        <div class="flex flex-col  md:mt-0 mt-4">
+                            <label class="etiqueta">Buscar Lote</label>
+                            <input type="text" wire:model='SL' class="inputXL" placeholder="Numero de Lote"/>
+                        </div>
+                    </div>
+                    <div class="md:flex items-center mt-4">
+                        <div class="tableFixHeadLOT mt-4">
+                            <table class="tablaLOT">
+                                <thead class="etiqueta">
+                                    <tr class="text-center">
+                                        <th class="px-10 py-1 border border-gray-100 bg-sky-200 tracking-wider ">
+                                            Codigo
+                                        </th>
+                                        <th class="px-10 py-1 border border-gray-100 bg-sky-200 tracking-wider ">
+                                            Fecha
+                                        </th>
+                                        <th class="px-4 py-1 border border-gray-100 bg-sky-200  tracking-wider ">
+                                            Cantidad
+                                        </th>
+                                        <th class="px-40 py-1 border border-gray-100 bg-sky-200 tracking-wider ">
+                                            Producto
+                                        </th>
+                                    </tr>
+                                </thead>
+                                @if ($Lotes)
+                                    @foreach ($Lotes as $lote)
+                                        <tbody>
+                                            <tr class="text-center">
+                                                <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                    <p class="text-black whitespace-no-wrap">
+                                                        {{ $lote->Numero }}</p>
+                                                </td>
+                                                <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                    <p class="text-black whitespace-no-wrap">
+                                                        {{ $lote->Fecha }}
+                                                    </p>
+                                                </td>
+                                                <td class="px-5 py-3 border border-gray-200">
+                                                    <p class="whitespace-no-wrap" style="color: #00ACAC">
+                                                        <b>{{ $lote->Cantidad }}
+                                                    </p>
+                                                </td>
+                                                <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                    <p class="text-black whitespace-no-wrap">
+                                                        {{ $lote->producto->Nombre }}
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                    @endforeach
+                                @endif
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

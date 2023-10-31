@@ -23,6 +23,8 @@ class CreateVentaProductoTable extends Migration
             $table->foreign("producto_id")->references("id")->on("productos")->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("venta_id")->nullable();
             $table->foreign("venta_id")->references("id")->on("ventas")->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger("lote_id")->nullable();
+            $table->foreign("lote_id")->references("id")->on("lotes")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

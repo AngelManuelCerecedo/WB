@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Compra;
 
+use App\Models\Almacen;
 use App\Models\Almacen_Producto;
 use App\Models\Compra;
 use App\Models\Lote;
@@ -148,6 +149,7 @@ class Ecompra extends Component
     }
     public function guardarlote()
     {
+        $Compra = Compra::Where('id', $this->ide)->first();
         Lote::updateOrCreate(
             [
                 'Numero' => $this->NumLot,
@@ -155,6 +157,7 @@ class Ecompra extends Component
                 'Cantidad' => $this->AUXCANTIDAD,
                 'producto_id' => $this->Producto->id,
                 'compra_id' => $this->ide,
+                'almacen_id' => $Compra->almacen->id,
             ]
         );
         $this->dispatchBrowserEvent('swal', [
@@ -168,5 +171,29 @@ class Ecompra extends Component
         $this->NumLot = '';
         $this->FechaCad = '';
         $this->AUXCANTIDAD = '';
+    }
+    public function ingresar(){
+        $Compras = Compra::Where([['Folio',$this->Folio],['producto_id','!=',null]])->get();
+        foreach ($Compras as $compra) {
+            $Producto = Almacen_Producto :: Where([['almacen_id',$compra->almacen_id],['producto_id',$compra->producto_id]])->first();
+            $Cant = $Producto->Stock + $compra->Cantidad;
+            Almacen_Producto::updateOrCreate(
+                ['id' =>$Producto->id],
+                [
+                    'Stock' => $Cant,
+                ]
+            );
+        }
+        Compra::updateOrCreate(
+            ['Folio' => $this->Folio],
+            [
+                'Estatus' => 'Aceptada',
+            ]
+        );
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Compra Aceptada',
+            'type' => 'success'
+        ]);
+        $this->redic();
     }
 }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Venta_Producto extends Model
 {
     use HasFactory;
-    protected $fillable=['id','Cantidad','Descuento','Promo','Precio','producto_id','venta_id'];
+    protected $fillable=['id','Cantidad','Descuento','Promo','Precio','producto_id','venta_id','lote_id'];
     public function producto(){
         return $this->belongsTo("App\Models\Producto");
     }

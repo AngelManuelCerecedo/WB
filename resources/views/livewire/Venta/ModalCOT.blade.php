@@ -42,12 +42,8 @@
                                                         Importe
                                                     </th>
                                                     <th
-                                                        class="px-8 py-1 border border-gray-100 bg-sky-200 tracking-wider ">
+                                                        class="px-20 py-1 border border-gray-100 bg-sky-200 tracking-wider ">
                                                         Cliente
-                                                    </th>
-                                                    <th
-                                                        class="px-8 py-1 border border-gray-100 bg-sky-200 tracking-wider ">
-                                                        Sucursal
                                                     </th>
                                                 </tr>
                                             </thead>
@@ -83,7 +79,7 @@
                                                                     <b>${{ number_format($cotizacion->Importe3, 2) }}
                                                                 </p>
                                                             </td>
-                                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                                            <td class="px-8 py-3 border border-gray-200 bg-white ">
                                                                 @if ($cotizacion->cliente_id)
                                                                     @if ($cotizacion->cliente->TipoP == 'Fisica')
                                                                         <p class="text-black whitespace-no-wrap">
@@ -102,9 +98,6 @@
                                                                     </p>
                                                                 @endif
                                                             </td>
-                                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                                <p class="text-black whitespace-no-wrap">
-                                                                    {{ $cotizacion->almacen->Nombre }}</p </td>
                                                         </tr>
                                                 @endforeach
                                             @endif
@@ -134,12 +127,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function() {
-        $('#select1').select2();
-        $('#select1').on('change', function(e) {
-            let valor = $('#select1').select2("val");
-            @this.set('searchCliente', valor);
-        });
-    });
-</script>
+

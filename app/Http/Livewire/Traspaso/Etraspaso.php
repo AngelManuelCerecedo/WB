@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Traspaso;
 
 use App\Models\Almacen;
 use App\Models\Almacen_Producto;
+use App\Models\Lote;
 use App\Models\Producto;
 use App\Models\Sucursal;
 use App\Models\Traspaso;
@@ -111,8 +112,50 @@ class Etraspaso extends Component
     {
         $Productos = Traspaso::Where([['Folio', $this->Folio], ['producto_id', '!=', null]])->get();
         foreach ($Productos as $Producto) {
+            $aux = $Producto->Cantidad;
             $PS = Almacen_Producto::Where([['almacen_id', $this->SD], ['producto_id', $Producto->producto_id]])->first();
             $PR = Almacen_Producto::Where([['almacen_id', $this->SO], ['producto_id', $Producto->producto_id]])->first();
+            $Lotes = Lote::Where([['producto_id', $Producto->producto_id], ['almacen_id', $this->SO]])->get();
+            foreach ($Lotes as $Lote) {
+                $CantL = $Lote->Cantidad;
+                if ($CantL == $aux  && $Lote->almacen_id == $this->SO) {
+                    Lote::updateOrCreate(
+                        ['id' => $Lote->id],
+                        [
+                            'almacen_id'=> $this->SD,
+                        ]
+                    );
+                    break;
+                }
+                if ($CantL < $aux && $Lote->almacen_id == $this->SO) {
+                    Lote::updateOrCreate(
+                        ['id' => $Lote->id],
+                        [
+                            'almacen_id'=> $this->SD,
+                        ]
+                    );
+                }
+                if ($CantL > $aux && $Lote->almacen_id == $this->SO) {
+                    Lote::updateOrCreate(
+                        [
+                            'Numero' => $Lote->Numero,
+                            'Fecha' => $Lote->Fecha,
+                            'Cantidad'=> $aux,
+                            'producto_id' => $Lote->producto_id,
+                            'compra_id' => $Lote->compra_id,
+                            'almacen_id' => $this->SD,
+                        ]
+                    );
+                    Lote::updateOrCreate(
+                        ['id'=> $Lote->id],
+                        [
+                            'Cantidad'=> $Lote->Cantidad - $aux,
+                        ]
+                    );
+                    break;
+                }   
+                $aux -= $CantL;             
+            }
             Almacen_Producto::updateOrCreate(
                 ['id' => $PS->id],
                 [

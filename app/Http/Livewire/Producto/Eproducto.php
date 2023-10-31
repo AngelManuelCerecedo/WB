@@ -128,7 +128,7 @@ class Eproducto extends Component
             [
                 'Nombre' => $this->NOM,
                 'CodigoB' => $this->CB,
-                'StoclMin' => $this->SMN,
+                'StockMin' => $this->SMN,
                 'StockMax' => $this->SMX,
                 'Precio' => $this->P,
                 'Clv1' => $this->C1,

@@ -38,4 +38,7 @@ class Producto extends Model
     public function Venta_Producto(){
         return $this->hasMany("App\Models\Venta_Producto");
     }
+    public function lote(){
+        return $this->hasMany("App\Models\Lote");
+    }
 }

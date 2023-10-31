@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Almacen;
 use App\Models\Almacen;
 use App\Models\Almacen_Producto;
 use App\Models\Categoria;
+use App\Models\Lote;
 use App\Models\Marca;
 use App\Models\Producto;
 use App\Models\Proveedor;
@@ -14,7 +15,7 @@ use Livewire\Component;
 
 class Ralmacen extends Component
 {
-    public $ide, $CB, $NOM, $E, $SMN, $SMX, $P, $P1, $P2, $P3, $P4, $P5, $P6, $P7, $P8, $P9, $P10, $C1, $C2, $C3, $C4, $AUXM, $AUXC, $AUXU, $AUXP, $IVA, $EST;
+    public $ide, $CB, $NOM, $E, $SMN, $SMX, $P, $P1, $P2, $P3, $P4, $P5, $P6, $P7, $P8, $P9, $P10, $C1, $C2, $C3, $C4, $AUXM, $AUXC, $AUXU, $AUXP, $IVA, $EST, $SL;
     public function render()
     {
         $CAT = Categoria::all();
@@ -23,7 +24,14 @@ class Ralmacen extends Component
         $PROVEEDOR = Proveedor::all();
         $ap = Almacen_Producto::where('id', $this->ide)->first();
         $Almacen = Almacen::Where([['id', '=', $ap->almacen_id]])->first();
-        return view('livewire.almacen.ralmacen', ['cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR, 'almacen' => $Almacen]);
+        $ap = Almacen_Producto::where('id', $this->ide)->first();
+        $prod = Producto::where('id', $ap->producto_id)->first();
+        if ($this->SL) {
+            $Lotes = Lote::Where([['Numero', 'like', '%' . $this->SL . '%']])->orderBy('id', 'desc')->get();
+        } else {
+            $Lotes = Lote::Where([['almacen_id', '=', $ap->almacen_id],['producto_id', '=', $prod->id]])->orderBy('id', 'desc')->get();
+        }
+        return view('livewire.almacen.ralmacen', ['Lotes'=>$Lotes, 'cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR, 'almacen' => $Almacen]);
     }
     public function mount()
     {

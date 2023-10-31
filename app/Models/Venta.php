@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Venta extends Model
 {
     use HasFactory;
-    protected $fillable=['id','Fecha','Folio','Aux','Importes','cliente_id','empleado_id','sucursal_id'];
+    protected $fillable=['id','Fecha','Folio','Aux','Importes','cliente_id','empleado_id','sucursal_id','forma_id'];
     public function cliente(){
         return $this->belongsTo("App\Models\Cliente");
     }

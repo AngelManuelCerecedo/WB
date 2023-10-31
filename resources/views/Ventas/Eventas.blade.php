@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 @section('title', 'Editar Venta')
 @section('content')
     @livewire('venta.eventa',['ide' => $id])
