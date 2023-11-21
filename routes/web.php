@@ -12,12 +12,14 @@ use App\Http\Controllers\FormasController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\MetodosController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TraspasoController;
 use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\VentaController;
 use App\Models\Empleado;
 use App\Models\Sucursal;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -121,3 +123,10 @@ Route::get('Ventas/PuntoVenta/RCliente', [VentaController::class, 'pventarclient
 Route::get('Ventas/PuntoVenta/RCotizacion', [VentaController::class, 'pventarcotizacion'])->name('PuntoVentaRCotizacion');
 Route::get('Ventas/PuntoVenta/Cotizaciones/Editar/{id}', [VentaController::class, 'pventaecotizacion'])->name('PECotizacion');
 Route::get('Ventas/PuntoVenta/Ventas/Editar/{id}', [VentaController::class, 'pventaeventa'])->name('PEVenta');
+
+//ROLES
+Route::get('roles', [RoleController::class, 'roles'])->name('Roles');
+Route::get('roles/Registro', [RoleController::class, 'rroles'])->name('RRoles');
+Route::post('roles/RegistroRol', [RoleController::class, 'store'])->name('GRoles');
+Route::get('roles/Editar/{id}', [RoleController::class, 'eroles'])->name('ERoles');
+Route::put('roles/Update', [RoleController::class, 'update'])->name('URoles');

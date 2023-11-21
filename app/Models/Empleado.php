@@ -25,4 +25,7 @@ class Empleado extends Model
     public function Venta(){
         return $this->hasMany("App\Models\Venta");
     }
+    public function usuario(){
+        return $this->hasOne("App\Models\User");
+    }
 }

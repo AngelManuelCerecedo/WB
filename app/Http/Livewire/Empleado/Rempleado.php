@@ -15,7 +15,41 @@ class Rempleado extends Component
         return view('livewire.empleado.rempleado',['sucursales'=>$Suc]);
     }
     public function registrar(){
-        Empleado::updateOrCreate([
+
+        if($this->Usu != null && $this->Pwd != null){
+            //Creando el empleado
+            Empleado::updateOrCreate([
+                'Nombre' => $this->Nombre,
+                'ApP' => $this->ApP,
+                'ApM' => $this->ApM,
+                'CURP' => $this->CURP,
+                'RFC' => $this->RFC,
+                'Cel' => $this->Cel,
+                'Tel' => $this->Tel,
+                'Correo' => $this->Correo,
+                'CP' => $this->CP,  
+                'Estado' => $this->Estado,
+                'Mun' => $this->Mun,
+                'Col' => $this->Col,
+                'Calle' => $this->Calle,
+                'Referencia' => $this->Referencia,
+                'NumExt' => $this->NumExt,
+                'NumInt' => $this->NumInt,
+                'NomRF' => $this->NomRF,
+                'ParenRF' => $this->ParenRF,
+                'TelRF' => $this->TelRF,
+                'DomRF' => $this->DomRF,
+                'sucursal_id' => $this->sucursal_id,
+                'Rol' => $this->Rol,
+                'Usu' => $this->Usu,
+                'Pwd' => $this->Pwd,
+                'Estatus' => $this->Estatus,
+            ]);
+            //Creando el usuario
+            
+            //Relacionando usuario con rol
+        }else{
+            Empleado::updateOrCreate([
             'Nombre' => $this->Nombre,
             'ApP' => $this->ApP,
             'ApM' => $this->ApM,
@@ -37,11 +71,10 @@ class Rempleado extends Component
             'TelRF' => $this->TelRF,
             'DomRF' => $this->DomRF,
             'sucursal_id' => $this->sucursal_id,
-            'Rol' => $this->Rol,
-            'Usu' => $this->Usu,
-            'Pwd' => $this->Pwd,
             'Estatus' => $this->Estatus,
         ]);
+        }
+        
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Registro guardado exitosamente',
             'type' => 'success'

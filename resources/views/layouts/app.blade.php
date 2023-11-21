@@ -218,8 +218,8 @@
                     <a href="">
                         <h1 class="cursor-pointer  rounded-md  ml-5 MDA">Escala de Precios</h1>
                     </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Permisos</h1>
+                    <a href="{{ route('Roles') }}">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Roles</h1>
                     </a>
                 </div>
 

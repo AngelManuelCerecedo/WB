@@ -22,6 +22,9 @@ return new class extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('estatus');
+            $table->unsignedBigInteger("empleado_id")->nullable();
+            $table->foreign("empleado_id")->references("id")->on("empleados")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
