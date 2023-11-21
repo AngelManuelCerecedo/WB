@@ -54,7 +54,7 @@
                                                             <td class="px-3 py-2 border border-gray-200 bg-white">
                                                                 <div class="flex">
                                                                     <div class="flex-shrink-0 w-10 h-10">
-                                                                        <a href="{{ route('EVenta', [$venta->id]) }}">
+                                                                        <a href="{{ route('PEVenta', [$venta->id]) }}">
                                                                             <button class="botonm  mt-1">
                                                                                 <i
                                                                                     class="bi bi-layout-text-sidebar-reverse"></i>

@@ -8,5 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class FormaPago extends Model
 {
     use HasFactory;
-    protected $fillable=['id','Clave','Nombre'];
+    protected $fillable = ['id', 'Clave', 'Nombre'];
+    public function Venta()
+    {
+        return $this->hasMany("App\Models\Venta");
+    }
 }

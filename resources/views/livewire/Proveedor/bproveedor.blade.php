@@ -78,10 +78,10 @@
                                 @foreach ($proveedores as $proveedor)
                                     @if ($aux)
                                         <tr class="datosT">
-                                            <td class="px-5 py-2 border border-gray-200 bg-white">
+                                            <td class="px-2 py-2 border border-gray-200 bg-white">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('EProveedor', [$proveedor->id]) }}">
-                                                            <button class="botonm ml-2">
+                                                            <button class="botonm">
                                                                 <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                                 <span class="ml-2 ">Detalles</span>
                                                             </button>
@@ -122,11 +122,11 @@
                                         <var {{$aux = false}}/>
                                     @else
                                         <tr class="datosT bg-gray-100">
-                                            <td class="px-5 py-2 border border-gray-200">
+                                            <td class="px-2 py-2 border border-gray-200">
                                                 <div class="flex items-center">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('EProveedor', [$proveedor->id]) }}">
-                                                            <button class="botonm ml-2">
+                                                            <button class="botonm">
                                                                 <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                                 <span class="ml-2 ">Detalles</span>
                                                             </button>

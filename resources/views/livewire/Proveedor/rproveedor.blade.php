@@ -38,7 +38,7 @@
                         <div class="md:flex items-center mt-6">
                             <div class="flex flex-col mr-8">
                                 <label class="etiqueta">Nombre de la Persona Moral</label>
-                                <input type="text" wire:model='NM' class="inputN" placeholder="Nombre" />
+                                <input type="text" wire:model='NM' class="inputL" placeholder="Nombre" />
                             </div>
                         </div>
                     @else

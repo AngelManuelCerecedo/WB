@@ -120,3 +120,4 @@ Route::get('Ventas/PuntoVenta', [VentaController::class, 'pventa'])->name('Punto
 Route::get('Ventas/PuntoVenta/RCliente', [VentaController::class, 'pventarcliente'])->name('PuntoVentaRcliente');
 Route::get('Ventas/PuntoVenta/RCotizacion', [VentaController::class, 'pventarcotizacion'])->name('PuntoVentaRCotizacion');
 Route::get('Ventas/PuntoVenta/Cotizaciones/Editar/{id}', [VentaController::class, 'pventaecotizacion'])->name('PECotizacion');
+Route::get('Ventas/PuntoVenta/Ventas/Editar/{id}', [VentaController::class, 'pventaeventa'])->name('PEVenta');

@@ -15,10 +15,10 @@ use Livewire\Component;
 
 class Puntoventa extends Component
 {
-    public $Folio, $Estatus = 'Registro', $idaux, $Sucursal = 1, $Productos, $Cant, $search, $Desc = 0, $Promo, $Precio = 0, $ListaFT, $Total = 0;
+    public $Folio, $Estatus = 'Registro', $idaux, $Sucursal = 1, $Productos, $Cant, $search, $Desc, $Promo, $Precio = 0, $ListaFT, $Total = 0;
     public $ModalP = false, $ModalC = false, $ModalCOT = false, $ModalV = false, $ModalCobro = false;
     public $Venta, $CD, $Clientes, $searchCliente, $Cli, $TArt = 0, $Cambio, $searchCot, $Cotizaciones, $searchVent, $Ventas;
-    public $PAGO, $FP, $CAMBIO, $FormasP, $ActualizarStock, $Lotes;
+    public $PAGO, $FP, $CAMBIO, $FormasP, $ActualizarStock, $Lotes, $lote;
     public function render()
     {
         $this->Productos = Almacen_Producto::Where([['almacen_id', 1], ['Stock', '!=', 'null']])->get();
@@ -53,9 +53,13 @@ class Puntoventa extends Component
         if ($this->search) {
             $Prod = Producto::Where('id', $this->search)->first();
             $this->Precio = $Prod->P1;
-            $CantDisp = Almacen_Producto::Where([['producto_id', $this->search], ['almacen_id', 1]])->first(); //ALMACEN VARIABLE
-            $this->CD = $CantDisp->Stock;
-            //$Lote = Lote::Where('producto_id')
+            $this->Lotes = Lote::Where([['producto_id', $this->search], ['almacen_id', 1], ['Cantidad', '>', '0']])->get();
+            if ($this->Lotes) {
+                $CantDisp = Lote::Where([['id', $this->lote]])->first(); //ALMACEN VARIABLE
+                if ($CantDisp) {
+                    $this->CD = $CantDisp->Cantidad;
+                }
+            }
         }
         //MODAL CLIENTE
         if ($this->searchCliente) {
@@ -151,6 +155,7 @@ class Puntoventa extends Component
                             'Precio' => $Producto->P1,
                             'producto_id' => $Producto->id,
                             'venta_id' => $this->Venta->id,
+                            'lote_id' => $this->lote,
                         ]
                     );
                 } else {
@@ -162,6 +167,7 @@ class Puntoventa extends Component
                             'Precio' => $Producto->P1,
                             'producto_id' => $Producto->id,
                             'venta_id' => $this->Venta->id,
+                            'lote_id' => $this->lote,
                         ]
                     );
                 }
@@ -189,22 +195,31 @@ class Puntoventa extends Component
         $venta = Venta::Where([['Folio', $this->Folio]])->first();
         $Cantidades = Venta_Producto::Where([['venta_id', $venta->id]])->get();
         if ($this->ListaFT != '[]') {
-            foreach ($Cantidades as $cantidad) {
-                $TotalC += $cantidad->Cantidad * $cantidad->Precio - $cantidad->Descuento;
-                $CantDisp = Almacen_Producto::Where([['producto_id', $cantidad->producto_id], ['almacen_id', 1]])->first();
-                if ($CantDisp) {
-                    Almacen_Producto::updateOrCreate(
-                        ['producto_id' => $cantidad->producto_id, 'almacen_id' => 1],
-                        [
-                            'Stock' => $CantDisp->Stock - $cantidad->Cantidad,
-                        ]
-                    );
+            if ($this->PAGO) 
+            {
+                foreach ($Cantidades as $cantidad) {
+                    $TotalC += $cantidad->Cantidad * $cantidad->Precio - $cantidad->Descuento;
                 }
-            }
-            if ($this->PAGO) {
                 $cambio = $this->PAGO - $TotalC;
                 if ($cambio >= 0) {
                     if ($this->searchCliente != '') {
+                        foreach ($Cantidades as $cantidad) {
+                            $CantDisp = Almacen_Producto::Where([['producto_id', $cantidad->producto_id], ['almacen_id', 1]])->first();
+                            if ($CantDisp) {
+                                Almacen_Producto::updateOrCreate(
+                                    ['producto_id' => $cantidad->producto_id, 'almacen_id' => 1],
+                                    [
+                                        'Stock' => $CantDisp->Stock - $cantidad->Cantidad,
+                                    ]
+                                );
+                                Lote::updateOrCreate(
+                                    ['id' => $cantidad->lote_id],
+                                    [
+                                        'Cantidad' => $cantidad->Lote->Cantidad - $cantidad->Cantidad,
+                                    ]
+                                );
+                            }
+                        }
                         Venta::updateOrCreate(
                             ['Folio' => $this->Folio],
                             [
@@ -216,7 +231,7 @@ class Puntoventa extends Component
                             ]
                         );
                         $this->dispatchBrowserEvent('swal', [
-                            'title' => 'VENTA COMPLETA <br> CAMBIO:  $' . $cambio. '<br>'. $this->ListaFT,
+                            'title' => 'VENTA COMPLETA <br> CAMBIO:  $' . $cambio,
                             'type' => 'success'
                         ]);
                     } else {

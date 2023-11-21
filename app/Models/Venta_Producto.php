@@ -15,4 +15,7 @@ class Venta_Producto extends Model
     public function venta(){
         return $this->belongsTo("App\Models\Venta");
     }
+    public function lote(){
+        return $this->belongsTo("App\Models\Lote");
+    }
 }

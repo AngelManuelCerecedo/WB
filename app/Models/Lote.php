@@ -12,4 +12,10 @@ class Lote extends Model
     public function producto(){
         return $this->belongsTo("App\Models\Producto");
     }
+    public function Venta_Producto(){
+        return $this->hasMany("App\Models\Venta_Producto");
+    }
+    public function Venta(){
+        return $this->hasMany("App\Models\Venta");
+    }
 }

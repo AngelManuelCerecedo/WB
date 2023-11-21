@@ -18,6 +18,9 @@ class Venta extends Model
     public function sucursal(){
         return $this->belongsTo("App\Models\Sucursal");
     }
+    public function forma(){
+        return $this->belongsTo("App\Models\FormaPago");
+    }
     public function Venta_Producto(){
         return $this->hasMany("App\Models\Venta_Producto");
     }

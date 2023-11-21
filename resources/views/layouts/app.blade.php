@@ -28,7 +28,7 @@
     <link rel="icon" href="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-ICONO.ico">
     <div class="paneltop flex shadow-md w-full">
         <a href="{{ route('dashboard') }}">
-            <img src="https://github.com/AngelManuelCerecedo/ImgDH/blob/main/LOGO-DH-LTv1.png?raw=true" class="imgtop">
+            <img src="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-LTv1.png" class="imgtop">
         </a>
         <nav class="">
             <ul class="menu-horizontal flex">

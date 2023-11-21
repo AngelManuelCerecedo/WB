@@ -32,4 +32,7 @@ class VentaController extends Controller
     public function pventaecotizacion($id){
       return view('ventas.PuntoVentaECotizacion', ['id' => $id]);
     }
+    public function pventaeventa($id){
+      return view('ventas.PuntoVentaEVenta', ['id' => $id]);
+    }
 }

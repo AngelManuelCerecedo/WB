@@ -28,13 +28,14 @@
                             </div>
                             @if ($search)
                                 <div class="flex mt-2">
-                                    <div>
-                                        <label class="etiqueta">DISPONIBLE</label>
-                                        <input type="number" wire:model='CD' class="inputSML" disabled="false" />
-                                    </div>
-                                    <div class="ml-2">
+                                    <div class="">
                                         <label class="etiqueta">LOTE</label>
-                                        <input type="number" wire:model='LOT' class="inputSML" disabled="false" />
+                                        <select wire:model='lote' class="inputN">
+                                            <option value=""></option>
+                                            @foreach ($Lotes as $lote)
+                                                <option value="{{ $lote->id }}">{{ $lote->Numero}} - {{$lote->Cantidad}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="ml-2">
                                         <label class="etiqueta">$</label>

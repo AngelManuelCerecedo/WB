@@ -54,7 +54,7 @@ class Rproveedor extends Component
                 'RFC' => $this->RFC,
                 'NumExt' => $this->NEXT,
                 'NumInt' => $this->NINT,
-                'Estatus' => $this->EST,
+                'Estatus' => 'Activo',
                 'TipoProv' => $this->TProv,
             ]);
         }
