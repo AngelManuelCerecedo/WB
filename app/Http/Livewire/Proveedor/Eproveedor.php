@@ -10,7 +10,7 @@ class Eproveedor extends Component
     public $TP, $RFC, $STS, $NM, $N, $ApP,$TProv, $Cel, $Tel, $CE, $CP, $EST, $MUN, $COL, $CALLE, $NEXT, $NINT, $REF, $LIMC, $DCRED, $ide;
     public function render()
     {
-        return view('livewire.proveedor.eproveedor');
+        return view('livewire.Proveedor.Eproveedor');
     }
     public function mount(){
         $proveedor = Proveedor::where('id',$this->ide)->first();

@@ -31,7 +31,7 @@ class Ralmacen extends Component
         } else {
             $Lotes = Lote::Where([['almacen_id', '=', $ap->almacen_id],['producto_id', '=', $prod->id]])->orderBy('id', 'desc')->get();
         }
-        return view('livewire.almacen.ralmacen', ['Lotes'=>$Lotes, 'cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR, 'almacen' => $Almacen]);
+        return view('livewire.Almacen.Ralmacen', ['Lotes'=>$Lotes, 'cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR, 'almacen' => $Almacen]);
     }
     public function mount()
     {

@@ -23,7 +23,7 @@ class Etraspaso extends Component
             $CantDisp = Almacen_Producto::Where([['producto_id', $this->search], ['almacen_id', $this->SO]])->first();
             $this->CD = $CantDisp->Stock;
         }
-        return view('livewire.traspaso.etraspaso', ['Sucursales' => $Sucursales]);
+        return view('livewire.Traspaso.Etraspaso', ['Sucursales' => $Sucursales]);
     }
     public function mount()
     {
@@ -172,7 +172,8 @@ class Etraspaso extends Component
         Traspaso::updateOrCreate(
             ['Folio' => $this->Folio],
             [
-                'Estatus' => 'Terminado'
+                'Estatus' => 'Terminado',
+                'empleadoD_id' => auth()->user()->empleado->id,
             ]
         );
 

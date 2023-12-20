@@ -8,13 +8,13 @@ class TraspasoController extends Controller
 {
     public function traspaso()
     {
-      return view('traspasos.Btraspaso');
+      return view('Traspasos.Btraspaso');
     }
     public function rtraspaso()
     {
-      return view('traspasos.Rtraspaso');
+      return view('Traspasos.Rtraspaso');
     }
     public function etraspaso($id){
-      return view('traspasos.Etraspaso', ['id' => $id]);
+      return view('Traspasos.Etraspaso', ['id' => $id]);
     }
 }

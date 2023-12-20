@@ -8,13 +8,13 @@ class CotizacionController extends Controller
 {
     public function cotizacion()
     {
-      return view('cotizaciones.Bcotizacion');
+      return view('Cotizaciones.Bcotizacion');
     }
     public function rcotizacion()
     {
-      return view('cotizaciones.Rcotizacion');
+      return view('Cotizaciones.Rcotizacion');
     }
     public function ecotizacion($id){
-      return view('cotizaciones.Ecotizacion', ['id' => $id]);
+      return view('Cotizaciones.Ecotizacion', ['id' => $id]);
     }
 }

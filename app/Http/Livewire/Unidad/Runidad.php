@@ -10,7 +10,7 @@ class Runidad extends Component
     public $N,$CLV;
     public function render()
     {
-        return view('livewire.unidad.runidad');
+        return view('livewire.Unidad.Runidad');
     }
     public function registrar(){
         UnidadMedida::updateOrCreate([

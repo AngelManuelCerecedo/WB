@@ -17,7 +17,7 @@ class Bunidad extends Component
         $unidades = UnidadMedida::Where([['Nombre', 'like', '%' . $this->search . '%']])
         ->orWhere([['Clave', 'like', '%' . $this->search . '%']])
         ->paginate($this->cantidad);
-        return view('livewire.unidad.bunidad',['unidades'=>$unidades]);
+        return view('livewire.Unidad.Bunidad',['unidades'=>$unidades]);
     }
     public function updatingSearch()
     {

@@ -8,13 +8,13 @@ class ClienteController extends Controller
 {
     public function cliente()
     {
-      return view('prueba.prueba');
+      return view('Clientes.Bcliente');
     }
     public function rcliente()
     {
-      return view('clientes.Rcliente');
+      return view('Clientes.Rcliente');
     }
     public function ecliente($id){
-      return view('clientes.Ecliente', ['id' => $id]);
+      return view('Clientes.Ecliente', ['id' => $id]);
     }
 }

@@ -31,7 +31,7 @@ class Rtraspaso extends Component
             }
         }
 
-        return view('livewire.traspaso.rtraspaso', ['Sucursales' => $Sucursales]);
+        return view('livewire.Traspaso.Rtraspaso', ['Sucursales' => $Sucursales]);
     }
     public function registrar()
     {
@@ -42,16 +42,22 @@ class Rtraspaso extends Component
             'almacenD_id' => $this->SD,
             'Estatus' => $this->Estatus,
             'Obs' => $this->Obs,
+            'empleadoO_id' => auth()->user()->empleado->id,
         ]);
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Traspaso Registrado',
             'type' => 'success'
         ]);
-        $Tras = Traspaso::Where('Folio', '=', $this->Folio)->first();
-        return redirect()->route('ETraspaso', [$Tras->id]);
+        $this->redic();
     }
     public function redic()
     {
-        return redirect()->route('Traspasos');
+        if (auth()->user()->empleado->Rol == 'Mostrador') {
+            $Cot = Traspaso::Where('Folio', '=', $this->Folio)->first();
+            return redirect()->route('PETraspaso', [$Cot->id]) ;
+        } else {
+            $Cot = Traspaso::Where('Folio', '=', $this->Folio)->first();
+            return redirect()->route('PETraspaso', [$Cot->id]) ;
+        }
     }
 }

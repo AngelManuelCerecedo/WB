@@ -10,7 +10,7 @@ class Rforma extends Component
     public $N,$CLV;
     public function render()
     {
-        return view('livewire.forma.rforma');
+        return view('livewire.Forma.Rforma');
     }
     public function registrar(){
         FormaPago::updateOrCreate([

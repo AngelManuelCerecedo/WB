@@ -8,13 +8,13 @@ class MetodosController extends Controller
 {
     public function metodo()
     {
-      return view('metodos.Bmetodo');
+      return view('Metodos.Bmetodo');
     }
     public function rmetodo()
     {
-      return view('metodos.Rmetodo');
+      return view('Metodos.Rmetodo');
     }
     public function emetodo($id){
-      return view('metodos.Emetodo', ['id' => $id]);
+      return view('Metodos.Emetodo', ['id' => $id]);
     }
 }

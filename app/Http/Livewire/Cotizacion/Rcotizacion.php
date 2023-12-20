@@ -27,7 +27,7 @@ class Rcotizacion extends Component
                 $this->Folio = 'COT0' . $this->SO . $this->idaux;
             }
         }
-        return view('livewire.cotizacion.rcotizacion', ['Sucursales' => $Sucursales, 'Clientes' => $Clientes]);
+        return view('livewire.Cotizacion.Rcotizacion', ['Sucursales' => $Sucursales, 'Clientes' => $Clientes]);
     }
     public function registrar()
     {
@@ -38,6 +38,7 @@ class Rcotizacion extends Component
                 'Estatus' => $this->Estatus,
                 'almacen_id' => $this->SO,
                 'Cliente' => $this->NombreCliente,
+                'empleado_id' => auth()->user()->empleado->id,
             ]);
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'Cotizacion Registrada',
@@ -50,6 +51,7 @@ class Rcotizacion extends Component
                 'Estatus' => $this->Estatus,
                 'almacen_id' => $this->SO,
                 'cliente_id' => $this->Cliente_id,
+                'empleado_id' => auth()->user()->empleado->id,
             ]);
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'Cotizacion Registrada',
@@ -63,7 +65,7 @@ class Rcotizacion extends Component
     }
     public function redic()
     {
-        if (true) {
+        if (auth()->user()->empleado->Rol == 'Mostrador') {
             $Cot = Cotizacion::Where('Folio', '=', $this->Folio)->first();
             return redirect()->route('PECotizacion', [$Cot->id]) ;
         } else {

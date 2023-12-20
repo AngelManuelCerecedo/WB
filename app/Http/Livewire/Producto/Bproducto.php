@@ -34,7 +34,7 @@ class Bproducto extends Component
             ->orWhere([['Clv4', 'like', '%' . $this->search . '%']])
             ->paginate($this->cantidad);
         }
-        return view('livewire.producto.bproducto', ['productos'=>$productos, 'Marcas'=>$marcas]);
+        return view('livewire.Producto.Bproducto', ['productos'=>$productos, 'Marcas'=>$marcas]);
     }
     public function updatingSearch()
     {

@@ -17,7 +17,7 @@ class Bcategoria extends Component
         $categorias = Categoria::Where([['Nombre', 'like', '%' . $this->search . '%']])
         ->orWhere([['Clave', 'like', '%' . $this->search . '%']])
         ->paginate($this->cantidad);
-        return view('livewire.categoria.bcategoria',['categorias'=>$categorias]);
+        return view('livewire.Categoria.Bcategoria',['categorias'=>$categorias]);
     }
     public function updatingSearch()
     {

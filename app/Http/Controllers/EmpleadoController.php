@@ -8,13 +8,13 @@ class EmpleadoController extends Controller
 {
     public function empleado()
     {
-      return view('empleados.Bempleado');
+      return view('Empleados.Bempleado');
     }
     public function rempleado()
     {
-      return view('empleados.Rempleado');
+      return view('Empleados.Rempleado');
     }
     public function eempleado($id){
-      return view('empleados.Eempleado', ['id' => $id]);
+      return view('Empleados.Eempleado', ['id' => $id]);
     }
 }

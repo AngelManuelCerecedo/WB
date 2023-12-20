@@ -10,7 +10,7 @@ class Rsucursal extends Component
     public $ZN, $CLV, $Nombre, $CP, $FT, $FF, $SF, $TEL, $DIR;
     public function render()
     {
-        return view('livewire.sucursal.rsucursal');
+        return view('livewire.Sucursal.Rsucursal');
     }
     public function registrar()
     {

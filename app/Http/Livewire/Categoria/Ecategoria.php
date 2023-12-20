@@ -10,7 +10,7 @@ class Ecategoria extends Component
     public $N,$CLV,$ide;
     public function render()
     {
-        return view('livewire.categoria.ecategoria');
+        return view('livewire.Categoria.Ecategoria');
     }
     public function mount(){
         $cat = Categoria::where('id', $this->ide)->first();

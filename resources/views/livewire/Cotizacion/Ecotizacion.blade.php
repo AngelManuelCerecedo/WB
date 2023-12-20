@@ -1,5 +1,5 @@
 <div class="container">
-    @if (true)
+    @if (auth()->user()->empleado->Rol == 'Mostrador')
         <div class="py-8 ml-32 mt-8">
         @else
             <div class="py-8 mt-8">
@@ -186,7 +186,7 @@
                 <div class="ml-12 mt-4 mb-4">
                     <div class="md:flex items-center">
                         <div class="flex flex-col mr-96">
-                            @if (true)
+                            @if (auth()->user()->empleado->Rol == 'Mostrador')
                                 <a href="{{ route('PuntoVenta') }}">
                                 @else
                                     <a href="{{ route('Cotizaciones') }}">

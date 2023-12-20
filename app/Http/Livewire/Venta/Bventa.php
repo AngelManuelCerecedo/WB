@@ -24,6 +24,6 @@ class Bventa extends Component
             $Ventas = Venta::Where([['Folio', 'like', '%' . $this->search . '%']])->orderBy('id', 'desc')
             ->paginate($this->cantidad);
         }
-        return view('livewire.venta.bventa',['ventas'=>$Ventas, 'Sucursales'=>$Sucursal]);
+        return view('livewire.Venta.Bventa',['ventas'=>$Ventas, 'Sucursales'=>$Sucursal]);
     }
 }

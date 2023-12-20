@@ -35,10 +35,20 @@
             <ul class="menu-horizontal flex">
                 <i class="bi bi-person-circle inconP"></i>
                 <li>
-                    <a href="#">USUARIO</a>
+                    <a href="#">
+                        {{auth()->user()->email}}
+                    </a>
                     <ul class="menu-vertical">
-                        <li><a href="#">Salir</a></li>
-                    </ul>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <div>
+                                <x-jet-dropdown-link class="text-gray-200" href="{{ route('logout') }}"
+                                    @click.prevent="$root.submit();">
+                                    {{ __('Salir') }}
+                                </x-jet-dropdown-link>
+                            </div>
+                        </form>
+                    </ul> 
                 </li>
                 <i class="bi bi-caret-down-fill down"></i>
             </ul>

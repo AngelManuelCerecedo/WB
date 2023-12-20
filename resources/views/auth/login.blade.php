@@ -1,11 +1,14 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
-
-        <x-jet-validation-errors class="mb-4" />
-
+<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+<div class="bg-gray-100 flex justify-center items-center h-screen">
+    <!-- Left: Image -->
+    <div class="w-.5 h-screen hidden lg:block">
+        <img src="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/fondo.jpg" alt="Placeholder Image"
+            class="object-cover w-full h-full">
+    </div>
+    <!-- Right: Login Form -->
+    <div class="lg:p-12 md:p-52 sm:20 p-8 w-full lg:w-1/2">
+        <img src="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH.png" alt="Placeholder Image"
+            class="">
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
@@ -14,35 +17,27 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
-            <div>
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+            <!-- Username Input -->
+            <div class="mb-4">
+                <x-jet-label for="email" value="{{ __('Usuario') }}" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')"
+                    required autofocus />
             </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+            <!-- Password Input -->
+            <div class="mb-4">
+                <x-jet-label for="password" value="{{ __('Contraseña') }}" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="current-password" />
             </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-jet-checkbox id="remember_me" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-jet-button class="ml-4">
-                    {{ __('Log in') }}
+            <!-- Remember Me Checkbox -->
+            <!-- Forgot Password Link -->
+            <!-- Login Button -->
+            <div class="">
+                <x-jet-button class="text-lg">
+                    {{ __('Iniciar Sesión') }}
                 </x-jet-button>
             </div>
         </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+        <!-- Sign up  Link -->
+    </div>
+</div>

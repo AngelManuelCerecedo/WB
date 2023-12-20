@@ -8,13 +8,13 @@ class UnidadesController extends Controller
 {
     public function unidad()
     {
-      return view('unidades.Bunidad');
+      return view('Unidades.Bunidad');
     }
     public function runidad()
     {
-      return view('unidades.Runidad');
+      return view('Unidades.Runidad');
     }
     public function eunidad($id){
-      return view('unidades.Eunidad', ['id' => $id]);
+      return view('Unidades.Eunidad', ['id' => $id]);
     }
 }

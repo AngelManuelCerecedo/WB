@@ -11,7 +11,7 @@ class Rproveedor extends Component
     public $TP, $RFC, $STS, $NM, $N, $ApP,$TProv,$Cel, $Tel, $CE, $CP, $EST, $MUN, $COL, $CALLE, $NEXT, $NINT, $REF, $LIMC, $DCRED;
     public function render()
     {
-        return view('livewire.proveedor.rproveedor');
+        return view('livewire.Proveedor.Rproveedor');
     }
     public function registrar()
     {

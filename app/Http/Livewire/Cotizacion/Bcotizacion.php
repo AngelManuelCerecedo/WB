@@ -24,6 +24,6 @@ class Bcotizacion extends Component
             $Cotizaciones = Cotizacion::Where([['Folio', 'like', '%' . $this->search . '%'],['producto_id',null]])->orderBy('id', 'desc')
             ->paginate($this->cantidad);
         }
-        return view('livewire.cotizacion.bcotizacion',['cotizaciones'=>$Cotizaciones, 'Sucursales'=>$Sucursal]);
+        return view('livewire.Cotizacion.Bcotizacion',['cotizaciones'=>$Cotizaciones, 'Sucursales'=>$Sucursal]);
     }
 }

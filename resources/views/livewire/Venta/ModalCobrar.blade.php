@@ -18,14 +18,29 @@
                             <div class="flex mt-2">
                                 <div class="md:mt-0 mr-4">
                                     <label class="etiqueta">PAGA CON $ </label>
-                                    <input type="number" wire:model='PAGO' class="input"/>
+                                    <input type="number" wire:model='PAGO' class="input" />
                                 </div>
                                 <div>
-                                    <label class="etiqueta">FORMA DE PAGO</label>
+                                    <label class="etiqueta">TIPO DE PAGO</label>
                                     <select wire:model='FP' class="inputN">
                                         <option value="">Seleccione una Opción</option>
                                         @foreach ($FormasP as $pago)
                                             <option value="{{ $pago->id }}">
+                                                {{ $pago->Clave }}
+                                                -
+                                                {{ $pago->Nombre }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="flex mt-2">
+                                <div class="md:mt-0 mr-4">
+                                    <label class="etiqueta">FORMA DE PAGO </label>
+                                    <select wire:model='CRED' class="inputN">
+                                        <option value="">Seleccione una Opción</option>
+                                        @foreach ($Metodos as $pago)
+                                            <option value="{{ $pago->Clave }}">
                                                 {{ $pago->Clave }}
                                                 -
                                                 {{ $pago->Nombre }}

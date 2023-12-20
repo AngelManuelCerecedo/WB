@@ -17,10 +17,12 @@
     @livewireStyles
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+
 
     <!-- Scripts -->
     @livewireScripts
@@ -34,10 +36,20 @@
             <ul class="menu-horizontal flex">
                 <i class="bi bi-person-circle inconP"></i>
                 <li>
-                    <a href="#">USUARIO</a>
+                    <a href="#">
+                        {{auth()->user()->email}}
+                    </a>
                     <ul class="menu-vertical">
-                        <li><a href="#">Salir</a></li>
-                    </ul>
+                        <form method="POST" action="{{ route('logout') }}" x-data>
+                            @csrf
+                            <div>
+                                <x-jet-dropdown-link class="text-gray-200" href="{{ route('logout') }}"
+                                    @click.prevent="$root.submit();">
+                                    {{ __('Salir') }}
+                                </x-jet-dropdown-link>
+                            </div>
+                        </form>
+                    </ul> 
                 </li>
                 <i class="bi bi-caret-down-fill down"></i>
             </ul>
@@ -59,8 +71,8 @@
                 <div class="iconport">
                     <i class="bi bi-person-circle"></i>
                 </div>
-                <div class="textport">
-                    Usuario<br />Rol<br>Ubicacion
+                <div class="mt-2 ml-2">
+                    {{auth()->user()->empleado->Nombre}}<br />{{auth()->user()->empleado->Rol}}<br>{{auth()->user()->empleado->sucursal->Nombre}}
                 </div>
             </div>
             <!-- LINEA -->
@@ -145,7 +157,7 @@
                     <a href="{{ route('Almacenes') }}">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Almacenes</h1>
                     </a>
-                   <!-- <a href="">
+                    <!-- <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Inventario</h1>
                     </a>
                     <a href="">
@@ -192,14 +204,8 @@
                     <a href="">
                         <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Facturas</h1>
                     </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Usos de CFDI</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cuentas por Pagar</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cuentas por Cobrar</h1>
+                    <a href="{{ route('Creditos') }}">
+                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Creditos</h1>
                     </a>
                 </div>
                 <!-- CONFIGURACION -->

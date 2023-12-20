@@ -8,13 +8,13 @@ class CategoriasController extends Controller
 {
     public function categoria()
     {
-      return view('categorias.Bcategoria');
+      return view('Categorias.Bcategoria');
     }
     public function rcategoria()
     {
-      return view('categorias.Rcategoria');
+      return view('Categorias.Rcategoria');
     }
     public function ecategoria($id){
-      return view('categorias.Ecategoria', ['id' => $id]);
+      return view('Categorias.Ecategoria', ['id' => $id]);
     }
 }

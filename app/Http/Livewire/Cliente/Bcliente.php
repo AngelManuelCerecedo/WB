@@ -20,7 +20,7 @@ class Bcliente extends Component
             ->orWhere([['RFC', 'like', '%' . $this->search . '%']])
             ->orWhere([['NomCom', 'like', '%' . $this->search . '%']])
             ->paginate($this->cantidad);
-        return view('livewire.cliente.bcliente', ['clientes' => $clientes]);
+        return view('livewire.Cliente.Bcliente', ['clientes' => $clientes]);
     }
     public function updatingSearch()
     {

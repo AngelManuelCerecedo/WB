@@ -10,7 +10,7 @@ class Rcategoria extends Component
     public $N,$CLV;
     public function render()
     {
-        return view('livewire.categoria.rcategoria');
+        return view('livewire.Categoria.Rcategoria');
     }
     public function registrar(){
         Categoria::updateOrCreate([

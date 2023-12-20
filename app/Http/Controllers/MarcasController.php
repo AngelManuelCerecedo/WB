@@ -8,13 +8,13 @@ class MarcasController extends Controller
 {
     public function marca()
     {
-      return view('marcas.Bmarca');
+      return view('Marcas.Bmarca');
     }
     public function rmarca()
     {
-      return view('marcas.Rmarca');
+      return view('Marcas.Rmarca');
     }
     public function emarca($id){
-      return view('marcas.Emarca', ['id' => $id]);
+      return view('Marcas.Emarca', ['id' => $id]);
     }
 }

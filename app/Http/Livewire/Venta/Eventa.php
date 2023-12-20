@@ -11,7 +11,7 @@ class Eventa extends Component
     public $Folio, $Empleado, $Sucursal, $FP, $Fecha, $ListaFT, $Total, $TArt, $ide,$venta;
     public function render()
     {
-        return view('livewire.venta.eventa');
+        return view('livewire.Venta.Eventa');
     }
     public function mount()
     {

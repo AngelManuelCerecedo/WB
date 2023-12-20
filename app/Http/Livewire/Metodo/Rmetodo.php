@@ -10,7 +10,7 @@ class Rmetodo extends Component
     public $N,$CLV;
     public function render()
     {
-        return view('livewire.metodo.rmetodo');
+        return view('livewire.Metodo.Rmetodo');
     }
     public function registrar(){
         MetodoPago::updateOrCreate([

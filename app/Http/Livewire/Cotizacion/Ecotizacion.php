@@ -24,7 +24,7 @@ class Ecotizacion extends Component
             $this->CD = $CantDisp->Stock;
         }
         $this->Productos = Almacen_Producto::Where([['almacen_id', $this->SO], ['Stock', '!=', 'null']])->get();
-        return view('livewire.cotizacion.ecotizacion', ['Sucursales' => $Sucursales, 'Clientes' => $Clientes]);
+        return view('livewire.Cotizacion.Ecotizacion', ['Sucursales' => $Sucursales, 'Clientes' => $Clientes]);
     }
     public function mount()
     {

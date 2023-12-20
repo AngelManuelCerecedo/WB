@@ -1,7 +1,7 @@
 @extends('layouts.app1')
 @section('title', 'Punto Venta - Clientes')
 @section('content')
-@livewire('venta.puntoventa-r-cliente')
+    @livewire('venta.puntoventa-r-cliente')
 @endsection
 @section('js')
     <script>

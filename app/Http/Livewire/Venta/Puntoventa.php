@@ -5,30 +5,33 @@ namespace App\Http\Livewire\Venta;
 use App\Models\Almacen_Producto;
 use App\Models\Cliente;
 use App\Models\Cotizacion;
+use App\Models\Credito;
 use App\Models\FormaPago;
 use App\Models\Lote;
+use App\Models\MetodoPago;
 use App\Models\Producto;
+use App\Models\Traspaso;
 use App\Models\Venta;
 use App\Models\Venta_Producto;
-use League\CommonMark\Extension\CommonMark\Node\Block\ThematicBreak;
 use Livewire\Component;
 
 class Puntoventa extends Component
 {
-    public $Folio, $Estatus = 'Registro', $idaux, $Sucursal = 1, $Productos, $Cant, $search, $Desc, $Promo, $Precio = 0, $ListaFT, $Total = 0;
-    public $ModalP = false, $ModalC = false, $ModalCOT = false, $ModalV = false, $ModalCobro = false;
+    public $Folio, $Estatus = 'Registro', $idaux, $Productos, $Cant, $search, $Desc, $Promo, $Precio = 0, $ListaFT, $Total = 0;
+    public $ModalP = false, $ModalC = false, $ModalCOT = false, $ModalV = false, $ModalCobro = false, $ModalTRP = false, $ModalCRED = false;
     public $Venta, $CD, $Clientes, $searchCliente, $Cli, $TArt = 0, $Cambio, $searchCot, $Cotizaciones, $searchVent, $Ventas;
-    public $PAGO, $FP, $CAMBIO, $FormasP, $ActualizarStock, $Lotes, $lote;
+    public $PAGO, $FP, $CAMBIO, $FormasP, $ActualizarStock, $Lotes, $lote, $searchTRP, $Traspasos, $CRED, $Metodos, $searchCRED, $Creditos;
     public function render()
     {
         $this->Productos = Almacen_Producto::Where([['almacen_id', 1], ['Stock', '!=', 'null']])->get();
         $this->Clientes = Cliente::all();
         $this->FormasP = FormaPago::all();
-        $FolioCon = Venta::Where('sucursal_id', '=', $this->Sucursal)->orderBy('Aux', 'desc')->first();
+        $this->Metodos = MetodoPago::all();
+        $FolioCon = Venta::Where('sucursal_id', '=', auth()->user()->empleado->sucursal_id)->orderBy('Aux', 'desc')->first();
         if ($FolioCon) {
             $Num = $FolioCon->Aux;
             $this->idaux = $Num + 1;
-            $this->Folio = 'VNT0' . $this->Sucursal . $this->idaux; //AGREGAR EL ID DEL USUARIO
+            $this->Folio = 'VNT0' . auth()->user()->empleado->sucursal_id . $this->idaux . auth()->user()->empleado->id; //AGREGAR EL ID DEL USUARIO
             Venta::updateOrCreate(
                 ['Folio' => $this->Folio],
                 [
@@ -39,7 +42,7 @@ class Puntoventa extends Component
             );
         } else {
             $this->idaux = 1;
-            $this->Folio = 'VNT0' . $this->Sucursal . $this->idaux; //AGREGAR EL ID DEL USUARIO //FALTAN DATOS 
+            $this->Folio = 'VNT0' . auth()->user()->empleado->sucursal_id . $this->idaux . auth()->user()->empleado->id; //AGREGAR EL ID DEL USUARIO //FALTAN DATOS 
             Venta::updateOrCreate(
                 ['Folio' => $this->Folio],
                 [
@@ -53,9 +56,10 @@ class Puntoventa extends Component
         if ($this->search) {
             $Prod = Producto::Where('id', $this->search)->first();
             $this->Precio = $Prod->P1;
-            $this->Lotes = Lote::Where([['producto_id', $this->search], ['almacen_id', 1], ['Cantidad', '>', '0']])->get();
+            //ALMACEN VARIABLE
+            $this->Lotes = Lote::Where([['producto_id', $this->search], ['almacen_id', auth()->user()->empleado->sucursal_id], ['Cantidad', '>', '0']])->get();
             if ($this->Lotes) {
-                $CantDisp = Lote::Where([['id', $this->lote]])->first(); //ALMACEN VARIABLE
+                $CantDisp = Lote::Where([['id', $this->lote]])->first();
                 if ($CantDisp) {
                     $this->CD = $CantDisp->Cantidad;
                 }
@@ -74,22 +78,39 @@ class Puntoventa extends Component
         //MODAL COTIZACION
         if ($this->searchCot) {
             //Almacen VARIABLE
-            $this->Cotizaciones = Cotizacion::Where([['Folio', 'like', '%' . $this->searchCot . '%'], ['producto_id', null], ['almacen_id', 1]])
+            $this->Cotizaciones = Cotizacion::Where([['Folio', 'like', '%' . $this->searchCot . '%'], ['producto_id', null], ['almacen_id', auth()->user()->empleado->sucursal_id]])
                 ->orderBy('id', 'desc')->get(); //ALMACEN VARIABLE
         } else {
-            $this->Cotizaciones = Cotizacion::Where([['producto_id', null], ['almacen_id', 1]])->orderBy('id', 'desc')->get();
+            $this->Cotizaciones = Cotizacion::Where([['producto_id', null], ['almacen_id', auth()->user()->empleado->sucursal_id]])->orderBy('id', 'desc')->get();
+        }
+        //MODAL TRASPASO
+        if ($this->searchTRP) {
+            //Almacen VARIABLE
+            $this->Traspasos = Traspaso::Where([['Folio', 'like', '%' . $this->searchTRP . '%'], ['producto_id', null], ['almacenO_id', auth()->user()->empleado->sucursal_id]])
+            ->orWhere([['Folio', 'like', '%' . $this->searchTRP . '%'], ['producto_id', null], ['almacenD_id', auth()->user()->empleado->sucursal_id]])->orderBy('id', 'desc')->get(); //ALMACEN VARIABLE
+        } else {
+            $this->Traspasos = Traspaso::Where([['producto_id', null], ['almacenO_id', auth()->user()->empleado->sucursal_id]])
+            ->orWhere([['producto_id', null], ['almacenD_id', auth()->user()->empleado->sucursal_id]])->orderBy('id', 'desc')->get();
+        }
+        //MODAL CREDITOS
+        if ($this->searchCRED) {
+            //Almacen VARIABLE
+            $this->Creditos = Credito::Where([['Folio', 'like', '%' . $this->searchCRED . '%'], ['sucursal_id', auth()->user()->empleado->sucursal_id]])
+                ->orderBy('id', 'desc')->get(); //ALMACEN VARIABLE
+        } else {
+            $this->Creditos = Credito::Where([['sucursal_id', auth()->user()->empleado->sucursal_id]])->orderBy('id', 'desc')->get();
         }
         //MODAL VENTA
         if ($this->searchVent) {
             //Almacen VARIABLE
-            $this->Ventas = Venta::Where([['Folio', 'like', '%' . $this->searchVent . '%'], ['sucursal_id', 1]])
+            $this->Ventas = Venta::Where([['Folio', 'like', '%' . $this->searchVent . '%'], ['sucursal_id', auth()->user()->empleado->sucursal_id]])
                 ->orderBy('id', 'desc')->get(); //ALMACEN VARIABLE
         } else {
-            $this->Ventas = Venta::Where([['sucursal_id', 1]])->orderBy('id', 'desc')->get();
+            $this->Ventas = Venta::Where([['sucursal_id', auth()->user()->empleado->sucursal_id]])->orderBy('id', 'desc')->get();
         }
         $this->Venta = Venta::Where('Folio', '=', $this->Folio)->orderBy('Aux', 'desc')->first();
         $this->ListaFT =  Venta_Producto::Where([['venta_id', '=', $this->Venta->id], ['producto_id', '!=', 'NULL']])->get();
-        return view('livewire.venta.puntoventa');
+        return view('livewire.Venta.Puntoventa');
     }
     public function abrirModal($MOD)
     {
@@ -113,6 +134,14 @@ class Puntoventa extends Component
                 $this->ModalCobro = true;
                 $this->PAGO = '';
                 $this->FormasP = '';
+                break;
+            case '6':
+                $this->ModalTRP = true;
+                $this->searchTRP = '';
+                break;
+            case '7':
+                $this->ModalCRED = true;
+                $this->searchCRED = '';
                 break;
         }
     }
@@ -139,46 +168,59 @@ class Puntoventa extends Component
                 $this->ModalCobro = false;
                 $this->FP = '';
                 break;
+            case '6':
+                $this->ModalTRP = false;
+                break;
+            case '7':
+                $this->ModalCRED = false;
+                break;
         }
     }
     public function agregarP()
     {
         if ($this->search) {
             $Producto = Producto::Where([['id', $this->search]])->first();
-            if ($this->CD >= $this->Cant) {
-                if ($this->Desc) {
-                    Venta_Producto::updateOrCreate(
-                        [
-                            'Cantidad' => $this->Cant,
-                            'Descuento' => $this->Desc,
-                            'Promo' => $this->Promo,
-                            'Precio' => $Producto->P1,
-                            'producto_id' => $Producto->id,
-                            'venta_id' => $this->Venta->id,
-                            'lote_id' => $this->lote,
-                        ]
-                    );
+            if ($this->lote) {
+                if ($this->CD >= $this->Cant && $this->Cant != 0) {
+                    if ($this->Desc) {
+                        Venta_Producto::updateOrCreate(
+                            [
+                                'Cantidad' => $this->Cant,
+                                'Descuento' => $this->Desc,
+                                'Promo' => $this->Promo,
+                                'Precio' => $Producto->P1,
+                                'producto_id' => $Producto->id,
+                                'venta_id' => $this->Venta->id,
+                                'lote_id' => $this->lote,
+                            ]
+                        );
+                    } else {
+                        Venta_Producto::updateOrCreate(
+                            [
+                                'Cantidad' => $this->Cant,
+                                'Descuento' => 0,
+                                'Promo' => $this->Promo,
+                                'Precio' => $Producto->P1,
+                                'producto_id' => $Producto->id,
+                                'venta_id' => $this->Venta->id,
+                                'lote_id' => $this->lote,
+                            ]
+                        );
+                    }
+                    $this->dispatchBrowserEvent('swal', [
+                        'title' => 'Producto Agregado Exitosamente',
+                        'type' => 'success'
+                    ]);
+                    $this->cerrarModal(1);
                 } else {
-                    Venta_Producto::updateOrCreate(
-                        [
-                            'Cantidad' => $this->Cant,
-                            'Descuento' => 0,
-                            'Promo' => $this->Promo,
-                            'Precio' => $Producto->P1,
-                            'producto_id' => $Producto->id,
-                            'venta_id' => $this->Venta->id,
-                            'lote_id' => $this->lote,
-                        ]
-                    );
+                    $this->dispatchBrowserEvent('swal', [
+                        'title' => 'Producto Sin Stock',
+                        'type' => 'error'
+                    ]);
                 }
-                $this->dispatchBrowserEvent('swal', [
-                    'title' => 'Producto Agregado Exitosamente',
-                    'type' => 'success'
-                ]);
-                $this->cerrarModal(1);
             } else {
                 $this->dispatchBrowserEvent('swal', [
-                    'title' => 'Producto Sin Stock',
+                    'title' => 'Selecciona un Lote',
                     'type' => 'error'
                 ]);
             }
@@ -195,19 +237,18 @@ class Puntoventa extends Component
         $venta = Venta::Where([['Folio', $this->Folio]])->first();
         $Cantidades = Venta_Producto::Where([['venta_id', $venta->id]])->get();
         if ($this->ListaFT != '[]') {
-            if ($this->PAGO) 
-            {
+            if ($this->PAGO) {
                 foreach ($Cantidades as $cantidad) {
                     $TotalC += $cantidad->Cantidad * $cantidad->Precio - $cantidad->Descuento;
                 }
                 $cambio = $this->PAGO - $TotalC;
-                if ($cambio >= 0) {
+                if ($cambio >= 0 || $this->CRED == 'PPD') {
                     if ($this->searchCliente != '') {
                         foreach ($Cantidades as $cantidad) {
                             $CantDisp = Almacen_Producto::Where([['producto_id', $cantidad->producto_id], ['almacen_id', 1]])->first();
                             if ($CantDisp) {
                                 Almacen_Producto::updateOrCreate(
-                                    ['producto_id' => $cantidad->producto_id, 'almacen_id' => 1],
+                                    ['producto_id' => $cantidad->producto_id, 'almacen_id' => auth()->user()->empleado->sucursal_id],
                                     [
                                         'Stock' => $CantDisp->Stock - $cantidad->Cantidad,
                                     ]
@@ -220,20 +261,47 @@ class Puntoventa extends Component
                                 );
                             }
                         }
-                        Venta::updateOrCreate(
-                            ['Folio' => $this->Folio],
-                            [
-                                'Importes' => $TotalC,
-                                'cliente_id' => $this->searchCliente,
-                                'empleado_id' => null, //ID DEL EMPLEADO PENDIENTE
-                                'sucursal_id' => 1,
-                                'forma_id' => $this->FP,
-                            ]
-                        );
-                        $this->dispatchBrowserEvent('swal', [
-                            'title' => 'VENTA COMPLETA <br> CAMBIO:  $' . $cambio,
-                            'type' => 'success'
-                        ]);
+                        if ($this->CRED == 'PPD') {
+                            Venta::updateOrCreate(
+                                ['Folio' => $this->Folio],
+                                [
+                                    'Importes' => $TotalC,
+                                    'cliente_id' => $this->searchCliente,
+                                    'empleado_id' => auth()->user()->empleado->id, //ID DEL EMPLEADO PENDIENTE
+                                    'sucursal_id' => auth()->user()->empleado->sucursal_id,
+                                    'forma_id' => $this->FP,
+                                ]
+                            );
+                            Credito::updateOrCreate(
+                                [
+                                    'Total' => $TotalC,
+                                    'venta_id' => $venta->id,
+                                    'cliente_id' => $this->searchCliente,
+                                    'sucursal_id' => auth()->user()->empleado->sucursal_id,
+                                    'Folio' => $this->Folio,
+                                ]
+                            );
+                            $this->dispatchBrowserEvent('swal', [
+                                'title' => 'VENTA A CREDITO <br> COMPLETA',
+                                'type' => 'success'
+                            ]);
+                        }
+                        if ($this->CRED == 'PUE') {
+                            Venta::updateOrCreate(
+                                ['Folio' => $this->Folio],
+                                [
+                                    'Importes' => $TotalC,
+                                    'cliente_id' => $this->searchCliente,
+                                    'empleado_id' => auth()->user()->empleado->id, //ID DEL EMPLEADO PENDIENTE
+                                    'sucursal_id' => auth()->user()->empleado->sucursal_id,
+                                    'forma_id' => $this->FP,
+                                ]
+                            );
+                            $this->dispatchBrowserEvent('swal', [
+                                'title' => 'VENTA COMPLETA <br> CAMBIO:  $' . $cambio,
+                                'type' => 'success'
+                            ]);
+                        }
                     } else {
                         $this->dispatchBrowserEvent('swal', [
                             'title' => 'Selecciona un Cliente',

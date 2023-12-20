@@ -8,13 +8,13 @@ class CompraController extends Controller
 {
     public function compra()
     {
-      return view('compras.Bcompra');
+      return view('Compras.Bcompra');
     }
     public function rcompra()
     {
-      return view('compras.Rcompra');
+      return view('Compras.Rcompra');
     }
     public function ecompra($id){
-      return view('compras.Ecompra', ['id' => $id]);
+      return view('Compras.Ecompra', ['id' => $id]);
     }
 }

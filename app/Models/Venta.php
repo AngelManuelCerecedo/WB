@@ -24,4 +24,7 @@ class Venta extends Model
     public function Venta_Producto(){
         return $this->hasMany("App\Models\Venta_Producto");
     }
+    public function Credito(){
+        return $this->belongsTo("App\Models\Credito");
+    }
 }

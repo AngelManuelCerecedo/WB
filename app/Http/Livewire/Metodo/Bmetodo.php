@@ -17,7 +17,7 @@ class Bmetodo extends Component
         $metodos = MetodoPago::Where([['Nombre', 'like', '%' . $this->search . '%']])
         ->orWhere([['Clave', 'like', '%' . $this->search . '%']])
         ->paginate($this->cantidad);
-        return view('livewire.metodo.bmetodo',['metodos'=>$metodos]);
+        return view('livewire.Metodo.Bmetodo',['metodos'=>$metodos]);
     }
     public function updatingSearch()
     {

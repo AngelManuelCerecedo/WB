@@ -10,7 +10,7 @@ class Rmarca extends Component
     public $N,$CLV;
     public function render()
     {
-        return view('livewire.marca.rmarca');
+        return view('livewire.Marca.Rmarca');
     }
     public function registrar(){
         Marca::updateOrCreate([

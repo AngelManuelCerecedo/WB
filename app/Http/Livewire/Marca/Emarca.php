@@ -10,7 +10,7 @@ class Emarca extends Component
     public $N,$CLV,$ide;
     public function render()
     {
-        return view('livewire.marca.emarca');
+        return view('livewire.Marca.Emarca');
     }
     public function mount(){
         $cat = Marca::where('id', $this->ide)->first();
