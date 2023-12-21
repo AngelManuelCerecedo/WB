@@ -8,13 +8,13 @@ class ProveedorController extends Controller
 {
   public function proveedor()
   {
-    return view('proveedores.Bproveedor');
+    return view('Proveedores.Bproveedor');
   }
   public function rproveedor()
   {
-    return view('proveedores.Rproveedor');
+    return view('Proveedores.Rproveedor');
   }
   public function eproveedor($id){
-    return view('proveedores.Eproveedor', ['id' => $id]);
+    return view('Proveedores.Eproveedor', ['id' => $id]);
   }
 }

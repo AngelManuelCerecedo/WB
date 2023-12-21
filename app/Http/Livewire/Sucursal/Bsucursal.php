@@ -17,7 +17,7 @@ class Bsucursal extends Component
         $sucursales = Sucursal::Where([['Nombre', 'like', '%' . $this->search . '%']])
         ->orWhere([['Clave', 'like', '%' . $this->search . '%']])
         ->paginate($this->cantidad);
-        return view('livewire.sucursal.bsucursal',['sucursales'=>$sucursales]);
+        return view('livewire.Sucursal.Bsucursal',['sucursales'=>$sucursales]);
     }
     public function updatingSearch()
     {

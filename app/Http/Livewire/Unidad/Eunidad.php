@@ -10,7 +10,7 @@ class Eunidad extends Component
     public $N,$CLV,$ide;
     public function render()
     {
-        return view('livewire.unidad.eunidad');
+        return view('livewire.Unidad.Eunidad');
     }
     public function mount(){
         $cat = UnidadMedida::where('id', $this->ide)->first();

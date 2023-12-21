@@ -1,18 +1,24 @@
 <div>
     @if ($ModalP)
-        @include('livewire.venta.ModalP')
+        @include('livewire.Venta.ModalP')
     @endif
     @if ($ModalC)
-        @include('livewire.venta.ModalC')
+        @include('livewire.Venta.ModalC')
     @endif
     @if ($ModalCOT)
-        @include('livewire.venta.ModalCOT')
+        @include('livewire.Venta.ModalCOT')
     @endif
     @if ($ModalV)
-        @include('livewire.venta.ModalV')
+        @include('livewire.Venta.ModalV')
     @endif
     @if ($ModalCobro)
-        @include('livewire.venta.ModalCobrar')
+        @include('livewire.Venta.ModalCobrar')
+    @endif
+    @if ($ModalTRP)
+        @include('livewire.Venta.ModalTRP')
+    @endif
+    @if ($ModalCRED)
+        @include('livewire.Venta.ModalCRED')
     @endif
     <div class="container mt-14 ml-2">
         <div class="panelPV etiqueta">
@@ -24,7 +30,8 @@
                         </div>
                     </th>
                     <th class="bg-white">
-                        <input type="text" wire:model='Emp' class="inputCB" placeholder="EMPLEADO" disabled="false" />
+                        <input type="text" wire:model='Emp' class="inputCB"
+                            placeholder="{{ auth()->user()->empleado->Nombre }}" disabled="false" />
                     </th>
                     <th class="px-2 bg-white">
                         <div class="etiquetaI">
@@ -105,38 +112,63 @@
                                 </button>
                             </th>
                         </tr>
-                        <tr class="datosT text-center ">
-                            <td class="py-4">
-                                <button class="botonPV" wire:click="abrirModal(1)">
-                                    <img
-                                        src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/lupa.png">
-                                    <p>Productos</p>
-                                </button>
-                            </td>
-                            <td class="">
-                                <button class="botonPV" wire:click="abrirModal(2)">
-                                    <img
-                                        src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/persona.png">
-                                    <p>Clientes</p>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="datosT text-center">
-                            <td class="py-4">
-                                <button class="botonPV " wire:click="abrirModal(3)">
-                                    <img
-                                        src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/recibo.png">
-                                    <p>Cotización</p>
-                                </button>
-                            </td>
-                            <td class="">
-                                <button class="botonPV " wire:click="abrirModal(4)">
-                                    <img
-                                        src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/venta.png">
-                                    <p>Ventas</p>
-                                </button>
-                            </td>
-                        </tr>
+                        @if (auth()->user()->empleado->Rol == 'Mostrador')
+                            <tr class="datosT text-center ">
+                                <td class="py-2">
+                                    <button class="botonPV" wire:click="abrirModal(1)">
+                                        <img
+                                            src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/lupa.png">
+                                        <p>Productos</p>
+                                    </button>
+                                </td>
+                                <td class="">
+                                    <button class="botonPV" wire:click="abrirModal(2)">
+                                        <img
+                                            src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/persona.png">
+                                        <p>Clientes</p>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="datosT text-center">
+                                <td class="py-2">
+                                    <button class="botonPV " wire:click="abrirModal(3)">
+                                        <img
+                                            src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/recibo.png">
+                                        <p>Cotización</p>
+                                    </button>
+                                </td>
+                                <td class="">
+                                    <button class="botonPV " wire:click="abrirModal(4)">
+                                        <img
+                                            src="https://raw.githubusercontent.com/AngelManuelCerecedo/LOGO-CBTIS/main/venta.png">
+                                        <p>Ventas</p>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr class="datosT text-center">
+                                <td class="">
+                                    <button class="botonPV " wire:click="abrirModal(6)">
+                                        <p>Traspasos</p>
+                                    </button>
+                                </td>
+                                <td class="">
+                                    <button class="botonPV " wire:click="abrirModal(7)">
+                                        <p>Creditos</p>
+                                    </button>
+                                </td>
+                            </tr>
+                        @else
+                            <tr class="datosT text-center ">
+                                <td class="py-32">
+                                    <a href="{{ route('Ventas') }}">
+                                        <button class="botonr">
+                                            <i class="bi bi-chevron-left"></i>
+                                            Regresar
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        @endif
                     </table>
                 </div>
             </div>

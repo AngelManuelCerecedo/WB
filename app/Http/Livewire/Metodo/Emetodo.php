@@ -10,7 +10,7 @@ class Emetodo extends Component
     public $N,$CLV,$ide;
     public function render()
     {
-        return view('livewire.metodo.emetodo');
+        return view('livewire.Metodo.Emetodo');
     }
     public function mount(){
         $cat = MetodoPago::where('id', $this->ide)->first();

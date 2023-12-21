@@ -10,7 +10,7 @@ class Esucursal extends Component
     public $ide, $ZN, $CLV, $Nombre, $CP, $FT, $FF, $SF, $TEL, $DIR;
     public function render()
     {
-        return view('livewire.sucursal.esucursal');
+        return view('livewire.Sucursal.Esucursal');
     }
     public function mount(){
         $cat = Sucursal::where('id', $this->ide)->first();

@@ -8,13 +8,13 @@ class SucursalController extends Controller
 {
     public function sucursal()
     {
-      return view('sucursales.Bsucursal');
+      return view('Sucursales.Bsucursal');
     }
     public function rsucursal()
     {
-      return view('sucursales.Rsucursal');
+      return view('Sucursales.Rsucursal');
     }
     public function esucursal($id){
-      return view('sucursales.Esucursal', ['id' => $id]);
+      return view('Sucursales.Esucursal', ['id' => $id]);
     }
 }

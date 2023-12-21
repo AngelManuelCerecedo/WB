@@ -112,7 +112,7 @@
                                                 </div>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $empleado->sucursal_id->Nombre }}</p>
+                                                <p class="text-black whitespace-no-wrap">{{ $empleado->sucursal->Nombre }}</p>
                                             </td>
                                             <td class="px-5 py-3 border border-gray-200">
                                                 {{$empleado->Nombre}} {{$empleado->ApP}} {{$empleado->ApM}}

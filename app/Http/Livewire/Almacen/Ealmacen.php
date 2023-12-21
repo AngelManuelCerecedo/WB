@@ -27,7 +27,7 @@ class Ealmacen extends Component
             ->orWhere([['Clv3', 'like', '%' . $this->search . '%'], ['A' . $this->ide, '=', $this->ide]])
             ->orWhere([['Clv4', 'like', '%' . $this->search . '%'], ['A' . $this->ide, '=', $this->ide]])
             ->paginate($this->cantidad);
-        return view('livewire.almacen.ealmacen', ['productos' => $productos, 'almacen' => $Almacen]);
+        return view('livewire.Almacen.Ealmacen', ['productos' => $productos, 'almacen' => $Almacen]);
     }
     public function updatingSearch()
     {

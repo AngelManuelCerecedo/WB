@@ -17,7 +17,7 @@ class Bforma extends Component
         $formas = FormaPago::Where([['Nombre', 'like', '%' . $this->search . '%']])
         ->orWhere([['Clave', 'like', '%' . $this->search . '%']])
         ->paginate($this->cantidad);
-        return view('livewire.forma.bforma',['formas'=>$formas]);
+        return view('livewire.Forma.Bforma',['formas'=>$formas]);
     }
     public function updatingSearch()
     {

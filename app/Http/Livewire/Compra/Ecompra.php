@@ -50,7 +50,7 @@ class Ecompra extends Component
                 $this->IporP = number_format($aux1, 5);
             }
         }
-        return view('livewire.compra.ecompra', ['Sucursales' => $Sucursales, 'Proveedores' => $Proveedores]);
+        return view('livewire.Compra.Ecompra', ['Sucursales' => $Sucursales, 'Proveedores' => $Proveedores]);
     }
     public function mount()
     {

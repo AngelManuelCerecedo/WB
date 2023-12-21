@@ -25,7 +25,7 @@ class Rcompra extends Component
             $this->idaux = 1;
             $this->Folio = 'COM00' . $this->idaux;
         }
-        return view('livewire.compra.rcompra', ['Sucursales' => $Sucursales, 'Proveedores' => $Proveedores]);
+        return view('livewire.Compra.Rcompra', ['Sucursales' => $Sucursales, 'Proveedores' => $Proveedores]);
     }
     public function registrar()
     {

@@ -22,6 +22,6 @@ class Bcompra extends Component
             $Compras = Compra::Where([['Folio', 'like', '%' . $this->search . '%'],['producto_id',null]])->orderBy('id', 'desc')
             ->paginate($this->cantidad);
         }
-        return view('livewire.compra.bcompra',['compras'=>$Compras]);
+        return view('livewire.Compra.Bcompra',['compras'=>$Compras]);
     }
 }

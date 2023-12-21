@@ -1,4 +1,9 @@
 <div class="container">
+    @if (auth()->user()->empleado->Rol == 'Mostrador')
+        <div class="py-8 ml-32 mt-8">
+        @else
+            <div class="py-8">
+    @endif
     <div class="py-8">
         <div class="flex mb-4">
             <h2 class="text-4xl titulos mr-96">Traspaso</h2>
@@ -51,11 +56,15 @@
                 <div class="ml-12 mt-4 mb-4">
                     <div class="md:flex items-center">
                         <div class="flex flex-col mr-96">
-                            <a href="{{ route('Traspasos') }}">
-                                <button class="botonr">
-                                    <i class="bi bi-chevron-left"></i>
-                                    Regresar
-                                </button>
+                            @if (auth()->user()->empleado->Rol == 'Mostrador')
+                                <a href="{{ route('PuntoVenta') }}">
+                                @else
+                                    <a href="{{ route('Traspasos') }}">
+                            @endif
+                            <button class="botonr">
+                                <i class="bi bi-chevron-left"></i>
+                                Regresar
+                            </button>
                             </a>
                         </div>
                         <div class=" ml-64">

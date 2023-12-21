@@ -27,7 +27,7 @@ class Bempleado extends Component
                 ->orWhere([['ApM', 'like', '%' . $this->search . '%'], ['Estatus', '=', $this->estatus]])
                 ->paginate($this->cantidad);
 
-        return view('livewire.empleado.bempleado', ['empleados' => $empleados]);
+        return view('livewire.Empleado.Bempleado', ['empleados' => $empleados]);
     }
     public function updatingSearch()
     {

@@ -17,7 +17,7 @@ class Bmarca extends Component
         $marcas = Marca::Where([['Nombre', 'like', '%' . $this->search . '%']])
             ->orWhere([['Clave', 'like', '%' . $this->search . '%']])
             ->paginate($this->cantidad);
-        return view('livewire.marca.bmarca', ['marcas' => $marcas]);
+        return view('livewire.Marca.Bmarca', ['marcas' => $marcas]);
     }
     public function updatingSearch()
     {

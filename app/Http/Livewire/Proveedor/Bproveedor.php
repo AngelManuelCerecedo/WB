@@ -29,7 +29,7 @@ class Bproveedor extends Component
                 ->orWhere([['NEMP', 'like', '%' . $this->search . '%'], ['Estatus', '=', $this->estatus]])
                 ->paginate($this->cantidad);
 
-        return view('livewire.proveedor.bproveedor', ['proveedores' => $proveedores]);
+        return view('livewire.Proveedor.Bproveedor', ['proveedores' => $proveedores]);
     }
     public function updatingSearch()
     {

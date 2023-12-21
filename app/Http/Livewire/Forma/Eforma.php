@@ -10,7 +10,7 @@ class Eforma extends Component
     public $N,$CLV,$ide;
     public function render()
     {
-        return view('livewire.forma.eforma');
+        return view('livewire.Forma.Eforma');
     }
     public function mount(){
         $cat = FormaPago::where('id', $this->ide)->first();

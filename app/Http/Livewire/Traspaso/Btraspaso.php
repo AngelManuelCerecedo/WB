@@ -24,7 +24,7 @@ class Btraspaso extends Component
             $traspasos = Traspaso::Where([['Folio', 'like', '%' . $this->search . '%'],['producto_id',null]])->orderBy('id', 'desc')
             ->paginate($this->cantidad);
         }
-        return view('livewire.traspaso.btraspaso', ['traspasos'=>$traspasos, 'Sucursales'=> $Sucursales]);
+        return view('livewire.Traspaso.Btraspaso', ['traspasos'=>$traspasos, 'Sucursales'=> $Sucursales]);
     }
     public function updatingSearch()
     {

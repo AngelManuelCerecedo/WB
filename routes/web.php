@@ -7,6 +7,7 @@ use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\CotizacionController;
+use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\FormasController;
 use App\Http\Controllers\MarcasController;
@@ -33,12 +34,27 @@ use App\Models\Sucursal;
 */
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('auth.login');
 });
 
-Route::get('/Home', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard', ['userid' => auth()->user()]);
+    })->name('dashboard');
+});
+
+
+// Route::get('/', function () {
+//     return view('dashboard');
+// });
+
+// Route::get('/Home', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 //MODULO CATALOGOS
 //PROVEEDORES
@@ -114,6 +130,10 @@ Route::get('Cotizaciones', [CotizacionController::class, 'cotizacion'])->name('C
 Route::get('Cotizaciones/Registro', [CotizacionController::class, 'rcotizacion'])->name('RCotizacion');
 Route::get('Cotizaciones/Editar/{id}', [CotizacionController::class, 'ecotizacion'])->name('ECotizacion');
 
+//CREDITOS
+Route::get('Creditos', [CreditoController::class, 'credito'])->name('Creditos');
+Route::get('Credito/Editar/{id}', [CreditoController::class, 'ecredito'])->name('ECredito');
+
 //VENTAS
 Route::get('Ventas', [VentaController::class, 'venta'])->name('Ventas');
 Route::get('Ventas/Registro', [VentaController::class, 'rventa'])->name('RVenta');
@@ -123,6 +143,9 @@ Route::get('Ventas/PuntoVenta/RCliente', [VentaController::class, 'pventarclient
 Route::get('Ventas/PuntoVenta/RCotizacion', [VentaController::class, 'pventarcotizacion'])->name('PuntoVentaRCotizacion');
 Route::get('Ventas/PuntoVenta/Cotizaciones/Editar/{id}', [VentaController::class, 'pventaecotizacion'])->name('PECotizacion');
 Route::get('Ventas/PuntoVenta/Ventas/Editar/{id}', [VentaController::class, 'pventaeventa'])->name('PEVenta');
+Route::get('Ventas/PuntoVenta/RTraspaso', [VentaController::class, 'pventatraspaso'])->name('PuntoVentaRTraspaso');
+Route::get('Ventas/PuntoVenta/Traspasos/Editar/{id}', [VentaController::class, 'pventaetraspaso'])->name('PETraspaso');
+Route::get('Ventas/PuntoVenta/Creditos/Editar/{id}', [VentaController::class, 'pventaecredito'])->name('PECredito');
 
 //ROLES
 Route::get('roles', [RoleController::class, 'roles'])->name('Roles');

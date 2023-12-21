@@ -10,7 +10,7 @@ class Rcliente extends Component
     public $NomRF,$ParenRF,$TelRF,$DomRF,$TC,$CC,$NCOM,$DomF,$RF,$CFDI,$TP, $RFC, $STS, $NM, $N, $ApP, $ApM, $Cel, $Tel, $CE, $CP, $EST, $MUN, $COL, $CALLE, $NEXT, $NINT, $REF, $LIMC;
     public function render()
     {
-        return view('livewire.cliente.rcliente');
+        return view('livewire.Cliente.Rcliente');
     }
     public function registrar(){
         Cliente::updateOrCreate([

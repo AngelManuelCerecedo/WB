@@ -16,7 +16,7 @@ class Balmacen extends Component
     {
         $almacenes = Almacen::Where([['Nombre', 'like', '%' . $this->search . '%']])
         ->paginate($this->cantidad);
-        return view('livewire.almacen.balmacen',['almacenes'=>$almacenes]);
+        return view('livewire.Almacen.Balmacen',['almacenes'=>$almacenes]);
     }
     public function updatingSearch()
     {

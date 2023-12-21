@@ -22,7 +22,7 @@ class Rproducto extends Component
         $UNIDAD = UnidadMedida::all();
         $MARCA = Marca::all();
         $PROVEEDOR = Proveedor::all();
-        return view('livewire.producto.rproducto', ['cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR]);
+        return view('livewire.Producto.Rproducto', ['cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR]);
     }
     public function registrar()
     {

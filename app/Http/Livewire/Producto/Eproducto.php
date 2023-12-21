@@ -25,7 +25,7 @@ class Eproducto extends Component
         $UNIDAD = UnidadMedida::all();
         $MARCA = Marca::all();
         $PROVEEDOR = Proveedor::all();
-        return view('livewire.producto.eproducto', ['cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR]);
+        return view('livewire.Producto.Eproducto', ['cat' => $CAT, 'unidades' => $UNIDAD, 'marcas' => $MARCA, 'provs' => $PROVEEDOR]);
     }
     public function mount()
     {

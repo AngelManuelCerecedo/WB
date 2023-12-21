@@ -12,7 +12,7 @@ class Eempleado extends Component
     public function render()
     {
         $Suc = Sucursal::all();
-        return view('livewire.empleado.eempleado', ['sucursales' => $Suc]);
+        return view('livewire.Empleado.Eempleado', ['sucursales' => $Suc]);
     }
     public function mount()
     {

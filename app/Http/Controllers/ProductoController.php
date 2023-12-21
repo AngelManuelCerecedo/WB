@@ -8,13 +8,13 @@ class ProductoController extends Controller
 {
     public function producto()
     {
-      return view('productos.Bproducto');
+      return view('Productos.Bproducto');
     }
     public function rproducto()
     {
-      return view('productos.Rproducto');
+      return view('Productos.Rproducto');
     }
     public function eproducto($id){
-      return view('productos.Eproducto', ['id' => $id]);
+      return view('Productos.Eproducto', ['id' => $id]);
     }
 }

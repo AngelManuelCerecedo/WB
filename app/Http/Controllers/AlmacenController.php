@@ -8,13 +8,13 @@ class AlmacenController extends Controller
 {
     public function almacen()
     {
-      return view('almacenes.Balmacen');
+      return view('Almacenes.Balmacen');
     }
     public function ralmacen($id)
     {
-      return view('almacenes.Ralmacen', ['id' => $id]);
+      return view('Almacenes.Ralmacen', ['id' => $id]);
     }
     public function ealmacen($id){
-      return view('almacenes.Ealmacen', ['id' => $id]);
+      return view('Almacenes.Ealmacen', ['id' => $id]);
     }
 }

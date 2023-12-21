@@ -8,13 +8,13 @@ class FormasController extends Controller
 {
     public function forma()
     {
-      return view('formas.Bforma');
+      return view('Formas.Bforma');
     }
     public function rforma()
     {
-      return view('formas.Rforma');
+      return view('Formas.Rforma');
     }
     public function eforma($id){
-      return view('formas.Eforma', ['id' => $id]);
+      return view('Formas.Eforma', ['id' => $id]);
     }
 }
