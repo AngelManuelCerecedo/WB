@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ClienteController extends Controller
 {
@@ -24,6 +24,6 @@ class ClienteController extends Controller
         $clientes = Cliente::all();
         $pdf = PDF::loadView('pdfs.Listado', ['clientes' => $clientes, 'aux' => true]);
         $pdf->setPaper('letter','landscape');
-        return $pdf->download('Clientes.pdf');
+        return $pdf->stream('Clientes.pdf');
     }
 }
