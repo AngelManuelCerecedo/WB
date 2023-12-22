@@ -18,6 +18,7 @@ use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TraspasoController;
 use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\VentaController;
+use App\Models\Cliente;
 use App\Models\Empleado;
 use App\Models\Sucursal;
 
@@ -153,3 +154,6 @@ Route::get('roles/Registro', [RoleController::class, 'rroles'])->name('RRoles');
 Route::post('roles/RegistroRol', [RoleController::class, 'store'])->name('GRoles');
 Route::get('roles/Editar/{id}', [RoleController::class, 'eroles'])->name('ERoles');
 Route::put('roles/Update', [RoleController::class, 'update'])->name('URoles');
+
+//PDF's
+Route::get('Reporte/Clientes', [ClienteController::class, 'PDF'])->name('ListaClientes');

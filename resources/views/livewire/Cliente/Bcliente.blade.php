@@ -29,7 +29,7 @@
                         </a>
                     </div>
                     <div class="ml-4">
-                        <a href="{{ route('Clientes') }}">
+                        <a href="{{ route('ListaClientes') }}">
                             <button class="botond">
                                 <i class="bi bi-download"></i>
                                 <span class="ml-4 ">Descargar</span>

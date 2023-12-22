@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\PDF;
 
 class ClienteController extends Controller
 {
@@ -16,5 +18,12 @@ class ClienteController extends Controller
     }
     public function ecliente($id){
       return view('Clientes.Ecliente', ['id' => $id]);
+    }
+    public function PDF()
+    {
+        $clientes = Cliente::all();
+        $pdf = PDF::loadView('pdfs.Listado', ['clientes' => $clientes, 'aux' => true]);
+        $pdf->setPaper('letter','landscape');
+        return $pdf->download('Clientes.pdf');
     }
 }
