@@ -13,7 +13,7 @@
 
     .t1 {
         font-family: 'Raleway', sans-serif;
-        font-size: 30px;
+        font-size: 25px;
 
         font-weight: bold;
     }
@@ -26,21 +26,21 @@
 
     .ttt {
         font-family: 'Raleway', sans-serif;
-        font-size: 16px;
+        font-size: 12px;
         text-align: left;
         height: 15px;
     }
 
     .tt1 {
         font-family: 'Raleway', sans-serif;
-        font-size: 14px;
+        font-size: 12px;
         text-align: left;
         background-color:  rgb(223, 239, 247)
         height: 10px;
     }
     .tt2 {
         font-family: 'Raleway', sans-serif;
-        font-size: 14px;
+        font-size: 12px;
         text-align: left;
         background-color: white;
         height: 10px;

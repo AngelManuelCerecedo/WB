@@ -23,7 +23,7 @@ class ClienteController extends Controller
     {
         $clientes = Cliente::all();
         $pdf = PDF::loadView('pdfs.Listado', ['clientes' => $clientes, 'aux' => true]);
-        $pdf->setPaper('letter','landscape');
+        $pdf->setPaper('A4','portrait');
         return $pdf->stream('Clientes.pdf');
     }
 }

@@ -152,10 +152,12 @@
                         </a>
                     </div>
                     <div class="ml-10">
-                        <button class="botonCP" wire:click="ingresar()">
-                            <i class="bi bi-receipt"></i>
-                            Imprimir Ticket
-                        </button>
+                        <a href="{{ route('Ticket', [$ide]) }}" target="_blank">
+                            <button class="botonCP">
+                                <i class="bi bi-receipt"></i>
+                                Imprimir Ticket
+                            </button>
+                        </a>
                     </div>
                     <div class="ml-10 ">
                         <button class="botonRC" wire:click="rechazar()">
