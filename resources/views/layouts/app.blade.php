@@ -37,7 +37,7 @@
                 <i class="bi bi-person-circle inconP"></i>
                 <li>
                     <a href="#">
-                        {{auth()->user()->email}}
+                        {{ auth()->user()->email }}
                     </a>
                     <ul class="menu-vertical">
                         <form method="POST" action="{{ route('logout') }}" x-data>
@@ -49,7 +49,7 @@
                                 </x-jet-dropdown-link>
                             </div>
                         </form>
-                    </ul> 
+                    </ul>
                 </li>
                 <i class="bi bi-caret-down-fill down"></i>
             </ul>
@@ -72,7 +72,7 @@
                     <i class="bi bi-person-circle"></i>
                 </div>
                 <div class="mt-2 ml-2">
-                    {{auth()->user()->empleado->Nombre}}<br />{{auth()->user()->empleado->Rol}}<br>{{auth()->user()->empleado->sucursal->Nombre}}
+                    {{ auth()->user()->empleado->Nombre }}<br />{{ auth()->user()->empleado->Rol }}<br>{{ auth()->user()->empleado->sucursal->Nombre }}                    
                 </div>
             </div>
             <!-- LINEA -->

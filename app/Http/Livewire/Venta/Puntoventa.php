@@ -15,6 +15,7 @@ use App\Models\Venta;
 use App\Models\Venta_Producto;
 use Livewire\Component;
 
+
 class Puntoventa extends Component
 {
     public $Folio, $Estatus = 'Registro', $idaux, $Productos, $Cant, $search, $Desc, $Promo, $Precio = 0, $ListaFT, $Total = 0;
@@ -325,4 +326,5 @@ class Puntoventa extends Component
             }
         }
     }
+
 }
