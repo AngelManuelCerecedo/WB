@@ -160,7 +160,7 @@
                         </a>
                     </div>
                     <div class="ml-10 ">
-                        <button class="botonRC" wire:click="rechazar()">
+                        <button class="botonRC" wire:click="Facturar()">
                             <i class="bi bi-file-earmark-ruled"></i>
                             Realizar Factura
                         </button>

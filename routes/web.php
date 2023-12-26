@@ -158,3 +158,5 @@ Route::put('roles/Update', [RoleController::class, 'update'])->name('URoles');
 //PDF's
 Route::get('Reporte/Clientes', [ClienteController::class, 'PDF'])->name('ListaClientes');
 Route::get('Reporte/Ventas/ticket/{id}', [VentaController::class, 'ticket'])->name('Ticket');
+
+
