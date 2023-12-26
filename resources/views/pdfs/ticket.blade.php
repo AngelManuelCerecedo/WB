@@ -61,7 +61,7 @@
         font-family: 'Raleway', sans-serif;
         font-size: 12px;
         text-align: left;
-        margin-left: 190px;
+        margin-left: 160px;
         margin-top: 5px
     }
 

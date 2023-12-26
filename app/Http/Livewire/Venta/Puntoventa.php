@@ -295,6 +295,7 @@ class Puntoventa extends Component
                                     'empleado_id' => auth()->user()->empleado->id, //ID DEL EMPLEADO PENDIENTE
                                     'sucursal_id' => auth()->user()->empleado->sucursal_id,
                                     'forma_id' => $this->FP,
+                                    'Recibe' => $this->PAGO,
                                 ]
                             );
                             $this->dispatchBrowserEvent('swal', [
