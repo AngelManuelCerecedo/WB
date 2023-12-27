@@ -54,7 +54,6 @@ class VentaController extends Controller
   }
   public function ticket($id)
   {
-    //$Cot = Cotizacion::Where('Folio', '=', $this->Folio)->first();
       $productos = Venta_Producto::Where('venta_id',$id)->get();
       $venta = Venta::Where('id',$id)->first();
       $pdf = PDF::loadView('pdfs.ticket', ['productos' => $productos, 'venta' => $venta]);

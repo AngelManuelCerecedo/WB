@@ -18,9 +18,6 @@ use App\Http\Controllers\SucursalController;
 use App\Http\Controllers\TraspasoController;
 use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\VentaController;
-use App\Models\Cliente;
-use App\Models\Empleado;
-use App\Models\Sucursal;
 
 
 /*
@@ -37,7 +34,6 @@ use App\Models\Sucursal;
 Route::get('/', function () {
     return view('auth.login');
 });
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -47,15 +43,6 @@ Route::middleware([
         return view('dashboard', ['userid' => auth()->user()]);
     })->name('dashboard');
 });
-
-
-// Route::get('/', function () {
-//     return view('dashboard');
-// });
-
-// Route::get('/Home', function () {
-//     return view('dashboard');
-// })->name('dashboard');
 
 //MODULO CATALOGOS
 //PROVEEDORES
