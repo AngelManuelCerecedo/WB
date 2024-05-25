@@ -28,4 +28,7 @@ class Empleado extends Model
     public function usuario(){
         return $this->hasOne("App\Models\User");
     }
+    public function ActExt(){
+        return $this->hasMany("App\Models\Actualizacion_Existencias");
+    }
 }

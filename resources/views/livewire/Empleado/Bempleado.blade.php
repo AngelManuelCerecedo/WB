@@ -78,7 +78,7 @@
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('EEmpleado', [$empleado->id]) }}">
-                                                            <button class="botonm ml-6">
+                                                            <button class="botonm">
                                                                 <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                                 <span class="ml-2 ">Detalles</span>
                                                             </button>
@@ -103,7 +103,7 @@
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('EEmpleado', [$empleado->id]) }}">
-                                                            <button class="botonm ml-6">
+                                                            <button class="botonm">
                                                                 <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                                 <span class="ml-2 ">Detalles</span>
                                                             </button>

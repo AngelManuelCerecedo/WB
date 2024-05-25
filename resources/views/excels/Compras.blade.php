@@ -1,0 +1,24 @@
+<table>
+    <thead>
+        <tr>
+            <th>Folio</th>
+            <th>Proveedor</th>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Estatus</th>
+            <th>Importe</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($compras as $compra)
+            <tr>
+                <th>{{$compra->Folio}}</th>
+                <th>{{$compra->proveedor->NEMP}}</th>
+                <th>{{$compra->created_at->format('d/m/Y')}}</th>
+                <th>{{$compra->TipoC}}</th>
+                <th>{{$compra->Estatus}}</th>
+                <th>{{$compra->ImporteTot}}</th>
+            </tr>
+        @endforeach
+    </tbody>
+</table>

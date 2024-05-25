@@ -21,11 +21,12 @@
                                 <option value="Distribucion">Distribucion</option>
                             </select>
                         </div>
-                        <div class="flex flex-col mr-16">
+                        <div class="flex flex-col">
                             <label class="etiqueta">Clasificación del Cliente</label>
                             <select wire:model='CC' class="inputS">
                                 <option value="">Seleccione una Opción</option>
                                 <option value="Hospital">Hospital</option>
+                                <option value="Ambulatorio">Ambulatorio</option>
                                 <option value="Medico General">Medico General</option>
                                 <option value="Persona">Persona</option>
                                 <option value="Clinica">Clinica</option>
@@ -34,6 +35,16 @@
                                 <option value="Gobierno">Gobierno</option>
                                 <option value="Distribuidor">Distribuidor</option>
                             </select>
+                        </div>
+                        <div class="flex flex-col ml-10 mt-6">
+                            <a href="{{ route('ImpEstado', [$ide]) }}"  target="_blank">
+                                <button class="botonImp">
+                                    <strong>
+                                    <i class="text-black bi bi-printer"></i>
+                                    <label class="text-black"> Cuenta</label>
+                                    </strong>
+                                </button>
+                            </a>
                         </div>
                     </div>
                     <div class="md:flex items-center mt-6">
@@ -73,6 +84,8 @@
                                 </option>
                                 <option value="623">623 - Opcional para Grupos de Sociedades</option>
                                 <option value="624">624 - Coordinados</option>
+                                <option value="625">625 - Régimen de las actividades empresariales con ingresos a través de plataformas tecnológicas</option>
+                                <option value="626">626 - Regimen simplificado de confianza</option>
                                 <option value="628">628 - Hidrocarburos</option>
                                 <option value="607">607 - Régimen en Enajenación o Adquisición de Bienes</option>
                                 <option value="629">629 - De los Regímenes Fiscales Preferentes y de las

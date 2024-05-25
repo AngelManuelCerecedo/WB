@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+<link rel="icon" href="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-ICONO.ico">
 <div class="bg-gray-100 flex justify-center items-center h-screen">
     <!-- Left: Image -->
     <div class="w-.5 h-screen hidden lg:block">

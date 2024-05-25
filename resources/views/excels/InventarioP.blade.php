@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <th>CodigoB</th>
+            <th>Nombre</th>
+            <th>Marca</th>
+            <th>Lotes</th>
+            <th>Cantidades</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($productos as $producto)
+            <tr>
+                <th>{{$producto->CodigoB}}</th>
+                <th>{{$producto->Nombre}}</th>
+                <th>{{$producto->marca->Nombre}}</th>
+                <th></th>
+                <th></th>
+            </tr>
+        @endforeach
+    </tbody>
+</table>

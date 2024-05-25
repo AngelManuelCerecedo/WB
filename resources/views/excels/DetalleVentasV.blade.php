@@ -1,0 +1,24 @@
+<table>
+    <thead>
+        <tr>
+            <td>Nombre</td>
+            <td>Sucursal</td>
+            <td>Cantidad</td>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach ($sucursales as $sucursal)
+                <tr>
+                    <td>
+                        {{$sucursal->nombre_producto}}
+                    </td>
+                    <td>
+                        {{$sucursal->nombre_sucursal}}
+                    </td>
+                    <td>
+                        {{$sucursal->cantidad_total}}
+                    </td>
+                </tr>
+            @endforeach
+    </tbody>
+</table>

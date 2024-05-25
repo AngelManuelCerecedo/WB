@@ -26,6 +26,7 @@
                             <select wire:model='CC' class="inputS">
                                 <option value="">Seleccione una Opción</option>
                                 <option value="Hospital">Hospital</option>
+                                <option value="Ambulatorio">Ambulatorio</option>
                                 <option value="Medico General">Medico General</option>
                                 <option value="Persona">Persona</option>
                                 <option value="Clinica">Clinica</option>
@@ -73,6 +74,8 @@
                                 </option>
                                 <option value="623">623 - Opcional para Grupos de Sociedades</option>
                                 <option value="624">624 - Coordinados</option>
+                                <option value="625">625 - Régimen de las actividades empresariales con ingresos a través de plataformas tecnológicas</option>
+                                <option value="626">626 - Regimen simplificado de confianza</option>
                                 <option value="628">628 - Hidrocarburos</option>
                                 <option value="607">607 - Régimen en Enajenación o Adquisición de Bienes</option>
                                 <option value="629">629 - De los Regímenes Fiscales Preferentes y de las

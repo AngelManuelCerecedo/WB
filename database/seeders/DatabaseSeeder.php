@@ -25,8 +25,5 @@ class DatabaseSeeder extends Seeder
         Marca::factory(10)->create();
         $this->call(FormaPagoSeeder::class);
         $this->call(MetodoPagoSeeder::class);
-        $this->call(UnidadMedidaSeeder::class);
-        $this->call(SucursalSeeder::class);
-        $this->call(AlmacenSeeder::class);
     }
 }

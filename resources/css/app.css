@@ -77,7 +77,7 @@ nav{
     padding: 2px 15px ;
 }
 .contentm{
-    margin-left: 270px;   
+    margin-left: 270px;
 }
 body::-webkit-scrollbar{
     width: 7px;
@@ -107,7 +107,7 @@ body::-webkit-scrollbar-thumb{
     overflow-y: auto;
     /* make the table scrollable if height is more than 200 px  */
     height: 245px;
-    width: 1000px;
+    width: 1200px;
     border-color: #000000;
     border-bottom: #000000;
     /* gives an initial height of 200px to the table */
@@ -185,6 +185,20 @@ body::-webkit-scrollbar-thumb{
     width: 200px;
     height: 38px;
 }
+.impresion{
+    background-color: #eba037;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
+.botonImp{
+    background-color: #FFD900;
+    font-family: 'Open Sans', sans-serif;
+    width: 100px;
+    height: 35px;
+}
 .botonCP{
     background-color: #1C75C7;
     color: #ffffff;
@@ -199,6 +213,22 @@ body::-webkit-scrollbar-thumb{
     font-family: 'Open Sans', sans-serif;
     border-radius: 3px;
     width: 200px;
+    height: 38px;
+}
+.botonKar{
+    background-color: #10ab2a;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 150px;
+    height: 38px;
+}
+.btonHist{
+    background-color: #008fac;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 150px;
     height: 38px;
 }
 .botonL{

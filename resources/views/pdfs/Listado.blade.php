@@ -69,6 +69,7 @@
             <td ><strong>TIPO CLIENTE</strong></td>
             <td ><strong>CELULAR</strong></td>
             <td ><strong>CORREO</strong></td>
+            <td ><strong>TOTAL DE COMPRAS</strong></td>
         </tr>
     </thead>
     <tbody>
@@ -98,6 +99,9 @@
                     <td >
                         {{ $cliente->Correo }}
                     </td>
+                    <td >
+                        {{ $cliente->total_ventas }}
+                    </td>
                 </tr>
                 <var {{$aux = false}}></var>
             @else
@@ -124,6 +128,9 @@
                     </td>
                     <td >
                         {{ $cliente->Correo }}
+                    </td>
+                    <td >
+                        {{ $cliente->total_ventas }}
                     </td>
                 </tr>
                 <var {{$aux = true}}></var>

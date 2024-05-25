@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Empleado;
 
 use App\Models\Empleado;
 use App\Models\Sucursal;
+use App\Models\User;
 use Livewire\Component;
 
 class Eempleado extends Component
@@ -76,6 +77,13 @@ class Eempleado extends Component
                 'Estatus' => $this->Estatus,
             ]
         );
+        User::updateOrCreate(
+            ['empleado_id'=> $this->ide],
+            [
+                'email' => $this->Usu,
+                'password' => encrypt($this->Pwd),
+                'estatus' => $this->Estatus,
+        ]);
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Registro guardado exitosamente',
             'type' => 'success'

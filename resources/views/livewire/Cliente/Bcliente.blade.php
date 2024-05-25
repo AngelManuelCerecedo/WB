@@ -1,5 +1,9 @@
 <div class="container bg-[#d9e0e7]">
-    <div class="py-8">
+        @if (auth()->user()->empleado->Rol == 'Mostrador')
+        <div class="py-8 ml-32 mt-8">
+        @else
+            <div class="py-8">
+    @endif
         <div class="flex mb-4">
             <h2 class="text-4xl titulos mr-96">Clientes</h2>
             <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Catálogos <i
@@ -21,20 +25,31 @@
                         </select>
                     </div>
                     <div class="ml-72">
-                        <a href="{{ route('RClientes') }}">
-                            <button class="boton">
-                                <i class="bi bi-plus-lg text-lg"></i>
-                                <span class="ml-2">Nuevo Cliente</span>
-                            </button>
-                        </a>
+                        @if (auth()->user()->empleado->Rol == 'Mostrador')
+                            <a href="{{ route('PuntoVentaRcliente') }}">
+                                <button class="boton">
+                                    <i class="bi bi-plus-lg text-lg"></i>
+                                    <span class="ml-2">Nuevo Cliente</span>
+                                </button>
+                            </a>
+                        @else
+                            <a href="{{ route('RClientes') }}">
+                                <button class="boton">
+                                    <i class="bi bi-plus-lg text-lg"></i>
+                                    <span class="ml-2">Nuevo Cliente</span>
+                                </button>
+                            </a>
+                        @endif
                     </div>
                     <div class="ml-4">
-                        <a href="{{ route('ListaClientes') }}" target="_blank">
-                            <button class="botond">
-                                <i class="bi bi-download"></i>
-                                <span class="ml-4 ">Descargar</span>
-                            </button>
-                        </a>
+                        @if (auth()->user()->empleado->Rol != 'Mostrador')
+                            <a href="{{ route('ListaClientes') }}" target="_blank">
+                                <button class="botond">
+                                    <i class="bi bi-download"></i>
+                                    <span class="ml-4 ">Descargar</span>
+                                </button>
+                            </a>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -45,19 +60,19 @@
                             <thead class="etiqueta">
                                 <tr>
                                     <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
+                                        class="px-12 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Acciones
                                     </th>
                                     <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
+                                        class="px-16 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         RFC
                                     </th>
                                     <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
+                                        class=" py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
                                         Nombre
                                     </th>
                                     <th
-                                        class="px-5 py-1 border border-gray-200 bg-gray-100 text-left font-[Raleway]-semibold text-black  tracking-wider ">
+                                        class="px-16 py-1 border border-gray-200 bg-gray-100 text-left font-[Raleway]-semibold text-black  tracking-wider ">
                                         Tipo
                                     </th>
                                 </tr>
@@ -66,7 +81,7 @@
                                 @foreach ($clientes as $cliente)
                                     @if ($aux)
                                         <tr class="datosT">
-                                            <td class="px-5 py-2 border border-gray-200 bg-white">
+                                            <td class="py-2 border border-gray-200 bg-white">
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('ECliente', [$cliente->id]) }}">
@@ -78,25 +93,25 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $cliente->RFC }}</p>
+                                            <td class="py-3 border border-gray-200 bg-white">
+                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->RFC }}</p>
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
+                                            <td class="py-3 border border-gray-200 bg-white">
                                                 @if ($cliente->TipoP == 'Moral')
-                                                    <p>{{ $cliente->NomCom }}</p>
+                                                    <p class="ml-2">{{ $cliente->NomCom }}</p>
                                                 @else
-                                                    <p>{{ $cliente->Nombre }} {{ $cliente->ApP }}
+                                                    <p class="ml-2">{{ $cliente->Nombre }} {{ $cliente->ApP }}
                                                         {{ $cliente->ApM }}</p>
                                                 @endif
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black whitespace-no-wrap">{{ $cliente->TipoP }}</p>
+                                            <td class="py-3 border border-gray-200 bg-white ">
+                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->TipoP }}</p>
                                             </td>
                                         </tr>
                                         <var {{$aux = false}}/>
                                     @else
                                         <tr class="datosT bg-gray-100">
-                                            <td class="px-5 py-2 border border-gray-200">
+                                            <td class=" py-2 border border-gray-200">
                                                 <div class="flex">
                                                     <div class="flex-shrink-0 w-10 h-10">
                                                         <a href="{{ route('ECliente', [$cliente->id]) }}">
@@ -108,19 +123,19 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $cliente->RFC }}</p>
+                                            <td class="py-3 border border-gray-200">
+                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->RFC }}</p>
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200">
+                                            <td class="py-3 border border-gray-200">
                                                 @if ($cliente->TipoP == 'Moral')
-                                                    <p>{{ $cliente->NomCom }}</p>
+                                                    <p class="ml-2">{{ $cliente->NomCom }}</p>
                                                 @else
-                                                    <p>{{ $cliente->Nombre }} {{ $cliente->ApP }}
+                                                    <p class="ml-2">{{ $cliente->Nombre }} {{ $cliente->ApP }}
                                                         {{ $cliente->ApM }}</p>
                                                 @endif
                                             </td>
-                                            <td class="px-5 py-3 border border-gray-200">
-                                                <p class="text-black whitespace-no-wrap">{{ $cliente->TipoP }}</p>
+                                            <td class="py-3 border border-gray-200">
+                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->TipoP }}</p>
                                             </td>
                                         </tr>
                                         <var {{ $aux = true }}/>

@@ -32,15 +32,16 @@
     }
 
     .tt1 {
+        width: 100px;
         font-family: 'Raleway', sans-serif;
-        font-size: 14px;
+        font-size: 13px;
         text-align: left;
-        background-color:  rgb(223, 239, 247)
-        height: 10px;
+        background-color: rgb(223, 239, 247) height: 10px;
     }
+
     .tt2 {
         font-family: 'Raleway', sans-serif;
-        font-size: 14px;
+        font-size: 13px;
         text-align: left;
         background-color: white;
         height: 10px;
@@ -63,69 +64,95 @@
 <table style="width: 100%;">
     <thead class="ttt">
         <tr>
-            <td ><strong>CODIGO</strong></td>
-            <td ><strong>NOMBRE</strong></td>
-            <td ><strong>MARCA</strong></td>
-            <td ><strong>EXISTENCIAS SISTEMA</strong></td>
-            <td ><strong>EXISTENCIAS FISICO</strong></td>
+            <td><strong>Nombre del Producto</strong></td>
+            <td ><strong>Codigo de Barras</strong></td>
+            <td><strong>Clave Cuadro Basico</strong></td>
+            <td><strong>Clave SAT</strong></td>
+            <td><strong>Marca</strong></td>
+            <td><strong>Categoria</strong></td>
+            <td><strong>Unidad Medida</strong></td>
+            <td><strong>Precio Base</strong></td>
+            <td><strong>Primera Escala</strong></td>
+            <td><strong>Segunda Escala</strong></td>
+            <td><strong>Tercera Escala</strong></td>
         </tr>
     </thead>
     <tbody>
-        @foreach ($clientes as $cliente)
+        @foreach ($Productos as $producto)
             @if ($aux)
                 <tr class="tt1">
-                    <td >
-                        {{ $cliente->RFC }}
+                    <td>
+                        {{ $producto->Nombre }}
                     </td>
-                    <td >
-                        @if ($cliente->TipoP == 'Moral')
-                            {{ $cliente->NomCom }}
-                        @else
-                            {{ $cliente->Nombre }} {{ $cliente->ApP }}
-                            {{ $cliente->ApM }}
-                        @endif
+                    <td>
+                        {{ $producto->CodigoB }}
                     </td>
-                    <td >
-                        {{ $cliente->TipoP }}
+                    <td>
+                        {{ $producto->Clv1 }}
                     </td>
-                    <td >
-                        {{ $cliente->TipoC }}
+                    <td>
+                        {{ $producto->Clv2 }}
                     </td>
-                    <td >
-                        {{ $cliente->Cel }}
+                    <td>
+                        {{ $producto->marca->Nombre }}
                     </td>
-                    <td >
-                        {{ $cliente->Correo }}
+                    <td>
+                        {{ $producto->categoria->Nombre }}
+                    </td>
+                    <td>
+                        {{ $producto->unidad->Nombre }}
+                    </td>
+                    <td>
+                        {{ $producto->Precio }}
+                    </td>
+                    <td>
+                        {{ $producto->P1 }}
+                    </td>
+                    <td>
+                        {{ $producto->P2 }}
+                    </td>
+                    <td>
+                        {{ $producto->P3 }}
                     </td>
                 </tr>
-                <var {{$aux = false}}></var>
+                <var {{ $aux = false }}></var>
             @else
                 <tr class="tt2">
-                    <td >
-                        {{ $cliente->RFC }}
+                    <td>
+                        {{ $producto->Nombre }}
                     </td>
-                    <td >
-                        @if ($cliente->TipoP == 'Moral')
-                            {{ $cliente->NomCom }}
-                        @else
-                            {{ $cliente->Nombre }} {{ $cliente->ApP }}
-                            {{ $cliente->ApM }}
-                        @endif
+                    <td>
+                        {{ $producto->CodigoB }}
                     </td>
-                    <td >
-                        {{ $cliente->TipoP }}
+                    <td>
+                        {{ $producto->Clv1 }}
                     </td>
-                    <td >
-                        {{ $cliente->TipoC }}
+                    <td>
+                        {{ $producto->Clv2 }}
                     </td>
-                    <td >
-                        {{ $cliente->Cel }}
+                    <td>
+                        {{ $producto->marca->Nombre }}
                     </td>
-                    <td >
-                        {{ $cliente->Correo }}
+                    <td>
+                        {{ $producto->categoria->Nombre }}
+                    </td>
+                    <td>
+                        {{ $producto->unidad->Nombre }}
+                    </td>
+                    <td>
+                        {{ $producto->Precio }}
+                    </td>
+                    <td>
+                        {{ $producto->P1 }}
+                    </td>
+                    <td>
+                        {{ $producto->P2 }}
+                    </td>
+                    <td>
+                        {{ $producto->P3 }}
                     </td>
                 </tr>
-                <var {{$aux = true}}></var>
+                <var {{ $aux = true }}></var>
             @endif
         @endforeach
     </tbody>

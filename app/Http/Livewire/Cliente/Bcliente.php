@@ -34,4 +34,11 @@ class Bcliente extends Component
     {
         $this->resetPage();
     }
+    public function cerrarModal()
+    {
+        $this->modalDR = false;
+    }
+    public function abrirModal(){
+        $this->modalDR = true;
+    }
 }

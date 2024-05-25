@@ -81,7 +81,7 @@
         margin-bottom: -5px;
     }
 </style>
-<table style="width: 100%; border-collapse: collapse; margin-top: -13%">
+<table style="width: 100%; border-collapse: collapse; margin-top: -15%">
     <tbody>
         <tr>
             <td style="">
@@ -103,10 +103,10 @@
     <br>
 </div>
 <div class="tt2">
-    Folio: {{ $venta->Folio }}<br>
+    Folio: {{ $venta->id }}<br>
     Fecha y Hora: {{ $venta->created_at }}<br>
     Sucursal: {{ $venta->Sucursal->Nombre }}<br>
-    Empleado: {{ $venta->Empleado->Nombre }}<br>
+    Vendedor: {{ $venta->Empleado->Nombre }}<br>
     Cliente:
     @if ($venta->Cliente->TipoP == 'Moral')
         {{ $venta->Cliente->NomCom }}

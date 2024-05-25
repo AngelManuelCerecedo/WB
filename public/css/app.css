@@ -1052,6 +1052,17 @@ select {
 .prose :where(.prose > :last-child):not(:where([class~="not-prose"] *)) {
   margin-bottom: 0;
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
 .collapse {
   visibility: collapse;
 }
@@ -1154,9 +1165,6 @@ select {
 }
 .mb-6 {
   margin-bottom: 1.5rem;
-}
-.mb-8 {
-  margin-bottom: 2rem;
 }
 .ml-1 {
   margin-left: 0.25rem;
@@ -1762,10 +1770,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(254 202 202 / var(--tw-bg-opacity));
 }
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-}
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
@@ -1820,6 +1824,10 @@ select {
 .px-10 {
   padding-left: 2.5rem;
   padding-right: 2.5rem;
+}
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 .px-16 {
   padding-left: 4rem;
@@ -1885,10 +1893,6 @@ select {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
-.py-32 {
-  padding-top: 8rem;
-  padding-bottom: 8rem;
-}
 .py-4 {
   padding-top: 1rem;
   padding-bottom: 1rem;
@@ -1904,10 +1908,6 @@ select {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
-}
-.px-12 {
-  padding-left: 3rem;
-  padding-right: 3rem;
 }
 .pb-1 {
   padding-bottom: 0.25rem;
@@ -1989,6 +1989,9 @@ select {
 .text-\[13px\] {
   font-size: 13px;
 }
+.text-\[50px\] {
+  font-size: 50px;
+}
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -2008,9 +2011,6 @@ select {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-.text-\[50px\] {
-  font-size: 50px;
 }
 .font-bold {
   font-weight: 700;
@@ -2176,6 +2176,9 @@ select {
   --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+.outline {
+  outline-style: solid;
+}
 .ring-1 {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -2312,7 +2315,7 @@ nav{
     padding: 2px 15px ;
 }
 .contentm{
-    margin-left: 270px;   
+    margin-left: 270px;
 }
 body::-webkit-scrollbar{
     width: 7px;
@@ -2342,7 +2345,7 @@ body::-webkit-scrollbar-thumb{
     overflow-y: auto;
     /* make the table scrollable if height is more than 200 px  */
     height: 245px;
-    width: 1000px;
+    width: 1200px;
     border-color: #000000;
     border-bottom: #000000;
     /* gives an initial height of 200px to the table */
@@ -2420,6 +2423,20 @@ body::-webkit-scrollbar-thumb{
     width: 200px;
     height: 38px;
 }
+.impresion{
+    background-color: #eba037;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 200px;
+    height: 38px;
+}
+.botonImp{
+    background-color: #FFD900;
+    font-family: 'Open Sans', sans-serif;
+    width: 100px;
+    height: 35px;
+}
 .botonCP{
     background-color: #1C75C7;
     color: #ffffff;
@@ -2434,6 +2451,22 @@ body::-webkit-scrollbar-thumb{
     font-family: 'Open Sans', sans-serif;
     border-radius: 3px;
     width: 200px;
+    height: 38px;
+}
+.botonKar{
+    background-color: #10ab2a;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 150px;
+    height: 38px;
+}
+.btonHist{
+    background-color: #008fac;
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    border-radius: 3px;
+    width: 150px;
     height: 38px;
 }
 .botonL{
@@ -2970,10 +3003,6 @@ body::-webkit-scrollbar-thumb{
     width: 2.5rem;
   }
 
-  .sm\:w-auto {
-    width: auto;
-  }
-
   .sm\:w-full {
     width: 100%;
   }
@@ -3217,3 +3246,4 @@ body::-webkit-scrollbar-thumb{
     padding-right: 2rem;
   }
 }
+
