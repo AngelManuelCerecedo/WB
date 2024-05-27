@@ -1,293 +1,206 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <!DOCTYPE html>
+    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <title>@yield('title')</title>
+        <!--FONT GOOGLE-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
+        @livewireStyles
+        @livewireScripts
+        <script src="{{ asset('js/app.js') }}" defer></script>
+    </head>
 
-    <title>@yield('title')</title>
-    <!--FONT GOOGLE-->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-    @livewireStyles
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <!-- Scripts -->
-    @livewireScripts
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <link rel="icon" href="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-ICONO.ico">
-    <div class="paneltop flex shadow-md w-full">
-        <a href="{{ route('dashboard') }}">
-            <img src="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-LTv1.png" class="imgtop">
-        </a>
-        <nav class="">
-            <ul class="menu-horizontal flex">
-                <i class="bi bi-person-circle inconP"></i>
-                <li>
-                    <a href="#" class="" style="width: 90px;">
-
+    <body>
+        <header class="bg-white w-full">
+            <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+                <div class="flex lg:flex-1">
+                    <a href="dashboard" class="-m-1.5 p-1.5">
+                        <span class="sr-only">Your Company</span>
+                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                            alt="">
                     </a>
-                    <ul class="menu-vertical">
-                        <form method="POST" action="{{ route('logout') }}" x-data>
-                            @csrf
-                            <div>
-                                <x-jet-dropdown-link class="text-gray-200" href="{{ route('logout') }}"
-                                    @click.prevent="$root.submit();">
-                                    {{ __('Salir') }}
-                                </x-jet-dropdown-link>
+                </div>
+                <div class="flex lg:hidden">
+                    <button type="button"
+                        class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="hidden lg:flex lg:gap-x-12">
+                    <div class="relative">
+                        <button id="productButton" type="button"
+                            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+                            aria-expanded="false">
+                            Catálogos
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+
+                        <!-- Menu desplegable de "Product" -->
+                        <div id="productMenu"
+                            class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden">
+                            <div class="p-4">
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
+                                        </svg>
+                                        
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="{{ route('Clientes') }}" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                            Clientes
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v14h18V7M9 3h6v4H9z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 14h4M10 10h4M10 18h4" />
+                                        </svg>    
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="#" class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                            Empresas
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 11v0M14 11v0M12 11v0M12 15v0" />
+                                        </svg> 
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="#" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                            Formas de Pago
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25A2.25 2.25 0 006 10.5zm0 9.75h2.25A2.25 2.25 0 0010.5 18v-2.25a2.25 2.25 0 00-2.25-2.25H6a2.25 2.25 0 00-2.25 2.25V18A2.25 2.25 0 006 20.25zm9.75-9.75h2.25a2.25 2.25 0 002.25-2.25V6a2.25 2.25 0 00-2.25-2.25h-2.25A2.25 2.25 0 0013.5 6v2.25a2.25 2.25 0 002.25 2.25z" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="#" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                            Metodos de Pago
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <!--<div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3.75 3v11.25m0 0A3.75 3.75 0 007.5 18h3.75a3.75 3.75 0 003.75-3.75V9a3.75 3.75 0 013.75-3.75H21M3.75 14.25L8.5 9m0 0h2.25M8.5 9v7.5" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="#" class="block font-semibold text-gray-900">
+                                            Automations
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                        <p class="mt-1 text-gray-600">Build strategic funnels that will drive</p>
+                                    </div>
+                                </div>-->
                             </div>
-                        </form>
-                    </ul>
-                </li>
-                <i class="bi bi-caret-down-fill down"></i>
-            </ul>
-        </nav>
-    </div>
-</head>
-<body class="bg-[#D9E0E7]  font-[Open Sans]">
-    <span class="text-black text-4xl top-5 left-4 cursor-pointer mt-12" onclick="Openbar()">
-        <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
-    </span>
+                            <!--<div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
+                                <a href="#"
+                                    class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100">
+                                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M2 10a8 8 0 1116 0 8 8 0 01-16 0zm8-4.5a.75.75 0 00-.75.75v2.5H6.5a.75.75 0 000 1.5h2.75v2.5a.75.75 0 001.5 0v-2.5H13.5a.75.75 0 000-1.5H10.75v-2.5A.75.75 0 0010 5.5z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    New Product
+                                </a>
 
-    <div
-        class="barra sidebar fixed top-0 bottom-0 lg:left-0 left-[-3200px] duration-1000
-          p-2 w-[240px] overflow-y-auto text-center bg-[#FFFFFF] shadow h-screen mt-12">
-        <!-- Imagen TOP -->
-        <div class="text-black text-xl">
-            <div class="portada">
-                <div class="iconport">
-                    <i class="bi bi-person-circle"></i>
-                </div>
-                <div class="mt-2 ml-2">
-                </div>
-            </div>
-            <!-- LINEA -->
-            <hr>
-            <!-- INICIO -->
-            <div class="mt-4">
-                <a href="{{ route('dashboard') }}">
-                    <div class="p-1  flex items-center rounded-md px-2 duration-300 cursor-pointer  resaltado ">
-                        <i class="bi bi-house"></i>
-                        <span class="ml-4 text-black ">Inicio</span>
-                    </div>
-                </a>
-                <!-- CATALOGOS -->
-                <div class="p-1  mt-2 flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado">
-                    <i class="bi bi-database"></i>
-                    <div class="flex justify-between w-full items-center" onclick="dropDown1()">
-                        <div class="ml-4 text-black hover">Catálogos</div>
-                        <span class="text-sm rotate-90" id="arrow1"><i class="bi bi-chevron-right"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class=" leading-7 text-left text-[13px] w-4/5 mx-auto" id="submoduloCatalogos">
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Clientes</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Proveedores</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Categorias</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Marcas</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Unidades de Medida</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Forma de Pago</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Metodo de Pago</h1>
-                    </a>
-                </div>
-
-                <!-- ADMINISTRACION -->
-                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
-                    <i class="bi bi-buildings"></i>
-                    <div class="flex justify-between w-full items-center" onclick="dropDown2()">
-                        <span class=" ml-4 text-black">Administración</span>
-                        <span class="text-sm rotate-90" id="arrow2"><i class="bi bi-chevron-right"></i>
-                        </span>
-                    </div>
-                </div>
-
-                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloAdministracion">
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Empleados</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Sucursales</h1>
-                    </a>
-                </div>
-
-                <!-- Almacenes -->
-                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
-                    <i class="bi bi-clipboard-check"></i>
-                    <div class="flex justify-between w-full items-center" onclick="dropDown3()">
-                        <span class=" ml-4 text-black">Almacén</span>
-                        <span class="text-sm rotate-90" id="arrow3"><i class="bi bi-chevron-right"></i>
-                        </span>
-                    </div>
-                </div>
-
-                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloAlmacenes">
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Productos</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Almacenes</h1>
-                    </a>
-                    <!-- <a href="">
-                    <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Inventario</h1>
-                </a>
-                <a href="">
-                    <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ajustes de Existencia</h1>
-                </a>-->
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Traspasos</h1>
-                    </a>
-                </div>
-
-                <!-- OPERACION -->
-                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
-                    <i class="bi bi-graph-up-arrow"></i>
-                    <div class="flex justify-between w-full items-center" onclick="dropDown4()">
-                        <span class=" ml-4 text-black">Operación</span>
-                        <span class="text-sm rotate-90" id="arrow4"><i class="bi bi-chevron-right"></i>
-                        </span>
-                    </div>
-                </div>
-
-                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloOperacion">
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Compras</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cotizaciones</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Ventas</h1>
-                    </a>
-                </div>
-
-                <!-- CONTABBILIDAD -->
-                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
-                    <i class="bi bi-calculator"></i>
-                    <div class="flex justify-between w-full items-center" onclick="dropDown5()">
-                        <span class=" ml-4 text-black">Contabilidad</span>
-                        <span class="text-sm rotate-90" id="arrow5"><i class="bi bi-chevron-right"></i>
-                        </span>
-                    </div>
-                </div>
-
-                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloContabilidad">
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Facturas</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Creditos</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Cuentas por Pagar</h1>
-                    </a>
-                </div>
-                <!-- CONFIGURACION -->
-                <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado ">
-                    <i class="bi bi-gear"></i>
-                    <div class="flex justify-between w-full items-center" onclick="dropDown6()">
-                        <span class=" ml-4 text-black">Configuración</span>
-                        <span class="text-sm rotate-90" id="arrow6"><i class="bi bi-chevron-right"></i>
-                        </span>
-                    </div>
-                </div>
-                <div class=" leading-7 text-left text-[13px]  w-4/5 mx-auto" id="submoduloConfiguracion">
-                    <a href="">
-                        <h1 class="cursor-pointer  rounded-md  ml-5 MDA">Facturación</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer  rounded-md  ml-5 MDA">Escala de Precios</h1>
-                    </a>
-                    <a href="">
-                        <h1 class="cursor-pointer   rounded-md  ml-5 MDA">Roles</h1>
-                    </a>
-                </div>
-
-                <!-- CERRAR SESION -->
-                <form method="POST" action="{{ route('logout') }}" x-data>
-                    @csrf
-                    <div class="p-1 mt-2  flex items-center rounded-md px-2 duration-300 cursor-pointer resaltado">
-                        <i class="bi bi-box-arrow-in-right"></i>
-                        <div class="ml-4" href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                            {{ __('Cerrar Sesión') }}
+                                <a href="#"
+                                    class="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100">
+                                    <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                        aria-hidden="true">
+                                        <path fill-rule="evenodd"
+                                            d="M5.5 2.75A.75.75 0 016.25 2h7.5a.75.75 0 01.75.75v1.5a.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75v-1.5zm-1.5 4A.75.75 0 015 6.5h10a.75.75 0 01.75.75v10a.75.75 0 01-.75.75H5a.75.75 0 01-.75-.75v-10zM8 8.25A.75.75 0 018.75 8h2.5a.75.75 0 010 1.5h-2.5A.75.75 0 018 8.25zM9.25 12a.75.75 0 000 1.5h1.5a.75.75 0 000-1.5h-1.5z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    New Feature
+                                </a>
+                            </div>-->
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="contentm lg:mr-5" style="width: 2000px;">
-        @yield('content')
-    </div>
-    @stack('modals')
-    <script>
-        function dropDown1() {
-            document.querySelector('#submoduloCatalogos').classList.toggle('hidden')
-            document.querySelector('#arrow1').classList.toggle('rotate-90')
-        }
-        dropDown1()
 
-        function dropDown2() {
-            document.querySelector('#submoduloAdministracion').classList.toggle('hidden')
-            document.querySelector('#arrow2').classList.toggle('rotate-90')
-        }
-        dropDown2()
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Finanzas</a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contabilidad</a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contraloria</a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900"></a>
+                </div>
+                <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
+                            aria-hidden="true">&rarr;</span></a>
+                </div>
+            </nav>
+        </header>
 
-        function dropDown3() {
-            document.querySelector('#submoduloAlmacenes').classList.toggle('hidden')
-            document.querySelector('#arrow3').classList.toggle('rotate-90')
-        }
-        dropDown3()
+        <body>
+            @yield('content')
+        </body>
+        <script>
+            // Selecciona el botón del menú de "Product"
+            const productButton = document.getElementById('productButton');
 
-        function dropDown4() {
-            document.querySelector('#submoduloOperacion').classList.toggle('hidden')
-            document.querySelector('#arrow4').classList.toggle('rotate-90')
-        }
-        dropDown4()
+            // Selecciona el menú desplegable de "Product"
+            const productMenu = document.getElementById('productMenu');
 
-        function dropDown5() {
-            document.querySelector('#submoduloContabilidad').classList.toggle('hidden')
-            document.querySelector('#arrow5').classList.toggle('rotate-90')
-        }
-        dropDown5()
+            // Función para alternar la visibilidad del menú desplegable de "Product"
+            function toggleProductMenu() {
+                productMenu.classList.toggle('hidden');
+            }
+            // Agrega un evento de clic al botón del menú de "Product" que llame a la función toggleProductMenu
+            productButton.addEventListener('click', toggleProductMenu);
+        </script>
+    </body>
 
-        function dropDown6() {
-            document.querySelector('#submoduloConfiguracion').classList.toggle('hidden')
-            document.querySelector('#arrow6').classList.toggle('rotate-90')
-        }
-        dropDown6()
 
-        function Openbar() {
-            document.querySelector('.sidebar').classList.toggle('left-[-300px]')
-        }
-    </script>
-    @yield('js')
-    <!-- Alertas, sin instalacion, solo con ruta del navegador: https://sweetalert2.github.io/#download -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</body>
-
-</html>
+    </html>

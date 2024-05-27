@@ -37,116 +37,39 @@ use Maatwebsite\Excel\Facades\Excel;
 /*Route::get('/', function () {
     return view('auth.login');
 });
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
+
     Route::get('/dashboard', function () {
         return view('dashboard', ['userid' => auth()->user()]);
     })->name('dashboard');
 });*/
-Route::get('/', function () {
-    return view('dashboard');
-})->name('dashboard');
-//MODULO CATALOGOS
 
+Route::get('/', function () {return view('dashboard');})->name('dashboard');
+Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+
+//MODULO CATALOGOS
 //CLIENTES
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('Clientes', [ClienteController::class, 'cliente'])->name('Clientes');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('Cliente/Registro', [ClienteController::class, 'rcliente'])->name('RClientes');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('Cliente/Editar/{id}', [ClienteController::class, 'ecliente'])->name('ECliente');
-});
+Route::get('Clientes', [ClienteController::class, 'cliente'])->name('Clientes');
+Route::get('Cliente/Registro', [ClienteController::class, 'rcliente'])->name('RClientes');
+Route::get('Cliente/Editar/{id}', [ClienteController::class, 'ecliente'])->name('ECliente');
 
 //FORMA DE PAGO
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('FormasPago', [FormasController::class, 'forma'])->name('Formas');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('FormaPago/Registro', [FormasController::class, 'rforma'])->name('RFormas');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('FormaPago/Editar/{id}', [FormasController::class, 'eforma'])->name('EForma');
-});
+Route::get('FormasPago', [FormasController::class, 'forma'])->name('Formas');
+Route::get('FormaPago/Registro', [FormasController::class, 'rforma'])->name('RFormas');
+Route::get('FormaPago/Editar/{id}', [FormasController::class, 'eforma'])->name('EForma');
 
 //METODO DE PAGO
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('MetodosPago', [MetodosController::class, 'metodo'])->name('Metodos');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('MetodoPago/Registro', [MetodosController::class, 'rmetodo'])->name('RMetodos');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('MetodoPago/Editar/{id}', [MetodosController::class, 'emetodo'])->name('EMetodo');
-});
+Route::get('MetodosPago', [MetodosController::class, 'metodo'])->name('Metodos');
+Route::get('MetodoPago/Registro', [MetodosController::class, 'rmetodo'])->name('RMetodos');
+Route::get('MetodoPago/Editar/{id}', [MetodosController::class, 'emetodo'])->name('EMetodo');
 
-//MODULO ADMINISTRACION
 //EMPLEADOS
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('Empleados', [EmpleadoController::class, 'empleado'])->name('Empleados');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('Empleados/Registro', [EmpleadoController::class, 'rempleado'])->name('REmpleados');
-});
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('Empleados/Editar/{id}', [EmpleadoController::class, 'eempleado'])->name('EEmpleado');
-});
+Route::get('Empleados', [EmpleadoController::class, 'empleado'])->name('Empleados');
+Route::get('Empleados/Registro', [EmpleadoController::class, 'rempleado'])->name('REmpleados');
+Route::get('Empleados/Editar/{id}', [EmpleadoController::class, 'eempleado'])->name('EEmpleado');
+
 //ROLES
 Route::get('roles', [RoleController::class, 'roles'])->name('Roles');
 Route::get('roles/Registro', [RoleController::class, 'rroles'])->name('RRoles');
 Route::post('roles/RegistroRol', [RoleController::class, 'store'])->name('GRoles');
 Route::get('roles/Editar/{id}', [RoleController::class, 'eroles'])->name('ERoles');
 Route::put('roles/Update', [RoleController::class, 'update'])->name('URoles');
-

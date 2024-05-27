@@ -8,15 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Cliente extends Model
 {
     use HasFactory;
-    protected $fillable=['id','Nombre','NomCom','TipoC','Clasificacion','DomicilioF','Reg','CFDI','ApP','ApM','Cel','Tel','Correo','CP','Estado','Mun','Col','Calle','TipoP',
-    'RFC','NumExt','NumInt','Credito','Estatus','Referencia','NomRF','ParenRF','TelRF','DomRF'];
-    public function cotizacion(){
-        return $this->hasMany("App\Models\Cotizacion");
-    }
-    public function Venta(){
-        return $this->hasMany("App\Models\Venta");
-    }
-    public function Credito(){
-        return $this->hasMany("App\Models\Credito");
-    }
+    protected $fillable = ['id', 'ALIAS', 'NOMBRE', 'RS', 'RFC', 'CFDI', 'REG', 'DOMF', 'CP', 'COMTOT', 'COMFINTECH', 'COMEXT1', 'COMISIONISTA1', 'COMEXT2', 'COMISIONISTA2', 'COMEXT3', 'COMISIONISTA3', 'COMEXT4', 'COMISIONISTA4', 'COMEXT5', 'COMISIONISTA5'];
 }

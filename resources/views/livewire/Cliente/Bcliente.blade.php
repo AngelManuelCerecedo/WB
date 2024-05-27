@@ -1,171 +1,78 @@
-<div class="container bg-[#d9e0e7]">
-        @if (auth()->user()->empleado->Rol == 'Mostrador')
-        <div class="py-8 ml-32 mt-8">
-        @else
-            <div class="py-8">
-    @endif
-        <div class="flex mb-4">
-            <h2 class="text-4xl titulos mr-96">Clientes</h2>
-            <label class="ml-96 mt-6">Inicio <i class="bi bi-chevron-right"></i> Catálogos <i
-                    class="bi bi-chevron-right"></i> Clientes</label>
+<div class="w-full">
+    <div class="bg-white border border-gray-200 rounded p-4">
+        <div class=" flex sm:flex-row flex-col">
+                <input type="text" placeholder="Buscar" wire:model="search"
+                    class="block  sm:w-full lg:w-1/2 xl:w-1/2 rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <div class="sm:ml-8 mt-1">
+                <select wire:model="cantidad"
+                    class="appearance-none h-full rounded-l border block lg:w-full bg-white border-gray-400 text-gray-700 py-2 px-5 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+            <div class="sm:ml-8 mt-1">
+                <a href="{{ route('RClientes') }}">
+                    <button class="botoNUEVOSR">
+                        <i class="bi bi-plus-lg text-lg"></i>
+                        <span class="ml-2">Nuevo Cliente</span>
+                    </button>
+                </a>
+            </div>
+            <div class="sm:ml-64 mt-2">
+                <label><i class="bi bi-house-door-fill"></i> <i class="bi bi-chevron-right"></i> Catálogos <i
+                        class="bi bi-chevron-right"></i> Clientes</label>
+            </div>
         </div>
-        <div class="panel">
-            <div class="my-2 flex sm:flex-row flex-col">
-                <div class="mt-8 flex flex-row mb-1 sm:mb-0">
-                    <div class="ml-8">
-                        <input placeholder="Buscar" wire:model="search"
-                            class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
-                    </div>
-                    <div class="ml-8">
-                        <select wire:model="cantidad"
-                            class="appearance-none h-full rounded-l border block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
-                            <option value="20">20</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </div>
-                    <div class="ml-72">
-                        @if (auth()->user()->empleado->Rol == 'Mostrador')
-                            <a href="{{ route('PuntoVentaRcliente') }}">
-                                <button class="boton">
-                                    <i class="bi bi-plus-lg text-lg"></i>
-                                    <span class="ml-2">Nuevo Cliente</span>
-                                </button>
-                            </a>
-                        @else
-                            <a href="{{ route('RClientes') }}">
-                                <button class="boton">
-                                    <i class="bi bi-plus-lg text-lg"></i>
-                                    <span class="ml-2">Nuevo Cliente</span>
-                                </button>
-                            </a>
-                        @endif
-                    </div>
-                    <div class="ml-4">
-                        @if (auth()->user()->empleado->Rol != 'Mostrador')
-                            <a href="{{ route('ListaClientes') }}" target="_blank">
-                                <button class="botond">
-                                    <i class="bi bi-download"></i>
-                                    <span class="ml-4 ">Descargar</span>
-                                </button>
-                            </a>
-                        @endif
+        <div class=" overflow-x-auto mt-4">
+            @if ($clientes->count())
+                <table class="w-full">
+                    <thead>
+                        <tr>
+                            <th>Acciones</th>
+                            <th>RFC</th>
+                            <th>Nombre Comercial</th>
+                            <th>Nombre</th>
+                            <th>CFDI</th>
+                            <th>REGIMEN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($clientes as $cliente)
+                            <tr>
+                                <td data-label="ACCIONES :" class="lg:w-1/12">
+                                    <a href="{{ route('ECliente', [$cliente->id]) }}">
+                                        <button class="botonDETALLES">
+                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                            <span class="ml-2 ">Detalles</span>
+                                        </button>
+                                    </a>
+                                </td>
+                                <td data-label="RFC :">{{ $cliente->RFC }}</td>
+                                <td data-label="ALIAS :">{{ $cliente->ALIAS }}</td>
+                                <td data-label="NOMBRE :">{{ $cliente->NOMBRE }}</td>
+                                <td data-label="CFDI :">{{ $cliente->CFDI }}</td>
+                                <td data-label="REG :">{{ $cliente->REG }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ $clientes->links() }} <!-- Mostrar enlaces de paginación -->
+            @else
+                <div class="px-6 py-4">
+                    <div class="flex font-sans bg-[#FA5C7C] rounded-lg p-4 mb-4 text-sm text-white" role="alert">
+                        <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <div>
+                            <span class="font-medium">Info: </span> No se encontró ningún registro.
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
-                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
-                    @if ($clientes->count())
-                        <table class="tabla">
-                            <thead class="etiqueta">
-                                <tr>
-                                    <th
-                                        class="px-12 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Acciones
-                                    </th>
-                                    <th
-                                        class="px-16 py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        RFC
-                                    </th>
-                                    <th
-                                        class=" py-1 border border-gray-200 bg-gray-100 text-left  font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Nombre
-                                    </th>
-                                    <th
-                                        class="px-16 py-1 border border-gray-200 bg-gray-100 text-left font-[Raleway]-semibold text-black  tracking-wider ">
-                                        Tipo
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($clientes as $cliente)
-                                    @if ($aux)
-                                        <tr class="datosT">
-                                            <td class="py-2 border border-gray-200 bg-white">
-                                                <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10">
-                                                        <a href="{{ route('ECliente', [$cliente->id]) }}">
-                                                            <button class="botonm ml-6">
-                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                                <span class="ml-2 ">Detalles</span>
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="py-3 border border-gray-200 bg-white">
-                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->RFC }}</p>
-                                            </td>
-                                            <td class="py-3 border border-gray-200 bg-white">
-                                                @if ($cliente->TipoP == 'Moral')
-                                                    <p class="ml-2">{{ $cliente->NomCom }}</p>
-                                                @else
-                                                    <p class="ml-2">{{ $cliente->Nombre }} {{ $cliente->ApP }}
-                                                        {{ $cliente->ApM }}</p>
-                                                @endif
-                                            </td>
-                                            <td class="py-3 border border-gray-200 bg-white ">
-                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->TipoP }}</p>
-                                            </td>
-                                        </tr>
-                                        <var {{$aux = false}}/>
-                                    @else
-                                        <tr class="datosT bg-gray-100">
-                                            <td class=" py-2 border border-gray-200">
-                                                <div class="flex">
-                                                    <div class="flex-shrink-0 w-10 h-10">
-                                                        <a href="{{ route('ECliente', [$cliente->id]) }}">
-                                                            <button class="botonm ml-6">
-                                                                <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                                <span class="ml-2 ">Detalles</span>
-                                                            </button>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="py-3 border border-gray-200">
-                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->RFC }}</p>
-                                            </td>
-                                            <td class="py-3 border border-gray-200">
-                                                @if ($cliente->TipoP == 'Moral')
-                                                    <p class="ml-2">{{ $cliente->NomCom }}</p>
-                                                @else
-                                                    <p class="ml-2">{{ $cliente->Nombre }} {{ $cliente->ApP }}
-                                                        {{ $cliente->ApM }}</p>
-                                                @endif
-                                            </td>
-                                            <td class="py-3 border border-gray-200">
-                                                <p class="text-black text-center whitespace-no-wrap">{{ $cliente->TipoP }}</p>
-                                            </td>
-                                        </tr>
-                                        <var {{ $aux = true }}/>
-                                    @endif
-                                @endforeach
-                            </tbody>
-                        </table>
-                    @else
-                        <div class="px-6 py-4">
-                            <div class="flex font-sans bg-[#FA5C7C] rounded-lg p-4 mb-4 text-sm text-white"
-                                role="alert">
-                                <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                                <div>
-                                    <span class="font-medium">Info: </span> No se encontró ningún registro.
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-                    @if ($clientes->hasPages())
-                        <div class="px-6 py-3 etiqueta">
-                            {{ $clientes->links() }}
-                        </div>
-                    @endif
-                </div>
-            </div>
+            @endif
         </div>
     </div>
 </div>

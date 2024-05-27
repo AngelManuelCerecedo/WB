@@ -9,36 +9,27 @@ use Livewire\WithPagination;
 class Bcliente extends Component
 {
     use WithPagination;
-    public $search;
+    public $search = '';
     public $cantidad = 20;
-    public $aux = true;
+
     public function render()
     {
-        $clientes = Cliente::Where([['Nombre', 'like', '%' . $this->search . '%']])
-            ->orWhere([['ApP', 'like', '%' . $this->search . '%']])
-            ->orWhere([['ApM', 'like', '%' . $this->search . '%']])
-            ->orWhere([['RFC', 'like', '%' . $this->search . '%']])
-            ->orWhere([['NomCom', 'like', '%' . $this->search . '%']])
-            ->paginate($this->cantidad);
+        $clientes = Cliente::where(function ($query) {
+            $query->where('NOMBRE', 'like', '%' . $this->search . '%')
+                ->orWhere('ALIAS', 'like', '%' . $this->search . '%')
+                ->orWhere('RFC', 'like', '%' . $this->search . '%');
+        })->paginate($this->cantidad);
+
         return view('livewire.Cliente.Bcliente', ['clientes' => $clientes]);
     }
+
     public function updatingSearch()
     {
         $this->resetPage();
     }
-    public function updatingEstatus()
-    {
-        $this->resetPage();
-    }
+
     public function updatingCantidad()
     {
         $this->resetPage();
-    }
-    public function cerrarModal()
-    {
-        $this->modalDR = false;
-    }
-    public function abrirModal(){
-        $this->modalDR = true;
     }
 }
