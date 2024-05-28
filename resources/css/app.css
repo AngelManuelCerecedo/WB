@@ -44,7 +44,7 @@ table tbody tr:hover {
         border: none;
         border-bottom: 1px solid #ddd;
         position: relative;
-        padding-left: 25%;
+        padding-left: 35%;
         text-align: left;
     }
     table tbody tr td::before {

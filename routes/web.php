@@ -11,6 +11,7 @@ use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\CreditoCompraController;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\FormasController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\MetodosController;
@@ -21,6 +22,7 @@ use App\Http\Controllers\TraspasoController;
 use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\VentaController;
 use App\Models\Compra;
+use App\Models\Empresa;
 use Maatwebsite\Excel\Facades\Excel;
 
 /*
@@ -43,14 +45,19 @@ use Maatwebsite\Excel\Facades\Excel;
     })->name('dashboard');
 });*/
 
-Route::get('/', function () {return view('dashboard');})->name('dashboard');
-Route::get('/dashboard', function () {return view('dashboard');})->name('dashboard');
+Route::get('/', function () {return view('dashboard');})->name('dashboard1');
+Route::get('dashboard', function () {return view('dashboard');})->name('dashboard');
 
 //MODULO CATALOGOS
 //CLIENTES
 Route::get('Clientes', [ClienteController::class, 'cliente'])->name('Clientes');
 Route::get('Cliente/Registro', [ClienteController::class, 'rcliente'])->name('RClientes');
 Route::get('Cliente/Editar/{id}', [ClienteController::class, 'ecliente'])->name('ECliente');
+
+//EMPRESAS
+Route::get('Empresas', [EmpresaController::class, 'empresa'])->name('Empresas');
+Route::get('Empresa/Registro', [EmpresaController::class, 'rempresa'])->name('REmpresas');
+Route::get('Empresa/Editar/{id}', [EmpresaController::class, 'eempresa'])->name('EEmpresa');
 
 //FORMA DE PAGO
 Route::get('FormasPago', [FormasController::class, 'forma'])->name('Formas');

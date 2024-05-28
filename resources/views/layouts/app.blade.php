@@ -85,7 +85,7 @@
                                         </svg>    
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="#" class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                        <a href="{{ route('Empresas') }}"class="block font-semibold text-gray-900 group-hover:text-red-600">
                                             Empresas
                                             <span class="absolute inset-0"></span>
                                         </a>

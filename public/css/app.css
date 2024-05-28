@@ -2398,7 +2398,7 @@ table tbody tr:hover {
         border: none;
         border-bottom: 1px solid #ddd;
         position: relative;
-        padding-left: 25%;
+        padding-left: 35%;
         text-align: left;
     }
     table tbody tr td::before {
@@ -2706,6 +2706,10 @@ table tbody tr:hover {
 
   .sm\:col-span-1 {
     grid-column: span 1 / span 1;
+  }
+
+  .sm\:col-span-2 {
+    grid-column: span 2 / span 2;
   }
 
   .sm\:col-span-3 {
