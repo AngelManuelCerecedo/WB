@@ -101,7 +101,7 @@
                                         </svg> 
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="#" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                        <a href="{{ route('Formas') }}" class="block font-semibold text-gray-900  group-hover:text-red-600">
                                             Formas de Pago
                                             <span class="absolute inset-0"></span>
                                         </a>
@@ -119,7 +119,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="#" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                        <a href="{{ route('Metodos') }}" class="block font-semibold text-gray-900  group-hover:text-red-600">
                                             Metodos de Pago
                                             <span class="absolute inset-0"></span>
                                         </a>
