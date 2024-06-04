@@ -6,6 +6,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
         <title>@yield('title')</title>
         <!--FONT GOOGLE-->
@@ -43,8 +48,8 @@
                 </div>
                 <div class="hidden lg:flex lg:gap-x-12">
                     <div class="relative">
-                        <button id="productButton" type="button"
-                            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+                        <button id="categoriaButton" type="button"
+                            class="finanzas-button flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
                             aria-expanded="false">
                             Catálogos
                             <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
@@ -63,13 +68,18 @@
                                     class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                                     <div
                                         class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
                                         </svg>
-                                        
+
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="{{ route('Clientes') }}" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                        <a href="{{ route('Clientes') }}"
+                                            class="block font-semibold text-gray-900  group-hover:text-red-600">
                                             Clientes
                                             <span class="absolute inset-0"></span>
                                         </a>
@@ -79,13 +89,18 @@
                                     class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                                     <div
                                         class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v14h18V7M9 3h6v4H9z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 14h4M10 10h4M10 18h4" />
-                                        </svg>    
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3 7v14h18V7M9 3h6v4H9z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M10 14h4M10 10h4M10 18h4" />
+                                        </svg>
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="{{ route('Empresas') }}"class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                        <a
+                                            href="{{ route('Empresas') }}"class="block font-semibold text-gray-900 group-hover:text-red-600">
                                             Empresas
                                             <span class="absolute inset-0"></span>
                                         </a>
@@ -95,13 +110,18 @@
                                     class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                                     <div
                                         class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M10 11v0M14 11v0M12 11v0M12 15v0" />
-                                        </svg> 
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M10 11v0M14 11v0M12 11v0M12 15v0" />
+                                        </svg>
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="{{ route('Formas') }}" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                        <a href="{{ route('Formas') }}"
+                                            class="block font-semibold text-gray-900  group-hover:text-red-600">
                                             Formas de Pago
                                             <span class="absolute inset-0"></span>
                                         </a>
@@ -119,31 +139,35 @@
                                         </svg>
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="{{ route('Metodos') }}" class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                        <a href="{{ route('Metodos') }}"
+                                            class="block font-semibold text-gray-900  group-hover:text-red-600">
                                             Metodos de Pago
                                             <span class="absolute inset-0"></span>
                                         </a>
                                     </div>
                                 </div>
-                                <!--<div
+                                <div
                                     class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
                                     <div
                                         class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600" fill="none"
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
                                             viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                                             aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M3.75 3v11.25m0 0A3.75 3.75 0 007.5 18h3.75a3.75 3.75 0 003.75-3.75V9a3.75 3.75 0 013.75-3.75H21M3.75 14.25L8.5 9m0 0h2.25M8.5 9v7.5" />
+                                                d="M17 20h5v-1a4 4 0 00-3-3.87M17 20H7M17 20a3 3 0 01-6 0M7 20H2v-1a4 4 0 013-3.87M7 20a3 3 0 006 0M15 10a4 4 0 01-4 4M9 10a4 4 0 118 0M7 14a4 4 0 110-8M7 14a4 4 0 004-4M7 14a4 4 0 01-4-4" />
                                         </svg>
+
+
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="#" class="block font-semibold text-gray-900">
-                                            Automations
+                                        <a href="{{ route('Empleados') }}"
+                                            class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                            Usuarios
                                             <span class="absolute inset-0"></span>
                                         </a>
-                                        <p class="mt-1 text-gray-600">Build strategic funnels that will drive</p>
                                     </div>
-                                </div>-->
+                                </div>
                             </div>
                             <!--<div class="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                                 <a href="#"
@@ -170,11 +194,72 @@
                             </div>-->
                         </div>
                     </div>
+                    <div class="relative">
+                        <button id="finanzasButton" type="button"
+                            class="finanzas-button flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+                            aria-expanded="false">
+                            Finanzas
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
 
-                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Finanzas</a>
+
+                        <!-- Menu desplegable de "Product" -->
+                        <div id="finanzasMenu"
+                            class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden">
+                            <div class="p-4">
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
+                                        </svg>
+
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="{{ route('FichasI') }}"
+                                            class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                            Ficha de Identificacion del Cliente
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3 7v14h18V7M9 3h6v4H9z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M10 14h4M10 10h4M10 18h4" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a
+                                            href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                            Ficha de Identificacion de Movimientos
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contabilidad</a>
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contraloria</a>
-                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900"></a>
+                    <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Facturacion</a>
                 </div>
                 <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                     <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Log in <span
@@ -187,19 +272,41 @@
             @yield('content')
         </body>
         <script>
-            // Selecciona el botón del menú de "Product"
-            const productButton = document.getElementById('productButton');
-
-            // Selecciona el menú desplegable de "Product"
+            // Selecciona el botón del menú de "Categorias"
+            const categoriaButton = document.getElementById('categoriaButton');
+            // Selecciona el menú desplegable de "Categorias"
             const productMenu = document.getElementById('productMenu');
+            // Selecciona el botón del menú de "Finanzas"
+            const finanzasButton = document.getElementById('finanzasButton');
+            // Selecciona el menú desplegable de "Finanzas"
+            const finanzasMenu = document.getElementById('finanzasMenu');
 
-            // Función para alternar la visibilidad del menú desplegable de "Product"
+            // Función para alternar la visibilidad del menú desplegable de "Categorias"
             function toggleProductMenu() {
+                // Oculta el menú de Finanzas si está abierto
+                if (!finanzasMenu.classList.contains('hidden')) {
+                    finanzasMenu.classList.add('hidden');
+                }
+                // Alterna la visibilidad del menú de Categorias
                 productMenu.classList.toggle('hidden');
             }
-            // Agrega un evento de clic al botón del menú de "Product" que llame a la función toggleProductMenu
-            productButton.addEventListener('click', toggleProductMenu);
+
+            // Función para alternar la visibilidad del menú desplegable de "Finanzas"
+            function toggleFinanzasMenu() {
+                // Oculta el menú de Categorias si está abierto
+                if (!productMenu.classList.contains('hidden')) {
+                    productMenu.classList.add('hidden');
+                }
+                // Alterna la visibilidad del menú de Finanzas
+                finanzasMenu.classList.toggle('hidden');
+            }
+
+            // Agrega un evento de clic al botón del menú de "Categorias" que llame a la función toggleProductMenu
+            categoriaButton.addEventListener('click', toggleProductMenu);
+            // Agrega un evento de clic al botón del menú de "Finanzas" que llame a la función toggleFinanzasMenu
+            finanzasButton.addEventListener('click', toggleFinanzasMenu);
         </script>
+
     </body>
 
 

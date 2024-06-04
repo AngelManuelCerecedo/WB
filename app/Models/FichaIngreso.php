@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Empleado extends Model
+class FichaIngreso extends Model
 {
     use HasFactory;
-    protected $fillable=['id','Nombre','Cel','Rol','Usu','Pwd','Serie','Estatus'];
-
+    protected $fillable = ['id','Folio','Fecha', 'Total', 'Comision', 'empleado_id','cliente_id', 'Obs','Estatus'];
 }

@@ -12,6 +12,7 @@ use App\Http\Controllers\CreditoCompraController;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\FichaIngresoController;
 use App\Http\Controllers\FormasController;
 use App\Http\Controllers\MarcasController;
 use App\Http\Controllers\MetodosController;
@@ -73,6 +74,12 @@ Route::get('MetodoPago/Editar/{id}', [MetodosController::class, 'emetodo'])->nam
 Route::get('Empleados', [EmpleadoController::class, 'empleado'])->name('Empleados');
 Route::get('Empleados/Registro', [EmpleadoController::class, 'rempleado'])->name('REmpleados');
 Route::get('Empleados/Editar/{id}', [EmpleadoController::class, 'eempleado'])->name('EEmpleado');
+
+//MODULO FINANZAS
+Route::get('FichasI', [FichaIngresoController::class, 'ficha'])->name('FichasI');
+Route::get('FichasI/Registro', [FichaIngresoController::class, 'rficha'])->name('RFichasI');
+Route::get('FichasI/Editar/{id}', [FichaIngresoController::class, 'eficha'])->name('EFichaI');
+
 
 //ROLES
 Route::get('roles', [RoleController::class, 'roles'])->name('Roles');

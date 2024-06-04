@@ -72,3 +72,13 @@ table tbody tr:hover {
     width: 200px;
     height: 38px;
 }
+.finanzas-button:hover {
+    font-weight: bold;
+}
+.select2-container {
+    width: 100% !important; /* Ancho del select */
+}
+
+.select2-selection--single {
+    height: auto !important; /* Altura del select */
+}

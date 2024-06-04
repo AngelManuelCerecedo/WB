@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class MarcaFactory extends Factory
+class FormaPagoFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,8 +14,8 @@ class MarcaFactory extends Factory
     public function definition()
     {
         return [
-            'Clave' => $this->faker->randomElement(['MR1','MR2','MR3','MR4','MR5']),
-            'Nombre' => $this->faker->randomElement(['Marca1','Marca2','Marca3','Marca4','Marca5']),
+            'Clave' => $this->faker->randomElement(['Clv1', 'Clv2']),
+            'Nombre' => $this->faker->randomElement(['PPD', 'PUE']),
         ];
     }
 }

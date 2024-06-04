@@ -1,8 +1,8 @@
 <div class="w-full">
     <div class="bg-white border border-gray-200 rounded p-4">
         <div class=" flex sm:flex-row flex-col">
-                <input type="text" placeholder="Buscar" wire:model="search"
-                    class="block  sm:w-full lg:w-1/2 xl:w-1/2 rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input type="text" placeholder="Buscar" wire:model="search"
+                class="block  sm:w-full lg:w-1/2 xl:w-1/2 rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             <div class="sm:ml-8 mt-1">
                 <select wire:model="cantidad"
                     class="appearance-none h-full rounded-l border block lg:w-full bg-white border-gray-400 text-gray-700 py-2 px-5 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -12,50 +12,52 @@
                 </select>
             </div>
             <div class="sm:ml-8 mt-1">
-                <a href="{{ route('REmpleados') }}">
+                <a href="{{ route('RFichasI') }}">
                     <button class="botoNUEVOSR">
                         <i class="bi bi-plus-lg text-lg"></i>
-                        <span class="ml-2">Nuevo Usuario</span>
+                        <span class="ml-2">Nueva Ficha</span>
                     </button>
                 </a>
             </div>
-            <div class="sm:ml-52 mt-2">
+            <div class="sm:ml-64 mt-2">
                 <label><i class="bi bi-house-door-fill"></i> <i class="bi bi-chevron-right"></i> Catálogos <i
-                        class="bi bi-chevron-right"></i> Usuarios</label>
+                        class="bi bi-chevron-right"></i> Fichas de Ingreso</label>
             </div>
         </div>
         <div class=" overflow-x-auto mt-4">
-            @if ($empleados->count())
+            @if ($fichas->count())
                 <table class="w-full">
                     <thead>
                         <tr>
                             <th>Acciones</th>
-                            <th>Nombre</th>
-                            <th>Serie</th>
-                            <th>Rol</th>
+                            <th>Fecha</th>
+                            <th>Folio</th>
                             <th>Estatus</th>
+                            <th>Total</th>
+                            <th>Observaciones</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($empleados as $empleado)
+                        @foreach ($fichas as $ficha)
                             <tr>
                                 <td data-label="ACCIONES :" class="lg:w-1/12">
-                                    <a href="{{ route('EEmpleado', [$empleado->id]) }}">
+                                    <a href="{{ route('EFichaI', [$ficha->id]) }}">
                                         <button class="botonDETALLES">
                                             <i class="bi bi-layout-text-sidebar-reverse"></i>
                                             <span class="ml-2 ">Detalles</span>
                                         </button>
                                     </a>
                                 </td>
-                                <td data-label="Nombre :">{{ $empleado->Nombre }}</td>
-                                <td data-label="Serie :">{{ $empleado->Serie }}</td>
-                                <td data-label="Rol :">{{ $empleado->Rol }}</td>
-                                <td data-label="Estatus :">{{ $empleado->Estatus }}</td>
+                                <td data-label="Fecha :">{{ $ficha->Fecha }}</td>
+                                <td data-label="Folio :">{{ $ficha->Folio }}</td>
+                                <td data-label="Estatus :">{{ $ficha->Estatus }}</td>
+                                <td data-label="Total :">{{ $ficha->Total }}</td>
+                                <td data-label="Observaciones :">{{ $ficha->Observaciones }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $empleados->links() }} <!-- Mostrar enlaces de paginación -->
+                {{ $fichas->links() }} <!-- Mostrar enlaces de paginación -->
             @else
                 <div class="px-6 py-4">
                     <div class="flex font-sans bg-[#FA5C7C] rounded-lg p-4 mb-4 text-sm text-white" role="alert">

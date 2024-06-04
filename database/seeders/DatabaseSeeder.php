@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Almacen;
-use App\Models\Categoria;
 use App\Models\Cliente;
-use App\Models\Marca;
-use App\Models\Proveedor;
+use App\Models\Empresa;
+use App\Models\FormaPago;
+use App\Models\MetodoPago;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,12 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RoleSeeder::class);
-        Proveedor::factory(100)->create();
         Cliente::factory(100)->create();
-        Categoria::factory(10)->create();
-        Marca::factory(10)->create();
-        $this->call(FormaPagoSeeder::class);
-        $this->call(MetodoPagoSeeder::class);
+        Empresa::factory(100)->create();
+        FormaPago::factory(10)->create();
+        MetodoPago::factory(10)->create();
     }
 }
