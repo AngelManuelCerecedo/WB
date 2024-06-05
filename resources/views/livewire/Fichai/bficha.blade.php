@@ -52,7 +52,7 @@
                                 <td data-label="Folio :">{{ $ficha->Folio }}</td>
                                 <td data-label="Estatus :">{{ $ficha->Estatus }}</td>
                                 <td data-label="Total :">{{ $ficha->Total }}</td>
-                                <td data-label="Observaciones :">{{ $ficha->Observaciones }}</td>
+                                <td data-label="Observaciones :">{{ $ficha->Obs }}</td>
                             </tr>
                         @endforeach
                     </tbody>

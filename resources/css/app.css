@@ -82,3 +82,29 @@ table tbody tr:hover {
 .select2-selection--single {
     height: auto !important; /* Altura del select */
 }
+.tableFixHead {
+    overflow-y: auto;
+    max-height: 50vh; /* Limita la altura de la tabla al 70% de la altura de la pantalla */
+    width: 100%; /* Ancho completo de la pantalla */
+    border-color: #000000;
+    border-bottom: #000000;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #69747F;
+    border-radius: 5px;
+}
+
+.tabla {
+    border-width: 2px;
+    width: 100%; /* Ancho completo del contenedor */
+}
+.total-column {
+    text-align: right; /* Alinea el texto a la derecha */
+    font-weight: bold; /* Pone el texto en negrita */
+}
+

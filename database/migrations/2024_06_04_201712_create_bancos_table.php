@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEmpresasTable extends Migration
+class CreateBancosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateEmpresasTable extends Migration
      */
     public function up()
     {
-        Schema::create('empresas', function (Blueprint $table) {
+        Schema::create('bancos', function (Blueprint $table) {
             $table->id();
-            $table->string ('Nombre')->nullable();
-            $table->string ('NCorto')->nullable();
-            $table->string ('RFC')->nullable();
-            $table->string ('Giro')->nullable();
+            $table->string('Nombre')->nullable();
+            $table->string('Cuenta')->nullable();
+            $table->unsignedBigInteger("empresa_id")->nullable();
+            $table->foreign("empresa_id")->references("id")->on("empresas")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateEmpresasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('empresas');
+        Schema::dropIfExists('_bancos');
     }
 }

@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Empresa extends Model
+class Banco extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'Nombre', 'NCorto', 'RFC', 'Giro'];
+    protected $fillable = ['id','Nombre', 'Cuenta','empresa_id'];
     public function deposito(){
         return $this->hasMany("App\Models\Depositos");
     }

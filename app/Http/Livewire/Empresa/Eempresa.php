@@ -2,14 +2,17 @@
 
 namespace App\Http\Livewire\Empresa;
 
+use App\Models\Banco;
 use App\Models\Empresa;
 use Livewire\Component;
 
 class Eempresa extends Component
 {
-    public $ide, $Nom, $Nc=1, $RFC, $Giro, $B1, $C1, $B2, $C2, $B3, $C3, $B4, $C4, $B5, $C5;
+    public $ide, $Nom, $Nc, $RFC, $Giro;
+    public $NombreB,$NumeroC,$Bancos;
     public function render()
     {
+        $this->Bancos = Banco::where('empresa_id', $this->ide)->get();
         return view('livewire.empresa.eempresa');
     }
     public function mount()
@@ -19,36 +22,16 @@ class Eempresa extends Component
         $this->Nc = $empresa->NCorto;
         $this->RFC = $empresa->RFC;
         $this->Giro = $empresa->Giro;
-        $this->B1 = $empresa->B1;
-        $this->C1 = $empresa->C1;
-        $this->B2 = $empresa->B2;
-        $this->C2 = $empresa->C2;
-        $this->B3 = $empresa->B3;
-        $this->C3 = $empresa->C3;
-        $this->B4 = $empresa->B4;
-        $this->C4 = $empresa->C4;
-        $this->B5 = $empresa->B5;
-        $this->C5 = $empresa->C5;
     }
     public function actualizar()
     {
-        empresa::updateOrCreate(
+        Empresa::updateOrCreate(
             ['id' => $this->ide],
             [
                 'Nombre' => $this->Nom,
                 'NCorto' => $this->Nc,
                 'RFC' => $this->RFC,
                 'Giro' => $this->Giro,
-                'B1' => $this->B1,
-                'C1' => $this->C1,
-                'B2' => $this->B2,
-                'C2' => $this->C2,
-                'B3' => $this->B3,
-                'C3' => $this->C3,
-                'B4' => $this->B4,
-                'C4' => $this->C4,
-                'B5' => $this->B5,
-                'C5' => $this->C5,
             ]
         );
 
@@ -58,8 +41,29 @@ class Eempresa extends Component
         ]);
         $this->redic();
     }
+    public function agregarBan()
+    {
+        if ($this->NombreB && $this->NumeroC) {
+            Banco::updateOrCreate(
+                [
+                    'Nombre' => $this->NombreB,
+                    'Cuenta' => $this->NumeroC,
+                    'empresa_id' => $this->ide,
+                ]
+            ); 
+            $this->dispatchBrowserEvent('swal', [
+                'title' => 'Registro Actualizado exitosamente',
+                'type' => 'success'
+            ]);
+        } else {
+            $this->dispatchBrowserEvent('swal', [
+                'title' => 'Ingresa Los Datos Solicitados',
+                'type' => 'error'
+            ]);
+        }
+    }
     public function redic()
     {
-        return redirect()->route('Empresas');
+        return redirect()->route('EEmpresa', $this->ide);
     }
 }

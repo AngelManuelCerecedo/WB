@@ -228,7 +228,7 @@
                                     <div class="flex-auto">
                                         <a href="{{ route('FichasI') }}"
                                             class="block font-semibold text-gray-900  group-hover:text-red-600">
-                                            Ficha de Identificacion del Cliente
+                                            Ficha de Identificacion de Depositos
                                             <span class="absolute inset-0"></span>
                                         </a>
                                     </div>
@@ -249,11 +249,32 @@
                                     <div class="flex-auto">
                                         <a
                                             href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
-                                            Ficha de Identificacion de Movimientos
+                                            Ficha de Identificacion de Gastos
                                             <span class="absolute inset-0"></span>
                                         </a>
                                     </div>
                                 </div>
+                                <div
+                                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                <div
+                                    class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M3 7v14h18V7M9 3h6v4H9z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M10 14h4M10 10h4M10 18h4" />
+                                    </svg>
+                                </div>
+                                <div class="flex-auto">
+                                    <a
+                                        href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                        Ficha de Identificacion de Reintegros
+                                        <span class="absolute inset-0"></span>
+                                    </a>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     </div>
