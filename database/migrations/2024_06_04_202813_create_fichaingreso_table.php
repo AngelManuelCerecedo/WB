@@ -19,6 +19,8 @@ class CreateFichaingresoTable extends Migration
             $table->date ('Fecha')->nullable();
             $table->string ('Total')->nullable();
             $table->string ('Comision')->nullable();
+            $table->string ('GastosF')->nullable();
+            $table->string ('ComisionWB')->nullable();
             $table->string ('Estatus')->nullable();
             $table->unsignedBigInteger("cliente_id")->nullable();
             $table->foreign("cliente_id")->references("id")->on("clientes")->onDelete('cascade')->onUpdate('cascade');

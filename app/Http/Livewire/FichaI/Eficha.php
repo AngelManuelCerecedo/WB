@@ -11,31 +11,50 @@ use Livewire\Component;
 
 class Eficha extends Component
 {
-    public $ide,$Folio,$Fecha,$Total=0,$Comision,$Obs,$Estatus;
-    public $searchC,$searchE, $Ficha,$Depositos;
-    public $FechaDep,$Monto,$Bancos,$Banco,$FolioF,$NumeroF;
-    public $CT,$PT,$GFT,$GFP,$CWB,$PWB,$CET1,$CEP1,$CET2,$CEP2,$CET3,$CEP3,$CET4,$CEP4,$CET5,$CEP5;
+    public $ide, $Folio, $Fecha, $Total = 0, $Comision, $Obs, $Estatus;
+    public $searchC, $searchE, $Ficha, $Depositos;
+    public $FechaDep, $Monto, $Bancos, $Banco, $FolioF, $NumeroF;
+    public $CT, $PT, $GFT, $GFP, $CWB, $PWB, $CET1, $CEP1 = 0, $CET2, $CEP2 = 0, $CET3, $CEP3 = 0, $CET4, $CEP4 = 0, $CET5, $CEP5 = 0, $AuxCOMWB;
     public function render()
     {
         $clientes = Cliente::all();
         $empresas = Empresa::all();
         $this->Depositos = Depositos::where('ficha_id', $this->ide)->get();
         $Ficha = FichaIngreso::Where('id', '=', $this->ide)->first();
-        $this->CT = ($this->PT) ? ($this->PT * $Ficha->Total)/100 : 0;
-        return view('livewire.fichai.eficha', ['Clientes' => $clientes,'Empresas'=>$empresas]);
+        $this->CT = ($this->PT) ? number_format(($this->PT * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        $this->GFT = ($this->GFP) ? number_format(($this->GFP * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        if ($this->PT && $this->GFP) {
+            $this->PWB= $this->PT - $this->GFP;
+            if ($this->CEP1 || $this->CEP2 || $this->CEP3 || $this->CEP4 || $this->CEP5) {
+                $this->PWB= $this->PWB - $this->toFloat($this->CEP1) - $this->toFloat($this->CEP2) - $this->toFloat($this->CEP3) - $this->toFloat($this->CEP4) - $this->toFloat($this->CEP5) ;
+            }
+        }
+        $this->CWB = ($this->PWB) ? number_format(($this->PWB * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        $this->CET1 = ($this->CEP1) ? number_format(($this->CEP1 * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        $this->CET2 = ($this->CEP2) ? number_format(($this->CEP2 * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        $this->CET3 = ($this->CEP3) ? number_format(($this->CEP3 * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        $this->CET4 = ($this->CEP4) ? number_format(($this->CEP4 * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        $this->CET5 = ($this->CEP5) ? number_format(($this->CEP5 * $Ficha->Total) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+        return view('livewire.fichai.eficha', ['Clientes' => $clientes, 'Empresas' => $empresas]);
+    }
+
+
+    private function toFloat($value)
+    {
+        return is_numeric($value) ? (float)$value : 0.0;
     }
     public function updatedSearchE($value)
     {
         $this->Bancos = Banco::where('empresa_id', $value)->get();
     }
-    public function mount(){
-
+    public function mount()
+    {
         $this->Ficha = FichaIngreso::Where('id', '=', $this->ide)->first();
         $this->searchC = ($this->Ficha->cliente_id) ? $this->Ficha->cliente_id : null;
         $this->Folio = $this->Ficha->Folio;
         $this->Fecha = $this->Ficha->Fecha;
         $this->Estatus = $this->Ficha->Estatus;
-        $this->Obs = ($this->Ficha->Obs) ? $this->Ficha->Obs : '' ;
+        $this->Obs = ($this->Ficha->Obs) ? $this->Ficha->Obs : '';
         $this->PT = ($this->Ficha->cliente->COMTOT) ? $this->Ficha->cliente->COMTOT : 0;
         $this->GFP = ($this->Ficha->cliente->COMFINTECH) ? $this->Ficha->cliente->COMFINTECH : 0;
         //$this->PWB = ($this->Ficha->cliente->) ? $this->PWB : 0;
@@ -44,9 +63,9 @@ class Eficha extends Component
         $this->CEP3 = ($this->Ficha->cliente->COMEXT3) ? $this->Ficha->cliente->COMEXT3 : 0;
         $this->CEP4 = ($this->Ficha->cliente->COMEXT4) ? $this->Ficha->cliente->COMEXT4 : 0;
         $this->CEP5 = ($this->Ficha->cliente->COMEXT5) ? $this->Ficha->cliente->COMEXT5 : 0;
-
     }
-    public function agregarMov(){
+    public function agregarMov()
+    {
         if ($this->Fecha && $this->Banco && $this->Monto) {
             Depositos::create(
                 [
@@ -63,7 +82,7 @@ class Eficha extends Component
             $Taux = 0;
             $Depositos = Depositos::where('ficha_id', $this->ide)->get();
             foreach ($Depositos as $deposito) {
-                $Taux += $deposito->Total;   
+                $Taux += $deposito->Total;
             }
             FichaIngreso::updateOrCreate(
                 ['id' => $this->ide],
@@ -82,6 +101,5 @@ class Eficha extends Component
                 'type' => 'error'
             ]);
         }
-
     }
 }
