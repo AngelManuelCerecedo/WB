@@ -26,15 +26,20 @@ class CreateClientesTable extends Migration
             $table->string ('COMTOT')->nullable();
             $table->string ('COMFINTECH')->nullable();
             $table->string ('COMEXT1')->nullable();
-            $table->string ('COMISIONISTA1')->nullable();
+            $table->unsignedBigInteger("comis1_id")->nullable();
+            $table->foreign("comis1_id")->references("id")->on("comisionistas")->onDelete('cascade')->onUpdate('cascade');
             $table->string ('COMEXT2')->nullable();
-            $table->string ('COMISIONISTA2')->nullable();
+            $table->unsignedBigInteger("comis2_id")->nullable();
+            $table->foreign("comis2_id")->references("id")->on("comisionistas")->onDelete('cascade')->onUpdate('cascade');
             $table->string ('COMEXT3')->nullable();
-            $table->string ('COMISIONISTA3')->nullable();
+            $table->unsignedBigInteger("comis3_id")->nullable();
+            $table->foreign("comis3_id")->references("id")->on("comisionistas")->onDelete('cascade')->onUpdate('cascade');
             $table->string ('COMEXT4')->nullable();
-            $table->string ('COMISIONISTA4')->nullable();
+            $table->unsignedBigInteger("comis4_id")->nullable();
+            $table->foreign("comis4_id")->references("id")->on("comisionistas")->onDelete('cascade')->onUpdate('cascade');
             $table->string ('COMEXT5')->nullable();
-            $table->string ('COMISIONISTA5')->nullable();
+            $table->unsignedBigInteger("comis5_id")->nullable();
+            $table->foreign("comis5_id")->references("id")->on("comisionistas")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }

@@ -3,13 +3,16 @@
 namespace App\Http\Livewire\Cliente;
 
 use App\Models\Cliente;
+use App\Models\Comisionista;
 use Livewire\Component;
 
 class Rcliente extends Component
 {
-    public $ide, $Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $Com1, $Comext2, $Com2, $Comext3, $Com3, $Comext4, $Com4, $Comext5, $Com5, $ComTot, $ComFin;
+    public $ide, $Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $comis1_id, $Comext2, $comis2_id, $Comext3, $comis3_id, $Comext4, $comis4_id, $Comext5, $comis5_id, $ComTot, $ComFin;
+    public $Comisionistas;
     public function render()
     {
+        $this->Comisionistas = Comisionista::all();
         return view('livewire.Cliente.Rcliente');
     }
     public function registrar(){
@@ -23,15 +26,15 @@ class Rcliente extends Component
                 'REG' => $this->Reg,
                 'CFDI' => $this->CDFI,
                 'COMEXT1' => $this->Comext1,
-                'COMISIONISTA1' => $this->Com1,
+                'comis1_id' => $this->comis1_id,
                 'COMEXT2' => $this->Comext2,
-                'COMISIONISTA2' => $this->Com2,
+                'comis2_id' => $this->comis2_id,
                 'COMEXT3' => $this->Comext3,
-                'COMISIONISTA3' => $this->Com3,
+                'comis3_id' => $this->comis3_id,
                 'COMEXT4' => $this->Comext4,
-                'COMISIONISTA4' => $this->Com4,
+                'comis4_id' => $this->comis4_id,
                 'COMEXT5' => $this->Comext5,
-                'COMISIONISTA5' => $this->Com5,
+                'comis5_id' => $this->comis5_id,
                 'COMTOT' => $this->ComTot,
                 'COMFINTECH' => $this->ComFin,
             ]
@@ -52,16 +55,16 @@ class Rcliente extends Component
         $this->DomF = '';
         $this->Reg = '';
         $this->CDFI = '';
+        $this->comis1_id = '';
         $this->Comext1 = '';
-        $this->Com1 = '';
+        $this->comis2_id = '';
         $this->Comext2 = '';
-        $this->Com2 = '';
+        $this->comis3_id = '';
         $this->Comext3 = '';
-        $this->Com3 = '';
+        $this->comis4_id = '';
         $this->Comext4 = '';
-        $this->Com4 = '';
+        $this->comis5_id = '';
         $this->Comext5 = '';
-        $this->Com5 = '';
         $this->ComTot = '';
         $this->ComFin = '';
     }

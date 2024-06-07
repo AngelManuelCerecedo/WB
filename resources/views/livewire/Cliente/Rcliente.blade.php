@@ -16,7 +16,7 @@
                         <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Nombre/Razón
                             Social</label>
                         <div class="mt-2">
-                            <input type="text" wire:model='Rs' autocomplete="family-name"
+                            <input type="text" wire:model='RS' autocomplete="family-name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -112,14 +112,14 @@
                         <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Comision
                             Total</label>
                         <div class="mt-2">
-                            <input type="text" wire:model='Comtot'
+                            <input type="text" wire:model='ComTot'
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
                     <div class="sm:col-span-1">
                         <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Fintech</label>
                         <div class="mt-2">
-                            <input type="text" wire:model='Comfin'
+                            <input type="text" wire:model='ComFin'
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
@@ -135,9 +135,15 @@
                     <div class="sm:col-span-1">
                         <label for="region"
                             class="block text-sm font-medium leading-6 text-gray-900">Comisionista</label>
-                        <div class="mt-2">
-                            <input wire:model='Com1'
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <div class="mt-3" wire:ignore>
+                            <select id="select1" class="buscador">
+                                <option value="">Seleccione un Comisionista</option>
+                                @foreach ($Comisionistas as $comisionista)
+                                    <option value="{{ $comisionista->id }}">
+                                        {{ $comisionista->Nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="sm:col-span-1">
@@ -152,9 +158,15 @@
                     <div class="sm:col-span-1">
                         <label for="region"
                             class="block text-sm font-medium leading-6 text-gray-900">Comisionista</label>
-                        <div class="mt-2">
-                            <input type="text" wire:model='Com2'
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <div class="mt-3" wire:ignore>
+                            <select id="select2" class="buscador">
+                                <option value="">Seleccione un Comisionista</option>
+                                @foreach ($Comisionistas as $comisionista)
+                                    <option value="{{ $comisionista->id }}">
+                                        {{ $comisionista->Nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -170,9 +182,15 @@
                     <div class="sm:col-span-1">
                         <label for="region"
                             class="block text-sm font-medium leading-6 text-gray-900">Comisionista</label>
-                        <div class="mt-2">
-                            <input type="text" wire:model='Com3'
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <div class="mt-3" wire:ignore>
+                            <select id="select3" class="buscador">
+                                <option value="">Seleccione un Comisionista</option>
+                                @foreach ($Comisionistas as $comisionista)
+                                    <option value="{{ $comisionista->id }}">
+                                        {{ $comisionista->Nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="sm:col-span-1">
@@ -187,9 +205,15 @@
                     <div class="sm:col-span-1">
                         <label for="region"
                             class="block text-sm font-medium leading-6 text-gray-900">Comisionista</label>
-                        <div class="mt-2">
-                            <input type="text" wire:model='Com4'
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <div class="mt-3" wire:ignore>
+                            <select id="select4" class="buscador">
+                                <option value="">Seleccione un Comisionista</option>
+                                @foreach ($Comisionistas as $comisionista)
+                                    <option value="{{ $comisionista->id }}">
+                                        {{ $comisionista->Nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
 
@@ -205,9 +229,15 @@
                     <div class="sm:col-span-1">
                         <label for="region"
                             class="block text-sm font-medium leading-6 text-gray-900">Comisionista</label>
-                        <div class="mt-2">
-                            <input type="text" wire:model='Com5'
-                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <div class="mt-3" wire:ignore>
+                            <select id="select5" class="buscador">
+                                <option value="">Seleccione un Comisionista</option>
+                                @foreach ($Comisionistas as $comisionista)
+                                    <option value="{{ $comisionista->id }}">
+                                        {{ $comisionista->Nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -222,3 +252,25 @@
                 class="rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400">Guardar</button>
         </div>
     </form>
+    <script>
+        $(document).ready(function() {
+            function initializeSelect(selectId, wireModel) {
+                $(selectId).select2({
+                    placeholder: 'Seleccione un Comisionista',
+                    allowClear: true,
+                    width: 'resolve' // ensures the select element takes the full width
+                });
+
+                $(selectId).on('change', function(e) {
+                    let valor = $(selectId).select2("val");
+                    @this.set(wireModel, valor);
+                });
+            }
+
+            initializeSelect('#select1', 'comis1_id');
+            initializeSelect('#select2', 'comis2_id');
+            initializeSelect('#select3', 'comis3_id');
+            initializeSelect('#select4', 'comis4_id');
+            initializeSelect('#select5', 'comis5_id');
+        });
+    </script>

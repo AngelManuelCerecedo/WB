@@ -91,6 +91,27 @@
                                         class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
+                                        </svg>
+
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="{{ route('Comisionistas') }}"
+                                            class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                            Comisionistas
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M3 7v14h18V7M9 3h6v4H9z" />
@@ -255,26 +276,26 @@
                                     </div>
                                 </div>
                                 <div
-                                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-                                <div
-                                    class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M3 7v14h18V7M9 3h6v4H9z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M10 14h4M10 10h4M10 18h4" />
-                                    </svg>
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M3 7v14h18V7M9 3h6v4H9z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M10 14h4M10 10h4M10 18h4" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a
+                                            href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                            Ficha de Identificacion de Reintegros
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="flex-auto">
-                                    <a
-                                        href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
-                                        Ficha de Identificacion de Reintegros
-                                        <span class="absolute inset-0"></span>
-                                    </a>
-                                </div>
-                            </div>
                             </div>
                         </div>
                     </div>

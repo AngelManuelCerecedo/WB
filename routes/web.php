@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ComisionistaController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\CreditoCompraController;
@@ -54,6 +55,11 @@ Route::get('dashboard', function () {return view('dashboard');})->name('dashboar
 Route::get('Clientes', [ClienteController::class, 'cliente'])->name('Clientes');
 Route::get('Cliente/Registro', [ClienteController::class, 'rcliente'])->name('RClientes');
 Route::get('Cliente/Editar/{id}', [ClienteController::class, 'ecliente'])->name('ECliente');
+
+//COMISIONISTAS
+Route::get('Comisionista', [ComisionistaController::class, 'comisionista'])->name('Comisionistas');
+Route::get('comisionista/Registro', [ComisionistaController::class, 'rcomisionista'])->name('RComisionistas');
+Route::get('comisionista/Editar/{id}', [ComisionistaController::class, 'ecomisionista'])->name('EComisionista');
 
 //EMPRESAS
 Route::get('Empresas', [EmpresaController::class, 'empresa'])->name('Empresas');

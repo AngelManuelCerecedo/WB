@@ -32,6 +32,7 @@ class Rficha extends Component
                 'Fecha' => $this->Fecha,
                 'Estatus' => 'Registro',
                 'cliente_id' => $this->searchC,
+                'Total' => 0,
                 //'empleado_id' => $this->searchE,
                 'Obs' => $this->Obs,
             ]
