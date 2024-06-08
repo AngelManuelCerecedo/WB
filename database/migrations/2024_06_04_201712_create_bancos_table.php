@@ -17,6 +17,7 @@ class CreateBancosTable extends Migration
             $table->id();
             $table->string('Nombre')->nullable();
             $table->string('Cuenta')->nullable();
+            $table->string('Total')->nullable();
             $table->unsignedBigInteger("empresa_id")->nullable();
             $table->foreign("empresa_id")->references("id")->on("empresas")->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

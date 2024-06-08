@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <h2 class="text-base font-semibold leading-3 text-gray-900">Comisiones</h2>
-                <div class="sm:col-span-2">
+                <div class="sm:col-span-1">
                     <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Comision
                         Total</label>
                     <div class="mt-2">

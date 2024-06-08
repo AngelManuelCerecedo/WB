@@ -12,4 +12,7 @@ class Comisionista extends Model
     public function cliente(){
         return $this->hasMany("App\Models\Clientes");
     }
+    public function fichaI(){
+        return $this->hasMany("App\Models\FichaIngreso");
+    }
 }
