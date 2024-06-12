@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="sm:col-span-1">
-                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nombre</label>
+                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nombre del Banco</label>
                     <input type="text" wire:model='NombreB'
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
@@ -75,7 +75,7 @@
                                         </td>
                                         <td data-label="Nombre :">{{ $banco->Nombre }}</td>
                                         <td data-label="Cuenta :">{{ $banco->Cuenta }}</td>
-                                        <td data-label="Total :">{{ $banco->Total }}</td>
+                                        <td data-label="Total :">${{ number_format($banco->Total, 2) }}</td>
                                     </tr>
                                 </tbody>
                             @endforeach

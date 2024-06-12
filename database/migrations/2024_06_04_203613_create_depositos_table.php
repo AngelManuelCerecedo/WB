@@ -18,7 +18,7 @@ class CreateDepositosTable extends Migration
             $table->date('Fecha')->nullable();
             $table->string('Total')->nullable();
             $table->string('FolioF')->nullable();
-            $table->string('NumeroF')->nullable();
+            $table->date('FechaF')->nullable();
             $table->unsignedBigInteger("banco_id")->nullable();
             $table->foreign("banco_id")->references("id")->on("bancos")->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("empresa_id")->nullable();

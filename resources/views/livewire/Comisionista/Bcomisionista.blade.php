@@ -46,7 +46,7 @@
                                     </a>
                                 </td>
                                 <td data-label="NOMBRE :">{{ $comisionista->Nombre }}</td>
-                                <td data-label="COM TOTAL :">{{ $comisionista->Total }}</td>
+                                <td data-label="COM TOTAL :">${{ number_format($comisionista->Total, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

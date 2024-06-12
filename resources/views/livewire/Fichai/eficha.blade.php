@@ -105,7 +105,7 @@
                     <div class="sm:col-span-1">
                         <div class="mt-7">
                             <button type="button" wire:click="agregarMov()"
-                                class="rounded-md bg-blue-500 px-20 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400">Agregar</button>
+                                class="rounded-md bg-blue-500 px-20 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">Agregar</button>
                         </div>
                     </div>
                 @endif
@@ -117,8 +117,8 @@
                             <tr>
                                 <th>Acciones</th>
                                 <th>Fecha</th>
-                                <th>Numero de Factura</th>
                                 <th>Folio de Factura</th>
+                                <th>Fecha de Factura</th>
                                 <th>Empresa</th>
                                 <th>Banco</th>
                                 <th>Cuenta</th>
@@ -131,12 +131,12 @@
                                     <tr>
                                         @if ($Estatus == 'Registro')
                                             <td data-label="ACCIONES :" class="lg:w-1/12">
-                                                <a>
-                                                    <button class="botonDETALLES">
-                                                        <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                        <span class="ml-2 ">Detalles</span>
+                                                <div style="display: flex; justify-content: center;">
+                                                    <button type="button" wire:click="eliminarDep({{ $deposito->id }})"
+                                                        class="rounded-md bg-red-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
+                                                        <i class="bi bi-trash3"></i>
                                                     </button>
-                                                </a>
+                                                </div>
                                             </td>
                                         @else
                                             <td data-label="ACCIONES :" class="lg:w-1/12">
@@ -144,8 +144,8 @@
                                         @endif
 
                                         <td data-label="Fecha :">{{ $deposito->Fecha }}</td>
-                                        <td data-label="N. Factura :">{{ $deposito->FolioF }}</td>
-                                        <td data-label="F. Factura :">{{ $deposito->NumeroF }}</td>
+                                        <td data-label="Fh. Factura :">{{ $deposito->FechaF }}</td>
+                                        <td data-label="F. Factura :">{{ $deposito->FolioF }}</td>
                                         <td data-label="Empresa :">{{ $deposito->empresa->Nombre }}</td>
                                         <td data-label="Banco :">{{ $deposito->banco->Nombre }}</td>
                                         <td data-label="Cuenta :">{{ $deposito->banco->Cuenta }}</td>
@@ -354,6 +354,13 @@
                 </div>
                 <div class="sm:col-span-1">
                     <input type="text" wire:model='TOTALRINT' disabled
+                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                </div>
+                <div class="sm:col-span-1  mt-3">
+                    <h2 class="text-base font-semibold leading-3 text-gray-900">SUMA DE COMISIONES</h2>
+                </div>
+                <div class="sm:col-span-1">
+                    <input type="text" wire:model='SumCom' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
             </div>

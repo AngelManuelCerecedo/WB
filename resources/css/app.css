@@ -64,6 +64,15 @@ table tbody tr:hover {
     width: 110px;
     height: 35px;   
 }
+.botonEliminar{
+    background-color: #FF6347; /* Cambiado a rojo */
+    color: #ffffff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    border-radius: 3px;
+    width: 110px;
+    height: 35px;   
+}
 .botoNUEVOSR{
     background-color: #1C75C7;
     color: #ffffff;
