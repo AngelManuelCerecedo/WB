@@ -36,11 +36,11 @@ class CreateFichaingresoTable extends Migration
             $table->string ('Tot5')->nullable();
             $table->unsignedBigInteger("comis5_id")->nullable();
             $table->foreign("comis5_id")->references("id")->on("comisionistas")->onDelete('cascade')->onUpdate('cascade');
-            $table->string ('Estatus')->nullable();
             $table->unsignedBigInteger("cliente_id")->nullable();
             $table->foreign("cliente_id")->references("id")->on("clientes")->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("empleado_id")->nullable();
             $table->foreign("empleado_id")->references("id")->on("empleados")->onDelete('cascade')->onUpdate('cascade');
+            $table->string ('Estatus')->nullable();
             $table->string ('Obs')->nullable();
             $table->timestamps();
         });

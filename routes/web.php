@@ -13,6 +13,7 @@ use App\Http\Controllers\CreditoCompraController;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\FichaGastosController;
 use App\Http\Controllers\FichaIngresoController;
 use App\Http\Controllers\FormasController;
 use App\Http\Controllers\MarcasController;
@@ -25,6 +26,7 @@ use App\Http\Controllers\UnidadesController;
 use App\Http\Controllers\VentaController;
 use App\Models\Compra;
 use App\Models\Empresa;
+use App\Models\FichaGasto;
 use Maatwebsite\Excel\Facades\Excel;
 
 /*
@@ -82,10 +84,15 @@ Route::get('Empleados/Registro', [EmpleadoController::class, 'rempleado'])->name
 Route::get('Empleados/Editar/{id}', [EmpleadoController::class, 'eempleado'])->name('EEmpleado');
 
 //MODULO FINANZAS
+//FICHA INGRESOS
 Route::get('FichasI', [FichaIngresoController::class, 'ficha'])->name('FichasI');
 Route::get('FichasI/Registro', [FichaIngresoController::class, 'rficha'])->name('RFichasI');
 Route::get('FichasI/Editar/{id}', [FichaIngresoController::class, 'eficha'])->name('EFichaI');
 
+//FICHA GASTOS
+Route::get('FichasG', [FichaGastosController::class, 'ficha'])->name('FichasG');
+Route::get('FichasG/Registro', [FichaGastosController::class, 'rficha'])->name('RFichasG');
+Route::get('FichasG/Editar/{id}', [FichaGastosController::class, 'eficha'])->name('EFichaG');
 
 //ROLES
 Route::get('roles', [RoleController::class, 'roles'])->name('Roles');

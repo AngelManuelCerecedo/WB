@@ -269,7 +269,7 @@
                                         </svg>
                                     </div>
                                     <div class="flex-auto">
-                                        <a
+                                        <a href="{{ route('FichasG') }}"
                                             href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
                                             Ficha de Identificacion de Gastos
                                             <span class="absolute inset-0"></span>
