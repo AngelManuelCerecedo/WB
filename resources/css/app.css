@@ -117,3 +117,22 @@ table tbody tr:hover {
     font-weight: bold; /* Pone el texto en negrita */
 }
 
+.toggle-label {
+    width: 44px; /* Ancho total del switch */
+    margin-left: -6px;
+}
+
+/* Estilos del círculo que se mueve dentro del toggle */
+input[type="checkbox"]:checked + .toggle-label .rounded-full {
+    transform: translateX(100%);
+}
+
+/* Animación de movimiento */
+input[type="checkbox"] {
+    position: absolute;
+    left: -9999px; /* Ocultar el checkbox */
+}
+
+.toggle-label .rounded-full {
+    transition: transform 0.3s ease;
+}

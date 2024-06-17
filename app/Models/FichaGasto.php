@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class FichaGasto extends Model
 {
-    protected $fillable = ['id','Folio','Fecha', 'Total', 'Beneficiario', 'FolioFact','GastosF','formap_id','banco_id','empresa_id','empleado_id','Estatus','Obs'];
+    protected $fillable = ['id','Folio','Fecha', 'Total', 'Beneficiario','Cuenta','FolioFact','GastosF','formap_id','banco_id','empresa_id','empleado_id','Estatus','Obs'];
     use HasFactory;
 }

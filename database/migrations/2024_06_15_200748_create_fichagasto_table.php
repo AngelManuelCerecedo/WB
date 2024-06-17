@@ -19,7 +19,7 @@ class CreateFichagastoTable extends Migration
             $table->string ('Beneficiario')->nullable();
             $table->date ('Fecha')->nullable();
             $table->string ('Total')->nullable();
-            $table->string ('Factura')->nullable();
+            $table->string ('Cuenta')->nullable();
             $table->string ('FolioFact')->nullable();
             $table->string ('GastosF')->nullable();
             $table->unsignedBigInteger("formap_id")->nullable();

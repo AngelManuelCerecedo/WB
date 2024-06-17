@@ -21,7 +21,7 @@
             </div>
             <div class="sm:ml-64 mt-2">
                 <label><i class="bi bi-house-door-fill"></i> <i class="bi bi-chevron-right"></i> Catálogos <i
-                        class="bi bi-chevron-right"></i> Fichas de Ingreso</label>
+                        class="bi bi-chevron-right"></i> Fichas de Ingresos</label>
             </div>
         </div>
         <div class=" overflow-x-auto mt-4">
