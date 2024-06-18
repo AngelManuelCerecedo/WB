@@ -15,4 +15,7 @@ class FichaIngreso extends Model
     public function comisionista(){
         return $this->belongsTo("App\Models\Comisionista");
     }
+    public function deposito(){
+        return $this->hasMany("App\Models\Depositos");
+    }
 }

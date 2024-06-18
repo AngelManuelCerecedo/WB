@@ -6,6 +6,7 @@ use App\Models\Banco;
 use App\Models\Empresa;
 use App\Models\FichaGasto;
 use App\Models\FormaPago;
+use App\Models\Gastos;
 use Livewire\Component;
 
 class EFicha extends Component
@@ -56,6 +57,30 @@ class EFicha extends Component
                 'FolioFact' => ($this->Factura) ? $this->FF : null,
                 'Estatus' => 'Registro',
                 'Obs' => $this->Obs,
+            ]
+        );
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Ficha Guardada Exitosamente',
+            'type' => 'success'
+        ]);
+        $this->redic();
+    }
+    public function ingresar(){
+        FichaGasto::updateOrCreate(
+            ['id' => $this->ide],
+            [
+                'Estatus' => 'Ingresada',
+            ]
+        );
+        Gastos::create(
+            [
+                'Fecha' => $this->Fecha,
+                'Total' => $this->Monto,
+                'FolioF' => ($this->Factura) ? $this->FF : null,
+                'banco_id' => $this->Banco,
+                'empresa_id' => ($this->searchE) ? $this->searchE : $this->empresaSeleccionadaId,
+                'ficha_id' => $this->ide,
+                //AGREGAR AL USUARIO
             ]
         );
         $this->dispatchBrowserEvent('swal', [

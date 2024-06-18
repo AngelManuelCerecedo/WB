@@ -15,4 +15,7 @@ class Depositos extends Model
     public function empresa(){
         return $this->belongsTo("App\Models\Empresa");
     }
+    public function fichaIngreso(){
+        return $this->belongsTo("App\Models\FichaIngreso");
+    }
 }

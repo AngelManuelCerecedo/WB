@@ -3,13 +3,16 @@
 namespace App\Http\Livewire\Empresa;
 
 use App\Models\Banco;
+use App\Models\Depositos;
 use App\Models\Empresa;
+use App\Models\Gastos;
 use Livewire\Component;
 
 class Eempresa extends Component
 {
     public $ide, $Nom, $Nc, $RFC, $Giro;
-    public $NombreB,$NumeroC,$Bancos;
+    public $NombreB, $NumeroC, $Bancos, $movimientos;
+    public $ModalMov = false;
     public function render()
     {
         $this->Bancos = Banco::where('empresa_id', $this->ide)->get();
@@ -50,7 +53,7 @@ class Eempresa extends Component
                     'Cuenta' => $this->NumeroC,
                     'empresa_id' => $this->ide,
                 ]
-            ); 
+            );
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'Registro Actualizado exitosamente',
                 'type' => 'success'
@@ -61,6 +64,25 @@ class Eempresa extends Component
                 'type' => 'error'
             ]);
         }
+    }
+    public function abrirModal($Bancoide)
+    {
+        $this->ModalMov = true;
+        $gastos = Gastos::select('id', 'Fecha', 'Total', 'ficha_id', 'empleado_id')
+            ->where('banco_id', $Bancoide)
+            ->with('fichaGasto:id,Folio') // Cargar la relación 'fichaGasto' con solo el campo 'Folio'
+            ->get();
+
+        // Obtener depósitos con información de la ficha correspondiente
+        $depositos = Depositos::select('id', 'Fecha', 'Total', 'ficha_id', 'empleado_id')
+            ->where('banco_id', $Bancoide)
+            ->with('fichaIngreso:id,Folio') // Cargar la relación 'fichaIngreso' con solo el campo 'Folio'
+            ->get();
+        $this->movimientos = $gastos->concat($depositos);
+    }
+    public function cerrarModal()
+    {
+        $this->ModalMov = false;
     }
     public function redic()
     {

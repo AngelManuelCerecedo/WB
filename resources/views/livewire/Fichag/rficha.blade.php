@@ -120,8 +120,6 @@
         @if ($Estatus == 'Registro')
             <button type="button" wire:click="guardar()"
                 class="rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400">Guardar</button>
-            <button type="button" wire:click="ingresar()"
-                class="rounded-md bg-yellow-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400">Ingresar</button>
         @endif
     </div>
 </form>
