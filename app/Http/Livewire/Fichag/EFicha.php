@@ -66,6 +66,13 @@ class EFicha extends Component
         $this->redic();
     }
     public function ingresar(){
+        $Cuenta = Banco::where('id', $this->Banco)->first();
+        Banco::updateOrCreate(
+            ['id' => $this->Banco],
+            [
+                'Total' => $Cuenta->Total - $this->Monto,
+            ]
+        );
         FichaGasto::updateOrCreate(
             ['id' => $this->ide],
             [
@@ -83,6 +90,7 @@ class EFicha extends Component
                 //AGREGAR AL USUARIO
             ]
         );
+
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Ficha Guardada Exitosamente',
             'type' => 'success'

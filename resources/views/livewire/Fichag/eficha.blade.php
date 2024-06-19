@@ -84,6 +84,7 @@
                                 {{ $banco->Nombre }}
                                 -
                                 {{ $banco->Cuenta }}
+                                ${{ number_format($banco->Total, 2) }}
                             </option>
                         @endforeach
                     </select>
