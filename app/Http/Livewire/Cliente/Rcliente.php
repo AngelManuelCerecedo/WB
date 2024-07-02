@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Rcliente extends Component
 {
-    public $ide, $Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $comis1_id, $Comext2, $comis2_id, $Comext3, $comis3_id, $Comext4, $comis4_id, $Comext5, $comis5_id, $ComTot, $ComFin;
+    public $ide, $Alias,$Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $comis1_id, $Comext2, $comis2_id, $Comext3, $comis3_id, $Comext4, $comis4_id, $Comext5, $comis5_id, $ComTot, $ComFin;
     public $Comisionistas;
     public function render()
     {
@@ -19,7 +19,8 @@ class Rcliente extends Component
         Cliente::updateOrCreate(
             [
                 'NOMBRE' => $this->Nom,
-                'ALIAS' => $this->RS,
+                'ALIAS' => $this->Alias,
+                'RS' => $this->RS,
                 'RFC' => $this->RFC,
                 'CP' => $this->CP,
                 'DOMF' => $this->DomF,
@@ -49,6 +50,7 @@ class Rcliente extends Component
     public function limpiar()
     {
         $this->Nom = '';
+        $this->Alias = '';
         $this->RS = '';
         $this->RFC = '';
         $this->CP = '';

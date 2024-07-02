@@ -3,7 +3,14 @@
             <div class="border-b border-gray-900/10 pb-8">
                 <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Registro de Clientes</h2>
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                    <div class="sm:col-span-3">
+                    <div class="sm:col-span-2">
+                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Alias</label>
+                        <div class="mt-2">
+                            <input type="text" wire:model='Alias' autocomplete="given-name"
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                    <div class="sm:col-span-2">
                         <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Nombre
                             Comcercial/Contacto</label>
                         <div class="mt-2">
@@ -11,8 +18,7 @@
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
                     </div>
-
-                    <div class="sm:col-span-3">
+                    <div class="sm:col-span-2">
                         <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Nombre/Razón
                             Social</label>
                         <div class="mt-2">

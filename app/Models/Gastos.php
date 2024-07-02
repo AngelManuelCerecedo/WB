@@ -9,7 +9,11 @@ class Gastos extends Model
 {
     use HasFactory;
     protected $fillable = ['id','Fecha', 'Total','FolioF','FechaF','ficha_id','empresa_id','banco_id','empleado_id'];
-    public function fichaGasto(){
-        return $this->belongsTo("App\Models\FichaGasto");
+    public function banco(){
+        return $this->belongsTo("App\Models\Banco");
+    }
+    public function fichaGasto()
+    {
+        return $this->belongsTo(FichaGasto::class, 'ficha_id');
     }
 }

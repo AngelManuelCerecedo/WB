@@ -180,7 +180,7 @@
                     <h2 class="number-base font-semibold leading-3 text-gray-900">Total</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='CT' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='CT' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
@@ -191,7 +191,7 @@
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Gastos Fintech</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='GFT' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='GFT' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
@@ -202,7 +202,7 @@
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Comision WB</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='CWB' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='CWB' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
@@ -213,7 +213,7 @@
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Comisionista Externo I</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='CET1' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='CET1' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
@@ -241,7 +241,7 @@
                     <h2 class="number-base font-semibold leading-3 text-gray-900">Comisionista Externo II</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='CET2' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='CET2' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
@@ -269,7 +269,7 @@
                     <h2 class="number-base font-semibold leading-3 text-gray-900">Comisionista Externo III</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='CET3' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='CET3' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
@@ -297,7 +297,7 @@
                     <h2 class="number-base font-semibold leading-3 text-gray-900">Comisionista Externo IV</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='CET4' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='CET4' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
@@ -325,7 +325,7 @@
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Comisionista Externo V</h2>
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="text" wire:model='CET5' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='CET5' disabled
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
