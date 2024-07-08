@@ -40,7 +40,7 @@
                     <div class="sm:col-span-1 sm:col-start-1">
                         <div class="mt-6">
                             <button type="button" wire:click="agregarBan()"
-                                class="rounded-md bg-blue-500 px-20 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400">Agregar</button>
+                                class="rounded-md bg-blue-500 px-20 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400">Agregar</button>
                         </div>
                     </div>
                     <div class="sm:col-span-1">

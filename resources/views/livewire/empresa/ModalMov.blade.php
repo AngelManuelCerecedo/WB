@@ -21,7 +21,7 @@
                     <table class="tablaPV w-full">
                         <thead class="etiqueta">
                             <tr class="text-center">
-                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Id de Ficha</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Folio de Ficha</th>
                                 <th class="px-6 py-2 bg-sky-200 border border-gray-100">Movimiento</th>
                                 <th class="px-6 py-2 bg-sky-200 border border-gray-100">Fecha</th>
                                 <th class="px-6 py-2 bg-sky-200 border border-gray-100">Importe</th>
@@ -30,14 +30,17 @@
                         </thead>
                         <tbody>
                             @foreach ($movimientos as $movimiento)
-                                @php
-                                    $tipo = $movimiento instanceof App\Models\Gasto ? 'Depósito' : 'Gasto';
-                                @endphp
                                 <tr class="text-center">
-                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->ficha_id }}</td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $tipo }}</td>
+                                    @if ($movimiento->fichaG_id)
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->fichaG->Folio }}</td>
+                                    @endif
+                                    @if ($movimiento->fichaD_id)
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->fichaI->Folio }}</td>
+                                    @endif
+                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Movimiento }}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">${{ number_format($movimiento->Total, 2) }}</td>
+                                    <td class="px-6 py-4 whitespace-no-wrap">${{ number_format($movimiento->Total, 2) }}
+                                    </td>
                                     <td class="px-6 py-4 whitespace-no-wrap">Empleado</td>
                                 </tr>
                             @endforeach

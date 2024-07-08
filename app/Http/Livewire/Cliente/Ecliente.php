@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Ecliente extends Component
 {
-    public $ide, $Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $comis1_id, $Comext2, $comis2_id, $Comext3, $comis3_id, $Comext4, $comis4_id, $Comext5, $comis5_id, $ComTot, $COMFINTECH;
+    public $ide, $Alias, $Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $comis1_id, $Comext2, $comis2_id, $Comext3, $comis3_id, $Comext4, $comis4_id, $Comext5, $comis5_id, $ComTot, $COMFINTECH;
     public $Comisionistas;
     public function render()
     {
@@ -19,7 +19,8 @@ class Ecliente extends Component
         $this->Comisionistas = Comisionista::all();
         $cliente = Cliente::where('id', $ide)->first();
         $this->Nom = $cliente->NOMBRE;
-        $this->RS = $cliente->ALIAS;
+        $this->Alias = $cliente->ALIAS;
+        $this->RS = $cliente->RS;
         $this->RFC = $cliente->RFC;
         $this->CP = $cliente->CP;
         $this->DomF = $cliente->DOMF;
@@ -40,16 +41,17 @@ class Ecliente extends Component
     }
     public function actualizar()
     {
-        $this->comis1_id = ($this->comis1_id == 'NULL') ? null : $this->comis1_id ;
-        $this->comis2_id = ($this->comis2_id == 'NULL') ? null : $this->comis2_id ;
-        $this->comis3_id = ($this->comis3_id == 'NULL') ? null : $this->comis3_id ;
-        $this->comis4_id = ($this->comis4_id == 'NULL') ? null : $this->comis4_id ;
-        $this->comis5_id = ($this->comis5_id == 'NULL') ? null : $this->comis5_id ;
+        $this->comis1_id = ($this->comis1_id == 'NULL') ? null : $this->comis1_id;
+        $this->comis2_id = ($this->comis2_id == 'NULL') ? null : $this->comis2_id;
+        $this->comis3_id = ($this->comis3_id == 'NULL') ? null : $this->comis3_id;
+        $this->comis4_id = ($this->comis4_id == 'NULL') ? null : $this->comis4_id;
+        $this->comis5_id = ($this->comis5_id == 'NULL') ? null : $this->comis5_id;
         Cliente::updateOrCreate(
             ['id' => $this->ide],
             [
                 'NOMBRE' => $this->Nom,
-                'ALIAS' => $this->RS,
+                'ALIAS' => $this->Alias,
+                'RS' => $this->RS,
                 'RFC' => $this->RFC,
                 'CP' => $this->CP,
                 'DOMF' => $this->DomF,

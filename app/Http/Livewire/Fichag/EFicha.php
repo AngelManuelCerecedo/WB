@@ -6,7 +6,7 @@ use App\Models\Banco;
 use App\Models\Empresa;
 use App\Models\FichaGasto;
 use App\Models\FormaPago;
-use App\Models\Gastos;
+use App\Models\Movimientos;
 use Livewire\Component;
 
 class EFicha extends Component
@@ -66,6 +66,23 @@ class EFicha extends Component
         $this->redic();
     }
     public function ingresar(){
+        $this->guardar();
+        FichaGasto::updateOrCreate(
+            ['id' => $this->ide],
+            [
+                'Folio' => $this->Folio,
+                'Fecha' => $this->Fecha,
+                'Beneficiario' => $this->Bene,
+                'Total' => $this->Monto,
+                'formap_id' => $this->FormaP,
+                'banco_id' => $this->Banco,
+                'empresa_id' => ($this->searchE) ? $this->searchE : $this->empresaSeleccionadaId,
+                'GastosF' => ($this->Factura) ? $this->Factura : null,
+                'FolioFact' => ($this->Factura) ? $this->FF : null,
+                'Estatus' => 'Registro',
+                'Obs' => $this->Obs,
+            ]
+        );
         $Cuenta = Banco::where('id', $this->Banco)->first();
         Banco::updateOrCreate(
             ['id' => $this->Banco],
@@ -79,14 +96,15 @@ class EFicha extends Component
                 'Estatus' => 'Ingresada',
             ]
         );
-        Gastos::create(
+        Movimientos::create(
             [
+                'Movimiento' => 'Gasto',
                 'Fecha' => $this->Fecha,
                 'Total' => $this->Monto,
                 'FolioF' => ($this->Factura) ? $this->FF : null,
                 'banco_id' => $this->Banco,
                 'empresa_id' => ($this->searchE) ? $this->searchE : $this->empresaSeleccionadaId,
-                'ficha_id' => $this->ide,
+                'fichaG_id' => $this->ide,
                 //AGREGAR AL USUARIO
             ]
         );

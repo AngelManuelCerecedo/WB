@@ -4,11 +4,10 @@ namespace App\Http\Livewire\FichaI;
 
 use App\Models\Banco;
 use App\Models\Cliente;
-use App\Models\Comisiones;
 use App\Models\Comisionista;
-use App\Models\Depositos;
 use App\Models\Empresa;
 use App\Models\FichaIngreso;
+use App\Models\Movimientos;
 use Livewire\Component;
 
 class Eficha extends Component
@@ -16,20 +15,18 @@ class Eficha extends Component
     public $ide, $Folio, $Fecha, $Total = 0, $TOTALRINT, $Comision, $Obs, $Estatus;
     public $searchC, $searchE, $Ficha, $Depositos, $Comisionistas;
     public $FechaDep, $Monto, $Bancos, $Banco, $FolioF, $NumeroF, $Cliente, $NomC1, $NomC2, $NomC3, $NomC4, $NomC5, $SumCom;
-    public $comis1_id, $comis2_id, $comis3_id, $comis4_id, $comis5_id;
+    public $comis1_id, $comis2_id, $comis3_id, $comis4_id, $comis5_id,$AUXCWB;
     public $CT, $PT, $GFT, $GFP, $CWB, $PWB = 0, $CET1, $CEP1 = 0, $CET2, $CEP2 = 0, $CET3, $CEP3 = 0, $CET4, $CEP4 = 0, $CET5, $CEP5 = 0, $AuxCOMWB;
     public function render()
     {
         $Taux = 0;
-        $Depositos = Depositos::where('ficha_id', $this->ide)->get();
-        foreach ($Depositos as $deposito) {
+        $this->Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
+        foreach ($this->Depositos as $deposito) {
             $Taux += $deposito->Total;
         }
         $clientes = Cliente::all();
         $empresas = Empresa::all();
         $this->Comisionistas = Comisionista::all();
-        $this->Depositos = Depositos::where('ficha_id', $this->ide)->get();
-        $Ficha = FichaIngreso::Where('id', '=', $this->ide)->first();
         $this->CT = ($this->PT) ? number_format(($this->PT * $Taux) / 100, 2, '.', ',') : 0.0;
         $this->GFT = ($this->GFP) ? number_format(($this->GFP * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
         if ($this->PT && $this->GFP) {
@@ -38,6 +35,7 @@ class Eficha extends Component
                 $this->PWB = round($this->PWB - $this->toFloat($this->CEP1) - $this->toFloat($this->CEP2) - $this->toFloat($this->CEP3) - $this->toFloat($this->CEP4) - $this->toFloat($this->CEP5), 2);
             }
         }
+        $this->AUXCWB = ($this->PWB) ? ($this->PWB * $Taux) / 100 : 0;
         $this->CWB = ($this->PWB) ? number_format(($this->PWB * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
         $this->CET1 = ($this->CEP1) ? number_format(($this->CEP1 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
         $this->CET2 = ($this->CEP2) ? number_format(($this->CEP2 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
@@ -77,8 +75,8 @@ class Eficha extends Component
         $this->Fecha = $this->Ficha->Fecha;
         $this->Estatus = $this->Ficha->Estatus;
         $this->Obs = ($this->Ficha->Obs) ? $this->Ficha->Obs : '';
-        ($this->Ficha->cliente) ? $flag1 = true : 0;
-        if ($flag1 && $this->Ficha->cliente == $this->Ficha->Comision) {
+        ($this->Ficha->cliente) ? $flag1 = true : $flag1 = false;
+        if ($flag1 &&  !$this->Ficha->Comision) {
             $this->PT = $this->Ficha->cliente->COMTOT;
         } else {
             $this->PT = $this->Ficha->Comision;
@@ -99,20 +97,21 @@ class Eficha extends Component
     }
     public function eliminarDep($id)
     {
-        Depositos::where('id', $id)->delete();
+        Movimientos::where('id', $id)->delete();
     }
     public function agregarMov()
     {
         if ($this->Fecha && $this->Banco && $this->Monto) {
-            Depositos::create(
+            Movimientos::create(
                 [
+                    'Movimiento' => 'Deposito',
                     'Fecha' => $this->Fecha,
                     'Total' => $this->Monto,
                     'FolioF' => $this->FolioF,
                     'NumeroF' => $this->NumeroF,
                     'empresa_id' => $this->searchE,
                     'banco_id' => $this->Banco,
-                    'ficha_id' => $this->ide,
+                    'fichaD_id' => $this->ide,
                     //AGREGAR AL USUARIO
                 ]
             );
@@ -130,7 +129,7 @@ class Eficha extends Component
     public function guardar()
     {
         $Taux = 0;
-        $Depositos = Depositos::where('ficha_id', $this->ide)->get();
+        $Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
         foreach ($Depositos as $deposito) {
             $Taux += $deposito->Total;
         }
@@ -163,8 +162,24 @@ class Eficha extends Component
     }
     public function ingresar()
     {
+        $this->guardar();
+        $ComDiv = round($this->AUXCWB / 2, 2);
+        $TotCOMclv3 = Comisionista::where('id', 11)->first();
+        Comisionista::updateOrCreate(
+            ['id' => 11],
+            [
+                'Total' => $TotCOMclv3->Total + $ComDiv,
+            ]
+        );
+        $TotCOMclv21 = Comisionista::where('id', 12)->first();
+        Comisionista::updateOrCreate(
+            ['id' => 12],
+            [
+                'Total' => $TotCOMclv21->Total + $ComDiv,
+            ]
+        );
         $Taux = 0;
-        $Depositos = Depositos::where('ficha_id', $this->ide)->get();
+        $Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
         foreach ($Depositos as $deposito) {
             $Taux += $deposito->Total;
         }

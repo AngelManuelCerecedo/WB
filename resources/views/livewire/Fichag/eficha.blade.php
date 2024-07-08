@@ -43,7 +43,7 @@
                 <div class="sm:col-span-1 sm:col-start-1">
                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Forma de
                         Pago</label>
-                    <select wire:model='FormaP'
+                    <select wire:model='FormaP' @if ($Estatus == 'Ingresada') disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         @foreach ($FormasP as $forma)
                             <option value="{{ $forma->id }}">
@@ -56,13 +56,14 @@
                 </div>
                 <div class="sm:col-span-1">
                     <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Monto</label>
-                    <input type="number" wire:model='Monto'
+                    <input type="number" wire:model='Monto' @if ($Estatus == 'Ingresada') disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                <div class="sm:col-span-1">
+                <div class="sm:col-span-2">
                     <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Empresa</label>
                     <div class="mt-1" wire:ignore>
-                        <select id="select2" class="buscador" wire:model="empresaSeleccionadaId">
+                        <select id="select2" class="buscador" wire:model="empresaSeleccionadaId"
+                            @if ($Estatus == 'Ingresada') disabled @endif>
                             <option value="">Seleccione una Empresa</option>
                             @foreach ($Empresas as $empresa)
                                 <option value="{{ $empresa->id }}">
@@ -75,8 +76,8 @@
                     </div>
                 </div>
                 <div class="mt-1">
-                    <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Banco</label>
-                    <select wire:model='Banco'
+                    <label class="block text-sm font-medium leading-6 text-gray-900">Banco</label>
+                    <select wire:model='Banco' @if ($Estatus == 'Ingresada') disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         <option value="">Seleccione una Opción</option>
                         @foreach ($Bancos as $banco)
@@ -84,25 +85,29 @@
                                 {{ $banco->Nombre }}
                                 -
                                 {{ $banco->Cuenta }}
+                                -
                                 ${{ number_format($banco->Total, 2) }}
                             </option>
                         @endforeach
                     </select>
                 </div>
-                <div class="sm:col-span-1 sm:col-start-1">
-                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Gasto con
-                        Factura</label>
-                    <div class="relative inline-block w-12 h-6 rounded-full border-2  bg-white-200 px-1.5">
-                        <input type="checkbox" id="toggle" wire:model="Factura" class="absolute opacity-0 w-0 h-0">
-                        <label for="toggle"
-                            class="toggle-label block h-full overflow-hidden cursor-pointer bg-white rounded-full shadow-sm transform transition-transform duration-300">
-                            <span class="block w-6 h-5 rounded-full bg-indigo-600 transform translate-x-0"></span>
-                        </label>
+                @if ($Estatus == 'Registro')
+                    <div class="sm:col-span-1 sm:col-start-1">
+                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Gasto con
+                            Factura</label>
+                        <div class="relative inline-block w-12 h-6 rounded-full border-2  bg-white-200 px-1.5">
+                            <input type="checkbox" id="toggle" wire:model="Factura"
+                                class="absolute opacity-0 w-0 h-0">
+                            <label for="toggle"
+                                class="toggle-label block h-full overflow-hidden cursor-pointer bg-white rounded-full shadow-sm transform transition-transform duration-300">
+                                <span class="block w-6 h-5 rounded-full bg-indigo-600 transform translate-x-0"></span>
+                            </label>
+                        </div>
+                        <span class="ml-2 text-sm text-gray-900 leading-6">No / Si</span>
                     </div>
-                    <span class="ml-2 text-sm text-gray-900 leading-6">No / Si</span>
-                </div>
+                @endif
                 @if ($Factura)
-                    <div class="sm:col-span-1">
+                    <div class="sm:col-span-1 mt-1">
                         <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Folio de
                             Factura</label>
                         <input type="text" wire:model='FF'

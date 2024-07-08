@@ -31,8 +31,8 @@
                         <tr>
                             <th>Acciones</th>
                             <th>RFC</th>
+                            <th>Alias</th>
                             <th>Nombre Comercial</th>
-                            <th>Nombre</th>
                             <th>CFDI</th>
                             <th>REGIMEN</th>
                         </tr>

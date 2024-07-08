@@ -41,7 +41,7 @@ class RFicha extends Component
                 'Beneficiario' => $this->Bene,
                 'Total' => $this->Monto,
                 'formap_id' => $this->FormaP,
-                'banco_id' => $this->searchE,
+                'banco_id' => $this->Banco,
                 'Cuenta' => $this->Banco,
                 'empresa_id' => $this->searchE,
                 'GastosF' => $this->Factura,
