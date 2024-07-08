@@ -162,22 +162,6 @@ class Eficha extends Component
     }
     public function ingresar()
     {
-        $this->guardar();
-        $ComDiv = round($this->AUXCWB / 2, 2);
-        $TotCOMclv3 = Comisionista::where('id', 11)->first();
-        Comisionista::updateOrCreate(
-            ['id' => 11],
-            [
-                'Total' => $TotCOMclv3->Total + $ComDiv,
-            ]
-        );
-        $TotCOMclv21 = Comisionista::where('id', 12)->first();
-        Comisionista::updateOrCreate(
-            ['id' => 12],
-            [
-                'Total' => $TotCOMclv21->Total + $ComDiv,
-            ]
-        );
         $Taux = 0;
         $Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
         foreach ($Depositos as $deposito) {
