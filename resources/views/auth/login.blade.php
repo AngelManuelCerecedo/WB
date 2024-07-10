@@ -1,15 +1,14 @@
 <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-<link rel="icon" href="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH-ICONO.ico">
-<div class="bg-gray-100 flex justify-center items-center h-screen">
+<link rel="icon" href="{{ asset('imagenes/WB.ico') }}">
+<div class="bg-white-200 flex justify-center items-center h-screen">
     <!-- Left: Image -->
     <div class="w-.5 h-screen hidden lg:block">
-        <img src="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/fondo.jpg" alt="Placeholder Image"
+        <img src="{{ asset('imagenes/fondo.png') }}" alt="Placeholder Image"
             class="object-cover w-full h-full">
     </div>
     <!-- Right: Login Form -->
-    <div class="lg:p-12 md:p-52 sm:20 p-8 w-full lg:w-1/2">
-        <img src="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/LOGO-DH.png" alt="Placeholder Image"
-            class="">
+    <div class="lg:p-12 md:p-52 sm:20 w-full lg:w-1/4">
+        <img src="{{ asset('imagenes/WB.png') }}">
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}
