@@ -18,7 +18,7 @@ class EFicha extends Component
     {
         $empresas = Empresa::all();
         $formasP = FormaPago::all();
-        return view('livewire.fichag.eficha', ['Empresas' => $empresas, 'FormasP' => $formasP]);
+        return view('livewire.Fichag.eficha', ['Empresas' => $empresas, 'FormasP' => $formasP]);
     }
     public function updatedSearchE($value)
     {
@@ -105,7 +105,7 @@ class EFicha extends Component
                 'banco_id' => $this->Banco,
                 'empresa_id' => ($this->searchE) ? $this->searchE : $this->empresaSeleccionadaId,
                 'fichaG_id' => $this->ide,
-                //AGREGAR AL USUARIO
+                'empleado_id' => auth()->user()->empleado->id,
             ]
         );
 

@@ -14,8 +14,9 @@ use Livewire\Component;
 class Ecomisionista extends Component
 {
     public $ide, $Nom, $Total, $Comisiones, $FormaP, $searchE, $Banco, $PagosCom;
-    public $ModalPag = false;
+    public $ModalPag = false, $ModalDet= false;
     public $Empresas, $FormasP, $Bancos, $Bene, $Concepto, $Monto = 0.00, $FichaIid, $Fecha, $AuxCom, $AuxComPendiente;
+    public $Movimientos;
     public function render()
     {
         $this->Empresas = Empresa::all();
@@ -26,7 +27,7 @@ class Ecomisionista extends Component
             ->orWhere([['Estatus', 'Ingresada'], ['comis3_id', $this->ide]])
             ->orWhere([['Estatus', 'Ingresada'], ['comis4_id', $this->ide]])
             ->orWhere([['Estatus', 'Ingresada'], ['comis5_id', $this->ide]])->get();
-        return view('livewire.comisionista.ecomisionista');
+        return view('livewire.Comisionista.Ecomisionista');
     }
     public function updatedSearchE($value)
     {
@@ -63,6 +64,15 @@ class Ecomisionista extends Component
         $this->limpiarMod();
         $this->ModalPag = false;
     }
+    public function abrirModalDet($idF)
+    {
+        $this->Movimientos = Movimientos::Where([['fichaD_id', $idF], ['comisionista_id', $this->ide]])->get();
+        $this->ModalDet = true;
+    }
+    public function cerrarModalDet()
+    {
+        $this->ModalDet = false;
+    }
     public function pagar()
     {
         $Cuenta = Banco::where('id', $this->Banco)->first();
@@ -84,7 +94,7 @@ class Ecomisionista extends Component
                 'fichaD_id' => $this->FichaIid,
                 'comisionista_id' => $this->ide,
                 'formap_id' => $this->FormaP,
-                //AGREGAR AL USUARIO
+                'empleado_id' => auth()->user()->empleado->id,
             ]
         );
         $this->dispatchBrowserEvent('swal', [

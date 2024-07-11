@@ -44,7 +44,7 @@ class Eficha extends Component
         $this->CET5 = ($this->CEP5) ? number_format(($this->CEP5 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
         $this->SumCom = $this->toFloat($this->CEP1) + $this->toFloat($this->CEP2) + $this->toFloat($this->CEP3) + $this->toFloat($this->CEP4) + $this->toFloat($this->CEP5) + $this->toFloat($this->PWB) + $this->toFloat($this->GFP);
         $this->TOTALRINT = ($this->CT) ? number_format($Taux - (($this->PT * $Taux) / 100), 2, '.', ',') : number_format($Taux, 2, '.', ',');
-        return view('livewire.fichai.eficha', ['Clientes' => $clientes, 'Empresas' => $empresas]);
+        return view('livewire.Fichai.eficha', ['Clientes' => $clientes, 'Empresas' => $empresas]);
     }
 
 
@@ -112,7 +112,7 @@ class Eficha extends Component
                     'empresa_id' => $this->searchE,
                     'banco_id' => $this->Banco,
                     'fichaD_id' => $this->ide,
-                    //AGREGAR AL USUARIO
+                    'empleado_id' => auth()->user()->empleado->id,
                 ]
             );
             $this->dispatchBrowserEvent('swal', [

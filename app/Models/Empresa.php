@@ -12,4 +12,7 @@ class Empresa extends Model
     public function deposito(){
         return $this->hasMany("App\Models\Depositos");
     }
+    public function cliente(){
+        return $this->hasMany("App\Models\Clientes");
+    }
 }

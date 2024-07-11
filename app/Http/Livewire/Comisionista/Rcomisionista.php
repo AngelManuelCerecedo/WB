@@ -10,7 +10,7 @@ class Rcomisionista extends Component
     public $Nom, $Total;
     public function render()
     {
-        return view('livewire.comisionista.rcomisionista');
+        return view('livewire.Comisionista.Rcomisionista');
     }
     public function registrar(){
         Comisionista::updateOrCreate(

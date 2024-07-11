@@ -9,4 +9,7 @@ class FormaPago extends Model
 {
     use HasFactory;
     protected $fillable = ['id', 'Clave', 'Nombre'];
+    public function movimiento(){
+        return $this->hasMany("App\Models\Movimientos");
+    }
 }

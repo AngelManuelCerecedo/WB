@@ -3,6 +3,9 @@
         @if ($ModalPag)
             @include('livewire.Comisionista.ModalPag')
         @endif
+        @if ($ModalDet)
+            @include('livewire.Comisionista.ModalDet')
+        @endif
         <div class="space-y-12 ml-8 mr-8">
             <div class="border-b border-gray-900/10 pb-8">
                 <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Registro de Comisionistas</h2>
@@ -60,7 +63,7 @@
                                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                                     <div style="display: flex; justify-content: center;">
                                                         <button class="botonDETALLES" type="button"
-                                                            wire:click="abrirModal({{ $comision->id }})">
+                                                            wire:click="abrirModalDet({{ $comision->id }})">
                                                             <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                             <span class="ml-2 ">Detalles</span>
                                                         </button>
@@ -70,7 +73,7 @@
                                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                                     <div style="display: flex; justify-content: center;">
                                                         <button class="botonDETALLES" type="button"
-                                                            wire:click="abrirModal({{ $comision->id }})">
+                                                            wire:click="abrirModalDet({{ $comision->id }})">
                                                             <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                             <span class="ml-2 ">Detalles</span>
                                                         </button>

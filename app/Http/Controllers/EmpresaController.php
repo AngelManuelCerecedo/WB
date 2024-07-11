@@ -8,14 +8,14 @@ class EmpresaController extends Controller
 {
     public function empresa()
     {
-      return view('empresas.Bempresa');
+      return view('Empresas.Bempresa');
     }
     public function rempresa()
     {
-      return view('empresas.Rempresa');
+      return view('Empresas.Rempresa');
     }
     public function eempresa($id)
     {
-      return view('empresas.Eempresa', ['id' => $id]);
+      return view('Empresas.Eempresa', ['id' => $id]);
     }
 }

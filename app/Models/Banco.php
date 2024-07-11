@@ -15,4 +15,7 @@ class Banco extends Model
     public function gasto(){
         return $this->hasMany("App\Models\Gastos");
     }
+    public function cliente(){
+        return $this->hasMany("App\Models\Clientes");
+    }
 }

@@ -18,7 +18,7 @@ class RFicha extends Component
     {
         $empresas = Empresa::all();
         $formasP = FormaPago::all();
-        return view('livewire.fichag.rficha', ['Empresas' => $empresas, 'FormasP' => $formasP]);
+        return view('livewire.Fichag.rficha', ['Empresas' => $empresas, 'FormasP' => $formasP]);
     }
     public function updatedSearchE($value)
     {

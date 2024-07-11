@@ -41,7 +41,7 @@
                                     <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
                                     <td class="px-6 py-4 whitespace-no-wrap">${{ number_format($movimiento->Total, 2) }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">Empleado</td>
+                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->empleado->Nombre }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

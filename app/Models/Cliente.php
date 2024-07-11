@@ -15,4 +15,16 @@ class Cliente extends Model
     public function comisionista(){
         return $this->belongsTo("App\Models\Comisionista");
     }
+    public function empresa(){
+        return $this->belongsTo("App\Models\Empresa");
+    }
+    public function banco(){
+        return $this->belongsTo("App\Models\Banco");
+    }
+    public function formap(){
+        return $this->belongsTo("App\Models\FormaPago");
+    }
+    public function empleado(){
+        return $this->belongsTo("App\Models\Empleado");
+    }
 }

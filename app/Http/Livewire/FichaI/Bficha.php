@@ -16,7 +16,7 @@ class Bficha extends Component
         $fichas = FichaIngreso::where(function ($query) {
             $query->where('Folio', 'like', '%' . $this->search . '%');
         })->paginate($this->cantidad);
-        return view('livewire.fichai.bficha', ['fichas' => $fichas]);
+        return view('livewire.Fichai.bficha', ['fichas' => $fichas]);
     }
     public function updatingSearch()
     {

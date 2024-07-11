@@ -1802,9 +1802,6 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
-.p-8 {
-  padding: 2rem;
-}
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -2633,6 +2630,10 @@ input[type="checkbox"] {
   outline-color: #4ade80;
 }
 
+.focus-visible\:outline-red-300:focus-visible {
+  outline-color: #fca5a5;
+}
+
 .focus-visible\:outline-red-400:focus-visible {
   outline-color: #f87171;
 }
@@ -2842,6 +2843,10 @@ input[type="checkbox"] {
     max-width: 42rem;
   }
 
+  .sm\:max-w-3xl {
+    max-width: 48rem;
+  }
+
   .sm\:max-w-lg {
     max-width: 32rem;
   }
@@ -3020,6 +3025,10 @@ input[type="checkbox"] {
     max-width: 56rem;
   }
 
+  .md\:max-w-5xl {
+    max-width: 64rem;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3069,6 +3078,10 @@ input[type="checkbox"] {
 
   .lg\:w-1\/2 {
     width: 50%;
+  }
+
+  .lg\:w-1\/4 {
+    width: 25%;
   }
 
   .lg\:w-full {

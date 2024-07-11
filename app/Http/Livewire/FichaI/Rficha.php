@@ -16,7 +16,7 @@ class Rficha extends Component
     {
         $clientes = Cliente::all();
         $empresas = Empresa::all();
-        return view('livewire.fichai.rficha', ['Clientes' => $clientes, 'Empresas' => $empresas]);
+        return view('livewire.Fichai.rficha', ['Clientes' => $clientes, 'Empresas' => $empresas]);
     }
     public function mount()
     {

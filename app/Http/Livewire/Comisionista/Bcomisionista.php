@@ -16,7 +16,7 @@ class Bcomisionista extends Component
         $comisionistas = Comisionista::where(function ($query) {
             $query->where('Nombre', 'like', '%' . $this->search . '%');
         })->paginate($this->cantidad);
-        return view('livewire.comisionista.bcomisionista', ['comisionistas' => $comisionistas]);
+        return view('livewire.Comisionista.Bcomisionista', ['comisionistas' => $comisionistas]);
     }
     public function updatingSearch()
     {

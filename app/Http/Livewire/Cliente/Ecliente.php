@@ -2,16 +2,27 @@
 
 namespace App\Http\Livewire\Cliente;
 
+use App\Models\Banco;
 use App\Models\Cliente;
 use App\Models\Comisionista;
+use App\Models\Empresa;
+use App\Models\FichaIngreso;
+use App\Models\FormaPago;
+use App\Models\Movimientos;
 use Livewire\Component;
 
 class Ecliente extends Component
 {
     public $ide, $Alias, $Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $comis1_id, $Comext2, $comis2_id, $Comext3, $comis3_id, $Comext4, $comis4_id, $Comext5, $comis5_id, $ComTot, $COMFINTECH;
-    public $Comisionistas;
+    public $Comisionistas, $Empresas, $FormasP, $PagosCom, $Reintegros, $Bancos;
+    public $AuxCom, $AuxComPendiente, $ModalPag, $ModalDet, $FichaIid;
+    public $Fecha, $Banco, $searchE, $Monto, $Bene, $Concepto, $FormaP, $Movimientos;
     public function render()
     {
+        $this->Empresas = Empresa::all();
+        $this->FormasP = FormaPago::all();
+        $this->PagosCom = Movimientos::Where('cliente_id', $this->ide)->get();
+        $this->Reintegros = FichaIngreso::Where([['Estatus', 'Ingresada'], ['cliente_id', $this->ide]])->get();
         return view('livewire.Cliente.Ecliente');
     }
     public function mount($ide)
@@ -38,6 +49,7 @@ class Ecliente extends Component
         $this->comis5_id = $cliente->comis5_id;
         $this->ComTot = $cliente->COMTOT;
         $this->COMFINTECH = $cliente->COMFINTECH;
+        $this->FormaP = 1;
     }
     public function actualizar()
     {
@@ -77,6 +89,67 @@ class Ecliente extends Component
             'type' => 'success'
         ]);
         $this->redic();
+    }
+    public function updatedSearchE($value)
+    {
+        $this->Bancos = Banco::where('empresa_id', $value)->get();
+    }
+    public function abrirModal($fichaing)
+    {
+        $this->ModalPag = true;
+        $this->FichaIid = $fichaing;
+    }
+    public function cerrarModal()
+    {
+        $this->limpiarMod();
+        $this->ModalPag = false;
+        return redirect()->route('ECliente', [$this->ide]);
+    }
+    public function abrirModalDet($idF)
+    {
+        $this->Movimientos = Movimientos::Where([['fichaD_id', $idF], ['cliente_id', $this->ide]])->get();
+        $this->ModalDet = true;
+    }
+    public function cerrarModalDet()
+    {
+        $this->ModalDet = false;
+    }
+    public function pagar()
+    {
+        $Cuenta = Banco::where('id', $this->Banco)->first();
+        Banco::updateOrCreate(
+            ['id' => $this->Banco],
+            [
+                'Total' => $Cuenta->Total - $this->Monto,
+            ]
+        );
+        Movimientos::create(
+            [
+                'Movimiento' => 'Pago Reintegro',
+                'Fecha' => $this->Fecha,
+                'Total' => $this->Monto,
+                'Beneficiario' => $this->Bene,
+                'Concepto' => $this->Concepto,
+                'banco_id' => $this->Banco,
+                'empresa_id' => $this->searchE,
+                'fichaD_id' => $this->FichaIid,
+                'cliente_id' => $this->ide,
+                'formap_id' => $this->FormaP,
+                'empleado_id' => auth()->user()->empleado->id,
+            ]
+        );
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Pago Realizado',
+            'type' => 'success'
+        ]);
+        $this->cerrarModal();
+    }
+    public function limpiarMod()
+    {
+        $this->Fecha = 0;
+        $this->Banco = 0;
+        $this->searchE = 0;
+        $this->Monto = 0.00;
     }
     public function redic()
     {
