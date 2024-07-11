@@ -113,6 +113,7 @@ class Ecliente extends Component
     public function cerrarModalDet()
     {
         $this->ModalDet = false;
+        return redirect()->route('ECliente', [$this->ide]);
     }
     public function pagar()
     {
