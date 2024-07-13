@@ -25,6 +25,8 @@ class CreateMovimientosTable extends Migration
             $table->unsignedBigInteger("banco_id")->nullable();
             $table->foreign("banco_id")->references("id")->on("bancos")->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("empresa_id")->nullable();
+            $table->string('BancoDestino')->nullable();
+            $table->string('EmpresaDestino')->nullable();
             $table->foreign("empresa_id")->references("id")->on("empresas")->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("empleado_id")->nullable();
             $table->foreign("empleado_id")->references("id")->on("empleados")->onDelete('cascade')->onUpdate('cascade');

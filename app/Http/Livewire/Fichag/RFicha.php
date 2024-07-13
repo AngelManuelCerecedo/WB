@@ -27,7 +27,7 @@ class RFicha extends Component
     public function mount()
     {
         $Folio = FichaGasto::latest()->first();
-        $this->Folio = ($Folio) ? $Folio->id + 1 . 'AA' : '1AA'; //SERIE VARIABLE 
+        $this->Folio = ($Folio) ? auth()->user()->empleado->Serie . $Folio->id + 1  : auth()->user()->empleado->Serie . '1';
         $this->Fecha = date('Y-m-d');
         $this->Estatus = 'Registro';
         $this->Obs = '';
@@ -48,6 +48,7 @@ class RFicha extends Component
                 'FolioFact' => $this->FF,
                 'Estatus' => 'Registro',
                 'Obs' => $this->Obs,
+                'empleado_id' => auth()->user()->empleado->id,
             ]
         );
         $this->dispatchBrowserEvent('swal', [

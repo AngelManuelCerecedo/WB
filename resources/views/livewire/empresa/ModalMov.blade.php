@@ -7,7 +7,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="inline-block bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg md:max-w-4xl sm:w-full"
+        <div class="inline-block bg-white rounded-lg text-left shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl md:max-w-7xl"
             role="dialog" aria-modal="true" aria-labelledby="modal-headline">
 
             <!-- Encabezado del modal -->
@@ -17,6 +17,7 @@
 
             <!-- Contenido principal del modal -->
             <div class="p-6">
+                <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Ingresos y Egresos</h2>
                 <div class="tableFixHeadCOT">
                     <table class="tablaPV w-full">
                         <thead class="etiqueta">
@@ -30,19 +31,62 @@
                         </thead>
                         <tbody>
                             @foreach ($movimientos as $movimiento)
-                                <tr class="text-center">
-                                    @if ($movimiento->fichaG_id)
-                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->fichaG->Folio }}</td>
-                                    @endif
-                                    @if ($movimiento->fichaD_id)
-                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->fichaI->Folio }}</td>
-                                    @endif
-                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Movimiento }}</td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">${{ number_format($movimiento->Total, 2) }}
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->empleado->Nombre }}</td>
-                                </tr>
+                                @if ($movimiento->Movimiento != 'Transferencia')
+                                    <tr class="text-center">
+                                        @if ($movimiento->fichaG_id)
+                                            <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->fichaG->Folio }}
+                                            </td>
+                                        @endif
+                                        @if ($movimiento->fichaD_id)
+                                            <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->fichaI->Folio }}
+                                            </td>
+                                        @endif
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Movimiento }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            ${{ number_format($movimiento->Total, 2) }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->empleado->Nombre }}
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Transferencias Interbancarias
+                </h2>
+                <div class="tableFixHeadCOT">
+                    <table class="tablaPV w-full">
+                        <thead class="etiqueta">
+                            <tr class="text-center">
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Id</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Movimiento</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Cuenta Origen</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Cuenta Destino</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Fecha</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Importe</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Empleado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($movimientos as $movimiento)
+                                @if ($movimiento->Movimiento == 'Transferencia')
+                                    <tr class="text-center">
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->id }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Movimiento }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->banco->Nombre }} -
+                                            {{ $movimiento->banco->Cuenta }} ({{ $movimiento->empresa->NCorto }})</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->BancoDestino }} -
+                                            {{ $movimiento->EmpresaDestino }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                            ${{ number_format($movimiento->Total, 2) }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->empleado->Nombre }}
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

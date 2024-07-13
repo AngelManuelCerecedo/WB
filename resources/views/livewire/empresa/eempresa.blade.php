@@ -3,6 +3,9 @@
         @if ($ModalMov)
             @include('livewire.empresa.ModalMov')
         @endif
+        @if ($ModalTrans)
+            @include('livewire.empresa.ModalTrans')
+        @endif
         <div class="space-y-12 ml-8 mr-8">
             <div class="border-b border-gray-900/10 pb-8">
                 <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Registro de Empresas</h2>
@@ -61,8 +64,8 @@
                             <thead>
                                 <tr>
                                     <th>Acciones</th>
-                                    <th>Nombre</th>
-                                    <th>Cuenta</th>
+                                    <th>Nombre Bancario</th>
+                                    <th>Numero de Cuenta</th>
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -71,13 +74,18 @@
                                     <tbody>
                                         <tr>
                                             <td data-label="ACCIONES :" class="lg:w-1/12">
-                                                <a>
+                                                <div style="display: flex; justify-content: center;">
                                                     <button class="botonDETALLES" type="button"
                                                         wire:click="abrirModal({{ $banco->id }})">
                                                         <i class="bi bi-layout-text-sidebar-reverse"></i>
                                                         <span class="ml-2 ">Detalles</span>
                                                     </button>
-                                                </a>
+                                                    <button class="botonPAGOS ml-2" type="button"
+                                                        wire:click="abrirModalTrans({{ $banco->id }})">
+                                                        <i class="bi bi-cash-stack"></i>
+                                                        <span class="ml-2 ">Transferir</span>
+                                                    </button>
+                                                </div>
                                             </td>
                                             <td data-label="Nombre :">{{ $banco->Nombre }}</td>
                                             <td data-label="Cuenta :">{{ $banco->Cuenta }}</td>

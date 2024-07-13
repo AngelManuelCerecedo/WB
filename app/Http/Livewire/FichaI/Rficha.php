@@ -21,7 +21,7 @@ class Rficha extends Component
     public function mount()
     {
         $Folio = FichaIngreso::latest()->first();
-        $this->Folio = ($Folio) ? $Folio->id + 1 . 'AA' : '1AA'; //SERIE VARIABLE 
+        $this->Folio = ($Folio) ? auth()->user()->empleado->Serie . $Folio->id + 1  : auth()->user()->empleado->Serie . '1';
         $this->Fecha = date('Y-m-d');
         $this->Estatus = 'Creación';
         $this->Obs = '';
@@ -47,7 +47,7 @@ class Rficha extends Component
                     'comis4_id' => ($cliente->comis4_id) ? $cliente->comis4_id : null,
                     'Tot5' => ($cliente->COMEXT5) ? $cliente->COMEXT5 : 0,
                     'comis5_id' => ($cliente->comis5_id) ? $cliente->comis5_id : null,
-                    //'empleado_id' => $this->searchE,
+                    'empleado_id' => auth()->user()->empleado->id,
                     'Obs' => $this->Obs,
                 ]
             );
@@ -64,7 +64,7 @@ class Rficha extends Component
                     'Tot3' =>  0,
                     'Tot4' =>  0,
                     'Tot5' =>  0,
-                    //'empleado_id' => $this->searchE,
+                    'empleado_id' => auth()->user()->empleado->id,
                     'Obs' => $this->Obs,
                 ]
             );
