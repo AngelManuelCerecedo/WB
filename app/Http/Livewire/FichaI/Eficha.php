@@ -105,7 +105,7 @@ class Eficha extends Component
             Movimientos::create(
                 [
                     'Movimiento' => 'Deposito',
-                    'Fecha' => $this->Fecha,
+                    'Fecha' => $this->FechaDep,
                     'Total' => $this->Monto,
                     'FolioF' => $this->FolioF,
                     'NumeroF' => $this->NumeroF,

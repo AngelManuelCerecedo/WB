@@ -1528,10 +1528,6 @@ select {
 .gap-y-8 {
   row-gap: 2rem;
 }
-.gap-x-5 {
-  -moz-column-gap: 1.25rem;
-       column-gap: 1.25rem;
-}
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(2rem * var(--tw-space-x-reverse));
@@ -1805,9 +1801,6 @@ select {
 }
 .p-6 {
   padding: 1.5rem;
-}
-.p-8 {
-  padding: 2rem;
 }
 .px-1 {
   padding-left: 0.25rem;
@@ -2745,10 +2738,6 @@ input[type="checkbox"] {
     grid-column: span 4 / span 4;
   }
 
-  .sm\:col-span-5 {
-    grid-column: span 5 / span 5;
-  }
-
   .sm\:col-span-6 {
     grid-column: span 6 / span 6;
   }
@@ -3042,10 +3031,6 @@ input[type="checkbox"] {
 
   .md\:max-w-5xl {
     max-width: 64rem;
-  }
-
-  .md\:max-w-6xl {
-    max-width: 72rem;
   }
 
   .md\:max-w-7xl {
