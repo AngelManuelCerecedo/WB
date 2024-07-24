@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Cliente;
 
 use App\Models\Cliente;
+use App\Models\Movimientos;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -19,7 +20,6 @@ class Bcliente extends Component
                 ->orWhere('ALIAS', 'like', '%' . $this->search . '%')
                 ->orWhere('RFC', 'like', '%' . $this->search . '%');
         })->paginate($this->cantidad);
-
         return view('livewire.Cliente.Bcliente', ['clientes' => $clientes]);
     }
 

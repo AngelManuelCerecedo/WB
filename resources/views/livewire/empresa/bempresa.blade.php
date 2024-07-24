@@ -1,8 +1,8 @@
 <div class="w-full">
     <div class="bg-white border border-gray-200 rounded p-4">
         <div class=" flex sm:flex-row flex-col">
-                <input type="text" placeholder="Buscar" wire:model="search"
-                    class="block  sm:w-full lg:w-1/2 xl:w-1/2 rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input type="text" placeholder="Buscar" wire:model="search"
+                class="block  sm:w-full lg:w-1/2 xl:w-1/2 rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             <div class="sm:ml-8 mt-1">
                 <select wire:model="cantidad"
                     class="appearance-none h-full rounded-l border block lg:w-full bg-white border-gray-400 text-gray-700 py-2 px-5 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -33,10 +33,20 @@
                             <th>RFC</th>
                             <th>Nombre</th>
                             <th>Nombre Corto</th>
+                            <th>Saldo Total</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($empresas as $empresa)
+                            @php
+                                $Taux = 0;
+                                $Cuentas = \App\Models\Banco::where([
+                                    ['empresa_id', $empresa->id],
+                                ])->get();
+                                foreach ($Cuentas as $cuenta) {
+                                    $Taux += $cuenta->Total;
+                                }
+                            @endphp
                             <tr>
                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                     <a href="{{ route('EEmpresa', [$empresa->id]) }}">
@@ -49,6 +59,7 @@
                                 <td data-label="RFC :">{{ $empresa->RFC }}</td>
                                 <td data-label="Nombre :">{{ $empresa->Nombre }}</td>
                                 <td data-label="Nom. Corto :">{{ $empresa->NCorto }}</td>
+                                <td data-label="Saldo :">${{ number_format($Taux, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

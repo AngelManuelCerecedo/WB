@@ -38,6 +38,7 @@ class CreateFichaingresoTable extends Migration
             $table->foreign("comis5_id")->references("id")->on("comisionistas")->onDelete('cascade')->onUpdate('cascade');
             $table->unsignedBigInteger("cliente_id")->nullable();
             $table->foreign("cliente_id")->references("id")->on("clientes")->onDelete('cascade')->onUpdate('cascade');
+            $table->string ('Reintegro')->nullable();
             $table->unsignedBigInteger("empleado_id")->nullable();
             $table->foreign("empleado_id")->references("id")->on("empleados")->onDelete('cascade')->onUpdate('cascade');
             $table->string ('Estatus')->nullable();

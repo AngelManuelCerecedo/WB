@@ -1,8 +1,8 @@
 <div class="w-full">
     <div class="bg-white border border-gray-200 rounded p-4">
         <div class=" flex sm:flex-row flex-col">
-                <input type="text" placeholder="Buscar" wire:model="search"
-                    class="block  sm:w-full lg:w-1/2 xl:w-1/2 rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input type="text" placeholder="Buscar" wire:model="search"
+                class="block  sm:w-full lg:w-1/2 xl:w-1/2 rounded-md border-0  text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
             <div class="sm:ml-8 mt-1">
                 <select wire:model="cantidad"
                     class="appearance-none h-full rounded-l border block lg:w-full bg-white border-gray-400 text-gray-700 py-2 px-5 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
@@ -35,10 +35,28 @@
                             <th>Nombre Comercial</th>
                             <th>CFDI</th>
                             <th>REGIMEN</th>
+                            <th>SALDO</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($clientes as $cliente)
+                            @php
+                                $Taux = 0;
+                                $Pagos = \App\Models\Movimientos::where([
+                                    ['cliente_id', $cliente->id],
+                                    ['Movimiento', 'Pago Reintegro'],
+                                ])->get();
+                                foreach ($Pagos as $pago) {
+                                    $Taux += $pago->Total;
+                                }
+                                $Raux = 0;
+                                $Reintegros = \App\Models\FichaIngreso::where([
+                                    ['cliente_id', $cliente->id],
+                                ])->get();
+                                foreach ($Reintegros as $reintegro) {
+                                    $Raux += $reintegro->Reintegro;
+                                }
+                            @endphp
                             <tr>
                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                     <a href="{{ route('ECliente', [$cliente->id]) }}">
@@ -53,6 +71,7 @@
                                 <td data-label="NOMBRE :">{{ $cliente->NOMBRE }}</td>
                                 <td data-label="CFDI :">{{ $cliente->CFDI }}</td>
                                 <td data-label="REG :">{{ $cliente->REG }}</td>
+                                <td data-label="SALDO :">$ {{ number_format($Raux - $Taux , 2);}}</td>
                             </tr>
                         @endforeach
                     </tbody>

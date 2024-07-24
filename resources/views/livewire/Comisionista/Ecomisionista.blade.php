@@ -25,8 +25,10 @@
                                 <tr>
                                     <th>Acciones</th>
                                     <th>Folio Ficha</th>
+                                    <th>Cliente</th>
                                     <th>Total Comisión</th>
                                     <th>Total Pagado</th>
+                                    <th>Comisión Pendiente</th>
                                     <th>Estatus</th>
                                 </tr>
                             </thead>
@@ -86,10 +88,14 @@
                                                 </td>
                                             @endif
                                             <td data-label="Folio :">{{ $comision->Folio }}</td>
+                                            <td data-label="Nom. Cliente :">{{ $comision->cliente->ALIAS }}</td>
                                             <td data-label="Total Com:">$
                                                 {{ number_format($AuxComPendiente, 2, '.', ',') }}
                                             </td>
                                             <td data-label="Total Pag :">$ {{ number_format($AuxCom, 2, '.', ',') }}
+                                            </td>
+                                            <td data-label="Com Pen :">$
+                                                {{ number_format($AuxComPendiente - $AuxCom, 2, '.', ',') }}
                                             </td>
                                             @if ($AuxComPendiente == $AuxCom)
                                                 <td data-label="Estatus :">Comision Pagada</td>

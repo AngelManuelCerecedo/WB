@@ -247,6 +247,7 @@
                                     <th>Folio Ficha</th>
                                     <th>Reintegro Total</th>
                                     <th>Reintegro Pagado</th>
+                                    <th>Reintegro Pendiente</th>
                                     <th>Estatus</th>
                                 </tr>
                             </thead>
@@ -297,10 +298,12 @@
                                                 </td>
                                             @endif
                                             <td data-label="Folio :">{{ $reintegro->Folio }}</td>
-                                            <td data-label="Total Com:">$
+                                            <td data-label="Total Rein :">$
                                                 {{ number_format($AuxComPendiente, 2, '.', ',') }}
                                             </td>
                                             <td data-label="Total Pag :">$ {{ number_format($AuxCom, 2, '.', ',') }}
+                                            </td>
+                                            <td data-label="Rein. Pend :">$ {{ number_format($AuxComPendiente - $AuxCom, 2, '.', ',') }}
                                             </td>
                                             @if ($AuxComPendiente == $AuxCom)
                                                 <td data-label="Estatus :">Reintegro Pagado</td>

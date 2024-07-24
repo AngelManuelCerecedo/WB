@@ -152,6 +152,7 @@ class Eficha extends Component
                 'comis5_id' => ($this->comis5_id != 'NULL') ? $this->comis5_id : null,
                 'Obs' => $this->Obs,
                 'Total' => $Taux,
+                'Reintegro'=> ($this->CT) ? ($Taux - ($this->PT * $Taux) / 100) : $Taux,
             ]
         );
         $this->dispatchBrowserEvent('swal', [
@@ -225,6 +226,7 @@ class Eficha extends Component
             ['id' => $this->ide],
             [
                 'Estatus' => 'Ingresada',
+                'Reintegro'=> ($this->CT) ? ($Taux - ($this->PT * $Taux) / 100) : $Taux,
             ]
         );
         $this->dispatchBrowserEvent('swal', [
