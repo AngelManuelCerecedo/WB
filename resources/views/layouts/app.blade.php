@@ -74,7 +74,6 @@
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
                                         </svg>
-
                                     </div>
                                     <div class="flex-auto">
                                         <a href="{{ route('Clientes') }}"
@@ -90,12 +89,13 @@
                                         class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
-                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                            aria-hidden="true">
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <!-- Figura de persona -->
+                                            <circle cx="12" cy="7" r="3" stroke="currentColor"
+                                                stroke-width="2" />
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
+                                                d="M12 10v6m-4 0h8m-4-6a5 5 0 00-5 5v4a5 5 0 005 5 5 5 0 005-5v-4a5 5 0 00-5-5z" />
                                         </svg>
-
                                     </div>
                                     <div class="flex-auto">
                                         <a href="{{ route('Comisionistas') }}"
@@ -122,6 +122,26 @@
                                         <a
                                             href="{{ route('Empresas') }}"class="block font-semibold text-gray-900 group-hover:text-red-600">
                                             Empresas
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M17 20h5v-1a4 4 0 00-3-3.87M17 20H7M17 20a3 3 0 01-6 0M7 20H2v-1a4 4 0 013-3.87M7 20a3 3 0 006 0M15 10a4 4 0 01-4 4M9 10a4 4 0 118 0M7 14a4 4 0 110-8M7 14a4 4 0 004-4M7 14a4 4 0 01-4-4" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="{{ route('Beneficiarios') }}"
+                                            class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                            Beneficiarios
                                             <span class="absolute inset-0"></span>
                                         </a>
                                     </div>
@@ -177,8 +197,6 @@
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M17 20h5v-1a4 4 0 00-3-3.87M17 20H7M17 20a3 3 0 01-6 0M7 20H2v-1a4 4 0 013-3.87M7 20a3 3 0 006 0M15 10a4 4 0 01-4 4M9 10a4 4 0 118 0M7 14a4 4 0 110-8M7 14a4 4 0 004-4M7 14a4 4 0 01-4-4" />
                                         </svg>
-
-
                                     </div>
                                     <div class="flex-auto">
                                         <a href="{{ route('Empleados') }}"
@@ -238,12 +256,12 @@
                                         class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
-                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                            aria-hidden="true">
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <!-- Documento -->
+                                            <!-- Signo de dólar con flecha ascendente -->
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M15.232 14.984A6.017 6.017 0 0012 14c-1.383 0-2.668.445-3.732 1.188m3.732-1.188a4.5 4.5 0 100-9 4.5 4.5 0 000 9zm0 0c1.654 0 3.298.603 4.732 1.684C19.368 17.096 20 19.02 20 21H4c0-1.98.632-3.904 1.768-5.316A7.977 7.977 0 0112 14z" />
+                                                d="M12 18V12m0 0l3 3m-3-3l-3 3m3-6V6" />
                                         </svg>
-
                                     </div>
                                     <div class="flex-auto">
                                         <a href="{{ route('FichasI') }}"
@@ -260,41 +278,20 @@
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
                                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <!-- Signo de dólar con flecha descendente -->
                                             <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M3 7v14h18V7M9 3h6v4H9z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M10 14h4M10 10h4M10 18h4" />
+                                                d="M12 6v6m0 0l-3-3m3 3l3-3m-3 6v6" />
                                         </svg>
                                     </div>
                                     <div class="flex-auto">
                                         <a href="{{ route('FichasG') }}"
-                                            href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                            class="block font-semibold text-gray-900 group-hover:text-red-600">
                                             Ficha de Identificacion de Gastos
                                             <span class="absolute inset-0"></span>
                                         </a>
                                     </div>
                                 </div>
-                                <div
-                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-                                    <div
-                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
-                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M3 7v14h18V7M9 3h6v4H9z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M10 14h4M10 10h4M10 18h4" />
-                                        </svg>
-                                    </div>
-                                    <div class="flex-auto">
-                                        <a
-                                            href="#"class="block font-semibold text-gray-900 group-hover:text-red-600">
-                                            Ficha de Identificacion de Reintegros
-                                            <span class="absolute inset-0"></span>
-                                        </a>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </div>

@@ -56,6 +56,13 @@
                         </div>
                     </div>
                 @endif
+                <div class="sm:col-span-1 sm:mt-8">
+                    <a href="{{ route('FichaXLS', [$ide]) }}" target="_blank">
+                        <button type="button"
+                            class="rounded-md bg-green-500 px-2 py-1 text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400"><i
+                                class="bi bi-filetype-xls text-2xl"></i></button>
+                    </a>
+                </div>
                 <div class="sm:col-span-1 sm:col-start-1">
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Movimientos</h2>
                 </div>
@@ -132,7 +139,8 @@
                                         @if ($Estatus == 'Registro')
                                             <td data-label="ACCIONES :" class="lg:w-1/12">
                                                 <div style="display: flex; justify-content: center;">
-                                                    <button type="button" wire:click="eliminarDep({{ $deposito->id }})"
+                                                    <button type="button"
+                                                        wire:click="eliminarDep({{ $deposito->id }})"
                                                         class="rounded-md bg-red-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
                                                         <i class="bi bi-trash3"></i>
                                                     </button>

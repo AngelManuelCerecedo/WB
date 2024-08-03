@@ -2,6 +2,7 @@
 
 use App\Exports\InventarioExport;
 use App\Http\Controllers\AlmacenController;
+use App\Http\Controllers\BeneficiarioController;
 use App\Http\Controllers\CategoriasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
@@ -75,6 +76,30 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('Cliente/Editar/{id}', [ClienteController::class, 'ecliente'])->name('ECliente');
+});
+
+
+//BENEFICIARIOS
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Beneficiarios', [BeneficiarioController::class, 'beneficiarios'])->name('Beneficiarios');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Beneficiarios/Registro', [BeneficiarioController::class, 'rbeneficiario'])->name('RBeneficiarios');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Beneficiarios/Editar/{id}', [BeneficiarioController::class, 'ebeneficiario'])->name('EBeneficiarios');
 });
 
 //COMISIONISTAS
@@ -220,7 +245,9 @@ Route::middleware([
 ])->group(function () {
     Route::get('FichasG/Editar/{id}', [FichaGastosController::class, 'eficha'])->name('EFichaG');
 });
-
+//Excel´s
+//Cotizaciones
+Route::get('Reporte/xls/Cotizacion/{id}', [FichaIngresoController::class, 'XLS'])->name('FichaXLS');
 //ROLES
 Route::get('roles', [RoleController::class, 'roles'])->name('Roles');
 Route::get('roles/Registro', [RoleController::class, 'rroles'])->name('RRoles');
