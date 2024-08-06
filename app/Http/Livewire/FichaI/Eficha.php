@@ -81,9 +81,8 @@ class Eficha extends Component
         } else {
             $this->PT = $this->Ficha->Comision;
         }
-
-        $this->GFP = ($this->Ficha->cliente) ? $this->Ficha->cliente->COMFINTECH : 0;
-        $this->PWB = ($this->Ficha->cliente) ? $this->PWB : 0;
+        $this->GFP = ($this->Ficha->cliente == $this->Ficha->GastosF) ? $this->Ficha->cliente->COMFINTECH : $this->Ficha->GastosF;
+        $this->PWB = ($this->Ficha->cliente == $this->Ficha->ComisionWB) ? $this->Ficha->cliente->COMTOT : $this->Ficha->ComisionWB;
         $this->comis1_id = $this->Ficha->comis1_id;
         $this->comis2_id = $this->Ficha->comis2_id;
         $this->comis3_id = $this->Ficha->comis3_id;
