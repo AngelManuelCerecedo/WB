@@ -99,6 +99,9 @@
                             <a href="{{ route('FichasG') }}" class="block text-sm font-semibold text-gray-900">Ficha de
                                 Identificacion de Gastos</a>
                         </div>
+                        <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Contabilidad</a>
+                        <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Contraloria</a>
+                        <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Facturacion</a>
                     </div>
                 </div>
             </div>
