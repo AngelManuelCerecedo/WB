@@ -29,7 +29,7 @@
         <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a href="{{ route('dashboard') }}" class="-m-1.5 p-1.5">
-                    <img class="h-20 w-20" src="{{ asset('Imagenes/WB.png') }}" alt="">
+                    <img class="h-20 w-50" src="{{ asset('Imagenes/WB.jpg') }}" alt="">
                 </a>
             </div>
             <div class="flex lg:hidden">
@@ -245,25 +245,27 @@
                                     </a>
                                 </div>
                             </div>
-                            <div
-                                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-                                <div
-                                    class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                        aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M17 20h5v-1a4 4 0 00-3-3.87M17 20H7M17 20a3 3 0 01-6 0M7 20H2v-1a4 4 0 013-3.87M7 20a3 3 0 006 0M15 10a4 4 0 01-4 4M9 10a4 4 0 118 0M7 14a4 4 0 110-8M7 14a4 4 0 004-4M7 14a4 4 0 01-4-4" />
-                                    </svg>
-                                </div>
-                                <div class="flex-auto">
-                                    <a href="{{ route('Empleados') }}"
-                                        class="block font-semibold text-gray-900 group-hover:text-red-600">
-                                        Usuarios
-                                        <span class="absolute inset-0"></span>
-                                    </a>
-                                </div>
+                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    
+                                    @if (auth()->user()->empleado->Rol != 'Finanzas')
+                                        <div
+                                            class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                aria-hidden="true">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M17 20h5v-1a4 4 0 00-3-3.87M17 20H7M17 20a3 3 0 01-6 0M7 20H2v-1a4 4 0 013-3.87M7 20a3 3 0 006 0M15 10a4 4 0 01-4 4M9 10a4 4 0 118 0M7 14a4 4 0 110-8M7 14a4 4 0 004-4M7 14a4 4 0 01-4-4" />
+                                            </svg>
+                                        </div>
+                                        <div class="flex-auto">
+                                            <a href="{{ route('Empleados') }}"
+                                                class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                                Usuarios
+                                                <span class="absolute inset-0"></span>
+                                            </a>
+                                        </div>
+                                    @endif
                             </div>
                         </div>
                     </div>

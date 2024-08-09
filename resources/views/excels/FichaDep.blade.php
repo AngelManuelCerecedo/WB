@@ -63,9 +63,16 @@
             <th style="border: 1px solid black;"></th>
         </tr>
         <tr>
-            <th style="text-align: right; border: 1px solid black; background-color: #d1cece;"><b>COM. WB:</b></th>
+            <th style="text-align: right; border: 1px solid black; background-color: #d1cece;"><b>COM. WB 1:</b></th>
             <th style="border: 1px solid black;">$
-                {{ number_format(($Ficha->ComisionWB * $Total) / 100, 2, '.', ',') }}</th>
+                {{ number_format((($Ficha->ComisionWB * $Total) / 100)/2, 2, '.', ',') }}</th>
+            <th style="border: 1px solid black;"><b>{{ $Ficha->ComisionWB }} %</b></th>
+            <th style="border: 1px solid black;"></th>
+        </tr>
+        <tr>
+            <th style="text-align: right; border: 1px solid black; background-color: #d1cece;"><b>COM. WB 2:</b></th>
+            <th style="border: 1px solid black;">$
+                {{ number_format((($Ficha->ComisionWB * $Total) / 100)/2, 2, '.', ',') }}</th>
             <th style="border: 1px solid black;"><b>{{ $Ficha->ComisionWB }} %</b></th>
             <th style="border: 1px solid black;"></th>
         </tr>

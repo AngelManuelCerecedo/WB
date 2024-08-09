@@ -1473,9 +1473,6 @@ select {
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
 }
-.grid-cols-2 {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-}
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
@@ -1513,14 +1510,6 @@ select {
   -moz-column-gap: 0.25rem;
        column-gap: 0.25rem;
 }
-.gap-x-2 {
-  -moz-column-gap: 0.5rem;
-       column-gap: 0.5rem;
-}
-.gap-x-2\.5 {
-  -moz-column-gap: 0.625rem;
-       column-gap: 0.625rem;
-}
 .gap-x-6 {
   -moz-column-gap: 1.5rem;
        column-gap: 1.5rem;
@@ -1547,14 +1536,6 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
-}
-.divide-x > :not([hidden]) ~ :not([hidden]) {
-  --tw-divide-x-reverse: 0;
-  border-right-width: calc(1px * var(--tw-divide-x-reverse));
-  border-left-width: calc(1px * calc(1 - var(--tw-divide-x-reverse)));
-}
-.divide-gray-900\/5 > :not([hidden]) ~ :not([hidden]) {
-  border-color: rgb(17 24 39 / 0.05);
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1792,9 +1773,6 @@ select {
 }
 .p-2\.5 {
   padding: 0.625rem;
-}
-.p-3 {
-  padding: 0.75rem;
 }
 .p-4 {
   padding: 1rem;
@@ -2304,7 +2282,7 @@ table tbody tr:hover {
 }
 .tableFixHead {
     overflow-y: auto;
-    max-height: 40vh; /* Limita la altura de la tabla al 70% de la altura de la pantalla */
+    max-height: 60vh; /* Limita la altura de la tabla al 70% de la altura de la pantalla */
     width: 100%; /* Ancho completo de la pantalla */
     border-color: #000000;
     border-bottom: #000000;

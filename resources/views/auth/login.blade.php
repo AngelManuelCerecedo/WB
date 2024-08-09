@@ -8,7 +8,7 @@
     </div>
     <!-- Right: Login Form -->
     <div class="lg:p-12 md:p-52 sm:20 w-full lg:w-1/4">
-        <img src="{{ asset('Imagenes/WB.png') }}">
+        <img src="{{ asset('Imagenes/WB.jpg') }}">
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
                 {{ session('status') }}

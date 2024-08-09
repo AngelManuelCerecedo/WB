@@ -10,7 +10,7 @@ class Rbeneficiario extends Component
     public $Nombre, $Banco, $Cuenta;
     public function render()
     {
-        return view('livewire.beneficiario.rbeneficiario');
+        return view('livewire.Beneficiario.rbeneficiario');
     }
     public function registrar()
     {

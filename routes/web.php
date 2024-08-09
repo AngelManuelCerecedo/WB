@@ -195,9 +195,27 @@ Route::middleware([
 });
 
 //EMPLEADOS
-Route::get('Empleados', [EmpleadoController::class, 'empleado'])->name('Empleados');
-Route::get('Empleados/Registro', [EmpleadoController::class, 'rempleado'])->name('REmpleados');
-Route::get('Empleados/Editar/{id}', [EmpleadoController::class, 'eempleado'])->name('EEmpleado');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Empleados', [EmpleadoController::class, 'empleado'])->name('Empleados');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Empleados/Registro', [EmpleadoController::class, 'rempleado'])->name('REmpleados');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Empleados/Editar/{id}', [EmpleadoController::class, 'eempleado'])->name('EEmpleado');
+});
 
 //MODULO FINANZAS
 //FICHA INGRESOS

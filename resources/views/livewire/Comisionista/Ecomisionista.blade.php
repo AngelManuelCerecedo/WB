@@ -61,6 +61,14 @@
                                                 <var
                                                     {{ $AuxComPendiente = ($comision->Tot5 * $comision->Total) / 100 }}>
                                             @endif
+                                            @if ('11' == $ide)
+                                                <var
+                                                    {{ $AuxComPendiente = (($comision->ComisionWB * $comision->Total) / 100)/2 }}>
+                                            @endif
+                                            @if ('12' == $ide)
+                                                <var
+                                                    {{ $AuxComPendiente = (($comision->ComisionWB * $comision->Total) / 100)/2 }}>
+                                            @endif
                                             @if ($AuxComPendiente == $AuxCom)
                                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                                     <div style="display: flex; justify-content: center;">

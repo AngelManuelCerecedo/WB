@@ -16,7 +16,7 @@ class Bbeneficiario extends Component
         $beneficiarios = Beneficiario::where(function ($query) {
             $query->where('Nombre', 'like', '%' . $this->search . '%');
         })->paginate($this->cantidad);
-        return view('livewire.beneficiario.bbeneficiario', ['beneficiarios' => $beneficiarios]);
+        return view('livewire.Beneficiario.bbeneficiario', ['beneficiarios' => $beneficiarios]);
     }
     public function updatingSearch()
     {

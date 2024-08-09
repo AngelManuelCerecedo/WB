@@ -22,11 +22,15 @@ class Ecomisionista extends Component
         $this->Empresas = Empresa::all();
         $this->FormasP = FormaPago::all();
         $this->PagosCom = Movimientos::Where('comisionista_id', $this->ide)->get();
-        $this->Comisiones = FichaIngreso::Where([['Estatus', 'Ingresada'], ['comis1_id', $this->ide]])
-            ->orWhere([['Estatus', 'Ingresada'], ['comis2_id', $this->ide]])
-            ->orWhere([['Estatus', 'Ingresada'], ['comis3_id', $this->ide]])
-            ->orWhere([['Estatus', 'Ingresada'], ['comis4_id', $this->ide]])
-            ->orWhere([['Estatus', 'Ingresada'], ['comis5_id', $this->ide]])->get();
+        if ($this->ide == '11' || $this->ide == '12'){
+            $this->Comisiones = FichaIngreso::Where([['Estatus', 'Ingresada'], ['ComisionWB','!=', '']])->get();
+        }else{
+            $this->Comisiones = FichaIngreso::Where([['Estatus', 'Ingresada'], ['comis1_id', $this->ide]])
+                ->orWhere([['Estatus', 'Ingresada'], ['comis2_id', $this->ide]])
+                ->orWhere([['Estatus', 'Ingresada'], ['comis3_id', $this->ide]])
+                ->orWhere([['Estatus', 'Ingresada'], ['comis4_id', $this->ide]])
+                ->orWhere([['Estatus', 'Ingresada'], ['comis5_id', $this->ide]])->get(); 
+        }
         return view('livewire.Comisionista.Ecomisionista');
     }
     public function updatedSearchE($value)

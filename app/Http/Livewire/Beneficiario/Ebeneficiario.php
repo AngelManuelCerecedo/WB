@@ -10,7 +10,7 @@ class Ebeneficiario extends Component
     public $ide, $Nombre, $Banco, $Cuenta;
     public function render()
     {
-        return view('livewire.beneficiario.ebeneficiario');
+        return view('livewire.Beneficiario.ebeneficiario');
     }
     public function mount()
     {
