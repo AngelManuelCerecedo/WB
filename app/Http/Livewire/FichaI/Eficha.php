@@ -13,37 +13,58 @@ use Livewire\Component;
 class Eficha extends Component
 {
     public $ide, $Folio, $Fecha, $Total = 0, $TOTALRINT, $Comision, $Obs, $Estatus;
-    public $searchC, $searchE, $Ficha, $Depositos, $Comisionistas;
+    public $searchC, $searchE, $Ficha, $Depositos, $Comisionistas, $RM;
     public $FechaDep, $Monto, $Bancos, $Banco, $FolioF, $NumeroF, $Cliente, $NomC1, $NomC2, $NomC3, $NomC4, $NomC5, $SumCom;
     public $comis1_id, $comis2_id, $comis3_id, $comis4_id, $comis5_id,$AUXCWB;
     public $CT, $PT, $GFT, $GFP, $CWB, $PWB = 0, $CET1, $CEP1 = 0, $CET2, $CEP2 = 0, $CET3, $CEP3 = 0, $CET4, $CEP4 = 0, $CET5, $CEP5 = 0, $AuxCOMWB;
     public function render()
     {
-        $Taux = 0;
-        $this->Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
-        foreach ($this->Depositos as $deposito) {
-            $Taux += $deposito->Total;
-        }
         $clientes = Cliente::all();
         $empresas = Empresa::all();
         $this->Comisionistas = Comisionista::all();
-        $this->CT = ($this->PT) ? number_format(($this->PT * $Taux) / 100, 2, '.', ',') : 0.0;
-        $this->GFT = ($this->GFP) ? number_format(($this->GFP * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-        if ($this->PT && $this->GFP) {
-            $this->PWB = round($this->PT - $this->GFP, 2);
-            if ($this->CEP1 || $this->CEP2 || $this->CEP3 || $this->CEP4 || $this->CEP5) {
-                $this->PWB = round($this->PWB - $this->toFloat($this->CEP1) - $this->toFloat($this->CEP2) - $this->toFloat($this->CEP3) - $this->toFloat($this->CEP4) - $this->toFloat($this->CEP5), 2);
+        $this->Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
+        if($this->RM){
+            $this->TOTALRINT = $this->toFloat($this->TOTALRINT);
+            if ($this->TOTALRINT){
+                $this->CT = ($this->PT) ? number_format(($this->PT * $this->TOTALRINT) / 100, 2, '.', ',') : 0.0;
+                $this->GFT = ($this->GFP) ? number_format(($this->GFP * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+                if ($this->PT && $this->GFP >=0) {
+                    $this->PWB = round($this->PT - $this->GFP, 2);
+                    if ($this->CEP1 || $this->CEP2 || $this->CEP3 || $this->CEP4 || $this->CEP5) {
+                        $this->PWB = round($this->PWB - $this->toFloat($this->CEP1) - $this->toFloat($this->CEP2) - $this->toFloat($this->CEP3) - $this->toFloat($this->CEP4) - $this->toFloat($this->CEP5), 2);
+                    }
+                }
+                $this->AUXCWB = ($this->PWB) ? ($this->PWB * $this->TOTALRINT) / 100 : 0;
+                $this->CWB = ($this->PWB) ? number_format(($this->PWB * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+                $this->CET1 = ($this->CEP1) ? number_format(($this->CEP1 * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+                $this->CET2 = ($this->CEP2) ? number_format(($this->CEP2 * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+                $this->CET3 = ($this->CEP3) ? number_format(($this->CEP3 * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+                $this->CET4 = ($this->CEP4) ? number_format(($this->CEP4 * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+                $this->CET5 = ($this->CEP5) ? number_format(($this->CEP5 * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
             }
+        }else{
+            $Taux = 0;
+            foreach ($this->Depositos as $deposito) {
+                $Taux += $deposito->Total;
+            }
+            $this->CT = ($this->PT) ? number_format(($this->PT * $Taux) / 100, 2, '.', ',') : 0.0;
+            $this->GFT = ($this->GFP) ? number_format(($this->GFP * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+            if ($this->PT && $this->GFP) {
+                $this->PWB = round($this->PT - $this->GFP, 2);
+                if ($this->CEP1 || $this->CEP2 || $this->CEP3 || $this->CEP4 || $this->CEP5) {
+                    $this->PWB = round($this->PWB - $this->toFloat($this->CEP1) - $this->toFloat($this->CEP2) - $this->toFloat($this->CEP3) - $this->toFloat($this->CEP4) - $this->toFloat($this->CEP5), 2);
+                }
+            }
+            $this->AUXCWB = ($this->PWB) ? ($this->PWB * $Taux) / 100 : 0;
+            $this->CWB = ($this->PWB) ? number_format(($this->PWB * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+            $this->CET1 = ($this->CEP1) ? number_format(($this->CEP1 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+            $this->CET2 = ($this->CEP2) ? number_format(($this->CEP2 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+            $this->CET3 = ($this->CEP3) ? number_format(($this->CEP3 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+            $this->CET4 = ($this->CEP4) ? number_format(($this->CEP4 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+            $this->CET5 = ($this->CEP5) ? number_format(($this->CEP5 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
+            $this->TOTALRINT = ($this->CT) ? number_format($Taux - (($this->PT * $Taux) / 100), 2, '.', ',') : number_format($Taux, 2, '.', ',');
         }
-        $this->AUXCWB = ($this->PWB) ? ($this->PWB * $Taux) / 100 : 0;
-        $this->CWB = ($this->PWB) ? number_format(($this->PWB * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-        $this->CET1 = ($this->CEP1) ? number_format(($this->CEP1 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-        $this->CET2 = ($this->CEP2) ? number_format(($this->CEP2 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-        $this->CET3 = ($this->CEP3) ? number_format(($this->CEP3 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-        $this->CET4 = ($this->CEP4) ? number_format(($this->CEP4 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-        $this->CET5 = ($this->CEP5) ? number_format(($this->CEP5 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-        $this->SumCom = $this->toFloat($this->CEP1) + $this->toFloat($this->CEP2) + $this->toFloat($this->CEP3) + $this->toFloat($this->CEP4) + $this->toFloat($this->CEP5) + $this->toFloat($this->PWB) + $this->toFloat($this->GFP);
-        $this->TOTALRINT = ($this->CT) ? number_format($Taux - (($this->PT * $Taux) / 100), 2, '.', ',') : number_format($Taux, 2, '.', ',');
+        $this->SumCom = round($this->toFloat($this->CEP1) + $this->toFloat($this->CEP2) + $this->toFloat($this->CEP3) + $this->toFloat($this->CEP4) + $this->toFloat($this->CEP5) + $this->toFloat($this->PWB) + $this->toFloat($this->GFP),2);
         return view('livewire.Fichai.eficha', ['Clientes' => $clientes, 'Empresas' => $empresas]);
     }
 
@@ -93,6 +114,8 @@ class Eficha extends Component
         $this->CEP3 =  $this->Ficha->Tot3;
         $this->CEP4 =  $this->Ficha->Tot4;
         $this->CEP5 =  $this->Ficha->Tot5;
+        $this->RM =  $this->Ficha->CRT;
+        $this->TOTALRINT = $this->Ficha->Reintegro;
     }
     public function eliminarDep($id)
     {
@@ -128,32 +151,62 @@ class Eficha extends Component
     public function guardar()
     {
         $Taux = 0;
-        $Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
-        foreach ($Depositos as $deposito) {
-            $Taux += $deposito->Total;
+            $Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
+            foreach ($Depositos as $deposito) {
+                $Taux += $deposito->Total;
+            }
+        if($this->RM){
+            FichaIngreso::updateOrCreate(
+                ['id' => $this->ide],
+                [
+                    'cliente_id' => $this->searchC,
+                    'Comision' => $this->PT,
+                    'Fecha' => $this->Fecha,
+                    'GastosF' => $this->GFP,
+                    'ComisionWB' => $this->PWB,
+                    'Tot1' => $this->CEP1,
+                    'comis1_id' => ($this->comis1_id != 'NULL') ? $this->comis1_id : null,
+                    'Tot2' => $this->CEP2,
+                    'comis2_id' => ($this->comis2_id != 'NULL') ? $this->comis2_id : null,
+                    'Tot3' => $this->CEP3,
+                    'comis3_id' => ($this->comis3_id != 'NULL') ? $this->comis3_id : null,
+                    'Tot4' => $this->CEP4,
+                    'comis4_id' => ($this->comis4_id != 'NULL') ? $this->comis4_id : null,
+                    'Tot5' => $this->CEP5,
+                    'comis5_id' => ($this->comis5_id != 'NULL') ? $this->comis5_id : null,
+                    'Obs' => $this->Obs,
+                    'Total' => $Taux,
+                    'CRT' => $this->RM,
+                    'Reintegro'=> $this->TOTALRINT,
+                ]
+            );
         }
-        FichaIngreso::updateOrCreate(
-            ['id' => $this->ide],
-            [
-                'cliente_id' => $this->searchC,
-                'Comision' => $this->PT,
-                'GastosF' => $this->GFP,
-                'ComisionWB' => $this->PWB,
-                'Tot1' => $this->CEP1,
-                'comis1_id' => ($this->comis1_id != 'NULL') ? $this->comis1_id : null,
-                'Tot2' => $this->CEP2,
-                'comis2_id' => ($this->comis2_id != 'NULL') ? $this->comis2_id : null,
-                'Tot3' => $this->CEP3,
-                'comis3_id' => ($this->comis3_id != 'NULL') ? $this->comis3_id : null,
-                'Tot4' => $this->CEP4,
-                'comis4_id' => ($this->comis4_id != 'NULL') ? $this->comis4_id : null,
-                'Tot5' => $this->CEP5,
-                'comis5_id' => ($this->comis5_id != 'NULL') ? $this->comis5_id : null,
-                'Obs' => $this->Obs,
-                'Total' => $Taux,
-                'Reintegro'=> ($this->CT) ? ($Taux - ($this->PT * $Taux) / 100) : $Taux,
-            ]
-        );
+        else{
+            FichaIngreso::updateOrCreate(
+                ['id' => $this->ide],
+                [
+                    'cliente_id' => $this->searchC,
+                    'Comision' => $this->PT,
+                    'Fecha' => $this->Fecha,
+                    'GastosF' => $this->GFP,
+                    'ComisionWB' => $this->PWB,
+                    'Tot1' => $this->CEP1,
+                    'comis1_id' => ($this->comis1_id != 'NULL') ? $this->comis1_id : null,
+                    'Tot2' => $this->CEP2,
+                    'comis2_id' => ($this->comis2_id != 'NULL') ? $this->comis2_id : null,
+                    'Tot3' => $this->CEP3,
+                    'comis3_id' => ($this->comis3_id != 'NULL') ? $this->comis3_id : null,
+                    'Tot4' => $this->CEP4,
+                    'comis4_id' => ($this->comis4_id != 'NULL') ? $this->comis4_id : null,
+                    'Tot5' => $this->CEP5,
+                    'comis5_id' => ($this->comis5_id != 'NULL') ? $this->comis5_id : null,
+                    'Obs' => $this->Obs,
+                    'Total' => $Taux,
+                    'CRT' => $this->RM,
+                    'Reintegro'=> ($this->CT) ? ($Taux - ($this->PT * $Taux) / 100) : $Taux,
+                ]
+            );
+        }
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Ficha Guardada Exitosamente',
             'type' => 'success'
@@ -163,19 +216,11 @@ class Eficha extends Component
     public function ingresar()
     {
         $this->guardar();
-        $ComDiv = round($this->AUXCWB / 2, 2);
-        $TotCOMclv3 = Comisionista::where('id', 11)->first();
-        Comisionista::updateOrCreate(
-            ['id' => 11],
+        $TotCOMWB = Banco::where('id', 72)->first();
+        Banco::updateOrCreate(
+            ['id' => 72],
             [
-                'Total' => $TotCOMclv3->Total + $ComDiv,
-            ]
-        );
-        $TotCOMclv21 = Comisionista::where('id', 12)->first();
-        Comisionista::updateOrCreate(
-            ['id' => 12],
-            [
-                'Total' => $TotCOMclv21->Total + $ComDiv,
+                'Total' => $TotCOMWB->Total + $this->AUXCWB,
             ]
         );
         $Taux = 0;
@@ -237,13 +282,27 @@ class Eficha extends Component
                 ]
             );
         }
-        FichaIngreso::updateOrCreate(
-            ['id' => $this->ide],
-            [
-                'Estatus' => 'Ingresada',
-                'Reintegro'=> ($this->CT) ? ($Taux - ($this->PT * $Taux) / 100) : $Taux,
-            ]
-        );
+        if($this->RM){
+            FichaIngreso::updateOrCreate(
+                ['id' => $this->ide],
+                [
+                    'Estatus' => 'Ingresada',
+                    'Reintegro'=> round($this->TOTALRINT,2),
+                    'Fecha' => $this->Fecha,
+                    'CRT' => $this->RM,
+                ]
+            );
+        }else{
+            FichaIngreso::updateOrCreate(
+                ['id' => $this->ide],
+                [
+                    'Estatus' => 'Ingresada',
+                    'Reintegro'=> ($this->CT) ? round(($Taux - ($this->PT * $Taux) / 100), 2) : round($Taux,2),
+                    'Fecha' => $this->Fecha,
+                    'CRT' => $this->RM,
+                ]
+            );
+        }
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Ficha Ingresada Exitosamente',
             'type' => 'success'

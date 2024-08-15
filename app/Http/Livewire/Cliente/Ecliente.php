@@ -15,7 +15,7 @@ class Ecliente extends Component
 {
     public $ide, $Alias, $Nom, $RS, $RFC, $CP, $DomF, $Reg, $CDFI, $Comext1, $comis1_id, $Comext2, $comis2_id, $Comext3, $comis3_id, $Comext4, $comis4_id, $Comext5, $comis5_id, $ComTot, $COMFINTECH;
     public $Comisionistas, $Empresas, $FormasP, $PagosCom, $Reintegros, $Bancos;
-    public $AuxCom, $AuxComPendiente, $ModalPag, $ModalDet, $FichaIid;
+    public $AuxCom, $AuxComPendiente, $ModalPag, $ModalDet, $ModalAnt,$FichaIid;
     public $Fecha, $Banco, $searchE, $Monto, $Bene, $Concepto, $FormaP, $Movimientos;
     public function render()
     {
@@ -114,6 +114,16 @@ class Ecliente extends Component
     {
         $this->ModalDet = false;
         return redirect()->route('ECliente', [$this->ide]);
+    }    
+    public function abrirModalAnt()
+    {
+        $this->ModalAnt = true;
+    }
+    public function cerrarModalAnt()
+    {
+        $this->limpiarMod();
+        $this->ModalAnt = false;
+        return redirect()->route('ECliente', [$this->ide]);
     }
     public function pagar()
     {
@@ -145,11 +155,68 @@ class Ecliente extends Component
         ]);
         $this->cerrarModal();
     }
+    public function pagarAnt()
+    {
+        $Folio = FichaIngreso::latest()->first();
+        $Folio = ($Folio) ? auth()->user()->empleado->Serie . $Folio->id + 1  : auth()->user()->empleado->Serie . '1';
+        $cliente = Cliente::Where('id', $this->ide)->first();
+        FichaIngreso::updateOrCreate(
+            [
+                'Folio' => $Folio,
+                'Fecha' => date('Y-m-d'),
+                'Estatus' => 'Registro',
+                'cliente_id' => $this->ide,
+                'Total' => 0,
+                'Tot1' => ($cliente->COMEXT1) ? $cliente->COMEXT1 : 0,
+                'comis1_id' => ($cliente->comis1_id) ? $cliente->comis1_id : null,
+                'Tot2' => ($cliente->COMEXT2) ? $cliente->COMEXT2 : 0,
+                'comis2_id' => ($cliente->comis2_id) ? $cliente->comis2_id : null,
+                'Tot3' => ($cliente->COMEXT3) ? $cliente->COMEXT3 : 0,
+                'comis3_id' => ($cliente->comis3_id) ? $cliente->comis3_id : null,
+                'Tot4' => ($cliente->COMEXT4) ? $cliente->COMEXT4 : 0,
+                'comis4_id' => ($cliente->comis4_id) ? $cliente->comis4_id : null,
+                'Tot5' => ($cliente->COMEXT5) ? $cliente->COMEXT5 : 0,
+                'comis5_id' => ($cliente->comis5_id) ? $cliente->comis5_id : null,
+                'empleado_id' => auth()->user()->empleado->id,
+                'Obs' => '',
+            ]
+        );
+        $Fid = FichaIngreso::latest()->first();
+        $Cuenta = Banco::where('id', $this->Banco)->first();
+        Banco::updateOrCreate(
+            ['id' => $this->Banco],
+            [
+                'Total' => $Cuenta->Total - $this->Monto,
+            ]
+        );
+        Movimientos::create(
+            [
+                'Movimiento' => 'Pago Reintegro',
+                'Fecha' => $this->Fecha,
+                'Total' => $this->Monto,
+                'Beneficiario' => $this->Bene,
+                'Concepto' => $this->Concepto,
+                'banco_id' => $this->Banco,
+                'empresa_id' => $this->searchE,
+                'fichaD_id' => $Fid,
+                'cliente_id' => $this->ide,
+                'formap_id' => $this->FormaP,
+                'empleado_id' => auth()->user()->empleado->id,
+            ]
+        );
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Pago Realizado',
+            'type' => 'success'
+        ]);
+        $this->cerrarModal();
+    }
     public function limpiarMod()
     {
         $this->Fecha = 0;
         $this->Banco = 0;
         $this->searchE = 0;
+        $this->Bene = '';
+        $this->Concepto = '';
         $this->Monto = 0.00;
     }
     public function redic()

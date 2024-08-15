@@ -6,6 +6,9 @@
         @if ($ModalDet)
             @include('livewire.Cliente.ModalDet')
         @endif
+        @if ($ModalAnt)
+            @include('livewire.Cliente.ModalAnt')
+        @endif
         <div class="space-y-12 ml-8 mr-8">
             <div class="border-b border-gray-900/10 pb-8">
                 <h2 class="text-base font-semibold leading-7 text-gray-900 text-center">Registro de Clientes</h2>
@@ -236,6 +239,12 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="sm:col-span-1 sm:col-start-1">
+                        <div class="mt-7">
+                            <button type="button" wire:click="abrirModalAnt()"
+                                class="rounded-md bg-green-500 px-20 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400">Anticipo Previo</button>
+                        </div>
+                    </div>
                 </div>
                 <h2 class="text-base font-semibold leading-7 text-gray-900 text-center mt-4">Reintegros</h2>
                 <div class="w-full mt-4">
@@ -260,28 +269,7 @@
                                                     <var {{ $AuxCom += $pago->Total }}>
                                                 @endif
                                             @endforeach
-                                            @php
-                                                $Taux = 0;
-                                                $Depositos = \App\Models\Movimientos::where([
-                                                    ['fichaD_id', $reintegro->id],
-                                                    ['Movimiento', 'Deposito'],
-                                                ])->get();
-                                                foreach ($Depositos as $deposito) {
-                                                    $Taux += $deposito->Total;
-                                                }
-                                                $AuxComPendiente = $Taux - ($reintegro->Comision * $Taux) / 100;
-                                            @endphp
-                                            @if ($AuxComPendiente == $AuxCom)
-                                                <td data-label="ACCIONES :" class="lg:w-1/12">
-                                                    <div style="display: flex; justify-content: center;">
-                                                        <button class="botonDETALLES" type="button"
-                                                            wire:click="abrirModalDet({{ $reintegro->id }})">
-                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
-                                                            <span class="ml-2 ">Detalles</span>
-                                                        </button>
-                                                    </div>
-                                                </td>
-                                            @else
+                                            @if ($reintegro->Reintegro > $AuxCom)
                                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                                     <div style="display: flex; justify-content: center;">
                                                         <button class="botonDETALLES" type="button"
@@ -296,19 +284,29 @@
                                                         </button>
                                                     </div>
                                                 </td>
+                                            @else
+                                                <td data-label="ACCIONES :" class="lg:w-1/12">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <button class="botonDETALLES" type="button"
+                                                            wire:click="abrirModalDet({{ $reintegro->id }})">
+                                                            <i class="bi bi-layout-text-sidebar-reverse"></i>
+                                                            <span class="ml-2 ">Detalles</span>
+                                                        </button>
+                                                    </div>
+                                                </td>                                            
                                             @endif
                                             <td data-label="Folio :">{{ $reintegro->Folio }}</td>
                                             <td data-label="Total Rein :">$
-                                                {{ number_format($AuxComPendiente, 2, '.', ',') }}
+                                                {{ number_format($reintegro->Reintegro, 2, '.', ',') }}
                                             </td>
                                             <td data-label="Total Pag :">$ {{ number_format($AuxCom, 2, '.', ',') }}
                                             </td>
-                                            <td data-label="Rein. Pend :">$ {{ number_format($AuxComPendiente - $AuxCom, 2, '.', ',') }}
+                                            <td data-label="Rein. Pend :">$ {{ number_format($reintegro->Reintegro - $AuxCom, 2, '.', ',') }}
                                             </td>
-                                            @if ($AuxComPendiente == $AuxCom)
-                                                <td data-label="Estatus :">Reintegro Pagado</td>
-                                            @else
+                                            @if ($reintegro->Reintegro > $AuxCom)
                                                 <td data-label="Estatus :">Pendiente</td>
+                                            @else
+                                                <td data-label="Estatus :">Reintegro Pagado</td>
                                             @endif
                                         </tr>
                                         <var {{ $AuxCom = 0 }}>

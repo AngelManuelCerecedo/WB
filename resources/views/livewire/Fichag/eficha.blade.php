@@ -32,15 +32,56 @@
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-                <div class="sm:col-span-2 sm:col-start-1">
-                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
-                    <input type="text" wire:model='Bene' @if ($Estatus == 'Ingresada') disabled @endif
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
+                @if ($Estatus == 'Registro')
+                    <div class="sm:col-span-2 sm:col-start-1">
+                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Acreedor</label>
+                        <div class ="mt-2">
+                            <select wire:model='Acreedor' class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                                <option value="">Selecciona un Acreedor</option>
+                                @foreach ($Acreedores as $acreedor)
+                                    <option value="{{ $acreedor->id }}">{{ $acreedor->Nombre }}</option>
+                                @endforeach
+                                <option value="4">GASTOS WB</option>
+                            </select>
+                        </div>
+                    </div>
+                @else
+                    <div class="sm:col-span-2 sm:col-start-1">
+                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
+                        <div class="mt-2">
+                            <input type="text" wire:model='Bene' disabled
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                @endif
+                @if ($Estatus == 'Registro')
+                    <div class="sm:col-span-2">
+                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
+                        <div class="mt-2" wire:ignore>
+                            <select id="select1" class="buscador">
+                                <option value="">Seleccione un Beneficiario</option>
+                                @foreach ($Beneficiarios as $beneficiario)
+                                    <option value="{{ $beneficiario->id }}"
+                                        {{ $searchC == $beneficiario->id ? 'selected' : '' }}>
+                                        {{ $beneficiario->Nombre }}                                    
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                @else
+                    <div class="sm:col-span-2 sm:col-start-1">
+                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
+                        <div class="mt-2">
+                            <input type="text" wire:model='Bene' disabled
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        </div>
+                    </div>
+                @endif
                 <div class="sm:col-span-1 sm:col-start-1">
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Movimientos</h2>
                 </div>
-                <div class="sm:col-span-1 sm:col-start-1">
+                <div class="sm:col-span-2 sm:col-start-1">
                     <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Forma de
                         Pago</label>
                     <select wire:model='FormaP' @if ($Estatus == 'Ingresada') disabled @endif
@@ -56,10 +97,10 @@
                 </div>
                 <div class="sm:col-span-1">
                     <label for="city" class="block text-sm font-medium leading-6 text-gray-900">Monto</label>
-                    <input type="number" wire:model='Monto' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="text" wire:model='Monto' @if ($Estatus == 'Ingresada') disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                <div class="sm:col-span-2">
+                <div class="sm:col-span-3 sm:col-start-1">
                     <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Empresa</label>
                     <div class="mt-1" wire:ignore>
                         <select id="select2" class="buscador" wire:model="empresaSeleccionadaId"
@@ -75,7 +116,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="mt-1">
+                <div class="sm:col-span-2">
                     <label class="block text-sm font-medium leading-6 text-gray-900">Banco</label>
                     <select wire:model='Banco' @if ($Estatus == 'Ingresada') disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -131,6 +172,13 @@
     </div>
 </form>
 <script>
+    $(document).ready(function() {
+        $('#select1').select2();
+        $('#select1').on('change', function(e) {
+            let valor = $('#select1').select2("val");
+            @this.set('searchC', valor);
+        });
+    });
     $(document).ready(function() {
         $('#select2').select2();
         $('#select2').on('change', function(e) {

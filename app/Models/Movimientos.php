@@ -8,12 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Movimientos extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','Movimiento','Fecha', 'Total','FolioF','FechaF','BancoDestino','EmpresaDestino','Beneficiario','Concepto','fichaG_id','fichaD_id','comisionista_id','cliente_id','formap_id','empresa_id','banco_id','empleado_id'];
+    protected $fillable = ['id','Movimiento','Fecha', 'Total','FolioF','FechaF','bancoD_id','empresaD_id','Beneficiario','Concepto','fichaG_id','fichaD_id','comisionista_id','cliente_id','formap_id','empresa_id','banco_id','empleado_id'];
     public function banco(){
-        return $this->belongsTo("App\Models\Banco");
+        return $this->belongsTo(Banco::class, 'banco_id');
     }
     public function empresa(){
-        return $this->belongsTo("App\Models\Empresa");
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
+    public function bancoD(){
+        return $this->belongsTo(Banco::class, 'bancoD_id');
+    }
+    public function empresaD(){
+        return $this->belongsTo(Empresa::class, 'empresaD_id');
     }
     public function formap(){
         return $this->belongsTo("App\Models\FormaPago");

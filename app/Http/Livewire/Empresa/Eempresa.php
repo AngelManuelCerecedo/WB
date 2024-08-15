@@ -12,8 +12,8 @@ use Livewire\Component;
 class Eempresa extends Component
 {
     public $ide, $Nom, $Nc, $RFC, $Giro;
-    public $NombreB, $NumeroC, $Bancos, $movimientos;
-    public $ModalMov = false, $ModalTrans = false;
+    public $NombreB, $NumeroC, $Bancos, $movimientos,$movimientosR;
+    public $ModalMov = false, $ModalTrans = false, $BIDEAUX, $AUXFOLIO,$CERO;
     public $gastos, $ingresos;
     public $CuentaId, $Fecha, $empresaSeleccionadaId, $Empresas, $BancosModal, $searchE, $Concepto, $Banco, $Monto;
     public function render()
@@ -72,7 +72,16 @@ class Eempresa extends Component
     public function abrirModal($Bancoide)
     {
         $this->ModalMov = true;
-        $this->movimientos = Movimientos::Where('banco_id', $Bancoide)->get();
+        $this->BIAUX = $Bancoide;
+        if ($Bancoide == 72)
+        {
+            $this->movimientos = Movimientos::all();
+            $this->movimientosENV = Movimientos::Where('bancoD_id', $Bancoide)->get();
+        }
+        else{
+            $this->movimientos = Movimientos::Where('banco_id', $Bancoide)->get();
+        }
+        $this->movimientosR = Movimientos::Where('bancoD_id', $Bancoide)->get();
     }
     public function cerrarModal()
     {
@@ -113,8 +122,8 @@ class Eempresa extends Component
                     'Movimiento' => 'Transferencia',
                     'Fecha' => $this->Fecha,
                     'Total' => $this->Monto,
-                    'BancoDestino' => $TotenCD->Nombre . '-' . $TotenCD->Cuenta,
-                    'EmpresaDestino' => $EmpreDest->NCorto,
+                    'empresaD_id' => $this->searchE,
+                    'bancoD_id' => $this->Banco,
                     'empresa_id' => $this->ide,
                     'banco_id' => $this->CuentaId,
                     'Concepto' => $this->Concepto,
@@ -132,7 +141,7 @@ class Eempresa extends Component
             Banco::updateOrCreate(
                 ['id' => $this->Banco],
                 [
-                    'Total' => $this->Monto + $TotenCD->Total,
+                    'Total' => $TotenCD->Total + $this->Monto,
                 ]
             );
             $this->dispatchBrowserEvent('swal', [

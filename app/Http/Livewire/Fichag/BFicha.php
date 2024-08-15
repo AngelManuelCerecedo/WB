@@ -14,8 +14,9 @@ class BFicha extends Component
     public function render()
     {
         $fichas = FichaGasto::where(function ($query) {
-            $query->where('Folio', 'like', '%' . $this->search . '%');
-        })->paginate($this->cantidad);
+        $query->where('Folio', 'like', '%' . $this->search . '%');
+        })->orderBy('id', 'desc')  // Ordena por 'id' en orden ascendente
+        ->paginate($this->cantidad);
         return view('livewire.Fichag.bficha', ['fichas' => $fichas]);
     }
     public function updatingSearch()

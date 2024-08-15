@@ -19,7 +19,7 @@
                     </button>
                 </a>
             </div>
-            <div class="sm:ml-64 mt-2">
+            <div class="sm:ml-8 mt-2">
                 <label><i class="bi bi-house-door-fill"></i> <i class="bi bi-chevron-right"></i> Catálogos <i
                         class="bi bi-chevron-right"></i> Fichas de Gastos</label>
             </div>
@@ -32,7 +32,7 @@
                             <th>Acciones</th>
                             <th>Fecha</th>
                             <th>Folio</th>
-                            <th>Cliente</th>
+                            <th>Beneficiario</th>
                             <th>Estatus</th>
                             <th>Total</th>
                             <th>Observaciones</th>
@@ -51,7 +51,7 @@
                                 </td>
                                 <td data-label="Fecha :">{{ $ficha->Fecha }}</td>
                                 <td data-label="Folio :">{{ $ficha->Folio }}</td>
-                                <td data-label="Beneficiario :">{{ $ficha->Beneficiario }}</td>
+                                <td data-label="Bene :">{{ $ficha->beneficiario->Nombre }}</td>
                                 <td data-label="Estatus :">{{ $ficha->Estatus }}</td>
                                 <td data-label="Total:">${{ number_format($ficha->Total, 2) }}</td>
                                 <td data-label="Obs :">{{ $ficha->Obs }}</td>

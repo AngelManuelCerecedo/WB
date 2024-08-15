@@ -9,4 +9,7 @@ class Beneficiario extends Model
 {
     use HasFactory;
     protected $fillable = ['id', 'Nombre', 'Banco', 'Cuenta'];
+    public function fichaG(){
+        return $this->hasMany("App\Models\FichaGasto");
+    }
 }

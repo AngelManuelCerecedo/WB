@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 @if ($Estatus == 'Registro')
-                    <div class="sm:col-span-2 sm:col-start-1">
+                    <div class="sm:col-span-3 sm:col-start-1">
                         <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Cliente</label>
                         <div class="mt-3" wire:ignore>
                             <select id="select1" class="buscador">
@@ -62,6 +62,18 @@
                             class="rounded-md bg-green-500 px-2 py-1 text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400"><i
                                 class="bi bi-filetype-xls text-2xl"></i></button>
                     </a>
+                </div>
+                <div class="sm:col-span-2 mt-6">
+                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Comision sobre Reintregro Total</label>
+                    <div class="ml-12 relative inline-block w-12 h-6 rounded-full border-2  bg-white-200 px-1.5">
+                        <input type="checkbox" id="toggle" wire:model="RM"
+                            class="absolute opacity-0 w-0 h-0">
+                        <label for="toggle"
+                            class="toggle-label block h-full overflow-hidden cursor-pointer bg-white rounded-full shadow-sm transform transition-transform duration-300">
+                            <span class="block w-6 h-5 rounded-full bg-indigo-600 transform translate-x-0"></span>
+                        </label>
+                    </div>
+                    <span class="ml-2 text-sm text-gray-900 leading-6">No / Si</span>
                 </div>
                 <div class="sm:col-span-1 sm:col-start-1">
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Movimientos</h2>
@@ -360,10 +372,17 @@
                 <div class="sm:col-span-1 sm:col-start-1 mt-3">
                     <h2 class="text-base font-semibold leading-3 text-gray-900">TOTAL DE REINTEGRO</h2>
                 </div>
-                <div class="sm:col-span-1">
-                    <input type="text" wire:model='TOTALRINT' disabled
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                </div>
+                @if ($RM)
+                    <div class="sm:col-span-1">
+                        <input type="text" wire:model='TOTALRINT'
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                @else
+                    <div class="sm:col-span-1">
+                        <input type="text" wire:model='TOTALRINT' disabled
+                            class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>                
+                @endif
                 <div class="sm:col-span-1  mt-3">
                     <h2 class="text-base font-semibold leading-3 text-gray-900">SUMA DE COMISIONES</h2>
                 </div>

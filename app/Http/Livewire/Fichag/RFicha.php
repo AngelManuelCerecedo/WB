@@ -6,19 +6,22 @@ use App\Models\Banco;
 use App\Models\Cliente;
 use App\Models\Empresa;
 use App\Models\FichaGasto;
+use App\Models\Beneficiario;
 use App\Models\FormaPago;
 use Livewire\Component;
 
 class RFicha extends Component
 {
     public $Folio, $Fecha, $Total, $Cuenta, $Obs, $Estatus,$Bene;
-    public $searchE;
+    public $searchE, $searchC, $Acreedor, $Acreedores;
     public $Monto, $FormaP, $Bancos,$Banco, $Factura, $FF;
     public function render()
     {
         $empresas = Empresa::all();
         $formasP = FormaPago::all();
-        return view('livewire.Fichag.rficha', ['Empresas' => $empresas, 'FormasP' => $formasP]);
+        $Beneficiarios = Beneficiario::all();
+        $this->Acreedores = Beneficiario::whereIn('id', [2, 3])->get();
+        return view('livewire.Fichag.rficha', ['Empresas' => $empresas, 'FormasP' => $formasP,'Beneficiarios'=>$Beneficiarios]);
     }
     public function updatedSearchE($value)
     {
@@ -38,7 +41,7 @@ class RFicha extends Component
             [
                 'Folio' => $this->Folio,
                 'Fecha' => $this->Fecha,
-                'Beneficiario' => $this->Bene,
+                'bene_id' => $this->searchC,
                 'Total' => $this->Monto,
                 'formap_id' => $this->FormaP,
                 'banco_id' => $this->Banco,
@@ -48,6 +51,7 @@ class RFicha extends Component
                 'FolioFact' => $this->FF,
                 'Estatus' => 'Registro',
                 'Obs' => $this->Obs,
+                'acreedor' => $this->Acreedor,
                 'empleado_id' => auth()->user()->empleado->id,
             ]
         );

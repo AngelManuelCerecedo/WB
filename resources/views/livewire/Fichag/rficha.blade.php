@@ -33,9 +33,30 @@
                     </div>
                 </div>
                 <div class="sm:col-span-2 sm:col-start-1">
+                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Acreedor</label>
+                    <div class ="mt-2">
+                        <select wire:model='Acreedor' class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <option value="">Selecciona un Acreedor</option>
+                            @foreach ($Acreedores as $acreedor)
+                                <option value="{{ $acreedor->id }}">{{ $acreedor->Nombre }}</option>
+                            @endforeach
+                            <option value="4">GASTOS WB</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="sm:col-span-2">
                     <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
-                    <input type="text" wire:model='Bene' @if ($Estatus == 'Ingresada') disabled @endif
-                        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <div class="mt-2" wire:ignore>
+                        <select id="select1" class="buscador">
+                            <option value="">Seleccione un Beneficiario</option>
+                            @foreach ($Beneficiarios as $beneficiario)
+                                <option value="{{ $beneficiario->id }}"
+                                    {{ $searchC == $beneficiario->id ? 'selected' : '' }}>
+                                    {{ $beneficiario->Nombre }}                                    
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,6 +73,13 @@
     </div>
 </form>
 <script>
+    $(document).ready(function() {
+        $('#select1').select2();
+        $('#select1').on('change', function(e) {
+            let valor = $('#select1').select2("val");
+            @this.set('searchC', valor);
+        });
+    });
     $(document).ready(function() {
         $('#select2').select2();
         $('#select2').on('change', function(e) {

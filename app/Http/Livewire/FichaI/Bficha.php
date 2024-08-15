@@ -14,8 +14,15 @@ class Bficha extends Component
     public function render()
     {
         $fichas = FichaIngreso::where(function ($query) {
-            $query->where('Folio', 'like', '%' . $this->search . '%');
-        })->paginate($this->cantidad);
+            $query->where('Folio', 'like', '%' . $this->search . '%')
+                  ->orWhereHas('cliente', function ($q) {
+                      $q->where('NOMBRE', 'like', '%' . $this->search . '%')
+                      ->orWhere('alias', 'like', '%' . $this->search . '%');
+                  });
+        })
+        ->orderBy('Fecha', 'desc')  // Ordena por 'Fecha' en orden descendente
+        ->orderBy('id', 'desc')      // Luego ordena por 'id' en orden descendente
+        ->paginate($this->cantidad);
         return view('livewire.Fichai.bficha', ['fichas' => $fichas]);
     }
     public function updatingSearch()

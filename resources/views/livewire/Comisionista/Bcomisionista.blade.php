@@ -19,7 +19,7 @@
                     </button>
                 </a>
             </div>
-            <div class="sm:ml-64 mt-2">
+            <div class="sm:ml-8 mt-2">
                 <label><i class="bi bi-house-door-fill"></i> <i class="bi bi-chevron-right"></i> Catálogos <i
                         class="bi bi-chevron-right"></i> Comisionistas</label>
             </div>
