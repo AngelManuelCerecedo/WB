@@ -99,9 +99,25 @@
                             <a href="{{ route('FichasG') }}" class="block text-sm font-semibold text-gray-900">Ficha de
                                 Identificacion de Gastos</a>
                         </div>
-                        <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Contabilidad</a>
-                        <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Contraloria</a>
-                        <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Facturacion</a>
+                        <button id="facturacionButtonMobile" type="button"
+                            class="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900 mt-4">
+                            Facturación
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <div id="facturacionMenuMobile" class="hidden mt-2">
+                            <!-- Aquí agregas las opciones de "Finanzas" para móviles -->
+                            <a href="{{ route('FichasI') }}" class="block text-sm font-semibold text-gray-900">Ficha
+                                de
+                                Identificacion de Depositos</a>
+                            <a href="{{ route('FichasG') }}" class="block text-sm font-semibold text-gray-900">Ficha
+                                de
+                                Identificacion de Gastos</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -245,27 +261,28 @@
                                     </a>
                                 </div>
                             </div>
-                                <div class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
-                                    
-                                    @if (auth()->user()->empleado->Rol != 'Finanzas')
-                                        <div
-                                            class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
-                                                viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                aria-hidden="true">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M17 20h5v-1a4 4 0 00-3-3.87M17 20H7M17 20a3 3 0 01-6 0M7 20H2v-1a4 4 0 013-3.87M7 20a3 3 0 006 0M15 10a4 4 0 01-4 4M9 10a4 4 0 118 0M7 14a4 4 0 110-8M7 14a4 4 0 004-4M7 14a4 4 0 01-4-4" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex-auto">
-                                            <a href="{{ route('Empleados') }}"
-                                                class="block font-semibold text-gray-900 group-hover:text-red-600">
-                                                Usuarios
-                                                <span class="absolute inset-0"></span>
-                                            </a>
-                                        </div>
-                                    @endif
+                            <div
+                                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+
+                                @if (auth()->user()->empleado->Rol != 'Finanzas')
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                            aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M17 20h5v-1a4 4 0 00-3-3.87M17 20H7M17 20a3 3 0 01-6 0M7 20H2v-1a4 4 0 013-3.87M7 20a3 3 0 006 0M15 10a4 4 0 01-4 4M9 10a4 4 0 118 0M7 14a4 4 0 110-8M7 14a4 4 0 004-4M7 14a4 4 0 01-4-4" />
+                                        </svg>
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="{{ route('Empleados') }}"
+                                            class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                            Usuarios
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -284,7 +301,7 @@
                     </button>
 
 
-                    <!-- Menu desplegable de "Product" -->
+                    <!-- Menu desplegable de "FINANZAS" -->
                     <div id="finanzasMenu"
                         class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden">
                         <div class="p-4">
@@ -333,9 +350,75 @@
                         </div>
                     </div>
                 </div>
+                <!-- Menu "FACTURACION" -->
+                @if (auth()->user()->empleado->Rol != 'Finanzas')
+                    <div class="relative">
+                        <button id="facturacionButton" type="button"
+                            class="finanzas-button flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+                            aria-expanded="false">
+                            Facturación
+                            <svg class="h-5 w-5 flex-none text-gray-400" viewBox="0 0 20 20" fill="currentColor"
+                                aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        <!-- Menu desplegable de "FACTURACION" -->
+                        <div id="facturacionMenu"
+                            class="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 hidden">
+                            <div class="p-4">
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 6v12" stroke-linecap="round" stroke-linejoin="round" />
+                                            <!-- Flecha hacia abajo -->
+                                            <path d="M15 14l-3 3-3-3" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="{{ route('Facturas') }}"
+                                            class="block font-semibold text-gray-900  group-hover:text-red-600">
+                                            Facturación de Depositos
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div
+                                    class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                    <div
+                                        class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            class="h-6 w-6 text-gray-600 group-hover:text-red-600" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path d="M12 6v12" stroke-linecap="round" stroke-linejoin="round" />
+                                            <!-- Flecha hacia arriba -->
+                                            <path d="M15 10l-3-3-3 3" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+
+                                    </div>
+                                    <div class="flex-auto">
+                                        <a href="{{ route('FichasG') }}"
+                                            class="block font-semibold text-gray-900 group-hover:text-red-600">
+                                            Facturación de Transferencias
+                                            <span class="absolute inset-0"></span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contabilidad</a>
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contraloria</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Facturacion</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">
                 <form method="POST" action="{{ route('logout') }}" x-data>
@@ -352,7 +435,6 @@
         <div id="mobile-menu" class="hidden lg:hidden">
             <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Contabilidad</a>
             <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Contraloria</a>
-            <a href="#" class="block text-sm font-semibold leading-6 text-gray-900">Facturacion</a>
             <form method="POST" action="{{ route('logout') }}" x-data>
                 @csrf
                 <a class="block text-sm font-semibold leading-6 text-black-900" href="{{ route('logout') }}"
@@ -373,7 +455,9 @@
             const productMenu = document.getElementById('productMenu');
             const finanzasButton = document.getElementById('finanzasButton');
             const finanzasMenu = document.getElementById('finanzasMenu');
-    
+            const facturacionButton = document.getElementById('facturacionButton'); // Nuevo
+            const facturacionMenu = document.getElementById('facturacionMenu'); // Nuevo
+
             // Selecciona los elementos móviles
             const mobileMenuButton = document.getElementById('mobileMenuButton');
             const mobileMenu = document.getElementById('mobileMenu');
@@ -382,48 +466,74 @@
             const productMenuMobile = document.getElementById('productMenuMobile');
             const finanzasButtonMobile = document.getElementById('finanzasButtonMobile');
             const finanzasMenuMobile = document.getElementById('finanzasMenuMobile');
-    
+            const facturacionButtonMobile = document.getElementById('facturacionButtonMobile'); // Nuevo
+            const facturacionMenuMobile = document.getElementById('facturacionMenuMobile'); // Nuevo
+
             // Función para alternar la visibilidad del menú desplegable de "Categorías" en escritorio
             function toggleProductMenu() {
                 if (!finanzasMenu.classList.contains('hidden')) {
                     finanzasMenu.classList.add('hidden');
                 }
+                if (!facturacionMenu.classList.contains('hidden')) { // Nuevo
+                    facturacionMenu.classList.add('hidden');
+                }
                 productMenu.classList.toggle('hidden');
             }
-    
+
             // Función para alternar la visibilidad del menú desplegable de "Finanzas" en escritorio
             function toggleFinanzasMenu() {
                 if (!productMenu.classList.contains('hidden')) {
                     productMenu.classList.add('hidden');
                 }
+                if (!facturacionMenu.classList.contains('hidden')) { // Nuevo
+                    facturacionMenu.classList.add('hidden');
+                }
                 finanzasMenu.classList.toggle('hidden');
             }
-    
+
+            // Función para alternar la visibilidad del menú desplegable de "Facturación" en escritorio
+            function toggleFacturacionMenu() { // Nuevo
+                if (!productMenu.classList.contains('hidden')) {
+                    productMenu.classList.add('hidden');
+                }
+                if (!finanzasMenu.classList.contains('hidden')) {
+                    finanzasMenu.classList.add('hidden');
+                }
+                facturacionMenu.classList.toggle('hidden');
+            }
+
             // Función para alternar la visibilidad del menú móvil
             function toggleMobileMenu() {
                 mobileMenu.classList.toggle('hidden');
             }
-    
+
             // Función para alternar la visibilidad del menú de "Categorías" en el móvil
             function toggleProductMenuMobile() {
                 productMenuMobile.classList.toggle('hidden');
             }
-    
+
             // Función para alternar la visibilidad del menú de "Finanzas" en el móvil
             function toggleFinanzasMenuMobile() {
                 finanzasMenuMobile.classList.toggle('hidden');
             }
-    
+
+            // Función para alternar la visibilidad del menú de "Facturación" en el móvil
+            function toggleFacturacionMenuMobile() { // Nuevo
+                facturacionMenuMobile.classList.toggle('hidden');
+            }
+
             // Agrega eventos de clic para los botones de escritorio
             categoriaButton.addEventListener('click', toggleProductMenu);
             finanzasButton.addEventListener('click', toggleFinanzasMenu);
-    
+            facturacionButton.addEventListener('click', toggleFacturacionMenu);
+
             // Agrega eventos de clic para los botones móviles
             mobileMenuButton.addEventListener('click', toggleMobileMenu);
             closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
             categoriaButtonMobile.addEventListener('click', toggleProductMenuMobile);
             finanzasButtonMobile.addEventListener('click', toggleFinanzasMenuMobile);
-    
+            facturacionButtonMobile.addEventListener('click', toggleFacturacionMenuMobile);
+
             // Cierra los menús si se hace clic fuera de ellos
             document.addEventListener('click', function(event) {
                 if (!categoriaButton.contains(event.target) && !productMenu.contains(event.target)) {
@@ -432,18 +542,30 @@
                 if (!finanzasButton.contains(event.target) && !finanzasMenu.contains(event.target)) {
                     finanzasMenu.classList.add('hidden');
                 }
-                if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target) && !closeMobileMenuButton.contains(event.target)) {
+                if (!facturacionButton.contains(event.target) && !facturacionMenu.contains(event
+                        .target)) { // Nuevo
+                    facturacionMenu.classList.add('hidden');
+                }
+                if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target) && !
+                    closeMobileMenuButton.contains(event.target)) {
                     mobileMenu.classList.add('hidden');
                 }
-                if (!categoriaButtonMobile.contains(event.target) && !productMenuMobile.contains(event.target)) {
+                if (!categoriaButtonMobile.contains(event.target) && !productMenuMobile.contains(event
+                        .target)) {
                     productMenuMobile.classList.add('hidden');
                 }
-                if (!finanzasButtonMobile.contains(event.target) && !finanzasMenuMobile.contains(event.target)) {
+                if (!finanzasButtonMobile.contains(event.target) && !finanzasMenuMobile.contains(event
+                        .target)) {
                     finanzasMenuMobile.classList.add('hidden');
+                }
+                if (!facturacionButtonMobile.contains(event.target) && !facturacionMenuMobile.contains(event
+                        .target)) {
+                    facturacionMenuMobile.classList.add('hidden');
                 }
             });
         });
     </script>
-    
+
+
 
     </html>

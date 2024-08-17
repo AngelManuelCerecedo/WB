@@ -14,6 +14,7 @@ use App\Http\Controllers\CreditoCompraController;
 use App\Http\Controllers\CreditoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\FichaGastosController;
 use App\Http\Controllers\FichaIngresoController;
 use App\Http\Controllers\FormasController;
@@ -263,6 +264,31 @@ Route::middleware([
 ])->group(function () {
     Route::get('FichasG/Editar/{id}', [FichaGastosController::class, 'eficha'])->name('EFichaG');
 });
+
+//MODULO FACTURACION
+//FACTURAS DEPOSITO
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Facturas', [FacturaController::class, 'factura'])->name('Facturas');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Facturas/Registro', [FacturaController::class, 'rfactura'])->name('RFactura');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('Facturas/Editar/{id}', [FacturaController::class, 'efactura'])->name('EFactura');
+});
+
 //Excel´s
 //Cotizaciones
 Route::get('Reporte/xls/Cotizacion/{id}', [FichaIngresoController::class, 'XLS'])->name('FichaXLS');

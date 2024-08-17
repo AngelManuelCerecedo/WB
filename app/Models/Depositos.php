@@ -8,11 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Depositos extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','Fecha', 'Total','FolioF','FechaF','ficha_id','empresa_id','banco_id','empleado_id'];
-    public function banco(){
+    protected $fillable = ['id', 'Fecha', 'Total', 'FolioF', 'FechaF', 'ficha_id', 'empresa_id', 'banco_id', 'empleado_id'];
+    public function banco()
+    {
         return $this->belongsTo("App\Models\Banco");
     }
-    public function empresa(){
+    public function empresa()
+    {
         return $this->belongsTo("App\Models\Empresa");
     }
     public function fichaIngreso()

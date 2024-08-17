@@ -1,5 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Buscar Empresa')
 @section('content')
-@livewire('empresa.bempresa')
+    @livewire('empresa.bempresa')
 @endsection

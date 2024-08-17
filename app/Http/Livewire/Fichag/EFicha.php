@@ -29,7 +29,7 @@ class EFicha extends Component
     }
     public function mount()
     {
-        $this->Ficha = FichaGasto::Where('id', '=', $this->ide)->first();
+        $this->Ficha = FichaGasto::Where('id', $this->ide)->first();
         $this->Bancos = Banco::where('empresa_id', $this->Ficha->empresa_id)->get();
         $this->Folio = $this->Ficha->Folio;
         $this->searchC = ($this->Ficha->bene_id) ? $this->Ficha->bene_id : null;
