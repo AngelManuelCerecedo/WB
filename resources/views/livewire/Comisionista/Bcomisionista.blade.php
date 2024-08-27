@@ -39,9 +39,36 @@
                         @foreach ($comisionistas as $comisionista)
                             @php
                                 $Taux = 0;
-                                $Pagos = \App\Models\Movimientos::where([['comisionista_id', $comisionista->id],['Movimiento','Pago Comision']])->get();
+                                $Pagos = \App\Models\Movimientos::where([
+                                    ['comisionista_id', $comisionista->id],
+                                    ['Movimiento', 'Pago Comision'],
+                                ])->get();
                                 foreach ($Pagos as $pago) {
                                     $Taux += $pago->Total;
+                                }
+                                $Raux = 0;
+                                $Comisiones = \App\Models\FichaIngreso::where('comis1_id', $comisionista->id)
+                                    ->orWhere('comis2_id', $comisionista->id)
+                                    ->orWhere('comis3_id', $comisionista->id)
+                                    ->orWhere('comis4_id', $comisionista->id)
+                                    ->orWhere('comis5_id', $comisionista->id)
+                                    ->get();
+                                foreach ($Comisiones as $comision) {
+                                    if ($comision->comis1_id == $comisionista->id) {
+                                        $Raux += ($comision->Tot1 * $comision->Total) / 100;
+                                    }
+                                    if ($comision->comis2_id == $comisionista->id) {
+                                        $Raux += ($comision->Tot2 * $comision->Total) / 100;
+                                    }
+                                    if ($comision->comis3_id == $comisionista->id) {
+                                        $Raux += ($comision->Tot3 * $comision->Total) / 100;
+                                    }
+                                    if ($comision->comis4_id == $comisionista->id) {
+                                        $Raux += ($comision->Tot4 * $comision->Total) / 100;
+                                    }
+                                    if ($comision->comis5_id == $comisionista->id) {
+                                        $Raux += ($comision->Tot5 * $comision->Total) / 100;
+                                    }
                                 }
                             @endphp
                             <tr>
@@ -54,8 +81,8 @@
                                     </a>
                                 </td>
                                 <td data-label="NOMBRE :">{{ $comisionista->Nombre }}</td>
-                                <td data-label="COM TOTAL :">${{ number_format($comisionista->Total, 2) }}</td>
-                                <td data-label="SALDO :">${{ number_format($comisionista->Total - $Taux, 2) }}</td>
+                                <td data-label="COM TOTAL :">${{ number_format($Raux, 2) }}</td>
+                                <td data-label="SALDO :">${{ number_format($Raux- $Taux, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

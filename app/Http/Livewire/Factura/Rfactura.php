@@ -34,7 +34,7 @@ class Rfactura extends Component
         return view('livewire.factura.rfactura');
     }
     public function mount(){
-        $this->Fecha = date('d-m-Y');
+        $this->Fecha = date('Y-m-d');
     }
     public function updatedSearchC($value)
     {
@@ -57,10 +57,11 @@ class Rfactura extends Component
                 'Ejecutivo' => $this->Solicitud,
                 //'Credito' => $this->Credito,
                 'Observaciones' => $this->Observaciones,
-                'Total' => $this->Total,
+                'Total' => floatval(str_replace(',', '', $this->Total)),
                 'empresa_id' => $this->searchE,
                 'formap_id' => $this->Forma,                
                 'cliente_id' => $this->searchC,
+                'movimiento_id' => $this->movimientoSeleccionadaId,
                 'empleado_id' => auth()->user()->empleado->id,
             ]
         );

@@ -46,12 +46,32 @@
                     <tbody>
                         @foreach ($empresas as $empresa)
                             @php
-                                $Taux = 0;
-                                $Cuentas = \App\Models\Banco::where([
-                                    ['empresa_id', $empresa->id],
-                                ])->get();
-                                foreach ($Cuentas as $cuenta) {
-                                    $Taux += $cuenta->Total;
+                                $Gaux = 0;
+                                $Cuentas = \App\Models\Banco::where([['empresa_id', $empresa->id]])->get();
+                                foreach ($Cuentas as $banco) {
+                                    $Taux = (float) $banco->SaldoI;
+                                    $Transferencias = \App\Models\Movimientos::where([['bancoD_id', $banco->id],['Movimiento', 'Transferencia']])
+                                        ->orWhere([['banco_id', $banco->id], ['Movimiento', 'Transferencia']])
+                                        ->get();
+                                    foreach ($Transferencias as $tranfe) {
+                                        if ($tranfe->bancoD_id == $banco->id) {
+                                            $Taux += $tranfe->Total;
+                                        }
+                                        if ($tranfe->banco_id == $banco->id) {
+                                            $Taux -= $tranfe->Total;
+                                        }
+                                    }
+                                    $Movimientos = \App\Models\Movimientos::where('banco_id', $banco->id)
+                                        ->whereIn('Movimiento', ['Deposito', 'Pago Reintegro', 'Gasto'])
+                                        ->get();
+                                    foreach ($Movimientos as $mov) {
+                                        if ($mov->Movimiento == 'Deposito') {
+                                            $Taux += $mov->Total;
+                                        } else {
+                                            $Taux -= $mov->Total;
+                                        }
+                                    }
+                                    $Gaux += $Taux;
                                 }
                             @endphp
                             <tr>
@@ -66,7 +86,7 @@
                                 <td data-label="RFC :">{{ $empresa->RFC }}</td>
                                 <td data-label="Nombre :">{{ $empresa->Nombre }}</td>
                                 <td data-label="Nom. Corto :">{{ $empresa->NCorto }}</td>
-                                <td data-label="Saldo :">${{ number_format($Taux, 2) }}</td>
+                                <td data-label="Saldo :">${{ number_format($Gaux, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>

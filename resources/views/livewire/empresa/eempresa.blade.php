@@ -71,6 +71,31 @@
                             </thead>
                             @if ($Bancos)
                                 @foreach ($Bancos as $banco)
+                                    @php
+                                        $Taux = (float) $banco->SaldoI;
+                                        $Transferencias = \App\Models\Movimientos::where([['bancoD_id', $banco->id],['Movimiento', 'Transferencia']])
+                                            ->orWhere([['banco_id', $banco->id], ['Movimiento', 'Transferencia']])
+                                            ->get();
+                                        foreach ($Transferencias as $tranfe) {
+                                            if ($tranfe->bancoD_id == $banco->id) {
+                                                $Taux += $tranfe->Total;
+                                            }
+                                            if ($tranfe->banco_id == $banco->id) {
+                                                $Taux -= $tranfe->Total;
+                                            }
+                                        }
+                                        $Movimientos = \App\Models\Movimientos::where('banco_id', $banco->id)
+                                            ->whereIn('Movimiento', ['Deposito', 'Pago Reintegro', 'Gasto'])
+                                            ->get();
+
+                                        foreach ($Movimientos as $mov) {
+                                            if ($mov->Movimiento == 'Deposito') {
+                                                $Taux += $mov->Total;
+                                            } else {
+                                                $Taux -= $mov->Total;
+                                            }
+                                        }
+                                    @endphp
                                     <tbody>
                                         <tr>
                                             <td data-label="ACCIONES :" class="lg:w-1/12">
@@ -89,7 +114,7 @@
                                             </td>
                                             <td data-label="Nombre :">{{ $banco->Nombre }}</td>
                                             <td data-label="Cuenta :">{{ $banco->Cuenta }}</td>
-                                            <td data-label="Total :">${{ number_format($banco->Total, 2) }}</td>
+                                            <td data-label="Total :">${{ number_format($Taux, 2) }}</td>
                                         </tr>
                                     </tbody>
                                 @endforeach

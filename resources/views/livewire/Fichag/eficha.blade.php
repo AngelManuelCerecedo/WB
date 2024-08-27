@@ -34,9 +34,11 @@
                 </div>
                 @if ($Estatus == 'Registro')
                     <div class="sm:col-span-2 sm:col-start-1">
-                        <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Acreedor</label>
+                        <label for="first-name"
+                            class="block text-sm font-medium leading-6 text-gray-900">Acreedor</label>
                         <div class ="mt-2">
-                            <select wire:model='Acreedor' class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                            <select wire:model='Acreedor'
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                 <option value="">Selecciona un Acreedor</option>
                                 @foreach ($Acreedores as $acreedor)
                                     <option value="{{ $acreedor->id }}">{{ $acreedor->Nombre }}</option>
@@ -56,14 +58,15 @@
                 @endif
                 @if ($Estatus == 'Registro')
                     <div class="sm:col-span-2">
-                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
+                        <label for="region"
+                            class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
                         <div class="mt-2" wire:ignore>
                             <select id="select1" class="buscador">
                                 <option value="">Seleccione un Beneficiario</option>
                                 @foreach ($Beneficiarios as $beneficiario)
                                     <option value="{{ $beneficiario->id }}"
                                         {{ $searchC == $beneficiario->id ? 'selected' : '' }}>
-                                        {{ $beneficiario->Nombre }}                                    
+                                        {{ $beneficiario->Nombre }}
                                     </option>
                                 @endforeach
                             </select>
@@ -71,7 +74,8 @@
                     </div>
                 @else
                     <div class="sm:col-span-2">
-                        <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
+                        <label for="region"
+                            class="block text-sm font-medium leading-6 text-gray-900">Beneficiario</label>
                         <div class="mt-2">
                             <input type="text" wire:model='Bene' disabled
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -122,12 +126,36 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         <option value="">Seleccione una Opción</option>
                         @foreach ($Bancos as $banco)
+                            @php
+                                $Taux = (float) $banco->SaldoI;
+                                $Transferencias = \App\Models\Movimientos::where([['bancoD_id', $banco->id],['Movimiento', 'Transferencia']])
+                                    ->orWhere([['banco_id', $banco->id], ['Movimiento', 'Transferencia']])
+                                    ->get();
+                                foreach ($Transferencias as $tranfe) {
+                                    if ($tranfe->bancoD_id == $banco->id) {
+                                        $Taux += $tranfe->Total;
+                                    }
+                                    if ($tranfe->banco_id == $banco->id) {
+                                        $Taux -= $tranfe->Total;
+                                    }
+                                }
+                                $Movimientos = \App\Models\Movimientos::where('banco_id', $banco->id)
+                                    ->whereIn('Movimiento', ['Deposito', 'Pago Reintegro', 'Gasto'])
+                                    ->get();
+                                foreach ($Movimientos as $mov) {
+                                    if ($mov->Movimiento == 'Deposito') {
+                                        $Taux += $mov->Total;
+                                    } else {
+                                        $Taux -= $mov->Total;
+                                    }
+                                }
+                            @endphp
                             <option value="{{ $banco->id }}">
                                 {{ $banco->Nombre }}
                                 -
                                 {{ $banco->Cuenta }}
                                 -
-                                ${{ number_format($banco->Total, 2) }}
+                                ${{ number_format($Taux, 2) }}
                             </option>
                         @endforeach
                     </select>
