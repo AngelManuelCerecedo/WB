@@ -39,9 +39,7 @@
                         @foreach ($comisionistas as $comisionista)
                             @php
                                 $Taux = 0;
-                                $Pagos = \App\Models\Movimientos::where([
-                                    ['comisionista_id', $comisionista->id],
-                                ])->get();
+                                $Pagos = \App\Models\Movimientos::where([['comisionista_id', $comisionista->id],['Movimiento','Pago Comision']])->get();
                                 foreach ($Pagos as $pago) {
                                     $Taux += $pago->Total;
                                 }

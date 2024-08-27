@@ -288,10 +288,13 @@ Route::middleware([
 ])->group(function () {
     Route::get('Facturas/Editar/{id}', [FacturaController::class, 'efactura'])->name('EFactura');
 });
-
-//Excel´s
-//Cotizaciones
-Route::get('Reporte/xls/Cotizacion/{id}', [FichaIngresoController::class, 'XLS'])->name('FichaXLS');
+//PDF's
+Route::get('Formato/pdf/Movimientos/{idEmp}/{id}', [EmpresaController::class, 'PDF'])->name('EstadoCPDF');
+//Excel's
+//Empresas
+Route::get('Formato/xls/Saldos', [EmpresaController::class, 'XLS'])->name('EmpresasXLS');
+//Ficha de Depositos
+Route::get('Formato/xls/FichaIngreso/{id}', [FichaIngresoController::class, 'XLS'])->name('FichaXLS');
 //ROLES
 Route::get('roles', [RoleController::class, 'roles'])->name('Roles');
 Route::get('roles/Registro', [RoleController::class, 'rroles'])->name('RRoles');

@@ -7,8 +7,8 @@
 
     .i1 {
         width: 140px;
-        height: 140px;
-        margin-left: 5px;
+        height: 80px;
+        margin-bottom: 50px;
     }
 
     .t1 {
@@ -37,6 +37,7 @@
         text-align: center;
         background-color: white;
         height: 10px;
+        border-bottom: 1px solid #ddd;
     }
 
     .tt2 {
@@ -49,16 +50,15 @@
 
     .tc1 {
         font-family: 'Raleway', sans-serif;
-        font-size: 11px;
+        font-size: 13px;
         text-align: left;
-        font-style:
+        font-weight: bold;
     }
 
     .tc2 {
         font-family: 'Raleway', sans-serif;
-        font-size: 12px;
+        font-size: 13px;
         background-color: rgb(223, 239, 247);
-        height: 10px;
     }
 
     .TTT {
@@ -72,31 +72,12 @@
     .headt td {
         height: 27px;
     }
-
-    .leyenda {
-        font-family: 'Raleway', sans-serif;
-        font-size: 11px;
-        text-align: left;
-        color: gray
-    }
-
-    .a {
-        outline: none;
-        text-decoration: none;
-        color: gray;
-    }
-
-    .firmas {
-        font-family: 'Raleway', sans-serif;
-        font-size: 12px;
-        text-align: center;
-    }
 </style>
-<table style="width: 100%; border-collapse: collapse; margin-top: -6%">
+<table style="width: 100%;">
     <tbody>
         <tr>
             <td style="width: 25%;">
-                <img src="https://raw.githubusercontent.com/AngelManuelCerecedo/ImgDH/main/Logo-Name.png" class="i1">
+                <img src="{{ asset('Imagenes/WB.jpg') }}" class="i1">
             </td>
             <td style="width: 10%;" class="t1"> </td>
             <td style="width: 21%;" class="t1">ESTADO DE CUENTA</td>
@@ -112,70 +93,44 @@
         <tbody>
             <tr>
                 <td class="tc1">
-                    UID
-                </td>
-                <td class="tc2">
-                    {{ $cliente->id }}
-                </td>
-                <td class="tc1">
-                    RFC
-                </td>
-                <td class="tc2">
-                    {{ $cliente->RFC }}
-                </td>
-                <td class="tc1">
-                    TIPO DE CLIENTE
-                </td>
-                <td class="tc2">
-                    {{ $cliente->TipoC }}
-                </td>
-                <td class="tc1">
-                    CLASIFICACION DEL CLIENTE
-                </td>
-                <td class="tc2">
-                    {{ $cliente->Clasificacion }}
-                </td>
-            </tr>
-            <tr>
-                <td class="tc1">
-                    MOVIL
-                </td>
-                <td class="tc2">
-                    {{ $cliente->Cel }}
-                </td>
-                <td class="tc1">
-                    TELEFONO
-                </td>
-                <td class="tc2">
-                    {{ $cliente->Tel }}
-                </td>
-                <td class="tc1">
-                    CORREO
-                </td>
-                <td class="tc2" colspan="3">
-                    {{ $cliente->Correo }}
-                </td>
-            </tr>
-            <tr>
-                <td class="tc1">
                     NOMBRE
                 </td>
-                <td class="tc2" colspan="3">
-                    {{ $cliente->Nombre }} {{$cliente->ApP}} {{$cliente->ApM}}
+                <td class="tc2">
+                    {{ $Empresa->Nombre }}
                 </td>
                 <td class="tc1">
-                    NOMBRE COMERCIAL
+                    NOMBRE CORTO
                 </td>
-                <td class="tc2" colspan="3">
-                    {{ $cliente->NomCom }}
+                <td class="tc2">
+                    {{ $Empresa->NCorto }}
                 </td>
             </tr>
             <tr>
                 <td class="tc1">
-                    DIRECCION
+                    BANCO
                 </td>
-                <td class="tc2" colspan="7">
-                    {{$cliente->Mun}},{{$cliente->Estado}}, Col{{ $cliente->Col }}, CP{{ $cliente->CP }} Calle {{$cliente->Calle}} NumInt {{$cliente->NumInt}} NumExt {{$cliente->NumExt}}.
+                <td class="tc2">
+                    {{ $Banco->Nombre }}
+                </td>
+                <td class="tc1">
+                    CUENTA
+                </td>
+                <td class="tc2">
+                    {{ $Banco->Cuenta }}
+                </td>
+            </tr>
+            <tr>
+                <td class="tc1">
+                    FECHA
+                </td>
+                <td class="tc2">
+                    {{ date('d-m-Y') }}
+                </td>
+                <td class="tc1">
+                    SALDO
+                </td>
+                <td class="tc2">
+                    -
                 </td>
             </tr>
         </tbody>
@@ -183,230 +138,101 @@
     <table style="width: 100%; margin-top: 2%">
         <thead class="ttt">
             <tr>
-                <td class="TTT" colspan="8">
-                    <strong>DETALLES DE CREDITOS</strong>
+                <td class="TTT" colspan="7">
+                    <strong>DETALLES DE MOVIMIENTOS</strong>
                 </td>
             </tr>
             <tr style="border-bottom:1px solid #000000; text-align: center;">
-                <td><strong>FOLIO</strong></td>
-                <td><strong>SUCURSAL</strong></td>
-                <td><strong>FORMA DE PAGO</strong></td>
-                <td><strong>METODO DE PAGO</strong></td>
-                <td><strong>FECHA DE CREDITO/PAGO</strong></td>
-                <td><strong>IMPORTE DEL CREDITO</strong></td>
-                <td><strong>IMPORTE PAGADO</strong></td>
-                <td><strong>IMPORTE POR PAGAR</strong></td>
+                <td style="width: 10%;"><strong>FECHA</strong></td>
+                <td style="width: 10%;"><strong>MOV</strong></td>
+                <td style="width: 25%;"><strong>CONCEPTO</strong></td>
+                <td style="width: 25%;"><strong>CUENTA D/O</strong></td>
+                <td style="width: 10%;"><strong>RETIRO</strong></td>
+                <td style="width: 10%;"><strong>DEPÓSITO</strong></td>
+                <td style="width: 15%;"><strong>SALDO</strong></td>
             </tr>
         </thead>
         <tbody>
-            @foreach ($creditos as $credito)
-                <var {{ $tp = 0 }}></var>
-                @if($credito->cliente_id == $cliente->id)
-                    @foreach ($pagos as $pago)
-                        @if($pago->credito_id == $credito->id)
-                            <var {{ $tp += $pago->Abono }}></var>
-                        @endif
-                    @endforeach
-                    @if ($aux)
-                        <tr class="tt1">
-                            <td>
-                                {{ $credito->venta_id }}
-                            </td>
-                            <td style="width: 13%;">
-                                {{ $credito->venta->sucursal->Nombre }}
-                            </td>
-                            <td style="width: 20%;">
-                                {{ $credito->venta->forma->Nombre }}
-                            </td>
-                            <td style="width: 10%;">
-                                {{ $credito->venta->metodo_p }}
-                            </td>
-                            <td>
-                                {{ $credito->venta->Fecha }}
-                            </td>
-                            <td style="width: 15%;">
-                                ${{ number_format($credito->Total, 2) }}
-                            </td>
-                            <td style="width: 10%;">
-                                ${{ number_format($tp, 2) }}
-                            </td>
-                            <td style="width: 25%;">
-                                ${{ number_format($credito->Total - $tp, 2); }}
-                            </td>
-                        </tr>
-                        @foreach ($pagos as $pago)
-                            @if($pago->credito_id == $credito->id)
-                                <tr class="tt1">
-                                    <td>
-                                        {{ $pago->credito->venta_id }}
-                                    </td>
-                                    <td>
-                                        <strong>PAGO</strong>
-                                    </td>
-                                    <td>
-                                        {{ $pago->forma->Nombre }}
-                                    </td>
-                                    <td>
-                                        {{ $pago->metodoP }}
-                                    </td>
-                                    <td>
-                                        {{ $pago->created_at->format('Y-m-d') }}
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        ${{ number_format($pago->Abono, 2) }}
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            @endif
-                        @endforeach
-                        <var {{ $aux = false }}></var>
-                    @else
-                        <tr class="tt2">
-                            <td>
-                                {{ $credito->venta_id }}
-                            </td>
-                            <td>
-                                {{ $credito->venta->sucursal->Nombre }}
-                            </td>
-                            <td>
-                                {{ $credito->venta->forma->Nombre }}
-                            </td>
-                            <td>
-                                {{ $credito->venta->metodo_p }}
-                            </td>
-                            <td>
-                                {{ $credito->venta->Fecha }}
-                            </td>
-                            <td>
-                                ${{ number_format($credito->Total, 2) }}
-                            </td>
-                            <td>
-                                ${{ number_format($tp, 2) }}
-                            </td>
-                            <td>
-                                ${{number_format($credito->Total - $tp, 2); }}
-                            </td>
-                        </tr>
-                        @foreach ($pagos as $pago)
-                            @if($pago->credito_id == $credito->id)
-                                <tr class="tt2">
-                                    <td>
-                                        {{ $pago->credito->venta_id }}
-                                    </td>
-                                    <td>
-                                        <strong>PAGO</strong>
-                                    </td>
-                                    <td>
-                                        {{ $pago->forma->Nombre }}
-                                    </td>
-                                    <td>
-                                        {{ $pago->metodoP }}
-                                    </td>
-                                    <td>
-                                        {{ $pago->created_at->format('Y-m-d') }}
-                                    </td>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        ${{ number_format($pago->Abono, 2) }}
-                                    </td>
-                                    <td>
-                                    </td>
-                                </tr>
-                            @endif
-                        @endforeach
-                        <var {{ $aux = true }}></var>
+            {{ $Saldo = $Banco->SaldoI }}
+            <tr class="tt1">
+                <td colspan="6"><strong>SALDO INICIAL EN LA CUENTA</strong></td>
+                <td><strong>${{ number_format($Banco->SaldoI, 2) }}</strong></td>
+            </tr>
+            @foreach ($Movimientos as $movimiento)
+                <tr class="tt1">
+                    <?php
+                        // Asegúrate de que $movimiento->Fecha sea un objeto de tipo DateTime o una cadena de fecha válida
+                        $fechaFormateada = \Carbon\Carbon::parse($movimiento->Fecha)->format('d-m-Y');
+                    ?>
+                    <td>
+                        {{ $fechaFormateada }}
+                    </td>
+                    @if ($movimiento->Movimiento == 'Transferencia')
+                        <td>T</td>
                     @endif
+                    @if ($movimiento->Movimiento == 'Pago Reintegro') 
+                        <td>R ({{ $movimiento->fichaI->Folio }})</td>
+                    @endif
+                    @if ($movimiento->Movimiento == 'Deposito')
+                        <td>D ({{ $movimiento->fichaI->Folio }})</td>
+                    @endif
+                    @if ($movimiento->Movimiento == 'Gasto')
+                        <td>G ({{ $movimiento->fichaG->Folio }})</td>
+                    @endif
+                    @if ($movimiento->Movimiento == 'Deposito')
+                        <td>{{$movimiento->fichaI->cliente->ALIAS}}</td>
+                    @else
+                        <td>{{ $movimiento->Concepto }}</td>
+                    @endif
+                    @if ($movimiento->Movimiento == 'Transferencia')
+                        @if ($movimiento->bancoD->id == $Banco->id)
+                            <td>O:{{ $movimiento->empresa->NCorto }}</td>
+                        @else
+                            <td>D:{{ $movimiento->empresaD->NCorto }}</td>
+                        @endif
+                        @if ($movimiento->bancoD->id == $Banco->id)
+                            <td></td>
+                            <td style="color: green;">
+                                ${{ number_format($movimiento->Total, 2) }}
+                            </td>
+                            {{ $Saldo += $movimiento->Total }}
+                        @else
+                            <td style="color: red;">
+                                ${{ number_format($movimiento->Total, 2) }}
+                            </td>
+                            <td></td>
+                            {{ $Saldo -= $movimiento->Total }}
+                        @endif
+                    @else
+                        @if ($movimiento->Movimiento != 'Deposito')
+                            <td>{{$movimiento->Beneficiario}}</td>
+                            <td style="color: red;">
+                                ${{ number_format($movimiento->Total, 2) }}
+                            </td>
+                            {{ $Saldo -= $movimiento->Total }}
+                            <td></td>
+                        @else
+                            <td></td>
+                            <td></td>
+                            <td style="color: green;">
+                                ${{ number_format($movimiento->Total, 2) }}
+                            </td>
+                            {{ $Saldo += $movimiento->Total }}
+                        @endif
+                    @endif
+                    <td>
+                        <strong>${{ number_format($Saldo, 2) }}</strong>
+                    </td>
+                </tr>
+                @if ($loop->last)
+                    <tr class="tt1">
+                        <td colspan="6"><strong>SALDO FINAL EN LA CUENTA</strong></td>
+                        <td>
+                            <strong>${{ number_format($Saldo, 2) }}</strong>
+                        </td>
+                    </tr>
                 @endif
             @endforeach
         </tbody>
     </table>
-        <table style="width: 100%; margin-top: 2%">
-        <thead class="ttt">
-            <tr>
-                <td class="TTT" colspan="6">
-                    <strong>DETALLES DE VENTAS</strong>
-                </td>
-            </tr>
-            <tr style="border-bottom:1px solid #000000; text-align: center;">
-                <td><strong>FOLIO</strong></td>
-                <td><strong>SUCURSAL</strong></td>
-                <td><strong>FORMA DE PAGO</strong></td>
-                <td><strong>TIPO DE VENTA</strong></td>
-                <td><strong>FECHA</strong></td>
-                <td><strong>IMPORTE</strong></td>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($ventas as $venta)
-                    @if ($aux)
-                        <tr class="tt1">
-                            <td style="width: 10%;">
-                                {{ $venta->id }}
-                            </td>
-                            <td style="width: 13%;">
-                                {{ $venta->sucursal->Nombre }}
-                            </td>
-                            <td style="width: 20%;">
-                                {{ $venta->forma->Nombre }}
-                            </td>
-                            <td style="width: 20%;">
-                                @if($venta->metodo_p == 'PPD')
-                                    Credito
-                                 @else
-                                    Contado
-                                 @endif
-                            </td>
-                            <td style="width: 10%;">
-                                {{ $venta->Fecha }}
-                            </td>
-                            <td style="width: 15%;">
-                                ${{ number_format($venta->Importes, 2) }}
-                            </td>
-                        </tr>
-                        <var {{ $aux = false }}></var>
-                    @else
-                        <tr class="tt2">
-                            <td>
-                                {{ $venta->id }}
-                            </td>
-                            <td>
-                                {{ $venta->sucursal->Nombre }}
-                            </td>
-                            <td>
-                                {{ $venta->forma->Nombre }}
-                            </td>
-                            <td>
-                                @if($venta->metodo_p == 'PPD')
-                                    Credito
-                                 @else
-                                    Contado
-                                 @endif
-                            </td>
-                            <td>
-                                {{ $venta->Fecha }}
-                            </td>
-                            <td>
-                                ${{ number_format($venta->Importes, 2) }}
-                            </td>
-                        </tr>
-                        <var {{ $aux = true }}></var>
-                    @endif
-            @endforeach
-        </tbody>
-    </table>
 </body>
-<footer style="margin-top: 10%;">
-    <div class="linea">
-        <hr>
-    </div>
-    <p style="margin-top: -3.5%;">
-        <a class="a" href="https://www.doctorshome.com.mx"> © www.doctorshome.com.mx </a>
-    </p>
-    <p class="leyenda" style="margin-top: -6%; text-align: right;">
-        Fecha de Impresión: {{ date('d-m-Y') }}
-    </p>
-</footer>

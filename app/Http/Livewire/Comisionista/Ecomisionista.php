@@ -21,7 +21,7 @@ class Ecomisionista extends Component
     {
         $this->Empresas = Empresa::all();
         $this->FormasP = FormaPago::all();
-        $this->PagosCom = Movimientos::Where('comisionista_id', $this->ide)->get();
+        $this->PagosCom = Movimientos::Where([['comisionista_id', $this->ide],['Movimiento','Pago Comision']])->get();
         if ($this->ide == '11' || $this->ide == '12'){
             $this->Comisiones = FichaIngreso::Where([['Estatus', 'Ingresada'], ['ComisionWB','!=', '']])->get();
         }else{

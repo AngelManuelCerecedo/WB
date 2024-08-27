@@ -65,7 +65,7 @@
                                                 <var
                                                     {{ $AuxComPendiente = ($comision->ComisionWB * $comision->Total) / 100 }}>
                                             @endif
-                                            @if ($AuxComPendiente == $AuxCom)
+                                            @if ($AuxComPendiente - $AuxCom <= 0)
                                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                                     <div style="display: flex; justify-content: center;">
                                                         <button class="botonDETALLES" type="button"
@@ -101,7 +101,7 @@
                                             <td data-label="Com Pen :">$
                                                 {{ number_format($AuxComPendiente - $AuxCom, 2, '.', ',') }}
                                             </td>
-                                            @if ($AuxComPendiente == $AuxCom)
+                                            @if ($AuxComPendiente - $AuxCom <= 0)
                                                 <td data-label="Estatus :">Comision Pagada</td>
                                             @else
                                                 <td data-label="Estatus :">Pendiente</td>

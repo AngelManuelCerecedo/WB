@@ -15,20 +15,20 @@ class Eficha extends Component
     public $ide, $Folio, $Fecha, $Total = 0, $TOTALRINT, $Comision, $Obs, $Estatus;
     public $searchC, $searchE, $Ficha, $Depositos, $Comisionistas, $RM;
     public $FechaDep, $Monto, $Bancos, $Banco, $FolioF, $NumeroF, $Cliente, $NomC1, $NomC2, $NomC3, $NomC4, $NomC5, $SumCom;
-    public $comis1_id, $comis2_id, $comis3_id, $comis4_id, $comis5_id,$AUXCWB;
+    public $comis1_id, $comis2_id, $comis3_id, $comis4_id, $comis5_id, $AUXCWB;
     public $CT, $PT, $GFT, $GFP, $CWB, $PWB = 0, $CET1, $CEP1 = 0, $CET2, $CEP2 = 0, $CET3, $CEP3 = 0, $CET4, $CEP4 = 0, $CET5, $CEP5 = 0, $AuxCOMWB;
     public function render()
     {
         $clientes = Cliente::all();
         $empresas = Empresa::all();
         $this->Comisionistas = Comisionista::all();
-        $this->Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
-        if($this->RM){
+        $this->Depositos = Movimientos::where([['fichaD_id', $this->ide], ['Movimiento', 'Deposito']])->get();
+        if ($this->RM) {
             $this->TOTALRINT = $this->toFloat($this->TOTALRINT);
-            if ($this->TOTALRINT){
+            if ($this->TOTALRINT) {
                 $this->CT = ($this->PT) ? number_format(($this->PT * $this->TOTALRINT) / 100, 2, '.', ',') : 0.0;
                 $this->GFT = ($this->GFP) ? number_format(($this->GFP * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-                if ($this->PT && $this->GFP >=0) {
+                if ($this->PT && $this->GFP >= 0) {
                     $this->PWB = round($this->PT - $this->GFP, 2);
                     if ($this->CEP1 || $this->CEP2 || $this->CEP3 || $this->CEP4 || $this->CEP5) {
                         $this->PWB = round($this->PWB - $this->toFloat($this->CEP1) - $this->toFloat($this->CEP2) - $this->toFloat($this->CEP3) - $this->toFloat($this->CEP4) - $this->toFloat($this->CEP5), 2);
@@ -42,18 +42,20 @@ class Eficha extends Component
                 $this->CET4 = ($this->CEP4) ? number_format(($this->CEP4 * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
                 $this->CET5 = ($this->CEP5) ? number_format(($this->CEP5 * $this->TOTALRINT) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
             }
-        }else{
+        } else {
             $Taux = 0;
             foreach ($this->Depositos as $deposito) {
                 $Taux += $deposito->Total;
             }
             $this->CT = ($this->PT) ? number_format(($this->PT * $Taux) / 100, 2, '.', ',') : 0.0;
             $this->GFT = ($this->GFP) ? number_format(($this->GFP * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
-            if ($this->PT && $this->GFP) {
+            if ($this->PT >= $this->GFP) {
                 $this->PWB = round($this->PT - $this->GFP, 2);
                 if ($this->CEP1 || $this->CEP2 || $this->CEP3 || $this->CEP4 || $this->CEP5) {
                     $this->PWB = round($this->PWB - $this->toFloat($this->CEP1) - $this->toFloat($this->CEP2) - $this->toFloat($this->CEP3) - $this->toFloat($this->CEP4) - $this->toFloat($this->CEP5), 2);
                 }
+            }elseif ($this->PT == 0){
+                $this->PWB = 0.0;
             }
             $this->AUXCWB = ($this->PWB) ? ($this->PWB * $Taux) / 100 : 0;
             $this->CWB = ($this->PWB) ? number_format(($this->PWB * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
@@ -64,7 +66,7 @@ class Eficha extends Component
             $this->CET5 = ($this->CEP5) ? number_format(($this->CEP5 * $Taux) / 100, 2, '.', ',') : number_format(0, 2, '.', ',');
             $this->TOTALRINT = ($this->CT) ? number_format($Taux - (($this->PT * $Taux) / 100), 2, '.', ',') : number_format($Taux, 2, '.', ',');
         }
-        $this->SumCom = round($this->toFloat($this->CEP1) + $this->toFloat($this->CEP2) + $this->toFloat($this->CEP3) + $this->toFloat($this->CEP4) + $this->toFloat($this->CEP5) + $this->toFloat($this->PWB) + $this->toFloat($this->GFP),2);
+        $this->SumCom = round($this->toFloat($this->CEP1) + $this->toFloat($this->CEP2) + $this->toFloat($this->CEP3) + $this->toFloat($this->CEP4) + $this->toFloat($this->CEP5) + $this->toFloat($this->PWB) + $this->toFloat($this->GFP), 2);
         return view('livewire.Fichai.eficha', ['Clientes' => $clientes, 'Empresas' => $empresas]);
     }
 
@@ -96,14 +98,9 @@ class Eficha extends Component
         $this->Fecha = $this->Ficha->Fecha;
         $this->Estatus = $this->Ficha->Estatus;
         $this->Obs = ($this->Ficha->Obs) ? $this->Ficha->Obs : '';
-        ($this->Ficha->cliente) ? $flag1 = true : $flag1 = false;
-        if ($flag1 &&  !$this->Ficha->Comision) {
-            $this->PT = $this->Ficha->cliente->COMTOT;
-        } else {
-            $this->PT = $this->Ficha->Comision;
-        }
-        $this->GFP = ($this->Ficha->cliente == $this->Ficha->GastosF) ? $this->Ficha->cliente->COMFINTECH : $this->Ficha->GastosF;
-        $this->PWB = ($this->Ficha->cliente == $this->Ficha->ComisionWB) ? $this->Ficha->cliente->COMTOT : $this->Ficha->ComisionWB;
+        $this->PT = $this->Ficha->Comision;
+        $this->GFP = $this->Ficha->GastosF;
+        $this->PWB =  $this->Ficha->ComisionWB;
         $this->comis1_id = $this->Ficha->comis1_id;
         $this->comis2_id = $this->Ficha->comis2_id;
         $this->comis3_id = $this->Ficha->comis3_id;
@@ -124,19 +121,37 @@ class Eficha extends Component
     public function agregarMov()
     {
         if ($this->Fecha && $this->Banco && $this->Monto) {
-            Movimientos::create(
-                [
-                    'Movimiento' => 'Deposito',
-                    'Fecha' => $this->FechaDep,
-                    'Total' => $this->Monto,
-                    'FolioF' => $this->FolioF,
-                    'NumeroF' => $this->NumeroF,
-                    'empresa_id' => $this->searchE,
-                    'banco_id' => $this->Banco,
-                    'fichaD_id' => $this->ide,
-                    'empleado_id' => auth()->user()->empleado->id,
-                ]
-            );
+            if ($this->searchC){
+                Movimientos::create(
+                    [
+                        'Movimiento' => 'Deposito',
+                        'Fecha' => $this->FechaDep,
+                        'Total' => $this->Monto,
+                        'FolioF' => $this->FolioF,
+                        'NumeroF' => $this->NumeroF,
+                        'empresa_id' => $this->searchE,
+                        'banco_id' => $this->Banco,
+                        'fichaD_id' => $this->ide,
+                        'cliente_id' => $this->searchC,
+                        'empleado_id' => auth()->user()->empleado->id,
+                    ]
+                );
+            }else{
+                Movimientos::create(
+                    [
+                        'Movimiento' => 'Deposito',
+                        'Fecha' => $this->FechaDep,
+                        'Total' => $this->Monto,
+                        'FolioF' => $this->FolioF,
+                        'NumeroF' => $this->NumeroF,
+                        'empresa_id' => $this->searchE,
+                        'banco_id' => $this->Banco,
+                        'fichaD_id' => $this->ide,
+                        'cliente_id' => $this->searchC,
+                        'empleado_id' => auth()->user()->empleado->id,
+                    ]
+                );
+            }
             $this->dispatchBrowserEvent('swal', [
                 'title' => 'Registro Guardado Exitosamente',
                 'type' => 'success'
@@ -151,11 +166,11 @@ class Eficha extends Component
     public function guardar()
     {
         $Taux = 0;
-            $Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
-            foreach ($Depositos as $deposito) {
-                $Taux += $deposito->Total;
-            }
-        if($this->RM){
+        $Depositos = Movimientos::where([['fichaD_id', $this->ide], ['Movimiento', 'Deposito']])->get();
+        foreach ($Depositos as $deposito) {
+            $Taux += $deposito->Total;
+        }
+        if ($this->RM) {
             FichaIngreso::updateOrCreate(
                 ['id' => $this->ide],
                 [
@@ -177,11 +192,10 @@ class Eficha extends Component
                     'Obs' => $this->Obs,
                     'Total' => $Taux,
                     'CRT' => $this->RM,
-                    'Reintegro'=> $this->TOTALRINT,
+                    'Reintegro' => $this->TOTALRINT,
                 ]
             );
-        }
-        else{
+        } else {
             FichaIngreso::updateOrCreate(
                 ['id' => $this->ide],
                 [
@@ -203,7 +217,7 @@ class Eficha extends Component
                     'Obs' => $this->Obs,
                     'Total' => $Taux,
                     'CRT' => $this->RM,
-                    'Reintegro'=> ($this->CT) ? ($Taux - ($this->PT * $Taux) / 100) : $Taux,
+                    'Reintegro' => ($this->CT) ? ($Taux - ($this->PT * $Taux) / 100) : $Taux,
                 ]
             );
         }
@@ -224,7 +238,7 @@ class Eficha extends Component
             ]
         );
         $Taux = 0;
-        $Depositos = Movimientos::where([['fichaD_id', $this->ide],['Movimiento','Deposito']])->get();
+        $Depositos = Movimientos::where([['fichaD_id', $this->ide], ['Movimiento', 'Deposito']])->get();
         foreach ($Depositos as $deposito) {
             $Taux += $deposito->Total;
         }
@@ -282,22 +296,22 @@ class Eficha extends Component
                 ]
             );
         }
-        if($this->RM){
+        if ($this->RM) {
             FichaIngreso::updateOrCreate(
                 ['id' => $this->ide],
                 [
                     'Estatus' => 'Ingresada',
-                    'Reintegro'=> round($this->TOTALRINT,2),
+                    'Reintegro' => round($this->TOTALRINT, 2),
                     'Fecha' => $this->Fecha,
                     'CRT' => $this->RM,
                 ]
             );
-        }else{
+        } else {
             FichaIngreso::updateOrCreate(
                 ['id' => $this->ide],
                 [
                     'Estatus' => 'Ingresada',
-                    'Reintegro'=> ($this->CT) ? round(($Taux - ($this->PT * $Taux) / 100), 2) : round($Taux,2),
+                    'Reintegro' => ($this->CT) ? round(($Taux - ($this->PT * $Taux) / 100), 2) : round($Taux, 2),
                     'Fecha' => $this->Fecha,
                     'CRT' => $this->RM,
                 ]

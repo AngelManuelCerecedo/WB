@@ -23,6 +23,9 @@ class FichaExport implements FromView
             case '1':
                 return view('excels/FichaDep', ['Ficha' => $this->Ficha, 'Mov' => $this->Mov]);
                 break;
+            case '2':
+                    return view('excels/SaldosEmp', ['Empresas' => $this->Ficha, 'Mov' => $this->Mov]);
+                    break;
         }
     }
 }

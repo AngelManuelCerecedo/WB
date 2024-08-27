@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Movimientos extends Model
 {
     use HasFactory;
-    protected $fillable = ['id','Movimiento','Fecha', 'Total','FolioF','FechaF','bancoD_id','empresaD_id','Beneficiario','Concepto','fichaG_id','fichaD_id','comisionista_id','cliente_id','formap_id','empresa_id','banco_id','empleado_id'];
+    protected $fillable = ['id','Movimiento','Fecha', 'Total','FolioF','FechaF','bancoD_id','empresaD_id','Beneficiario','Concepto','fichaG_id','fichaD_id','comisionista_id','cliente_id','formap_id','empresa_id','factura_id','banco_id','empleado_id'];
     public function banco(){
         return $this->belongsTo(Banco::class, 'banco_id');
     }
@@ -34,5 +34,9 @@ class Movimientos extends Model
     public function fichaI()
     {
         return $this->belongsTo(FichaIngreso::class, 'fichaD_id');
+    }
+    public function factura()
+    {
+        return $this->belongsTo(Factura::class, 'factura_id');
     }
 }

@@ -50,16 +50,16 @@
                                     </a>
                                 </td>
                                 <td data-label="RFC :">{{ $factura->Fecha }}</td>
-                                <td data-label="Nombre :">{{ $empresa->Folio }}</td>
-                                <td data-label="Nom. Corto :">{{ $empresa->Empresa }}</td>
-                                <td data-label="Cliente :">{{ $empresa->Cliente }}</td>
-                                <td data-label="Estatus :">{{ $empresa->Estatus }}</td>
-                                <td data-label="Total :">${{ number_format($Taux, 2) }}</td>
+                                <td data-label="Nombre :">{{ $factura->Folio }}</td>
+                                <td data-label="Nom. Corto :"></td>
+                                <td data-label="Cliente :"></td>
+                                <td data-label="Estatus :">{{ $factura->Estatus }}</td>
+                                <td data-label="Total :">${{ number_format($factura->Total, 2) }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
-                {{ $empresas->links() }} <!-- Mostrar enlaces de paginación -->
+                {{ $facturas->links() }} <!-- Mostrar enlaces de paginación -->
             @else
                 <div class="px-6 py-4">
                     <div class="flex font-sans bg-[#FA5C7C] rounded-lg p-4 mb-4 text-sm text-white" role="alert">

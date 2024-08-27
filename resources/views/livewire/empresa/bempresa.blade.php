@@ -19,6 +19,13 @@
                     </button>
                 </a>
             </div>
+            <div class="sm:ml-8 mt-1">
+                <a href="{{ route('EmpresasXLS') }}" target="_blank">
+                    <button type="button"
+                        class="rounded-md bg-green-500 px-2 py-1 text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400"><i
+                            class="bi bi-filetype-xls text-2xl"></i></button>
+                </a>
+            </div>
             <div class="sm:ml-8 mt-2">
                 <label><i class="bi bi-house-door-fill"></i> <i class="bi bi-chevron-right"></i> Catálogos <i
                         class="bi bi-chevron-right"></i> Empresas</label>

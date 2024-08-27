@@ -12,7 +12,7 @@
 
             <!-- Encabezado del modal -->
             <div class="p-6">
-                <h2 class="text-xl font-bold mb-3 text-center">Pagar Reintegro</h2>
+                <h2 class="text-xl font-bold mb-3 text-center">Pagos de Reintegros</h2>
             </div>
 
             <!-- Contenido principal del modal -->
@@ -37,8 +37,7 @@
                                     @foreach ($Movimientos as $movimiento)
                                         <tr>
                                             <td data-label="Fecha :">{{ $movimiento->Fecha }}</td>
-                                            <td data-label="Total :">$
-                                                {{ number_format($movimiento->Total, 2, '.', ',') }}</td>
+                                            <td data-label="Total :">${{ number_format($movimiento->Total, 2, '.', ',') }}</td>
                                             <td data-label="Benefi. :">{{ $movimiento->Beneficiario }}</td>
                                             <td data-label="Concep. :">{{ $movimiento->Concepto }}</td>
                                             <td data-label="Emp. :">{{ $movimiento->empresa->NCorto }}</td>

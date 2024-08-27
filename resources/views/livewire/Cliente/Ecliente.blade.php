@@ -254,6 +254,7 @@
                                 <tr>
                                     <th>Acciones</th>
                                     <th>Folio Ficha</th>
+                                    <th>Fecha Ficha</th>
                                     <th>Reintegro Total</th>
                                     <th>Reintegro Pagado</th>
                                     <th>Reintegro Pendiente</th>
@@ -296,6 +297,7 @@
                                                 </td>                                            
                                             @endif
                                             <td data-label="Folio :">{{ $reintegro->Folio }}</td>
+                                            <td data-label="Fecha :">{{ $reintegro->Fecha }}</td>
                                             <td data-label="Total Rein :">$
                                                 {{ number_format($reintegro->Reintegro, 2, '.', ',') }}
                                             </td>

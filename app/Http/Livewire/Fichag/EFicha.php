@@ -13,7 +13,7 @@ use Livewire\Component;
 class EFicha extends Component
 {
     public $Folio, $Fecha, $Total, $Comision, $Obs, $Estatus, $Bene;
-    public $searchE, $ide, $Ficha, $empresaSeleccionadaId, $searchC, $Acreedores,$Acreedor;
+    public $searchE, $ide, $Ficha, $empresaSeleccionadaId, $searchC, $Acreedores,$Acreedor,$AcreedorP;
     public $Monto, $FormaP, $Bancos, $Banco, $Factura, $FF;
     public function render()
     {
@@ -44,6 +44,7 @@ class EFicha extends Component
         $this->Estatus = $this->Ficha->Estatus;
         $this->Obs = $this->Ficha->Obs;
         $this->FormaP = $this->Ficha->formap_id;
+        $this->AcreedorP = ($this->Ficha->acreedor == 4) ? 'Gastos WB' : Beneficiario::where('id', $this->Ficha->acreedor)->first();
         $this->Acreedor = $this->Ficha->acreedor;
     }
     public function guardar()

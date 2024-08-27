@@ -21,8 +21,8 @@ class Ecliente extends Component
     {
         $this->Empresas = Empresa::all();
         $this->FormasP = FormaPago::all();
-        $this->PagosCom = Movimientos::Where('cliente_id', $this->ide)->get();
-        $this->Reintegros = FichaIngreso::Where([['Estatus', 'Ingresada'], ['cliente_id', $this->ide]])->get();
+        $this->PagosCom = Movimientos::Where([['cliente_id', $this->ide],['Movimiento','Pago Reintegro']])->get();
+        $this->Reintegros = FichaIngreso::where([['Estatus', 'Ingresada'],['cliente_id', $this->ide]])->orderBy('Fecha', 'desc')->get();
         return view('livewire.Cliente.Ecliente');
     }
     public function mount($ide)
@@ -107,7 +107,7 @@ class Ecliente extends Component
     }
     public function abrirModalDet($idF)
     {
-        $this->Movimientos = Movimientos::Where([['fichaD_id', $idF], ['cliente_id', $this->ide]])->get();
+        $this->Movimientos = Movimientos::Where([['Movimiento','Pago Reintegro'],['fichaD_id', $idF], ['cliente_id', $this->ide]])->get();
         $this->ModalDet = true;
     }
     public function cerrarModalDet()

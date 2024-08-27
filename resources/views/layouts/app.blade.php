@@ -417,6 +417,7 @@
                         </div>
                     </div>
                 @endif
+                
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contabilidad</a>
                 <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Contraloria</a>
             </div>
@@ -449,123 +450,204 @@
         @yield('content')
     </body>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Selecciona los elementos de escritorio
-            const categoriaButton = document.getElementById('categoriaButton');
-            const productMenu = document.getElementById('productMenu');
-            const finanzasButton = document.getElementById('finanzasButton');
-            const finanzasMenu = document.getElementById('finanzasMenu');
-            const facturacionButton = document.getElementById('facturacionButton'); // Nuevo
-            const facturacionMenu = document.getElementById('facturacionMenu'); // Nuevo
-
-            // Selecciona los elementos móviles
-            const mobileMenuButton = document.getElementById('mobileMenuButton');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const closeMobileMenuButton = document.getElementById('closeMobileMenuButton');
-            const categoriaButtonMobile = document.getElementById('categoriaButtonMobile');
-            const productMenuMobile = document.getElementById('productMenuMobile');
-            const finanzasButtonMobile = document.getElementById('finanzasButtonMobile');
-            const finanzasMenuMobile = document.getElementById('finanzasMenuMobile');
-            const facturacionButtonMobile = document.getElementById('facturacionButtonMobile'); // Nuevo
-            const facturacionMenuMobile = document.getElementById('facturacionMenuMobile'); // Nuevo
-
-            // Función para alternar la visibilidad del menú desplegable de "Categorías" en escritorio
-            function toggleProductMenu() {
-                if (!finanzasMenu.classList.contains('hidden')) {
-                    finanzasMenu.classList.add('hidden');
+        var userRole = "{{ auth()->user()->empleado->Rol }}";
+        if (userRole !== 'Finanzas')
+        {
+            document.addEventListener('DOMContentLoaded', function() {
+                // Selecciona los elementos de escritorio
+                const categoriaButton = document.getElementById('categoriaButton');
+                const productMenu = document.getElementById('productMenu');
+                const finanzasButton = document.getElementById('finanzasButton');
+                const finanzasMenu = document.getElementById('finanzasMenu');
+                const facturacionButton = document.getElementById('facturacionButton'); // Nuevo
+                const facturacionMenu = document.getElementById('facturacionMenu'); // Nuevo
+    
+                // Selecciona los elementos móviles
+                const mobileMenuButton = document.getElementById('mobileMenuButton');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const closeMobileMenuButton = document.getElementById('closeMobileMenuButton');
+                const categoriaButtonMobile = document.getElementById('categoriaButtonMobile');
+                const productMenuMobile = document.getElementById('productMenuMobile');
+                const finanzasButtonMobile = document.getElementById('finanzasButtonMobile');
+                const finanzasMenuMobile = document.getElementById('finanzasMenuMobile');
+                const facturacionButtonMobile = document.getElementById('facturacionButtonMobile'); // Nuevo
+                const facturacionMenuMobile = document.getElementById('facturacionMenuMobile'); // Nuevo
+    
+                // Función para alternar la visibilidad del menú desplegable de "Categorías" en escritorio
+                function toggleProductMenu() {
+                    if (!finanzasMenu.classList.contains('hidden')) {
+                        finanzasMenu.classList.add('hidden');
+                    }
+                    if (!facturacionMenu.classList.contains('hidden')) { // Nuevo
+                        facturacionMenu.classList.add('hidden');
+                    }
+                    productMenu.classList.toggle('hidden');
                 }
-                if (!facturacionMenu.classList.contains('hidden')) { // Nuevo
-                    facturacionMenu.classList.add('hidden');
+    
+                // Función para alternar la visibilidad del menú desplegable de "Finanzas" en escritorio
+                function toggleFinanzasMenu() {
+                    if (!productMenu.classList.contains('hidden')) {
+                        productMenu.classList.add('hidden');
+                    }
+                    if (!facturacionMenu.classList.contains('hidden')) { // Nuevo
+                        facturacionMenu.classList.add('hidden');
+                    }
+                    finanzasMenu.classList.toggle('hidden');
                 }
-                productMenu.classList.toggle('hidden');
-            }
-
-            // Función para alternar la visibilidad del menú desplegable de "Finanzas" en escritorio
-            function toggleFinanzasMenu() {
-                if (!productMenu.classList.contains('hidden')) {
-                    productMenu.classList.add('hidden');
+    
+                // Función para alternar la visibilidad del menú desplegable de "Facturación" en escritorio
+                function toggleFacturacionMenu() { // Nuevo
+                    if (!productMenu.classList.contains('hidden')) {
+                        productMenu.classList.add('hidden');
+                    }
+                    if (!finanzasMenu.classList.contains('hidden')) {
+                        finanzasMenu.classList.add('hidden');
+                    }
+                    facturacionMenu.classList.toggle('hidden');
                 }
-                if (!facturacionMenu.classList.contains('hidden')) { // Nuevo
-                    facturacionMenu.classList.add('hidden');
+    
+                // Función para alternar la visibilidad del menú móvil
+                function toggleMobileMenu() {
+                    mobileMenu.classList.toggle('hidden');
                 }
-                finanzasMenu.classList.toggle('hidden');
-            }
-
-            // Función para alternar la visibilidad del menú desplegable de "Facturación" en escritorio
-            function toggleFacturacionMenu() { // Nuevo
-                if (!productMenu.classList.contains('hidden')) {
-                    productMenu.classList.add('hidden');
+    
+                // Función para alternar la visibilidad del menú de "Categorías" en el móvil
+                function toggleProductMenuMobile() {
+                    productMenuMobile.classList.toggle('hidden');
                 }
-                if (!finanzasMenu.classList.contains('hidden')) {
-                    finanzasMenu.classList.add('hidden');
+    
+                // Función para alternar la visibilidad del menú de "Finanzas" en el móvil
+                function toggleFinanzasMenuMobile() {
+                    finanzasMenuMobile.classList.toggle('hidden');
                 }
-                facturacionMenu.classList.toggle('hidden');
-            }
-
-            // Función para alternar la visibilidad del menú móvil
-            function toggleMobileMenu() {
-                mobileMenu.classList.toggle('hidden');
-            }
-
-            // Función para alternar la visibilidad del menú de "Categorías" en el móvil
-            function toggleProductMenuMobile() {
-                productMenuMobile.classList.toggle('hidden');
-            }
-
-            // Función para alternar la visibilidad del menú de "Finanzas" en el móvil
-            function toggleFinanzasMenuMobile() {
-                finanzasMenuMobile.classList.toggle('hidden');
-            }
-
-            // Función para alternar la visibilidad del menú de "Facturación" en el móvil
-            function toggleFacturacionMenuMobile() { // Nuevo
-                facturacionMenuMobile.classList.toggle('hidden');
-            }
-
-            // Agrega eventos de clic para los botones de escritorio
-            categoriaButton.addEventListener('click', toggleProductMenu);
-            finanzasButton.addEventListener('click', toggleFinanzasMenu);
-            facturacionButton.addEventListener('click', toggleFacturacionMenu);
-
-            // Agrega eventos de clic para los botones móviles
-            mobileMenuButton.addEventListener('click', toggleMobileMenu);
-            closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
-            categoriaButtonMobile.addEventListener('click', toggleProductMenuMobile);
-            finanzasButtonMobile.addEventListener('click', toggleFinanzasMenuMobile);
-            facturacionButtonMobile.addEventListener('click', toggleFacturacionMenuMobile);
-
-            // Cierra los menús si se hace clic fuera de ellos
-            document.addEventListener('click', function(event) {
-                if (!categoriaButton.contains(event.target) && !productMenu.contains(event.target)) {
-                    productMenu.classList.add('hidden');
+    
+                // Función para alternar la visibilidad del menú de "Facturación" en el móvil
+                function toggleFacturacionMenuMobile() { // Nuevo
+                    facturacionMenuMobile.classList.toggle('hidden');
                 }
-                if (!finanzasButton.contains(event.target) && !finanzasMenu.contains(event.target)) {
-                    finanzasMenu.classList.add('hidden');
-                }
-                if (!facturacionButton.contains(event.target) && !facturacionMenu.contains(event
-                        .target)) { // Nuevo
-                    facturacionMenu.classList.add('hidden');
-                }
-                if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target) && !
-                    closeMobileMenuButton.contains(event.target)) {
-                    mobileMenu.classList.add('hidden');
-                }
-                if (!categoriaButtonMobile.contains(event.target) && !productMenuMobile.contains(event
-                        .target)) {
-                    productMenuMobile.classList.add('hidden');
-                }
-                if (!finanzasButtonMobile.contains(event.target) && !finanzasMenuMobile.contains(event
-                        .target)) {
-                    finanzasMenuMobile.classList.add('hidden');
-                }
-                if (!facturacionButtonMobile.contains(event.target) && !facturacionMenuMobile.contains(event
-                        .target)) {
-                    facturacionMenuMobile.classList.add('hidden');
-                }
+    
+                // Agrega eventos de clic para los botones de escritorio
+                categoriaButton.addEventListener('click', toggleProductMenu);
+                finanzasButton.addEventListener('click', toggleFinanzasMenu);
+                facturacionButton.addEventListener('click', toggleFacturacionMenu);
+    
+                // Agrega eventos de clic para los botones móviles
+                mobileMenuButton.addEventListener('click', toggleMobileMenu);
+                closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+                categoriaButtonMobile.addEventListener('click', toggleProductMenuMobile);
+                finanzasButtonMobile.addEventListener('click', toggleFinanzasMenuMobile);
+                facturacionButtonMobile.addEventListener('click', toggleFacturacionMenuMobile);
+    
+                // Cierra los menús si se hace clic fuera de ellos
+                document.addEventListener('click', function(event) {
+                    if (!categoriaButton.contains(event.target) && !productMenu.contains(event.target)) {
+                        productMenu.classList.add('hidden');
+                    }
+                    if (!finanzasButton.contains(event.target) && !finanzasMenu.contains(event.target)) {
+                        finanzasMenu.classList.add('hidden');
+                    }
+                    if (!facturacionButton.contains(event.target) && !facturacionMenu.contains(event
+                            .target)) { // Nuevo
+                        facturacionMenu.classList.add('hidden');
+                    }
+                    if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target) && !
+                        closeMobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    if (!categoriaButtonMobile.contains(event.target) && !productMenuMobile.contains(event
+                            .target)) {
+                        productMenuMobile.classList.add('hidden');
+                    }
+                    if (!finanzasButtonMobile.contains(event.target) && !finanzasMenuMobile.contains(event
+                            .target)) {
+                        finanzasMenuMobile.classList.add('hidden');
+                    }
+                    if (!facturacionButtonMobile.contains(event.target) && !facturacionMenuMobile.contains(event
+                            .target)) {
+                        facturacionMenuMobile.classList.add('hidden');
+                    }
+                });
             });
-        });
+        }else{
+                document.addEventListener('DOMContentLoaded', function() {
+                // Selecciona los elementos de escritorio
+                const categoriaButton = document.getElementById('categoriaButton');
+                const productMenu = document.getElementById('productMenu');
+                const finanzasButton = document.getElementById('finanzasButton');
+                const finanzasMenu = document.getElementById('finanzasMenu');
+    
+                // Selecciona los elementos móviles
+                const mobileMenuButton = document.getElementById('mobileMenuButton');
+                const mobileMenu = document.getElementById('mobileMenu');
+                const closeMobileMenuButton = document.getElementById('closeMobileMenuButton');
+                const categoriaButtonMobile = document.getElementById('categoriaButtonMobile');
+                const productMenuMobile = document.getElementById('productMenuMobile');
+                const finanzasButtonMobile = document.getElementById('finanzasButtonMobile');
+                const finanzasMenuMobile = document.getElementById('finanzasMenuMobile');
+    
+                // Función para alternar la visibilidad del menú desplegable de "Categorías" en escritorio
+                function toggleProductMenu() {
+                    if (!finanzasMenu.classList.contains('hidden')) {
+                        finanzasMenu.classList.add('hidden');
+                    }
+                    productMenu.classList.toggle('hidden');
+                }
+    
+                // Función para alternar la visibilidad del menú desplegable de "Finanzas" en escritorio
+                function toggleFinanzasMenu() {
+                    if (!productMenu.classList.contains('hidden')) {
+                        productMenu.classList.add('hidden');
+                    }
+                    finanzasMenu.classList.toggle('hidden');
+                }
+    
+                // Función para alternar la visibilidad del menú móvil
+                function toggleMobileMenu() {
+                    mobileMenu.classList.toggle('hidden');
+                }
+    
+                // Función para alternar la visibilidad del menú de "Categorías" en el móvil
+                function toggleProductMenuMobile() {
+                    productMenuMobile.classList.toggle('hidden');
+                }
+    
+                // Función para alternar la visibilidad del menú de "Finanzas" en el móvil
+                function toggleFinanzasMenuMobile() {
+                    finanzasMenuMobile.classList.toggle('hidden');
+                }
+    
+                // Agrega eventos de clic para los botones de escritorio
+                categoriaButton.addEventListener('click', toggleProductMenu);
+                finanzasButton.addEventListener('click', toggleFinanzasMenu);
+    
+                // Agrega eventos de clic para los botones móviles
+                mobileMenuButton.addEventListener('click', toggleMobileMenu);
+                closeMobileMenuButton.addEventListener('click', toggleMobileMenu);
+                categoriaButtonMobile.addEventListener('click', toggleProductMenuMobile);
+                finanzasButtonMobile.addEventListener('click', toggleFinanzasMenuMobile);
+    
+                // Cierra los menús si se hace clic fuera de ellos
+                document.addEventListener('click', function(event) {
+                    if (!categoriaButton.contains(event.target) && !productMenu.contains(event.target)) {
+                        productMenu.classList.add('hidden');
+                    }
+                    if (!finanzasButton.contains(event.target) && !finanzasMenu.contains(event.target)) {
+                        finanzasMenu.classList.add('hidden');
+                    }
+                    if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target) && !
+                        closeMobileMenuButton.contains(event.target)) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    if (!categoriaButtonMobile.contains(event.target) && !productMenuMobile.contains(event
+                            .target)) {
+                        productMenuMobile.classList.add('hidden');
+                    }
+                    if (!finanzasButtonMobile.contains(event.target) && !finanzasMenuMobile.contains(event
+                            .target)) {
+                        finanzasMenuMobile.classList.add('hidden');
+                    }
+                });
+            });
+        }
     </script>
-
-
-
-    </html>
+</html>
