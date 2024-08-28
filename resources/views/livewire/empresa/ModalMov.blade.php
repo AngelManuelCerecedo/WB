@@ -75,7 +75,8 @@
                                                     @if ($movimiento->Movimiento == 'Deposito')
                                                         <td class="px-6 py-4 whitespace-no-wrap">Comision</td>
                                                     @else
-                                                        <td class="px-6 py-4 whitespace-no-wrap">{{$movimiento->Movimiento}}</td>
+                                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                                            {{ $movimiento->Movimiento }}</td>
                                                     @endif
                                                     <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}
                                                     </td>
@@ -89,12 +90,13 @@
                                                         </td>
                                                     @endif
                                                     @if ($movimiento->Movimiento == 'Pago Reintegro')
-                                                        <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Beneficiario }}</td>
+                                                        <td class="px-6 py-4 whitespace-no-wrap">
+                                                            {{ $movimiento->Beneficiario }}</td>
                                                     @endif
                                                     @if ($movimiento->Movimiento == 'Deposito')
                                                         <td class="px-6 py-4 whitespace-no-wrap">
                                                             {{ $movimiento->fichaI->cliente->ALIAS }}</td>
-                                                    @endif                                                    
+                                                    @endif
                                                 @endif
                                             @endif
                                         </tr>
@@ -117,10 +119,12 @@
                                             <td class="px-6 py-4 whitespace-no-wrap">$
                                                 {{ number_format($movimiento->Total, 2) }}</td>
                                             @if ($movimiento->Movimiento == 'Gasto')
-                                                <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->fichaG->Beneficiario->Nombre }}</td>
+                                                <td class="px-6 py-4 whitespace-no-wrap">
+                                                    {{ $movimiento->fichaG->Beneficiario->Nombre }}</td>
                                             @endif
                                             @if ($movimiento->Movimiento == 'Pago Reintegro')
-                                                <td class="px-6 py-4 whitespace-no-wrap">{{ $movimiento->Beneficiario }}</td>
+                                                <td class="px-6 py-4 whitespace-no-wrap">
+                                                    {{ $movimiento->Beneficiario }}</td>
                                             @endif
                                             @if ($movimiento->Movimiento == 'Deposito')
                                                 <td class="px-6 py-4 whitespace-no-wrap">
@@ -140,7 +144,7 @@
                     <table class="tablaPV w-full">
                         <thead class="etiqueta">
                             <tr class="text-center">
-                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Id</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Acciones</th>
                                 <th class="px-8 py-2 bg-sky-200 border border-gray-100">Fecha</th>
                                 <th class="px-6 py-2 bg-sky-200 border border-gray-100">Cuenta Destino</th>
                                 <th class="px-6 py-2 bg-sky-200 border border-gray-100">Concepto</th>
@@ -153,7 +157,17 @@
                                 @foreach ($movimientos as $movimiento)
                                     @if ($movimiento->Movimiento == 'Transferencia' && $movimiento->banco_id == 72)
                                         <tr class="text-center">
-                                            <td class="py-4 whitespace-no-wrap">{{ $movimiento->id }}</td>
+                                            @if (auth()->user()->empleado->Rol != 'Finanzas')
+                                                <td data-label="Acciones :" class="lg:w-1/12">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <button type="button"
+                                                            wire:click="eliminarMov({{ $movimiento->id }})"
+                                                            class="rounded-md bg-red-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
+                                                            <i class="bi bi-trash3"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            @endif
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->empresaD->NCorto }} -
                                                 {{ $movimiento->bancoD->Cuenta }}</td>
@@ -169,7 +183,17 @@
                                 @foreach ($movimientos as $movimiento)
                                     @if ($movimiento->Movimiento == 'Transferencia')
                                         <tr class="text-center">
-                                            <td class="py-4 whitespace-no-wrap">{{ $movimiento->id }}</td>
+                                            @if (auth()->user()->empleado->Rol != 'Finanzas')
+                                                <td data-label="Acciones :" class="lg:w-1/12">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <button type="button"
+                                                            wire:click="eliminarMov({{ $movimiento->id }})"
+                                                            class="rounded-md bg-red-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
+                                                            <i class="bi bi-trash3"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            @endif
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->empresaD->NCorto }} -
                                                 {{ $movimiento->bancoD->Cuenta }}</td>
@@ -190,7 +214,7 @@
                     <table class="tablaPV w-full">
                         <thead class="etiqueta">
                             <tr class="text-center">
-                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Id</th>
+                                <th class="px-6 py-2 bg-sky-200 border border-gray-100">Acciones</th>
                                 <th class="px-8 py-2 bg-sky-200 border border-gray-100">Fecha</th>
                                 <th class="px-6 py-2 bg-sky-200 border border-gray-100">Cuenta Origen</th>
                                 <th class="px-6 py-2 bg-sky-200 border border-gray-100">Concepto</th>
@@ -202,12 +226,23 @@
                             @foreach ($movimientosR as $movimiento)
                                 @if ($movimiento->Movimiento == 'Transferencia')
                                     <tr class="text-center">
-                                        <td class="py-4 whitespace-no-wrap">{{ $movimiento->id }}</td>
+                                        @if (auth()->user()->empleado->Rol != 'Finanzas')
+                                            <td data-label="Acciones :" class="lg:w-1/12">
+                                                <div style="display: flex; justify-content: center;">
+                                                    <button type="button"
+                                                        wire:click="eliminarMov({{ $movimiento->id }})"
+                                                        class="rounded-md bg-red-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
+                                                        <i class="bi bi-trash3"></i>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        @endif
                                         <td class="py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
                                         <td class="py-4 whitespace-no-wrap">{{ $movimiento->empresa->NCorto }} -
                                             {{ $movimiento->banco->Cuenta }}</td>
                                         <td class="py-4 whitespace-no-wrap">{{ $movimiento->Concepto }}</td>
-                                        <td class="py-4 whitespace-no-wrap">${{ number_format($movimiento->Total, 2) }}
+                                        <td class="py-4 whitespace-no-wrap">
+                                            ${{ number_format($movimiento->Total, 2) }}
                                         </td>
                                         <td class="py-4 whitespace-no-wrap">{{ $movimiento->empleado->Nombre }}</td>
                                     </tr>

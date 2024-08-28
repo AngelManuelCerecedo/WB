@@ -14,22 +14,22 @@ use Livewire\Component;
 class Ecomisionista extends Component
 {
     public $ide, $Nom, $Total, $Comisiones, $FormaP, $searchE, $Banco, $PagosCom;
-    public $ModalPag = false, $ModalDet= false;
+    public $ModalPag = false, $ModalDet = false;
     public $Empresas, $FormasP, $Bancos, $Bene, $Concepto, $Monto = 0.00, $FichaIid, $Fecha, $AuxCom, $AuxComPendiente;
     public $Movimientos;
     public function render()
     {
         $this->Empresas = Empresa::all();
         $this->FormasP = FormaPago::all();
-        $this->PagosCom = Movimientos::Where([['comisionista_id', $this->ide],['Movimiento','Pago Comision']])->get();
-        if ($this->ide == '11' || $this->ide == '12'){
-            $this->Comisiones = FichaIngreso::Where([['Estatus', 'Ingresada'], ['ComisionWB','!=', '']])->get();
-        }else{
+        $this->PagosCom = Movimientos::Where([['comisionista_id', $this->ide], ['Movimiento', 'Pago Comision']])->get();
+        if ($this->ide == '11' || $this->ide == '12') {
+            $this->Comisiones = FichaIngreso::Where([['Estatus', 'Ingresada'], ['ComisionWB', '!=', '']])->get();
+        } else {
             $this->Comisiones = FichaIngreso::Where([['Estatus', 'Ingresada'], ['comis1_id', $this->ide]])
                 ->orWhere([['Estatus', 'Ingresada'], ['comis2_id', $this->ide]])
                 ->orWhere([['Estatus', 'Ingresada'], ['comis3_id', $this->ide]])
                 ->orWhere([['Estatus', 'Ingresada'], ['comis4_id', $this->ide]])
-                ->orWhere([['Estatus', 'Ingresada'], ['comis5_id', $this->ide]])->get(); 
+                ->orWhere([['Estatus', 'Ingresada'], ['comis5_id', $this->ide]])->get();
         }
         return view('livewire.Comisionista.Ecomisionista');
     }
@@ -107,7 +107,17 @@ class Ecomisionista extends Component
         ]);
         $this->cerrarModal();
     }
-    public function limpiarMod(){
+    public function eliminarMov($id)
+    {
+        Movimientos::where('id', $id)->delete();
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Movmiento Eliminado',
+            'type' => 'success'
+        ]);
+        $this->cerrarModalDet();
+    }
+    public function limpiarMod()
+    {
         $this->Fecha = 0;
         $this->Banco = 0;
         $this->searchE = 0;

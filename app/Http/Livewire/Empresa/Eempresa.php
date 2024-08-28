@@ -12,8 +12,8 @@ use Livewire\Component;
 class Eempresa extends Component
 {
     public $ide, $Nom, $Nc, $RFC, $Giro;
-    public $NombreB, $NumeroC, $Bancos, $movimientos,$movimientosR;
-    public $ModalMov = false, $ModalTrans = false, $BIDEAUX, $AUXFOLIO,$CERO;
+    public $NombreB, $NumeroC, $Bancos, $movimientos, $movimientosR;
+    public $ModalMov = false, $ModalTrans = false, $BIDEAUX, $AUXFOLIO, $CERO;
     public $gastos, $ingresos, $BIAUX, $movimientosENV;
     public $CuentaId, $Fecha, $empresaSeleccionadaId, $Empresas, $BancosModal, $searchE, $Concepto, $Banco, $Monto;
     public function render()
@@ -73,15 +73,13 @@ class Eempresa extends Component
     {
         $this->ModalMov = true;
         $this->BIAUX = $Bancoide;
-        if ($Bancoide == 72)
-        {
+        if ($Bancoide == 72) {
             $this->movimientos = Movimientos::orderBy('Fecha', 'desc')->get();
             $this->movimientosENV = Movimientos::where('bancoD_id', $Bancoide)->get();
-        }
-        else{
+        } else {
             $this->movimientos = Movimientos::where('banco_id', $Bancoide)
                 ->orderBy('Fecha', 'desc') // Ordenar primero por fecha en orden descendente
-                   // Luego ordenar por id en orden ascendente
+                // Luego ordenar por id en orden ascendente
                 ->get();
         }
         $this->movimientosR = Movimientos::Where('bancoD_id', $Bancoide)
@@ -160,6 +158,15 @@ class Eempresa extends Component
                 'type' => 'error'
             ]);
         }
+    }
+    public function eliminarMov($id)
+    {
+        Movimientos::where('id', $id)->delete();
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Movmiento Eliminado',
+            'type' => 'success'
+        ]);
+        $this->cerrarModal();
     }
     public function redic()
     {

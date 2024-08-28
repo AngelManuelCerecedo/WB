@@ -22,6 +22,7 @@
                         <table class="tabla">
                             <thead>
                                 <tr>
+                                    <th>Acciones</th>
                                     <th>Fecha</th>
                                     <th>Total</th>
                                     <th>Beneficiario</th>
@@ -36,8 +37,20 @@
                                 @if ($Movimientos)
                                     @foreach ($Movimientos as $movimiento)
                                         <tr>
+                                            @if (auth()->user()->empleado->Rol != 'Finanzas')
+                                                <td data-label="Acciones :" class="lg:w-1/12">
+                                                    <div style="display: flex; justify-content: center;">
+                                                        <button type="button"
+                                                            wire:click="eliminarMov({{ $movimiento->id }})"
+                                                            class="rounded-md bg-red-500 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400">
+                                                            <i class="bi bi-trash3"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            @endif
                                             <td data-label="Fecha :">{{ $movimiento->Fecha }}</td>
-                                            <td data-label="Total :">${{ number_format($movimiento->Total, 2, '.', ',') }}</td>
+                                            <td data-label="Total :">
+                                                ${{ number_format($movimiento->Total, 2, '.', ',') }}</td>
                                             <td data-label="Benefi. :">{{ $movimiento->Beneficiario }}</td>
                                             <td data-label="Concep. :">{{ $movimiento->Concepto }}</td>
                                             <td data-label="Emp. :">{{ $movimiento->empresa->NCorto }}</td>

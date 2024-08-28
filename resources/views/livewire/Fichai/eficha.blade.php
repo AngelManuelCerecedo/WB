@@ -28,11 +28,11 @@
                     <label for="first-name"
                         class="block text-sm font-medium leading-6 text-gray-900">Observaciones</label>
                     <div class="mt-2">
-                        <input type="text" wire:model='Obs' @if ($Estatus == 'Ingresada') disabled @endif
+                        <input type="text" wire:model='Obs' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
-                @if ($Estatus == 'Registro')
+                @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                     <div class="sm:col-span-3 sm:col-start-1">
                         <label for="region" class="block text-sm font-medium leading-6 text-gray-900">Cliente</label>
                         <div class="mt-3" wire:ignore>
@@ -64,10 +64,10 @@
                     </a>
                 </div>
                 <div class="sm:col-span-2 mt-6">
-                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Comision sobre Reintregro Total</label>
+                    <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Comision sobre
+                        Reintregro Total</label>
                     <div class="ml-12 relative inline-block w-12 h-6 rounded-full border-2  bg-white-200 px-1.5">
-                        <input type="checkbox" id="toggle" wire:model="RM"
-                            class="absolute opacity-0 w-0 h-0">
+                        <input type="checkbox" id="toggle" wire:model="RM" class="absolute opacity-0 w-0 h-0">
                         <label for="toggle"
                             class="toggle-label block h-full overflow-hidden cursor-pointer bg-white rounded-full shadow-sm transform transition-transform duration-300">
                             <span class="block w-6 h-5 rounded-full bg-indigo-600 transform translate-x-0"></span>
@@ -78,7 +78,7 @@
                 <div class="sm:col-span-1 sm:col-start-1">
                     <h2 class="text-base font-semibold leading-3 text-gray-900">Movimientos</h2>
                 </div>
-                @if ($Estatus == 'Registro')
+                @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                     <div class="sm:col-span-1 sm:col-start-1">
                         <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Fecha del
                             Movimiento</label>
@@ -148,7 +148,7 @@
                             @if ($Depositos)
                                 @foreach ($Depositos as $deposito)
                                     <tr>
-                                        @if ($Estatus == 'Registro')
+                                        @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                                             <td data-label="ACCIONES :" class="lg:w-1/12">
                                                 <div style="display: flex; justify-content: center;">
                                                     <button type="button"
@@ -204,7 +204,7 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='PT' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='PT' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1 sm:col-start-1 mt-3">
@@ -215,7 +215,7 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='GFP' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='GFP' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1 sm:col-start-1 mt-3">
@@ -226,7 +226,7 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='PWB' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='PWB' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1 sm:col-start-1 mt-3">
@@ -237,10 +237,10 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='CEP1' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='CEP1' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                @if ($Estatus == 'Registro')
+                @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                     <div class="sm:col-span-1" wire:ignore>
                         <select id="select3" class="buscador" style="width: 100%;" wire:model="comis1_id">
                             <option value="NULL">Seleccione un Comisionista</option>
@@ -265,10 +265,10 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='CEP2' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='CEP2' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                @if ($Estatus == 'Registro')
+                @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                     <div class="sm:col-span-1" wire:ignore>
                         <select id="select4" class="buscador" style="width: 100%;" wire:model="comis2_id">
                             <option value="NULL">Seleccione un Comisionista</option>
@@ -293,10 +293,10 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='CEP3' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='CEP3' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                @if ($Estatus == 'Registro')
+                @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                     <div class="sm:col-span-1" wire:ignore>
                         <select id="select5" class="buscador" style="width: 100%;" wire:model="comis3_id">
                             <option value="NULL">Seleccione un Comisionista</option>
@@ -321,10 +321,10 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='CEP4' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='CEP4' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                @if ($Estatus == 'Registro')
+                @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                     <div class="sm:col-span-1" wire:ignore>
                         <select id="select6" class="buscador" style="width: 100%;" wire:model="comis4_id">
                             <option value="NULL">Seleccione un Comisionista</option>
@@ -349,10 +349,10 @@
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
                 <div class="sm:col-span-1">
-                    <input type="number" wire:model='CEP5' @if ($Estatus == 'Ingresada') disabled @endif
+                    <input type="number" wire:model='CEP5' @if ($Estatus == 'Registro'  || auth()->user()->empleado->Rol != 'Finanzas') @else disabled @endif
                         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                 </div>
-                @if ($Estatus == 'Registro')
+                @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
                     <div class="sm:col-span-1" wire:ignore>
                         <select id="select7" class="buscador" style="width: 100%;" wire:model="comis5_id">
                             <option value="NULL">Seleccione un Comisionista</option>
@@ -381,7 +381,7 @@
                     <div class="sm:col-span-1">
                         <input type="text" wire:model='TOTALRINT' disabled
                             class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-                    </div>                
+                    </div>
                 @endif
                 <div class="sm:col-span-1  mt-3">
                     <h2 class="text-base font-semibold leading-3 text-gray-900">SUMA DE COMISIONES</h2>
@@ -398,7 +398,7 @@
             <button type="button"
                 class="rounded-md bg-gray-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-300">Regresar</button>
         </a>
-        @if ($Estatus == 'Registro')
+        @if ($Estatus == ' Registro' || auth()->user()->empleado->Rol != 'Finanzas')
             <button type="button" wire:click="guardar()"
                 class="rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-400">Guardar</button>
             <button type="button" wire:click="ingresar()"
