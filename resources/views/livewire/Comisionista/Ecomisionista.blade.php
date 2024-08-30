@@ -43,29 +43,29 @@
                                             @endforeach
                                             @if ($comision->comis1_id == $ide)
                                                 <var
-                                                    {{ $AuxComPendiente = ($comision->Tot1 * $comision->Total) / 100 }}>
+                                                    {{ $AuxComPendiente = round(($comision->Tot1 * $comision->Total) / 100,2) }}>
                                             @endif
                                             @if ($comision->comis2_id == $ide)
                                                 <var
-                                                    {{ $AuxComPendiente = ($comision->Tot2 * $comision->Total) / 100 }}>
+                                                    {{ $AuxComPendiente = round(($comision->Tot2 * $comision->Total) / 100,2) }}>
                                             @endif
                                             @if ($comision->comis3_id == $ide)
                                                 <var
-                                                    {{ $AuxComPendiente = ($comision->Tot3 * $comision->Total) / 100 }}>
+                                                    {{ $AuxComPendiente = round(($comision->Tot3 * $comision->Total) / 100,2) }}>
                                             @endif
                                             @if ($comision->comis4_id == $ide)
                                                 <var
-                                                    {{ $AuxComPendiente = ($comision->Tot4 * $comision->Total) / 100 }}>
+                                                    {{ $AuxComPendiente = round(($comision->Tot4 * $comision->Total) / 100,2) }}>
                                             @endif
                                             @if ($comision->comis5_id == $ide)
                                                 <var
-                                                    {{ $AuxComPendiente = ($comision->Tot5 * $comision->Total) / 100 }}>
+                                                    {{ $AuxComPendiente = round(($comision->Tot5 * $comision->Total) / 100,2) }}>
                                             @endif
                                             @if ('11' == $ide)
                                                 <var
-                                                    {{ $AuxComPendiente = ($comision->ComisionWB * $comision->Total) / 100 }}>
+                                                    {{ $AuxComPendiente = round(($comision->ComisionWB * $comision->Total) / 100,2) }}>
                                             @endif
-                                            @if ($AuxComPendiente - $AuxCom <= 0)
+                                            @if (round($AuxComPendiente, 2) <= $AuxCom)
                                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                                     <div style="display: flex; justify-content: center;">
                                                         <button class="botonDETALLES" type="button"
@@ -92,7 +92,11 @@
                                                 </td>
                                             @endif
                                             <td data-label="Folio :">{{ $comision->Folio }}</td>
-                                            <td data-label="Nom. Cliente :">{{ $comision->cliente->ALIAS }}</td>
+                                            @if ($comision->cliente_id)
+                                                <td data-label="Nom. Cliente :">{{ $comision->cliente->ALIAS }}</td>
+                                            @else
+                                                <td data-label="Nom. Cliente :"></td>
+                                            @endif
                                             <td data-label="Total Com:">$
                                                 {{ number_format($AuxComPendiente, 2, '.', ',') }}
                                             </td>
@@ -101,14 +105,14 @@
                                             <td data-label="Com Pen :">$
                                                 {{ number_format($AuxComPendiente - $AuxCom, 2, '.', ',') }}
                                             </td>
-                                            @if ($AuxComPendiente - $AuxCom <= 0)
+                                            @if (round($AuxComPendiente, 2) <= $AuxCom)
                                                 <td data-label="Estatus :">Comision Pagada</td>
                                             @else
                                                 <td data-label="Estatus :">Pendiente</td>
                                             @endif
                                         </tr>
                                         <var {{ $AuxCom = 0 }}>
-                                            <var {{ $AuxComPendiente = 0 }}>
+                                        <var {{ $AuxComPendiente = 0 }}>
                                     @endforeach
                                 @endif
                             </tbody>

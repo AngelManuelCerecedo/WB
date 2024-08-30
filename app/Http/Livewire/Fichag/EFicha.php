@@ -30,6 +30,7 @@ class EFicha extends Component
     public function mount()
     {
         $this->Ficha = FichaGasto::Where('id', $this->ide)->first();
+        $Acreedor = Beneficiario::where('id', $this->Ficha->acreedor)->first();
         $this->Bancos = Banco::where('empresa_id', $this->Ficha->empresa_id)->get();
         $this->Folio = $this->Ficha->Folio;
         $this->searchC = ($this->Ficha->bene_id) ? $this->Ficha->bene_id : null;
@@ -44,7 +45,7 @@ class EFicha extends Component
         $this->Estatus = $this->Ficha->Estatus;
         $this->Obs = $this->Ficha->Obs;
         $this->FormaP = $this->Ficha->formap_id;
-        $this->AcreedorP = ($this->Ficha->acreedor == 4) ? 'Gastos WB' : Beneficiario::where('id', $this->Ficha->acreedor)->first();
+        $this->AcreedorP = ($this->Ficha->acreedor == 4) ? 'Gastos WB' : $Acreedor->Nombre;
         $this->Acreedor = $this->Ficha->acreedor;
     }
     public function guardar()

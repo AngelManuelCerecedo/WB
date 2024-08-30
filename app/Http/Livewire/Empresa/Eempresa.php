@@ -78,8 +78,7 @@ class Eempresa extends Component
             $this->movimientosENV = Movimientos::where('bancoD_id', $Bancoide)->get();
         } else {
             $this->movimientos = Movimientos::where('banco_id', $Bancoide)
-                ->orderBy('Fecha', 'desc') // Ordenar primero por fecha en orden descendente
-                // Luego ordenar por id en orden ascendente
+                ->orderBy('Fecha', 'desc') 
                 ->get();
         }
         $this->movimientosR = Movimientos::Where('bancoD_id', $Bancoide)
@@ -119,45 +118,38 @@ class Eempresa extends Component
         $TotenCO = Banco::where('id', $this->CuentaId)->first();
         $TotenCD = Banco::where('id', $this->Banco)->first();
         $EmpreDest = Empresa::where('id', $this->searchE)->first();
-        if (0 <= ($TotenCO->Total - $this->Monto)) {
-            Movimientos::create(
-                [
-                    'Movimiento' => 'Transferencia',
-                    'Fecha' => $this->Fecha,
-                    'Total' => $this->Monto,
-                    'empresaD_id' => $this->searchE,
-                    'bancoD_id' => $this->Banco,
-                    'empresa_id' => $this->ide,
-                    'banco_id' => $this->CuentaId,
-                    'Concepto' => $this->Concepto,
-                    'empleado_id' => auth()->user()->empleado->id,
-                ]
-            );
-            //Cuenta Origen
-            Banco::updateOrCreate(
-                ['id' => $this->CuentaId],
-                [
-                    'Total' =>  $TotenCO->Total - $this->Monto,
-                ]
-            );
-            //Cuenta Destino
-            Banco::updateOrCreate(
-                ['id' => $this->Banco],
-                [
-                    'Total' => $TotenCD->Total + $this->Monto,
-                ]
-            );
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'Transferencia Exitosa',
-                'type' => 'success'
-            ]);
-            $this->cerrarModalTrans();
-        } else {
-            $this->dispatchBrowserEvent('swal', [
-                'title' => 'Saldo Insuficiente',
-                'type' => 'error'
-            ]);
-        }
+        Movimientos::create(
+            [
+                'Movimiento' => 'Transferencia',
+                'Fecha' => $this->Fecha,
+                'Total' => $this->Monto,
+                'empresaD_id' => $this->searchE,
+                'bancoD_id' => $this->Banco,
+                'empresa_id' => $this->ide,
+                'banco_id' => $this->CuentaId,
+                'Concepto' => $this->Concepto,
+                'empleado_id' => auth()->user()->empleado->id,
+            ]
+        );
+        //Cuenta Origen
+        Banco::updateOrCreate(
+            ['id' => $this->CuentaId],
+            [
+                'Total' =>  $TotenCO->Total - $this->Monto,
+            ]
+        );
+        //Cuenta Destino
+        Banco::updateOrCreate(
+            ['id' => $this->Banco],
+            [
+                'Total' => $TotenCD->Total + $this->Monto,
+            ]
+        );
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'Transferencia Exitosa',
+            'type' => 'success'
+        ]);
+        $this->cerrarModalTrans();
     }
     public function eliminarMov($id)
     {
