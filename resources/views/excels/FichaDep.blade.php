@@ -33,7 +33,8 @@
                     <th style="border: 1px solid black;">{{ $movimiento->empresa->NCorto }} -
                         {{ $movimiento->banco->Nombre }} -
                         {{ $movimiento->banco->Cuenta }}</th>
-                    <th style="border: 1px solid black;" colspan="2"></th>
+                    <th style="border: 1px solid black;">{{ $movimiento->Fecha }}</th>
+                    <th style="border: 1px solid black;"></th>
                     @php
                         $Total += $movimiento->Total; // Inicializa la variable Total
                     @endphp

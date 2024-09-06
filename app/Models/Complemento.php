@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Complemento extends Model
 {
-    protected $fillable = ['id','Total', 'Complemento','Fecha','factura_id'];
+    protected $fillable = ['id','Total', 'Complemento','Fecha','factura_id','movimiento_id'];
     use HasFactory;
 }

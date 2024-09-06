@@ -47,6 +47,8 @@
                                                         </button>
                                                     </div>
                                                 </td>
+                                            @else
+                                                <td></td>
                                             @endif
                                             <td data-label="Fecha :">{{ $movimiento->Fecha }}</td>
                                             <td data-label="Total :">

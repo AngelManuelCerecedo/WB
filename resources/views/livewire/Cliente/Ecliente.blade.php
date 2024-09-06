@@ -270,7 +270,7 @@
                                                     <var {{ $AuxCom += $pago->Total }}>
                                                 @endif
                                             @endforeach
-                                            @if ($reintegro->Reintegro > $AuxCom)
+                                            @if (round ($reintegro->Reintegro,2) > round($AuxCom,2))
                                                 <td data-label="ACCIONES :" class="lg:w-1/12">
                                                     <div style="display: flex; justify-content: center;">
                                                         <button class="botonDETALLES" type="button"
@@ -298,21 +298,17 @@
                                             @endif
                                             <td data-label="Folio :">{{ $reintegro->Folio }}</td>
                                             <td data-label="Fecha :">{{ $reintegro->Fecha }}</td>
-                                            <td data-label="Total Rein :">$
-                                                {{ number_format($reintegro->Reintegro, 2, '.', ',') }}
-                                            </td>
-                                            <td data-label="Total Pag :">$ {{ number_format($AuxCom, 2, '.', ',') }}
-                                            </td>
-                                            <td data-label="Rein. Pend :">$ {{ number_format($reintegro->Reintegro - $AuxCom, 2, '.', ',') }}
-                                            </td>
-                                            @if ($reintegro->Reintegro > $AuxCom)
+                                            <td data-label="Total Rein :">${{ number_format($reintegro->Reintegro, 2, '.', ',') }}</td>
+                                            <td data-label="Total Pag :">$ {{ number_format($AuxCom, 2, '.', ',') }}</td>
+                                            <td data-label="Rein. Pend :">$ {{ number_format($reintegro->Reintegro - $AuxCom, 2, '.', ',') }}</td>
+                                            @if (round ($reintegro->Reintegro,2) > round($AuxCom,2))
                                                 <td data-label="Estatus :">Pendiente</td>
                                             @else
                                                 <td data-label="Estatus :">Reintegro Pagado</td>
-                                            @endif
-                                        </tr>
-                                        <var {{ $AuxCom = 0 }}>
+                                            @endif 
+                                            <var {{ $AuxCom = 0 }}>
                                             <var {{ $AuxComPendiente = 0 }}>
+                                        </tr>
                                     @endforeach
                                 @endif
                             </tbody>

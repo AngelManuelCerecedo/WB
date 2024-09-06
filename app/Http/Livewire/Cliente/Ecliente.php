@@ -198,7 +198,7 @@ class Ecliente extends Component
                 'Concepto' => $this->Concepto,
                 'banco_id' => $this->Banco,
                 'empresa_id' => $this->searchE,
-                'fichaD_id' => $Fid,
+                'fichaD_id' => $Fid->id,
                 'cliente_id' => $this->ide,
                 'formap_id' => $this->FormaP,
                 'empleado_id' => auth()->user()->empleado->id,

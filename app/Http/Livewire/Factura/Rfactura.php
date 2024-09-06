@@ -7,6 +7,7 @@ use App\Models\Empresa;
 use App\Models\Movimientos;
 use App\Models\Factura;
 use App\Models\MetodoPago;
+use App\Models\Complemento;
 use App\Models\FormaPago;
 use Livewire\Component;
 
@@ -14,7 +15,7 @@ class Rfactura extends Component
 {
     public $Folio, $Fecha, $Total, $CFDI, $Observaciones, $Estatus, $Concepto,$Metodos, $Metodo, $Formas, $Forma;
     public $movimientoSeleccionadaId, $searchM, $empresaSeleccionadaId, $searchE, $clienteSeleccionadaId, $searchC, $searchMRS;
-    public $Solicitud, $FechaDep, $FComplemento, $Empresas, $Clientes, $Movimientos, $AUX, $TotalDep;
+    public $Solicitud, $FechaDep, $FComplemento, $Empresas, $Clientes, $Movimientos, $AUX, $TotalDep, $TotCom, $FechaCom;
     public function render()
     {
         $this->Empresas = Empresa::all();
@@ -26,6 +27,9 @@ class Rfactura extends Component
             $this->FechaDep = $MovimientoFact->Fecha;
             if ($this->Metodo == 'PUE'){
                 $this->Total = number_format($MovimientoFact->Total, 2, '.', ',');
+            }
+            if ($this->Metodo == 'PPD'){
+                $this->TotCom = number_format($MovimientoFact->Total, 2, '.', ',');
             }
         }
         if ($this->searchE && $this->searchC){
@@ -65,9 +69,16 @@ class Rfactura extends Component
                 'empleado_id' => auth()->user()->empleado->id,
             ]
         );
+        Movimiento::where('id', $this->movimientoSeleccionadaId)
+            ->update([
+                'FolioF' => $this->Folio,
+                'FechaF' => $this->Fecha,
+            ]);
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Registro Guardado Exitosamente',
             'type' => 'success'
         ]);
+        $Factura = Factura::latest()->first();
+        return redirect()->route('EFactura', [$Factura->id]);
     }
 }

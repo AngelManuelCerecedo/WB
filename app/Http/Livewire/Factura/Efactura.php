@@ -17,7 +17,7 @@ class Efactura extends Component
 {
     public $ide, $Folio, $Fecha, $Total, $CFDI, $Observaciones, $Estatus, $Concepto, $Metodos, $Metodo, $Formas, $Forma;
     public $movimientoSeleccionadaId, $searchM, $empresaSeleccionadaId, $searchE, $clienteSeleccionadaId, $searchC, $searchMRS;
-    public $Solicitud, $FechaDep, $FComplemento, $Empresas, $Clientes, $Movimientos, $AUX, $TotalDep, $factura, $TotalC;
+    public $Solicitud, $FechaDep, $FComplemento, $Empresas, $Clientes, $Movimientos, $AUX, $TotalDep, $factura, $TotalC, $FechaC, $AuxMov;
     public $Complementos;
     public function render()
     {
@@ -35,8 +35,8 @@ class Efactura extends Component
                 $this->Total = number_format($this->factura->Total, 2);
             }
         }
-        if ($this->searchE && $this->searchC) {
-            $this->Movimientos = Movimientos::Where([['FolioF'], ['Movimiento', 'Deposito'], ['cliente_id', $this->searchC], ['empresa_id', $this->searchE]])->get();
+        if ($this->clienteSeleccionadaId) {
+            $this->Movimientos = Movimientos::Where([['FolioF'], ['Movimiento', 'Deposito'], ['cliente_id', $this->clienteSeleccionadaId]])->get();
         }
         return view('livewire.factura.efactura');
     }
@@ -51,7 +51,6 @@ class Efactura extends Component
     public function mount()
     {
         $this->factura = Factura::where('id', $this->ide)->first();
-        $this->Movimientos = Movimientos::Where([['FolioF'], ['Movimiento', 'Deposito'], ['empresa_id', $this->factura->cliente_id]])->get();
         $this->Fecha = $this->factura->Fecha;
         $this->Folio = $this->factura->Folio;
         $this->CFDI = $this->factura->CFDI;
@@ -64,7 +63,8 @@ class Efactura extends Component
         $this->empresaSeleccionadaId = $this->factura->empresa_id;
         $this->Forma = $this->factura->formap_id;
         $this->clienteSeleccionadaId = $this->factura->cliente_id;
-        $this->movimientoSeleccionadaId = ($this->factura->Metodo == 'PPD') ? '' : $this->factura->movimiento_id;
+        $this->movimientoSeleccionadaId = $this->factura->movimiento_id;
+        $this->AuxMov =  $this->movimientoSeleccionadaId;
     }
     public function registrar()
     {
@@ -88,6 +88,20 @@ class Efactura extends Component
                 'empleado_id' => auth()->user()->empleado->id,
             ]
         );
+        if ($this->Metodo == 'PUE'){
+            if ($this->AuxMov != $this->movimientoSeleccionadaId){
+                Movimientos::where('id', $this->AuxMov)
+                    ->update([
+                        'FolioF' => null,
+                        'FechaF' => null,
+                ]);
+            }
+        }
+        Movimientos::where('id', $this->movimientoSeleccionadaId)
+            ->update([
+                'FolioF' => $this->Folio,
+                'FechaF' => $this->Fecha,
+        ]);
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Registro Actualizado Exitosamente',
             'type' => 'success'
@@ -106,18 +120,31 @@ class Efactura extends Component
                 'movimiento_id' => $this->movimientoSeleccionadaId,
             ]
         );
+        Movimientos::where('id', $this->movimientoSeleccionadaId)
+            ->update([
+                'FolioF' => 'F-'.$this->Folio.' C-'.$this->FComplemento,
+                'FechaF' => $this->FechaC,
+        ]);
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Complemento Registrado Exitosamente',
             'type' => 'success'
         ]);
+        $this->redic();
     }
     public function eliminarCom($id)
     {
+        $complemento = Complemento::find($id);
+        Movimientos::where('id', $complemento->movimiento_id)
+            ->update([
+                'FolioF' => null,
+                'FechaF' => null,
+        ]);
         Complemento::where('id', $id)->delete();
         $this->dispatchBrowserEvent('swal', [
             'title' => 'Complemento Eliminado',
             'type' => 'success'
         ]);
+        $this->redic();
     }
     public function redic()
     {

@@ -167,6 +167,8 @@
                                                         </button>
                                                     </div>
                                                 </td>
+                                            @else
+                                                <td></td>
                                             @endif
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->empresaD->NCorto }} -
@@ -193,6 +195,8 @@
                                                         </button>
                                                     </div>
                                                 </td>
+                                            @else
+                                                <td></td>
                                             @endif
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->Fecha }}</td>
                                             <td class="py-4 whitespace-no-wrap">{{ $movimiento->empresaD->NCorto }} -
