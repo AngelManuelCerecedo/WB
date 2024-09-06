@@ -11,9 +11,7 @@ use App\Models\MetodoPago;
 use App\Models\Movimientos;
 use Livewire\Component;
 
-use function GuzzleHttp\Promise\all;
-
-class Efactura extends Component
+class Efactura2 extends Component
 {
     public $ide, $Folio, $Fecha, $Total, $CFDI, $Observaciones, $Estatus, $Concepto, $Metodos, $Metodo, $Formas, $Forma;
     public $movimientoSeleccionadaId, $searchM, $empresaSeleccionadaId, $searchE, $clienteSeleccionadaId, $searchC, $searchMRS;
@@ -35,10 +33,10 @@ class Efactura extends Component
                 $this->Total = number_format($this->factura->Total, 2);
             }
         }
-        if ($this->clienteSeleccionadaId) {
-            $this->Movimientos = Movimientos::Where([['FolioF'], ['Movimiento', 'Deposito'], ['cliente_id', $this->clienteSeleccionadaId]])->get();
+        if ($this->empresaSeleccionadaId) {
+            $this->Movimientos = Movimientos::Where([['FolioF'], ['Movimiento', 'Transferencia'], ['empresa_id', $this->empresaSeleccionadaId]])->get();
         }
-        return view('livewire.factura.efactura');
+        return view('livewire.factura.efactura2');
     }
     public function mount()
     {
@@ -121,6 +119,15 @@ class Efactura extends Component
             'title' => 'Complemento Registrado Exitosamente',
             'type' => 'success'
         ]);
+        if ($this->Metodo == 'PPD') {
+            if ($this->AuxMov != $this->movimientoSeleccionadaId) {
+                Movimientos::where('id', $this->AuxMov)
+                    ->update([
+                        'FolioF' => null,
+                        'FechaF' => null,
+                    ]);
+            }
+        }
         $this->redic();
     }
     public function eliminarCom($id)
@@ -140,6 +147,6 @@ class Efactura extends Component
     }
     public function redic()
     {
-        return redirect()->route('EFactura', $this->ide);
+        return redirect()->route('EFactura2', $this->ide);
     }
 }

@@ -288,6 +288,28 @@ Route::middleware([
 ])->group(function () {
     Route::get('Facturas/Editar/{id}', [FacturaController::class, 'efactura'])->name('EFactura');
 });
+//FACTURAS 2DO NIVEL (TRANSFERENCIAS)
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('FacturasT', [FacturaController::class, 'factura2'])->name('Facturas2');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('FacturasT/Registro', [FacturaController::class, 'rfactura2'])->name('RFactura2');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('FacturasT/Editar/{id}', [FacturaController::class, 'efactura2'])->name('EFactura2');
+});
 //PDF's
 Route::get('Formato/pdf/Movimientos/{idEmp}/{id}', [EmpresaController::class, 'PDF'])->name('EstadoCPDF');
 //Excel's

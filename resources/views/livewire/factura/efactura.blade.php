@@ -229,8 +229,8 @@
                         </div>
                     </div>
                     <div class="sm:col-span-1">
-                    <label class="block text-sm font-medium leading-6 text-gray-900">Fecha Complemento</label>
-                    <div class="mt-1">
+                        <label class="block text-sm font-medium leading-6 text-gray-900">Fecha Complemento</label>
+                        <div class="mt-1">
                             <input type="date" wire:model='FechaC' autocomplete="given-name"
                                 class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                         </div>
@@ -268,7 +268,8 @@
                                                     </button>
                                                 </div>
                                             </td>
-                                            <td data-label="Fecha :">{{ date('d-m-Y', strtotime($complemento->Fecha)) }}</td>
+                                            <td data-label="Fecha :">
+                                                {{ date('d-m-Y', strtotime($complemento->Fecha)) }}</td>
                                             <td data-label="Folio Com. :">{{ $complemento->Complemento }}</td>
                                             <td data-label="Total :">$
                                                 {{ number_format($complemento->Total, 2, '.', ',') }}</td>
@@ -304,6 +305,13 @@
         $('#select1').on('change', function(e) {
             let valor = $('#select1').select2("val");
             @this.set('searchE', valor);
+        });
+    });
+    $(document).ready(function() {
+        $('#select2').select2();
+        $('#select2').on('change', function(e) {
+            let valor = $('#select2').select2("val");
+            @this.set('clienteSeleccionadaId', valor);
         });
     });
     $(document).ready(function() {

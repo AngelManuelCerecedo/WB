@@ -111,12 +111,8 @@
                         </button>
                         <div id="facturacionMenuMobile" class="hidden mt-2">
                             <!-- Aquí agregas las opciones de "Finanzas" para móviles -->
-                            <a href="{{ route('FichasI') }}" class="block text-sm font-semibold text-gray-900">Ficha
-                                de
-                                Identificacion de Depositos</a>
-                            <a href="{{ route('FichasG') }}" class="block text-sm font-semibold text-gray-900">Ficha
-                                de
-                                Identificacion de Gastos</a>
+                            <a href="{{ route('Facturas') }}" class="block text-sm font-semibold text-gray-900">Facturación de Depositos</a>
+                            <a href="{{ route('Facturas2') }}" class="block text-sm font-semibold text-gray-900">Facturación de Transferencias</a>
                         </div>
                     </div>
                 </div>
@@ -405,7 +401,7 @@
 
                                     </div>
                                     <div class="flex-auto">
-                                        <a href="{{ route('FichasG') }}"
+                                        <a href="{{ route('Facturas2') }}"
                                             class="block font-semibold text-gray-900 group-hover:text-red-600">
                                             Facturación de Transferencias
                                             <span class="absolute inset-0"></span>

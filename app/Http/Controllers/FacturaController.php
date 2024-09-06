@@ -18,4 +18,16 @@ class FacturaController extends Controller
     {
       return view('Facturas.Efactura', ['id' => $id]);
     }
+    public function factura2()
+    {
+      return view('Facturas.Bfactura2');
+    }
+    public function rfactura2()
+    {
+      return view('Facturas.Rfactura2');
+    }
+    public function efactura2($id)
+    {
+      return view('Facturas.Efactura2', ['id' => $id]);
+    }
 }

@@ -101,37 +101,6 @@
                     </div>
                 </div>
                 <div class="sm:col-span-3 sm:col-start-1">
-                    <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Cliente</label>
-                    <div class="mt-2" wire:ignore>
-                        <select id="select2" class="buscador" wire:model="clienteSeleccionadaId">
-                            <option value="">Seleccione un Cliente</option>
-                            @foreach ($Clientes as $cliente)
-                                <option value="{{ $cliente->id }}">
-                                    {{ $cliente->ALIAS }}
-                                    -
-                                    {{ $cliente->NOMBRE }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="sm:col-span-3">
-                    <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Razon
-                        Social</label>
-                    <div class="mt-2" wire:ignore>
-                        <select id="select3" class="buscador">
-                            <option value="">Seleccione una Razon Social</option>
-                            @foreach ($Clientes as $cliente)
-                                <option value="{{ $cliente->id }}">
-                                    {{ $cliente->ALIAS }}
-                                    -
-                                    {{ $cliente->NOMBRE }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="sm:col-span-3 sm:col-start-1">
                     <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Empresa</label>
                     <div class="mt-2" wire:ignore>
                         <select id="select1" class="buscador" wire:model="empresaSeleccionadaId">
@@ -175,17 +144,17 @@
         });
     });
     $(document).ready(function() {
-        $('#select2').select2();
-        $('#select2').on('change', function(e) {
-            let valor = $('#select2').select2("val");
-            @this.set('searchC', valor);
+        $('#select1').select2();
+        $('#select1').on('change', function(e) {
+            let valor = $('#select1').select2("val");
+            @this.set('empresaSeleccionadaId', valor);
         });
     });
     $(document).ready(function() {
         $('#select2').select2();
         $('#select2').on('change', function(e) {
             let valor = $('#select2').select2("val");
-            @this.set('clienteSeleccionadaId', valor);
+            @this.set('searchC', valor);
         });
     });
     $(document).ready(function() {
