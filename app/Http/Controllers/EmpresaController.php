@@ -35,11 +35,11 @@ class EmpresaController extends Controller
   {
     $Empresa = Empresa::where('id', $idEmp)->first();
     $Banco = Banco::where('id', $id)->first();
-$Movimientos = Movimientos::where('bancoD_id', $id)
-    ->orWhere('banco_id', $id)
-    ->orderBy('Fecha', 'asc')  // Ordenar por fecha de manera descendente
-    ->orderBy('id', 'asc')      // Luego ordenar por ID de manera ascendente
-    ->get();
+    $Movimientos = Movimientos::where('bancoD_id', $id)
+        ->orWhere('banco_id', $id)
+        ->orderBy('Fecha', 'asc')  // Ordenar por fecha de manera descendente
+        ->orderBy('id', 'asc')      // Luego ordenar por ID de manera ascendente
+        ->get();
     $pdf = PDF::loadView('pdfs.Estado', ['Empresa' => $Empresa, 'Movimientos' => $Movimientos, 'Banco' => $Banco]);
     return $pdf->stream('EstadoCuenta-' . $Empresa->NCorto . '.pdf');
   }

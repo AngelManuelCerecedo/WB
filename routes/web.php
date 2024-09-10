@@ -310,13 +310,26 @@ Route::middleware([
 ])->group(function () {
     Route::get('FacturasT/Editar/{id}', [FacturaController::class, 'efactura2'])->name('EFactura2');
 });
+
 //PDF's
 Route::get('Formato/pdf/Movimientos/{idEmp}/{id}', [EmpresaController::class, 'PDF'])->name('EstadoCPDF');
-//Excel's
+
+
+//XLS's
+
 //Empresas
 Route::get('Formato/xls/Saldos', [EmpresaController::class, 'XLS'])->name('EmpresasXLS');
+
 //Ficha de Depositos
 Route::get('Formato/xls/FichaIngreso/{id}', [FichaIngresoController::class, 'XLS'])->name('FichaXLS');
+
+//Reporte de Gastos
+Route::get('Formato/xls/FichaG/{Fecha1}/{Fecha2}', [FichaGastosController::class, 'XLS'])->name('ReporteGXLS');
+
+
+
+
+
 //ROLES
 Route::get('roles', [RoleController::class, 'roles'])->name('Roles');
 Route::get('roles/Registro', [RoleController::class, 'rroles'])->name('RRoles');

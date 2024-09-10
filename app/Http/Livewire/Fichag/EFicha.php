@@ -14,7 +14,7 @@ class EFicha extends Component
 {
     public $Folio, $Fecha, $Total, $Comision, $Obs, $Estatus, $Bene;
     public $searchE, $ide, $Ficha, $empresaSeleccionadaId, $searchC, $Acreedores,$Acreedor,$AcreedorP;
-    public $Monto, $FormaP, $Bancos, $Banco, $Factura, $FF;
+    public $Monto, $FormaP, $Bancos, $Banco, $Factura, $FF, $Cuenta;
     public function render()
     {
         $empresas = Empresa::all();
@@ -45,6 +45,7 @@ class EFicha extends Component
         $this->Estatus = $this->Ficha->Estatus;
         $this->Obs = $this->Ficha->Obs;
         $this->FormaP = $this->Ficha->formap_id;
+        $this->Cuenta = $this->Ficha->Cuenta;
         $this->AcreedorP = ($this->Ficha->acreedor == 4) ? 'Gastos WB' : $Acreedor->Nombre;
         $this->Acreedor = $this->Ficha->acreedor;
     }
@@ -64,6 +65,7 @@ class EFicha extends Component
                 'FolioFact' => ($this->Factura) ? $this->FF : null,
                 'Estatus' => 'Registro',
                 'Obs' => $this->Obs,
+                'Cuenta' => $this->Cuenta,
                 'acreedor' => $this->Acreedor,
             ]
         );

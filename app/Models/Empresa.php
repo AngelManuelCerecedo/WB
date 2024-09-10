@@ -15,4 +15,7 @@ class Empresa extends Model
     public function cliente(){
         return $this->hasMany("App\Models\Clientes");
     }
+    public function fichaG(){
+        return $this->hasMany("App\Models\FichaGasto");
+    }
 }

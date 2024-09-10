@@ -15,4 +15,10 @@ class FichaGasto extends Model
     public function beneficiario(){
         return $this->belongsTo(Beneficiario::class, 'bene_id');
     }
+    public function banco(){
+        return $this->belongsTo(Banco::class, 'banco_id');
+    }
+    public function empresa(){
+        return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
 }
